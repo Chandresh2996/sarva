@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<head>
+    <style>
+        .error-sidebar
+        {
+            position: absolute;
+            top: 110px;
+            right: 0;
+            width: 400px;
+            z-index: 1;
+        }
+    </style>    
+</head>
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>{{title}}: {{action}}</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Masters </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'ledgers:ledgers' %}"> Registration </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="/led/{{url|lower}}"> {{title}} </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href=""> {{action}} {{title}} </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+   <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="needs-validation" method="POST" onsubmit="return validate()" id="MyForm">
+                        {% csrf_token %}
+                        <div class="row mt-10">
+                            {% for field in form %}
+                            <div class="col-md-{{div}}">
+                                <div class="mb-3">
+                                    {{field.label_tag}}{{ field }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="col d-flex align-items-center justify-content-end">
+                                <button style="float: right;" class="btn btn-primary" type="submit" >Submit</button>
+                            </div>
+                        </div>
+                    </form><!-- end form -->
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div> <!-- end col -->
+    </div>
+</div>
+{% if form.errors %}
+    {% for key, value in form.errors.items %}
+        {% for error in value %}
+            <div class="col-md-12 alert alert-danger alert-dismissible fade show p-10 error-sidebar" role="alert">
+                <i class="fas fa-times-circle me-3"></i> {{ error }}
+                <button type="button" class="close p-10" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% endblock %}
+{% block scripts %}
+
+<script>
+    $(document).ready(function()
+    {        
+        load_zones();
+        load_regions();
+        load_zsm();
+        load_rsm();
+        load_countries();
+    });
+
+    $("#id_zone").change(function ()
+    {
+        load_zones();
+        load_regions();
+        load_zsm();
+        load_rsm();
+    });
+
+    $("#id_region").change(function ()
+    {
+        load_regions();
+        load_zsm();
+        load_rsm();
+    });
+
+    $("#id_zsm").change(function ()
+    {
+        load_zsm();
+        load_rsm();
+    });
+    
+    $("#id_rsm").change(function ()
+    {  
+        load_rsm();
+    });
+    
+    $("#id_country").change(function ()
+    {    
+        load_countries();
+    });
+    
+    function load_zones()
+    {
+        var regionId = $('#id_zone').val();
+        $.ajax(
+        {
+            url: "{% url 'ledgers:load_zones' %}",
+            data:
+            {
+                'region': regionId
+            },
+            success: function (data)
+            {
+                $("#id_region").html(data);
+            }
+        });
+    };
+
+    function load_regions()
+    {
+        var regionId = $("#id_zone").val();
+        $.ajax(
+        {
+            url: "{% url 'ledgers:load_zsms' %}",
+            data:
+            {
+                'region': regionId
+            },
+            success: function (data)
+            {
+                $("#id_zsm").html(data);
+            }
+        });
+    }
+        
+    function load_zsm()
+    {
+        var zoneId = $("#id_zone").val();
+        var regionId = $("#id_region").val();
+        var zsm = $("#id_zsm").val();
+        $.ajax(
+        {
+            url: "{% url 'ledgers:load_rsms' %}",
+            data:
+            {
+                'zone': zoneId,
+                'region': regionId,
+                'zsm': zsm
+            },
+            success: function (data)
+            {
+                $("#id_rsm").html(data);
+            }
+        });
+    }
+    
+    function load_rsm()
+    {
+        var zoneId = $("#id_zone").val();
+        var regionId = $("#id_region").val();
+        var zsmId = $("#id_zsm").val();
+        var rsm = $("#id_rsm").val();
+
+        $.ajax(
+        {
+        url: "{% url 'ledgers:load_asms' %}",
+        data: 
+        {
+            'zone': zoneId,
+            'region': regionId,
+            'zsm': zsmId,
+            'rsm': rsm
+        },
+        success: function (data) 
+        {
+            $("#id_asm").html(data);
+        }
+        });
+    }
+    
+    function load_countries()
+    {  
+        var country = $("#id_country").val();
+        $.ajax(
+        {
+        url: "{% url 'ledgers:ajax_load_states' %}",
+        data: 
+        {
+            'country': country
+        },
+        success: function (data) 
+        {
+            $("#id_state").html(data);
+        }
+        });
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block content %}
+{% load mathops %}
+{% load humanize %}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-statistics">
+            <div class="card-header d-flex justify-content-between flex-wrap">
+                <div class="card-heading">
+                    <h4 class="card-title">DSR Report</h4>
+                </div>
+                <div class="date-width">
+                    <form method='GET' action='{% url "dash:dsrReport" %}'>
+                        <div class="d-flex calendar-wrapper">
+                            <input class="form-control mb-md-0 mb-sm-2 mb-xs-2" name="startdate" type="date" autocomplete="off" value="{{start|date:'Y-m-d'}}"/>
+                            <input class="form-control mb-md-0 mb-sm-2 mb-xs-2" name="enddate" type="date" autocomplete="off" value="{{end|date:'Y-m-d'}}"/>
+                            <button class="btn btn-primary btn-sm" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="dropdown spacing-sm">
+                    <a class="p-2 export-btn" href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Export
+                    </a>
+                    <a id="dlink" style="display:none;"></a>
+                    <div class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
+                       <a class="dropdown-item" href="javascript:tablesToExcel(array1, 'DSR', 'DSR.xls')"><i class="fa-fw fa fa-file-excel-o pr-2"></i>Export to Exel</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <section class="accordion">
+                    <section class="accordion-tabs">
+                        <button class="accordion-tab accordion-active" data-actab-group="0" data-actab-id="0">Sales Summary : BASIC</button>
+                        <button class="accordion-tab" data-actab-group="0" data-actab-id="1">Sales Summary : INVOICE</button>
+                        <button class="accordion-tab" data-actab-group="0" data-actab-id="2">Sales Summary : MRP</button>
+                    </section>
+                    <section class="accordion-content">
+                        <article class="accordion-item accordion-active" data-actab-group="0" data-actab-id="0">
+                            <h4 class="accordion-item__label">Sales Summary : BASIC</h4>
+                            <div class="accordion-item__container">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless mb-0" id="table_1" data-excel-name="Basic">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>BASIC</th>
+                                                {% for d in divisions %}
+                                                    <th nowrap style="text-align:right; padding-right:3rem">{{d}}</th>
+                                                {% endfor %}
+                                                <th nowrap style="text-align:right; padding-right:3rem">TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-muted mb-0">
+                                            {% for i in channels %}
+                                            <tr>
+                                                {% with f=i %}
+                                                    <th >{{i}}</th>
+                                                    {% for d in divisions %}
+                                                        {% with c=data|keyvalue:f %}
+                                                            <td nowrap style="text-align:right; padding-right:3rem">
+                                                                {{c|has_basic:d|default_if_none:0}}
+                                                            </td>
+                                                        {% endwith %}
+                                                    {% endfor %}
+                                                    {% with c=dff|has_channel:i %}
+                                                    <td nowrap style="color:black; text-align:right; padding-right:3rem">
+                                                        {{c.ammount|default_if_none:0}}
+                                                    </td>
+                                                    {% endwith %}
+                                                {% endwith %}
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>TOTAL</th>
+                                                {% for d in divisions %}
+                                                    <td nowrap style="text-align:right; padding-right:3rem; vertical-align: middle;">
+                                                        {{totals|has_basic:d|default_if_none:0}}
+                                                    </td>
+                                                {% endfor %}
+                                                <th>{{grandtotals.ammount|default_if_none:0}}</th>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion-item" data-actab-group="0" data-actab-id="1">
+                            <h4 class="accordion-item__label">Sales Summary : INVOICE</h4>
+                            <div class="accordion-item__container">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless mb-0" id="table_2" data-excel-name="Invoice">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>INVOICE</th>
+                                                {% for d in divisions %}
+                                                    <th nowrap style="text-align:right; padding-right:3rem">{{d}}</th>
+                                                {% endfor %}
+                                                <th nowrap style="text-align:right; padding-right:3rem">TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-muted mb-0">
+                                            {% for i in channels %}
+                                            <tr>
+                                                {% with f=i %}
+                                                    <th>{{i}}</th>
+                                                    {% for d in divisions %}
+                                                        {% with c=data|keyvalue:f %}
+                                                            <td nowrap style="text-align:right; padding-right:3rem">
+                                                                {{c|has_total:d|default_if_none:0}}
+                                                            </td>
+                                                        {% endwith %}
+                                                    {% endfor %}
+                                                {% endwith %}
+                                                {% with c=dff|has_channel:i %}
+                                                <td nowrap style="color:black; text-align:right; padding-right:3rem">
+                                                    {{c.total|default_if_none:0}}
+                                                </td>
+                                                {% endwith %}
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>TOTAL</th>
+                                                {% for d in divisions %}
+                                                <td nowrap style="text-align:right; padding-right:3rem; vertical-align: middle;">
+                                                    {{totals|has_total:d|default_if_none:0}}
+                                                </td>
+                                                {% endfor %}
+                                                <th>{{grandtotals.total|default_if_none:0}}</th>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="accordion-item" data-actab-group="0" data-actab-id="2">
+                            <h4 class="accordion-item__label">Sales Summary : MRP</h4>
+                            <div class="accordion-item__container">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless mb-0" id="table_3" data-excel-name="MRP">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>MRP</th>
+                                                {% for d in divisions %}
+                                                    <th nowrap style="text-align:right; padding-right:3rem">{{d}}</th>
+                                                {% endfor %}
+                                                <th nowrap style="text-align:right; padding-right:3rem">TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-muted mb-0">
+                                            {% for i in channels %}
+                                            <tr>
+                                                {% with f=i %}
+                                                    <th>{{i}}</th>
+                                                    {% for d in divisions %}
+                                                        {% with c=data|keyvalue:f %}
+                                                            <td nowrap style="text-align:right; padding-right:3rem">
+                                                                {{c|has_mrp:d|default_if_none:0}}
+                                                            </td>
+                                                        {% endwith %}
+                                                    {% endfor %}
+                                                {% endwith %}
+                                                {% with c=dff|has_channel:i %}
+                                                <td nowrap style="color:black; text-align:right; padding-right:3rem">
+                                                    {{c.mrpvalue|default_if_none:0}}
+                                                </td>
+                                                {% endwith %}
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th>TOTAL</th>
+                                                {% for d in divisions %}
+                                                <td nowrap style="text-align:right; padding-right:3rem !important; vertical-align: middle;">
+                                                    {{totals|has_mrp:d|default_if_none:0}}
+                                                </td>
+                                                {% endfor %}
+                                                <th>{{grandtotals.mrpvalue|default_if_none:0}}</th>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+
+<script type="text/javascript">
+    const labels = document.querySelectorAll(".accordion-item__label");
+const tabs = document.querySelectorAll(".accordion-tab");
+
+function toggleShow() {
+  const target = this;
+  const item = target.classList.contains("accordion-tab")
+    ? target
+    : target.parentElement;
+  const group = item.dataset.actabGroup;
+  const id = item.dataset.actabId;
+
+  tabs.forEach(function(tab) {
+    if (tab.dataset.actabGroup === group) {
+      if (tab.dataset.actabId === id) {
+        tab.classList.add("accordion-active");
+      } else {
+        tab.classList.remove("accordion-active");
+      }
+    }
+  });
+
+  labels.forEach(function(label) {
+    const tabItem = label.parentElement;
+
+    if (tabItem.dataset.actabGroup === group) {
+      if (tabItem.dataset.actabId === id) {
+        tabItem.classList.add("accordion-active");
+      } else {
+        tabItem.classList.remove("accordion-active");
+      }
+    }
+  });
+}
+
+labels.forEach(function(label) {
+  label.addEventListener("click", toggleShow);
+});
+
+tabs.forEach(function(tab) {
+  tab.addEventListener("click", toggleShow);
+});
+</script>
+
+<script>
+    function dsrexport(){
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#table"), "DSR-" + new Date().toLocaleString().replace(/[\-\:\.]/g, ""));
+    }
+</script>
+<script>
+    //table to excel (multiple table)
+    var array1 = new Array();
+    var n = 3; //Total table
+    for ( var x=1; x<=n; x++ ) {
+        array1[x-1] = 'table_' + x;
+    }
+    var tablesToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,'
+            , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets>'
+            , templateend = '</x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head>'
+            , body = '<body>'
+            , tablevar = '<table>{table'
+            , tablevarend = '}</table>'
+            , bodyend = '</body></html>'
+            , worksheet = '<x:ExcelWorksheet><x:Name>'
+            , worksheetend = '</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet>'
+            , worksheetvar = '{worksheet'
+            , worksheetvarend = '}'
+            , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+            , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+            , wstemplate = ''
+            , tabletemplate = '';
+
+        return function (table, name, filename) {
+            var tables = table;
+            var wstemplate = '';
+            var tabletemplate = '';
+
+            wstemplate = worksheet + worksheetvar + '0' + worksheetvarend + worksheetend;
+            for (var i = 0; i < tables.length; ++i) {
+                tabletemplate += tablevar + i + tablevarend;
+            }
+
+            var allTemplate = template + wstemplate + templateend;
+            var allWorksheet = body + tabletemplate + bodyend;
+            var allOfIt = allTemplate + allWorksheet;
+
+            var ctx = {};
+            ctx['worksheet0'] = name;
+            for (var k = 0; k < tables.length; ++k) {
+                var exceltable;
+                if (!tables[k].nodeType) exceltable = document.getElementById(tables[k]);
+                ctx['table' + k] = exceltable.innerHTML;
+            }
+
+            document.getElementById("dlink").href = uri + base64(format(allOfIt, ctx));;
+            document.getElementById("dlink").download = filename;
+            document.getElementById("dlink").click();
+        }
+    })();
+</script>
+{% endblock %}

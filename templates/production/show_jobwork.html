@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Jobcard: View</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Transactions </li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'production:production' %}">Production</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'production:listjobwork' %}">Jobcard</a></li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">View Jobcard</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="mb-0"><span class="fw-bold">Jobcard: </span>{{job}}</h4>
+                <div class="page-title-right">
+                    <h4><span class="fw-bold">Date: </span>{{date|date:'d-m-Y'}}</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="needs-validation" id="soform" action="{% url 'production:jobwork' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="jobcard">Jobcards</label>
+                                <input type="text" class="form-control" id="jobcard" name="jobcard" readonly value="{{job.joborder}}">
+                               
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="product">Product</label>
+                                <input type="text" class="form-control" id="product" name="product" readonly value="{{job.product}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="bom">Bom</label>
+                                <input type="text" class="form-control" id="bom" name="bom" readonly value="{{job.joborder.bom}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="qty">Quantity</label>
+                                <input type="text" class="form-control" id="qty" name="qty" readonly value="{{job.joborder.qty}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="due_date">Dua Date</label>
+                                <input type="text" class="form-control" id="date" name="due_date" value="{{job.joborder.due_date|date:'d-m-Y'}}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="remarks">Speacial Instructions</label>
+                                <textarea type="text" class="form-control" id="remarks" name="remarks"
+                                    readonly>{{job.joborder.remarks}}</textarea>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="duration">Start Date</label>
+                                <input type="text" class="form-control" id="duration" name="duration" readonly value="{{job.start|date:'d-m-Y'}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="pqty">Production Quantity</label>
+                                <input type="number" class="form-control" min="1"  id="pqty" name="pqty" readonly value="{{job.qty}}">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <input style="float: right;" type="button" class="btn btn-danger" value="Go back!" onclick="history.back()">
+                        </div>
+                </form>
+                <!-- end form -->
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+    <!-- end col -->
+</div>
+<!-- end row -->
+<div class="container col-12 mt-3">
+    <div class="card">
+        <div class="card-header justify-content-between d-flex align-items-center">
+            <h4 class="card-title">RM Indent</h4>
+            <!-- <button type="button" class="btn btn-primary w-sm ms-auto" id="export"> Export </button> -->
+        </div>
+        <!-- end card header -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0 wrap" id="table">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>FM Product</th>
+                            <th>Bom</th>
+                            <th>RM Product</th>
+                            <th>Required Quantity</th>
+                            <th>RM Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <th scope="row" class="datarow"> {{forloop.counter}} </th>
+                                <td style="padding:.5rem">{{item.rmindent.jobcard.product}}</td>
+                                <td style="padding:.5rem">{{item.bom}}</td>
+                                <td style="padding:.5rem">{{item.item}}</td>
+                                <td style="text-align:end;padding:.5rem"> {{item.qty}}</td>
+                                <td style="word-wrap:break-word"> {{item.item.description}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <!-- end tbody-->
+                </table>
+                <!-- end table-->
+                <input class="d-none" type="text" id="shortfall"/>
+            </div>
+            <!-- end table responsive -->
+        </div>
+        <!-- end card body -->
+    </div>
+    <!-- end card -->
+</div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+
+    $("#btnsubmit").click(function(event) {
+
+        event.preventDefault();
+        if (! $("#duration").val()){
+            window.alert("Please Select Start Date");
+            return false;
+        }
+        if (($("#pqty").val() | 0) <=0 ){
+            window.alert("Please add Prodcution Quantity");
+            return false;
+        }
+        if ($("#shortfall").val() === 'True'){
+            window.alert("There is a shortfall in RM");
+            return false;
+        }
+        $("#soform").submit();
+    });
+
+    $("#jobcard").change(function () {
+        var job = $(this).val();
+        $.ajax({
+            url: "{% url 'production:loadjob' %}",
+            data: {
+                'job': job,
+            },
+            success: function (data) {
+                data=data.split("|");
+                $("#product").val(data[0]);
+                $("#bom").val(data[1]);
+                $("#qty").val(data[2]);
+                $("#date").val(data[3]);
+                $("#remarks").val(data[4]);
+            }
+        });
+    });
+
+    $("#pqty").change(function () {
+        var qty = $(this).val();
+        var job = $("#jobcard").val();
+        if (parseInt(qty) > parseInt($("#qty").val())){
+            window.alert("Production Quantity can not be more than Job Quantity");
+            $(this).val('');
+            return;
+        }
+        $.ajax({
+            url: "{% url 'production:ajax_load_rmindent' %}",
+            data: {
+                'job':job,
+                'qty': qty,
+            },
+            success: function (data) {
+                data=data.split("~");
+                var table = $("#table")
+                $("tbody").remove();
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=0;i<data.length-1;i++)
+                {
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+
+                    for(j=0;j<item.length;j++){
+                        var cell = $("<td />");
+                        cell.append(item[j]);
+                        row.append(cell);
+                    }
+	    		}
+                $("#shortfall").val(data.pop());
+            }
+        });
+    });
+
+</script>
+
+<script>
+    $("#export").on("click" ,function (){
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#table"));
+    });
+  </script>
+
+{% endblock scripts %}

@@ -1,0 +1,15 @@
+{% for item in items %}
+|{{item.item.product_code}}
+|{{item.item.product_name}}
+|{{item.item.mrp}}
+|{{item.item.outer_qty}}
+|{{item.billed_qty}}
+|
+|0
+|0
+|0
+|0
+|{{item.sgstrate}}
+|{{item.cgstrate}}
+|{{item.igstrate}}~
+{% endfor %}

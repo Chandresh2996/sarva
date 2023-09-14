@@ -1,0 +1,147 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Purchase Order: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:purchase-reports' %}"> Purchase </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Purchase Order </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <table id="pm" class="table nowrap">
+                    <thead>
+                        <tr>
+                            <th>PO DATE</th>
+                            <th>PO NO</th>
+                            <th>REF NO</th>
+                            <th>SUPPLIER NAME</th>
+                            <th>BRAND</th>
+                            <th>ALU CODE</th>
+                            <th>SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>MRP</th>
+                            <th>ORDER QTY</th>
+                            <th>RATE</th>
+                            <th>HSN CODE</th>
+                            <th>GST(%)</th>
+                            <th>BASIC VALUE</th>
+                            <th>GST VALUE</th>
+                            <th>INVOICE VALUE</th>
+                            <th>UOM</th>
+                            <th>DUE DATE</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>PO DATE</th>
+                            <th>PO NO</th>
+                            <th>REF NO</th>
+                            <th>SUPPLIER NAME</th>
+                            <th>BRAND</th>
+                            <th>ALU CODE</th>
+                            <th>SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>MRP</th>
+                            <th>ORDER QTY</th>
+                            <th>RATE</th>
+                            <th>HSN CODE</th>
+                            <th>GST(%)</th>
+                            <th>BASIC VALUE</th>
+                            <th>GST VALUE</th>
+                            <th>INVOICE VALUE</th>
+                            <th>UOM</th>
+                            <th>DUE DATE</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    // DataTable
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Purchase Order Report',
+                title: '',
+            },
+            'csv',
+        ],
+        deferRender: true,
+        ajax:"{% url 'reports:podata' %}",
+        columns: [
+            {data: "po__po_date",render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+            {data: "po__po_no"},
+            {data: "po__other_reference"},
+            {data: "po__seller__name"},
+            {data: "item__brand__name"},
+            {data: "item__article_code"},
+            {data: "product_code"},
+            {data: "item__product_name"},
+            {data: "item__mrp",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "basic_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "rate", className:"text-right"},
+            {data: "item__hsn"},
+            {data: "igstrate",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "amount", className:"text-right"},
+            {data: "igst",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "invoice"},
+            {data: "item__units_of_measure__symbol"},
+            {data: "po__po_due_date"},
+        ],
+        scrollX:300,
+        scrollY:400,
+        scroller: true,
+        initComplete: function () {
+            
+            this.api().columns().every( function () {
+                var that = this;
+ 
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

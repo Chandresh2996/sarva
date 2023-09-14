@@ -1,0 +1,551 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row mx-0">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Quantity Discrepancy Note: Create</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:sales' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:qdn' %}"> QDN </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Create QDN </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mx-0">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0">
+                                <span class="fw-bold">QDN: </span>{{grnnumber}}</h4>
+                            <div class="page-title-right">
+                                <h4><span class="fw-bold">Date: </span>{{date|date:'d-m-Y'}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'sales:addqdn' %}" onsubmit="return validate()" class="needs-validation">
+                    {% csrf_token %}
+                    <div class="row mx-0">
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                    <label for="datepicker" class="col-md-4 col-form-label">Select Month</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" name="datepicker" id="datepicker" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_no" class="col-md-4 col-form-label">Invoice No</label>
+                                <div class="col-md-8">
+                                    <select class="js-example-basic-single" class="form-control" id="grn_no" name="grn_no" required>
+                                    <option></option>    
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="inv_date" class="form-label">Invoice Date</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="inv_date" name="inv_date" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mx-0">
+                        <div class="col-lg-3">
+                            <div class="mb-2">
+                                <label for="party_name" class="form-label">Bill To</label>
+                                <input type="text"
+                                        class="form-control"
+                                        id="party_name"
+                                        name="party_name"
+                                        placeholder="Name"
+                                        readonly>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text"
+                                        class="form-control"
+                                        id="party_address_type"
+                                        placeholder="Address Type"
+                                        name="party_address_type"
+                                        readonly>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield"
+                                            class="form-control"
+                                            id="party_address"
+                                            name="party_address"
+                                            placeholder="Address"
+                                            readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text"
+                                        class="form-control"
+                                        id="party_gstin"
+                                        placeholder="GSTIN"
+                                        name="party_gstin"
+                                        readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mb-2">
+                                <label for="consignee_name" class="form-label">Ship To</label>
+                                <input type="text"
+                                        class="form-control"
+                                        id="consignee_name"
+                                        placeholder="Name"
+                                        name="consignee_name"
+                                        readonly>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text"
+                                        class="form-control"
+                                        id="consignee_address_type"
+                                        placeholder="Address Type"
+                                        name="consignee_address_type"
+                                        readonly>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield"
+                                            class="form-control"
+                                            id="consignee_address"
+                                            placeholder="Address"
+                                            name="consignee_address"
+                                            readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text"
+                                        class="form-control"
+                                        id="consignee_gstin"
+                                        placeholder="GSTIN"
+                                        name="consignee_gstin"
+                                        readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mx-0">
+                        <div class="card w-100">
+                            <div class="card-body" style="padding: 0;">
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="table">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th style="min-width:5px; max-width: 5px;">#</th>
+                                                <th style="min-width:60px; max-width: 60px;">SKU Code</th>
+                                                <th style="min-width:100px; max-width: 100px;">SKU Name</th>
+                                                <th style="min-width:30px; max-width: 30px;">MRP</th>
+                                                <th style="min-width:40px; max-width: 40px;">Pack</th>
+                                                <th style="min-width:30px; max-width: 30px;">Billed Qty</th>
+                                                <th style="min-width:30px; max-width: 30px;">Qty Diff</th>
+                                                <th style="min-width:30px; max-width: 30px;">Free Qty</th>
+                                                <th style="min-width:30px; max-width: 30px;">Qty Diff</th>
+                                                <th style="min-width:40px; max-width: 40px;">Rate</th>
+                                                <th style="min-width:30px; max-width: 30px;">Discount</th>
+                                                <th style="min-width:60px; max-width: 60px;">Ammount</th>
+                                                <th style="min-width:60px; max-width: 60px;">GST</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                            
+                                        </tbody>
+                                        <!-- end tbody-->
+                                    </table>
+                                    <!-- end table-->
+                                </div>
+                                <!-- end table responsive -->
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label">
+                                        SubTotal
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control text-right"
+                                            id="totalammount"
+                                            name="totalammount"
+                                            readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="extradiscount" class="form-label">
+                                        Discount
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="extradiscount" name="extradiscount" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col-xl-4" style="padding: 0px 3px;">
+                                    <select class="form-control text-right" id="other_ledger" name="other_ledger">
+                                        <option value=''>Ledger</option>
+                                            {% for i in ledgers %}
+                                        <option value='{{i.pk}}'>{{i}}</option>
+                                            {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xl-3" style="padding: 0px 3px;">
+                                    <select class="form-control text-right" id="other_ledger_per" name="ol_rate">
+                                        <option value='0'>0 %</option>
+                                        <option value='5'>5 %</option>
+                                        <option value='12'>12 %</option>
+                                        <option value='18'>18 %</option>
+                                        <option value='28'>28 %</option>
+                                    </select>
+                                </div>
+                                <div class="col-xl-5" style="padding-left: 3px;">
+                                    <input type="text" class="form-control text-right" id="other" value='0' name="other">
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label">
+                                        CGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalcgst" name="totalcgst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="sgst" class="form-label">
+                                        SGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalsgst" name="totalsgst" readonly>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="igst" class="form-label">
+                                        IGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totaligst" name="totaligst" readonly>
+                                </div>
+                            </div>
+                            {% comment %} {% comment %} <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="tcs" class="form-label">
+                                        TCS
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="tcs" name="tcs" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="round_off" class="form-label">
+                                        Round Off
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control text-right"
+                                            id="round_off"
+                                            name="round_off"
+                                            readonly>
+                                </div>
+                            </div> {% endcomment %}
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="total" class="form-label">
+                                        Total
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="total" name="total" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label for="narration" class="form-label">
+                                    Remarks
+                                </label>
+                                <input type="text" class="form-control" id="narration" name="narration">
+                            </div>
+                        </div>
+                    </div>
+                    <table style="display:none;" id="selectedgrn">
+                    </table>
+                    <div class="row mx-0">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary w-sm ms-auto" id="btnsubmit" style="float:right;"> Submit </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    $(document).ready(function () {
+        $("#datepicker").datepicker( {
+            format: "mm-yyyy",
+            startView: "year", 
+            minViewMode: "months"
+        });
+    });
+    $("#datepicker").change(function () {
+        var monthId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'sales:ajax_load_month_inv' %}",
+            data: {
+                'month': monthId
+            },
+            success: function (data) {
+                $("#grn_no").html(
+                    data);
+            }
+        });
+
+    });
+
+$("#grn_no").change(function () {
+        var so_no = $(this).val();
+        $.ajax({
+			url: "{% url 'sales:ajax_load_qdn' %}",
+			data: {
+				'grn': so_no,
+			},
+			success: function (data) {
+				data = data.split("~");
+                so = data[0].split("|");
+
+                $("#sono").val(so[0])
+                $("#inv_date").val(so[1])
+                $("#party_name").val(so[2])
+                $("#party_address_type").val(so[3])
+                $("#party_address").val(so[4])
+                $("#party_gstin").val(so[5])
+                $("#consignee_name").val(so[6])
+                $("#consignee_address_type").val(so[7])
+                $("#consignee_address").val(so[8])
+                $("#consignee_gstin").val(so[9])
+                $("#mode_of_payment").val(so[10])
+                $("#other_reference").val(so[11])
+                $("#terms_of_delivery").val(so[12])
+                $("#totalcgst").val(so[13])
+                $("#totalsgst").val(so[14])
+                $("#totaligst").val(so[15])
+                $("#tcs").val(so[16])
+                $("#other").val(so[17])
+                $("#round_off").val(so[18])
+                $("#narration").val(so[19])
+                $("#dispatch_through").val(so[20])
+                $("#destination").val(so[21])
+                $("#totalammount").val(so[22])
+                $("#total").val(so[23])
+                $("#extradiscount").val(so[24])
+                var table = $("#table")
+                $("tbody").remove();
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=1;i<data.length;i++)
+                { 
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+                    
+                    var cell = $("<td />");
+                    cell.html(i);
+                    row.append(cell);  
+                    
+                    for(j=1;j<item.length;j++){
+                        var cell = $("<td />");
+                        if (j==1){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'code');
+                        }
+                        if (j==2){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'name');
+                        }
+                        if (j==3){
+                            var input = $("<input />").attr('class','form-control text-right').attr('readonly', true).attr('name', 'mrp');
+                        }
+                        if (j==4){
+                            var input = $("<input />").attr('class','form-control text-right').attr('readonly', true).attr('name', 'pack');
+                        }
+                        if (j==5){
+                            var input = $("<input />").attr('class','form-control text-right').attr('readonly', true).attr('name', 'bill_qty').attr('id', 'bill_qty'+i);
+                        }
+                        if (j==6){
+                            var input = $("<input />").attr('class','form-control text-right').attr('name', 'dif_bqty').attr('id', 'diff_bqty'+i).attr('required', true);
+                        }
+                        if (j==7){
+                            var input = $("<input />").attr('class','form-control text-right').attr('readonly', true).attr('name', 'free_qty').attr('id', 'free_qty'+i);
+                        }
+                        if (j==8){
+                            var input = $("<input />").attr('class','form-control text-right').attr('name', 'dif_fqty').attr('id', 'diff_fqty'+i).attr('required', true);
+                        }
+                        if (j==9){
+                            var input = $("<input />").attr('class','form-control text-right').attr('readonly', true).attr('id', 'rate'+i);
+                        }
+                        if (j==10){
+                            var input = $("<input />").attr('class','form-control text-right').attr('name', 'discount').attr('id', 'discount'+i).attr('readonly', true);
+                        }
+                        if (j==11){
+                            var input = $("<input />").attr('class','form-control text-right').attr('readonly', true).attr('name', 'ammount').attr('id', 'ammount'+i);
+                        }
+                        if (j==12){
+                            var input = $("<input />").attr('class','form-control text-right').attr('readonly', true).attr('id', 'igstrate'+i);
+                        }
+                        if (j==13){
+                            var input = $("<input />").attr('class','form-control text-right').attr('type', 'hidden').attr('name', 'cgst').attr('id', 'cgst'+i);
+                        }
+                        if (j==14){
+                            var input = $("<input />").attr('class','form-control text-right').attr('type', 'hidden').attr('name', 'igst').attr('id', 'igst'+i);
+                        }
+                        if (j==15){
+                            var input = $("<input />").attr('class','form-control text-right').attr('type', 'hidden').attr('id', 'sgstrate'+i);
+                        }
+                        if (j==16){
+                            var input = $("<input />").attr('class','form-control text-right').attr('type', 'hidden').attr('id', 'cgstrate'+i);
+                        }
+                        if (j==17){
+                            var input = $("<input />").attr('class','form-control text-right').attr('type', 'hidden').attr('name', 'sgst').attr('id', 'sgst'+i);
+                        }
+                        input.val(item[j]);
+                        cell.append(input);  
+                        row.append(cell);
+                    }
+	    		}
+
+            }});
+                var grntable = $('#selectedgrn');
+                var cell = $("<td />");
+                var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'grn');
+                input.val(so_no);
+                cell.append(input);
+                grntable.append(cell)
+    });
+    $("table").on("change", e);
+    function e() {
+        var no = e.arguments[0].target.id.split('qty')[1]
+
+        var rate = parseFloat($("#rate"+ no + "").val() ||0);
+        var b = parseFloat($("#bill_qty"+ no + "").val() ||0);
+        var db = parseFloat($("#diff_bqty"+ no + "").val() ||0);
+        var f = parseFloat($("#free_qty"+ no + "").val() ||0);
+        var df = parseFloat($("#diff_fqty"+ no + "").val() ||0);
+        var dis = parseFloat($("#discount" + no + "").val() || 0);
+        var extdis = parseFloat($("#extradiscount").val() || 0);
+
+        if (db > b){
+            window.alert("Quantity Difference cannot be greater than billed qty")
+            $("#diff_bqty"+ no + "").val(0)
+            return;
+        }
+
+        if (df > f){
+            window.alert("Quantity Difference cannot be greater than free qty")
+            $("#diff_fqty"+ no + "").val(0)
+            return;
+        }
+
+        var data = ((db * rate) * ((100 - dis) / 100));
+
+        $("#ammount"+ no + "").val(data.toFixed(2));
+        
+        var cgst = parseFloat($("#cgstrate"+ no + "").val());
+        var sgst = parseFloat($("#sgstrate"+ no + "").val());
+        var igst = parseFloat($("#igstrate"+ no + "").val());
+        var ammount = parseFloat($("#ammount" + no + "").val() || 0);
+        
+        var cgstdata = (((ammount * ((100 - extdis) / 100)) * cgst) / 100);
+        var sgstdata = (((ammount * ((100 - extdis) / 100)) * sgst) / 100);
+        var igstdata = (((ammount * ((100 - extdis) / 100)) * igst) / 100);
+
+        $("#cgst"+ no + "").val(cgstdata.toFixed(2));
+        $("#sgst"+ no + "").val(sgstdata.toFixed(2));
+        $("#igst"+ no + "").val(igstdata.toFixed(2));
+        
+        window.rate()
+        }
+
+    $("#other_ledger_per").change(rate);
+    $('#other').change(rate);
+
+    function rate(){
+        var cgst = 0;
+        var sgst = 0;
+        var igst = 0;
+        var ammount = 0;
+
+        ($('[name="cgst"]').each(function (i, j) {
+            cgst = cgst + parseFloat($(this).val());
+        }));
+        ($('[name="cgst"]').each(function (i, j) {
+            sgst = sgst + parseFloat($(this).val());
+        }));
+        ($('[name="igst"]').each(function (i, j) {
+            igst = igst + parseFloat($(this).val());
+        }));
+        ($('[name="ammount"]').each(function (i, j) {
+            ammount = ammount + parseFloat($(this).val());
+        }));
+        $("#totalammount").val(ammount.toFixed(2));
+        var extdis = parseFloat(($("#extradiscount").val() || 0));
+
+        var ogr = parseFloat($("#other_ledger_per").val() ||0)/100
+        var other = parseFloat(($("#other").val() * ogr));
+        var gst = (parseFloat(cgst) + (other * ogr));
+
+        $("#totalcgst").val((parseFloat(cgst) + other).toFixed(2));
+        $("#totalsgst").val((parseFloat(sgst) + other).toFixed(2));
+        $("#totaligst").val((parseFloat(igst) + other + other).toFixed(2));
+
+        var total = Math.round((ammount * ((100 - extdis) / 100)) + (gst * 2) + other);
+
+        $("#total").val(total);
+    }
+    </script>
+{% endblock %}

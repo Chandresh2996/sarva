@@ -1,0 +1,13 @@
+<tr>
+    <th scope="row">{{ forloop.counter }}</th>
+    <td class="align-middle">{{ inv.inv_date|date:'d-m-Y' }}</td>
+    <td class="align-middle">{{ inv.inv_no }}</td>
+    <td class="align-middle">{{ inv.buyer }}</td>
+    <td class="align-middle">{{ inv.total }}</td>
+    <td class="align-middle">{{ inv.dn|default_if_none:''}}</td>
+    <td class="align-middle">{{ inv.totalbox.total_box__sum|default_if_none:''}}</td>
+    <td class="align-middle">{{ inv.lr_date}}</td>
+    <td class="align-middle">{{ inv.lr_no|default_if_none:'' }}</td>
+    <td> </td>
+    <td> <a type="button" class="btn btn-sm btn-icon btn-success" hx-get="{% url 'sales:updatelr' inv.pk %}"> <i class="fas fa-edit"></i> </a> </td>
+</tr>

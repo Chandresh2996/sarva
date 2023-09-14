@@ -1,0 +1,155 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Inventory Report: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:inventory-reports' %}"> Inventory </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Inventory Report </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% load humanize %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            {% comment %} <div class="card-header">
+                <form action="{% url 'reports:weeksales' %}" method="POST" id="division-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="division" class="form-label mb-0">Division</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="form-control" id="division" name="division">
+                                {% for j in currentdiv%}
+                                <option value="{{j}}">{{j}}</option>
+                                {% endfor %}
+                                {% for i in divs %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endfor %}
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="division" class="form-label mb-0">Value in</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="form-control" id="value" name="value">
+                                <option>Select</option>
+                                <option>Basic</option>
+                                <option>Invoice</option>
+                                <option>Mrp</option>
+                            </select>
+                        </div>
+                        <input type="submit" class="btn" value="Update" name="update">
+                    </div>
+                </form>
+            </div> {% endcomment %}
+            <div class="card-body">
+                <table id="stock" class="table nowrap">
+                    <thead>
+                        <tr>
+                            <th colspan='17' style="text-align:right; padding-right:1.5rem"></th>
+                            <th colspan='2' style="text-align:center;">SSIPL</th>
+                            <th colspan='2' style="text-align:center;">RIPL</th>
+                        </tr>
+                        <tr>
+                            <th style="text-align:right; padding-right:1.5rem">BRAND</th>
+                            <th style="text-align:right; padding-right:1.5rem">SUB BRAND</th>
+                            <th style="text-align:right; padding-right:1.5rem">CATEGORY</th>
+                            <th style="text-align:right; padding-right:1.5rem">CLASS</th>
+                            <th style="text-align:right; padding-right:1.5rem">SUB CLASS</th>
+                            <th style="text-align:right; padding-right:1.5rem">ALU CODE</th>
+                            <th style="text-align:right; padding-right:1.5rem">EAN CODE</th>
+                            <th style="text-align:right; padding-right:1.5rem">SKU Code</th>
+                            <th style="text-align:right; padding-right:1.5rem">SKU Name</th>
+                            <th style="text-align:right; padding-right:1.5rem">INNER PACK SIZE</th>
+                            <th style="text-align:right; padding-right:1.5rem">OUTER PACK SIZE</th>
+                            <th style="text-align:right; padding-right:1.5rem">HSN</th>
+                            <th style="text-align:right; padding-right:1.5rem">GST</th>
+                            <th style="text-align:right; padding-right:1.5rem">MRP</th>
+                            <th style="text-align:right; padding-right:1.5rem">SERIES</th>
+                            <th style="text-align:right; padding-right:1.5rem">SHAPE CODE</th>
+                            <th style="text-align:right; padding-right:1.5rem">PATTERN</th>
+                            <th style="text-align:right; padding-right:1.5rem">Sellable</th>
+                            <th style="text-align:right; padding-right:1.5rem">Non Sellable</th>
+                            <th style="text-align:right; padding-right:1.5rem">Sellable</th>
+                            <th style="text-align:right; padding-right:1.5rem">Non Sellable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block reportjs %}
+
+{% load mathops %}
+<script>
+
+$(document).ready(function() {
+
+    $('#stock').DataTable( {
+        dom: 'lfrt<"ip"iB>p',
+        ajax:"{% url 'reports:inventorydata' %}",
+        columns: [
+            {data: "brand"},
+            {data: "subbrand"},
+            {data: "category"},
+            {data: "pclass"},
+            {data: "subclass"},
+            {data: "alu"},
+            {data: "ean_code"},
+            {data: "product__product_code"},
+            {data: "name"},
+            {data: "inner", className:"text-right",render: $.fn.dataTable.render.number(',', '.', 0, '')},
+            {data: "outer",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "hsn"},
+            {data: "gst",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "mrp",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "series"},
+            {data: "shape"},
+            {data: "pattern"},
+            {data: "a",defaultContent: "", className:"text-right"},
+            {data: "b",defaultContent: "", className:"text-right"},
+            {data: "c",defaultContent: "", className:"text-right"},
+            {data: "d",defaultContent: "", className:"text-right"},
+        ],
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+        deferRender: true,
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Inventory Report Report',
+                title: '',
+            },
+            'csv',
+        ],
+        scrollY:'400px',
+        scrollX: '300px',
+        scroller: '300px',
+    } );
+} );
+</script>
+{% endblock %}

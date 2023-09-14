@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Company: Show</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Masters </li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'company:home' %}">Company</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'company:company' %}">View Company</a>
+                        </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Show Company</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="{% url 'company:company' %}">
+                    {% csrf_token %}
+                    <fieldset disabled>
+                    <div class="row mx-0">
+                        <div class="col-md-12">
+                            <h3 class="mb-0">Configuration</h3>
+                        </div>
+                        <div class="p-4 col-12 d-flex flex-wrap">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="tally_name">Tally Name<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="tally_name" name="tally_name" required value="{{com.tally_name}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ledger_name">Ledger Name<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="ledger_name" name="ledger_name" required value="{{com.ledger_name}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ipaddress">IP Address<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="ipaddress" name="ipaddress" required value="{{com.ipaddress}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pt-3 border-top">
+                            <h3 class="mb-0">Details</h3>
+                        </div>
+                        <div class="p-4 col-12 d-flex flex-wrap mb-3 border-bottom">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">Name<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="name" name="name" required value="{{com.name}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_addtype">Dispatch Address Type<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_addtype" name="dis_addtype" required value="{{com.dis_addtype}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_name">Dispatch Name<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_name" name="dis_name" required value="{{com.dis_name}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_add1">Dispatch Address1<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_add1" name="dis_add1" required value="{{com.dis_add1}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_add2">Dispatch Address2<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_add2" name="dis_add2" required value="{{com.dis_add2}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_add3">Dispatch Address3<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_add3" name="dis_add3" required value="{{com.dis_add3}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_country">Dispatch Country<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_country" name="dis_country" required value="{{com.dis_country}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_state">Dispatch State<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_state" name="dis_state" required value="{{com.dis_state}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_city">Dispatch City<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_city" name="dis_city" required value="{{com.dis_city}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_pincode">Dispatch Pincode<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_pincode" name="dis_pincode" required value="{{com.dis_pincode}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dis_gstin">GSTIN<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dis_gstin" name="dis_gstin" required value="{{com.dis_gstin}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="pan_no">PAN No<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="pan_no" name="pan_no" required value="{{com.pan_no}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 ">
+                            <h3 class="mb-0">Series</h3>
+                        </div>
+                        <div class="p-4 col-12 d-flex flex-wrap"> 
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="so_series">Sales Order Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="so_series" name="so_series" required value="{{com.so_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="dn_series">Delivery Note Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="dn_series" name="dn_series" required value="{{com.dn_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="inv_series">Sales Invoice Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="inv_series" name="inv_series" required value="{{com.inv_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="pinv_series">Sales Pro Forma Invoice Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="pinv_series" name="pinv_series" required value="{{com.pinv_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="debitnote_series">Debit Note Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="debitnote_series" name="debitnote_series" required value="{{com.debitnote_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="sales_qdn_series">Sales QDN Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="sales_qdn_series" name="sales_qdn_series" required value="{{com.sales_qdn_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="rso_series">RSO Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="rso_series" name="rso_series" required value="{{com.rso_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="po_series">Purchase Order Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="po_series" name="po_series" required value="{{com.po_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="ict_series">ICT Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="ict_series" name="ict_series" required value="{{com.ict_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="grn_series">GRN Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="grn_series" name="grn_series" required value="{{com.grn_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="pi_series">Purchase Invoice Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="pi_series" name="pi_series" required value="{{com.pi_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="creditnote_series">Credit Note Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="creditnote_series" name="creditnote_series" required value="{{com.creditnote_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="purchase_qdn_series">Purchase QDN Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="purchase_qdn_series" name="purchase_qdn_series" required value="{{com.purchase_qdn_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="purchase_return_series">Purchase Return Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="purchase_return_series" name="purchase_return_series" required value="{{com.purchase_return_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="joborder_series">Job Order Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="joborder_series" name="joborder_series" required value="{{com.joborder_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="job_series">Job Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="job_series" name="job_series" required value="{{com.job_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="rm_series">RM Indent Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="rm_series" name="rm_series" required value="{{com.rm_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="cms_series">Consumable Indent Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="cms_series" name="cms_series" required value="{{com.cms_series}}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="pds_series">Production Series<span style="color:red">*</span></label>
+                                    <input type="text" autocomplete="off" class="form-control" id="pds_series" name="pds_series" required value="{{com.pds_series}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </fieldset>
+                    <!-- end row -->
+                    <input type="button" class="btn btn-danger" value="Go back!" onclick="history.back()">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

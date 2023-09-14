@@ -1,0 +1,590 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row mx-0">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Inter Vendor Transfer: Sales</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'warehouse:transfers' %}"> Transfers </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:ivt' %}">Inter Vendor Transfer</a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">IVT Sales</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mx-0">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="mb-0"><span class="fw-bold">Sales Invoice: </span>{{sonumber}}</h4>
+                <div class="page-title-right">
+                    <h4><span class="fw-bold">Date: </span>{{date|date:'d-m-Y'}}</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'inventory:add_ivt_sale' %}" class="needs-validation" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="row mx-0">
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_no" class="col-md-4 col-form-label">RSO NO</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="dn_no" name="dn_no">
+                                        <option value="">-------</option>
+                                        {% for so in sos %}
+                                            <option value="{{so.pk}}">
+                                                {{ so.rso_no }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div><!-- end row -->
+                        </div>
+                        <div class="col-xl-6">
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_date" class="col-md-5  col-form-label">RSO DATE</label>
+                                <div class="col-md-7">
+                                    <p  style="background-color:#e2e9f9 ;" type="date" class="form-control" id="so_date" name="so_date"></p>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+                    </div>
+                    <hr>
+                    <div class="row mx-0">
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label for="party_name" class="form-label">Party Details<span style="color:red">*</span></label>
+                                <select class="js-example-basic-single" class="form-control" id="party_name" name="party_name" required>
+                                    <option></option>
+                                    {% for party in parties %}
+                                        <option value="{{ party.name }}">
+                                            {{ party.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <select class="form-control" id="party_address_type" name="party_address_type">
+                                    <option> Select </option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="party_address" name="party_address"
+                                    placeholder="Address" readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_gstin" placeholder="GSTIN"
+                                autocomplete="off" name="party_gstin" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label for="consignee_name" class="form-label">Consignee Details<span style="color:red">*</span></label>
+                                <select class="js-example-basic-single" class="form-control" id="consignee_name" name="consignee_name" required>
+                                    <option></option>
+                                    {% for party in parties %}
+                                        <option value="{{ party.name }}">
+                                            {{ party.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                
+                                <!-- <input type="text" class="form-control" id="consignee_name" placeholder="Name"
+                                    list="consignee_names" name="consignee_name" required> -->
+                                
+                            </div>
+                            <div class="mb-2">
+                                <select class="form-control" name="consignee_address_type"id="consignee_address_type">
+                                    <option>
+                                        Select
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="consignee_address"
+                                    placeholder="Address" autocomplete="off" name="consignee_address" readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="consignee_gstin" placeholder="GSTIN"
+                                autocomplete="off" name="consignee_gstin" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row mb-2">
+                                <div class="col-lg-4 d-flex align-items-center">
+                                    <label for="vehical_no" class="form-label mb-0">Vehical No</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="vehical_no" autocomplete="off" name="vehical_no" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4 d-flex align-items-center">
+                                    <label for="inv_due_date" class="form-label mb-0">Inv Due Date</label>
+                                </div>
+                                <div class="col">
+                                    <input type="date" class="form-control" id="inv_due_date" autocomplete="off" name="inv_due_date">
+                                </div>
+                            </div><!-- end col -->
+                            <div class="row mb-2">
+                                <div class="col-lg-4 d-flex align-items-center">
+                                    <label for="price_list" class="form-label mb-0">Price List</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="price_list" autocomplete="off" name="price_list" readonly>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="row mb-2">
+                                <div class="col-lg-4 d-flex align-items-center">
+                                    <label for="mode_of_payment" class="form-label mb-0">Mode of payment</label >
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="mode_of_payment" readonly
+                                    autocomplete="off" name="mode_of_payment">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4 d-flex align-items-center">
+                                    <label for="other_reference" class="form-label mb-0">Other Reference</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="other_reference" readonly
+                                    autocomplete="off" name="other_reference">
+                                </div>
+                            </div><!-- end col -->
+
+                            <div class="row mb-2">
+                                <div class="col-lg-4 d-flex align-items-center">
+                                    <label for="terms_of_delivery" class="form-label mb-0">Terms of delivery</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="terms_of_delivery" readonly
+                                    autocomplete="off" name="terms_of_delivery">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4 d-flex align-items-center">
+                                    <label for="order_no" class="form-label mb-0">Order No</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="order_no" autocomplete="off" name="order_no">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row mx-0">
+                        <div class="card w-100">
+                            <div class="card-body" style="padding: 0;">
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="table">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="2%">#</th>
+                                                <th width="8%">SKU Code</th>
+                                                <th width="25%">SKU Name</th>
+                                                <th width="8%">MRP</th>
+                                                <th width="8%">Pack</th>
+                                                <th width="8%">Billed Qty</th>
+                                                <th width="8%">Rate</th>
+                                                <th width="10%">Ammount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                            <tr>
+                                            </tr>
+                                        </tbody><!-- end tbody-->
+                                    </table><!-- end table-->
+                                </div><!-- end table responsive -->
+                            </div><!-- end card body -->
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label">
+                                        SubTotal
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalammount" autocomplete="off" name="totalammount"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="extradiscount" class="form-label">
+                                        Discount
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="extradiscount" autocomplete="off" name="extradiscount">
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col-xl-4">
+                                    <select class="form-control" id="other_ledger" name="other_ledger">
+                                        <option value=''>Ledger</option>
+                                        {% for i in ledgers %}
+                                        <option value='{{i.pk}}'>{{i}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xl-3">
+                                    <select class="form-control" id="other_ledger_per" name="ol_rate">
+                                        <option value='0'>0 %</option>
+                                        <option value='5'>5 %</option>
+                                        <option value='12'>12 %</option>
+                                        <option value='18'>18 %</option>
+                                        <option value='28'>28 %</option>
+                                    </select>
+                                </div>
+                                <div class="col-xl-5">
+                                    <input type="text" class="form-control text-right" id="other" value='0' autocomplete="off" name="other">
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label">
+                                        CGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalcgst" autocomplete="off" name="totalcgst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="sgst" class="form-label">
+                                        SGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalsgst" autocomplete="off" name="totalsgst" readonly>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="igst" class="form-label">
+                                        IGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totaligst" autocomplete="off" name="totaligst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="tcs" class="form-label">
+                                        TCS
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totaltcs" autocomplete="off" name="totaltcs" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="total" class="form-label">
+                                        Total
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="total" autocomplete="off" name="total" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label for="narration" class="form-label">Remarks</label>
+                                <input type="text" class="form-control" id="narration" autocomplete="off" name="narration">
+                            </div>
+                        </div><!-- end col -->
+
+                    </div><!-- end row -->
+
+                    <button type="submit" class="btn btn-primary w-sm ms-auto"
+                        style="position: absolute; right: 20px;bottom: 20px;" >Submit</button>
+
+                </form>
+            </div><!-- end row -->
+        </div><!-- end card body -->
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+    $("#dn_no").change(function () {
+        var so_no = $(this).val();
+        $.ajax({
+			url: "{% url 'sales:ajax_load_ivt' %}",
+			data: {
+				'sono': so_no,
+			},
+			success: function (data) {
+                data = data.split("~");
+                var table = $("#table")
+                $("tbody").remove();
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=0;i<data.length-1;i++)
+                {
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+
+                    var cell = $("<td />");
+                    cell.html(i+1);
+                    row.append(cell);
+
+                    for(j=1;j<item.length;j++){
+                        var cell = $("<td />");
+
+                        if (j==1){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'code');
+                        }
+                        if (j==2){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'name');
+                        }
+                        if (j==3){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'mrp');
+                        }
+                        if (j==4){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'pack');
+                        }
+                        if (j==5){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'billqty').attr('id', 'billqty_'+i);
+                        }
+                        if (j==6){
+                            var input = $("<input />").attr('class','form-control').attr('required', true).attr('id', 'rate_'+i).attr('name','rate');
+                        }
+                        if (j==7){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'ammount').attr('id', 'ammount_'+i);
+                        }
+                        if (j==8){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('name', 'sgstrate').attr('id', 'sgstrate_'+i);
+                            var cell = $("<td />").attr('class', 'd-none');
+                        }
+                        if (j==9){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('name', 'cgstrate').attr('id', 'cgstrate_'+i);
+                            var cell = $("<td />").attr('class', 'd-none');
+                        }
+                        if (j==10){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('name', 'igstrate').attr('id', 'igstrate_'+i);
+                            var cell = $("<td />").attr('class', 'd-none');
+                        }
+                        if (j==11){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('id', 'sgst_'+i).attr('name', 'sgst');
+                            var cell = $("<td />").attr('class', 'd-none');
+                        }
+                        if (j==12){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('id', 'cgst_'+i).attr('name', 'cgst');
+                            var cell = $("<td />").attr('class', 'd-none');
+                        }
+                        if (j==13){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('id', 'igst_'+i).attr('name', 'igst');
+                            var cell = $("<td />").attr('class', 'd-none');
+                        }
+
+                        input.val(item[j]);
+                        cell.append(input);
+                        row.append(cell);
+                    }
+	    		}
+		}});
+    });
+$("table").on("change", e);
+
+function e() {
+    var price_list = $("#price_list").val();
+    if (!price_list) {
+        window.alert("please select the Party First");
+        $("#" + e.arguments[0].target.id + "").val('');
+        return false;
+    }
+    var no = e.arguments[0].target.id.split('_').pop()
+    var qty = parseFloat($("#billqty_" + no + "").val() || 0);
+    var rate = parseFloat($("#rate_" + no + "").val() || 0);
+    var dis = parseFloat($("#discount_" + no + "").val() || 0);
+    var extdis = parseFloat($("#extradiscount").val() || 0);
+
+
+    var data = ((qty * rate) * ((100 - dis) / 100));
+    $("#ammount_" + no + "").val(data.toFixed(2));
+
+    var cgst = parseFloat($("#cgst_" + no + "").val() || 0);
+    var sgst = parseFloat($("#sgst_" + no + "").val() || 0);
+    var igst = parseFloat($("#igst_" + no + "").val() || 0);
+    var ammount = parseFloat($("#ammount_" + no + "").val() || 0);
+
+    var cgstdata = (((ammount * ((100 - extdis) / 100)) * cgst) / 100);
+    var sgstdata = (((ammount * ((100 - extdis) / 100)) * sgst) / 100);
+    var igstdata = (((ammount * ((100 - extdis) / 100)) * igst) / 100);
+
+    $("#cgstrate_" + no + "").val(cgstdata);
+    $("#sgstrate_" + no + "").val(sgstdata);
+    $("#igstrate_" + no + "").val(igstdata);
+    window.totals()
+}
+
+$("#other_ledger_per").change(totals);
+$('#other').change(totals);
+$('#extradiscount').change(ed);
+
+function ed() {
+    ($('[name="ammount"]').each(function (i, j) {
+
+        var extdis = parseFloat(($("#extradiscount").val() || 0));
+        var no = ($(this).attr("id").split('_').pop());
+
+        var cgst = parseFloat($("#cgst_" + no + "").val() || 0);
+        var sgst = parseFloat($("#sgst_" + no + "").val() || 0);
+        var igst = parseFloat($("#igst_" + no + "").val() || 0);
+        var ammount = parseFloat($("#ammount_" + no + "").val() || 0);
+        var cgstdata = (((ammount * ((100 - extdis) / 100)) * cgst) / 100);
+        var sgstdata = (((ammount * ((100 - extdis) / 100)) * sgst) / 100);
+        var igstdata = (((ammount * ((100 - extdis) / 100)) * igst) / 100);
+
+        $("#cgstrate_" + no + "").val(cgstdata);
+        $("#sgstrate_" + no + "").val(sgstdata);
+        $("#igstrate_" + no + "").val(igstdata);
+    }));
+    window.totals()
+}
+
+function totals() {
+    var cgst = 0;
+    var sgst = 0;
+    var igst = 0;
+    var ammount = 0;
+
+    ($('[name="cgstrate"]').each(function (i, j) {
+        cgst = cgst + parseFloat($(this).val() || 0);
+    }));
+    ($('[name="sgstrate"]').each(function (i, j) {
+        sgst = sgst + parseFloat($(this).val() || 0);
+    }));
+    ($('[name="igstrate"]').each(function (i, j) {
+        igst = igst + parseFloat($(this).val() || 0);
+    }));
+    ($('[name="ammount"]').each(function (i, j) {
+        ammount = ammount + parseFloat($(this).val() || 0);
+    }));
+
+    var extdis = parseFloat(($("#extradiscount").val() || 0));
+
+    if ($("#istcs").val() === 'True') {
+        var tcs = ((ammount + igst) * 0.001);
+    } else {
+        var tcs = 0
+    }
+    var ogr = parseFloat($("#other_ledger_per").val() || 0) / 200
+    var other = parseFloat(($("#other").val() || 0));
+    var gst = (parseFloat(cgst) + (other * ogr));
+
+    $("#totalammount").val((parseFloat(ammount)).toFixed(2));
+    $("#totalcgst").val((gst).toFixed(2));
+    $("#totalsgst").val((gst).toFixed(2));
+    $("#totaligst").val((gst * 2).toFixed(2));
+    $("#totaltcs").val(tcs.toFixed(2));
+
+    var total = Math.round((ammount * ((100 - extdis) / 100)) + (gst * 2) + tcs + other);
+    $("#total").val(total);
+}
+    $("#party_address_type").change(function () {
+        var address = $(this).val();
+        var party = $("#party_name").val();
+        $.ajax({
+            url: "{% url 'sales:ajax_load_party_address' %}",
+            data: {
+                'party': party,
+                'address': address
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#party_address").html(data[0]);
+                $("#party_gstin").val(data[1]);
+            }
+        });
+    });
+    $("#consignee_address_type").change(function () {
+        var address = $(this).val();
+        var party = $("#consignee_name").val();
+        $.ajax({
+            url: "{% url 'sales:ajax_load_party_address' %}",
+            data: {
+                'party': party,
+                'address': address
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#consignee_address").html(data[0]);
+                $("#consignee_gstin").val(data[1]);
+            }
+        });
+    });
+    $("#party_name").change(function () {
+        var partyId = $(this).val();
+        $.ajax({
+            url: "{% url 'sales:ajax_load_address' %}",
+            data: {
+                'party': partyId
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#party_address_type").html(data[0]);
+                $("#party_address").html(data[1]);
+                $("#party_gstin").val(data[2]);
+                $("#price_list").val(data[3]);
+                $("#istcs").val(data[4]);
+                $("#isloosepack").val(data[5]);
+                $("#mode_of_payment").val(data[6]);
+                $("#terms_of_delivery").val(data[7]);
+            }
+        });
+    });
+    $("#consignee_name").change(function () {
+        var partyId = $(this).val();
+        $.ajax({
+            url: "{% url 'sales:ajax_load_address' %}",
+            data: {
+                'party': partyId
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#consignee_address_type").html(data[0]);
+                $("#consignee_address").html(data[1]);
+                $("#consignee_gstin").val(data[2]);
+                if (data[2].substring(0, 2) != '24') {
+                    $("#totalcgst");
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

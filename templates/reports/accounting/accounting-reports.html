@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Accounting Reports</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            Reports
+                        </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Accounting</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:cm' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:cm' %}">
+                                    <span class="d-block font-25 mt-2">Party Ledgers</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:po' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:po' %}">
+                                    <span class="d-block font-25 mt-2">Purchase Order</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:grn' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:grn' %}">
+                                    <span class="d-block font-25 mt-2">GRN</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:purchase' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:purchase' %}">
+                                    <span class="d-block font-25 mt-2">Puchase Invoices</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:so' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:so' %}">
+                                    <span class="d-block font-25 mt-2">Sales Orders</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:dn' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:dn' %}">
+                                    <span class="d-block font-25 mt-2">Delivery Notes</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:inv' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:inv' %}">
+                                    <span class="d-block font-25 mt-2">Sales Invoices</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:sodninv' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:sodninv' %}">
+                                    <span class="d-block font-25 mt-2">SO/DN/INV</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-6 col-xxl-3">
+        <a href="{% url 'reports:pogrn' %}">
+            <div class="card card-statistics">
+                <div class="card-body pb-xs-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="media">
+                                <i class="crypto crypto-ada text-orange font-60 m-auto"></i>
+                            </div>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="d-block">$1.658.23 </span>
+                            <span class="text-orange">-6.65 <i class="fa fa-level-down"></i> </span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                                <span class="bg-white p-3 text-center d-block" href="{% url 'reports:pogrn' %}">
+                                    <span class="d-block font-25 mt-2">PO / GRN</span>
+                                </span>
+                        </div>
+                        <div class="col ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock content %}

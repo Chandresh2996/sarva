@@ -1,0 +1,189 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Product Master: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:inventory-reports' %}"> Inventory </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Product Master </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-0">
+            <div class="card-body">
+                <table id="pm" class="table nowrap">
+                    <thead>
+                        <tr>
+                            <th>ARTICLE CODE</th>
+                            <th>EAN CODE</th>
+                            <th>SKU CODE</th>
+                            <th>OLD SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>PRODUCT DESCRIPTION</th>
+                            <th>BRAND CODE</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>PRODUCT TYPE</th>
+                            <th>UOM</th>
+                            <th>HSN CODE</th>
+                            <th>GST(%)</th>
+                            <th>MRP</th>
+                            <th>SHAPE CODE</th>
+                            <th>SIZE</th>
+                            <th>STYLE/SHAPE</th>
+                            <th>SERIES</th>
+                            <th>PATTERN</th>
+                            <th>COLOUR/SHADE/THEME</th>
+                            <th>COUNTRY OF ORIGIN</th>
+                            <th>INNER QTY</th>
+                            <th>OUTER QTY</th>
+                            <th>IMPORTED BY</th>
+                            <th>MANUFACTURED BY</th>
+                            <th>MARKETED BY</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>ARTICLE CODE</th>
+                            <th>EAN CODE</th>
+                            <th>SKU CODE</th>
+                            <th>OLD SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>PRODUCT DESCRIPTION</th>
+                            <th>BRAND CODE</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>PRODUCT TYPE</th>
+                            <th>UOM</th>
+                            <th>HSN CODE</th>
+                            <th>GST(%)</th>
+                            <th>MRP</th>
+                            <th>SHAPE CODE</th>
+                            <th>SIZE</th>
+                            <th>STYLE/SHAPE</th>
+                            <th>SERIES</th>
+                            <th>PATTERN</th>
+                            <th>COLOUR/SHADE/THEME</th>
+                            <th>COUNTRY OF ORIGIN</th>
+                            <th>INNER QTY</th>
+                            <th>OUTER QTY</th>
+                            <th>IMPORTED BY</th>
+                            <th>MANUFACTURED BY</th>
+                            <th>MARKETED BY</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="'+title+'" />' );
+    } );
+
+    // DataTable
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+        stateSave: true,
+        processing: true,
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Product Master Report',
+                title: '',
+            },
+            'csv',
+            {
+                extend: 'print',
+                title: 'Product Master Report',
+                messageTop: 'This print was produced using the Print button for DataTables'
+            },
+            {
+                extend: 'colvis',
+                text: 'Select Columns',
+            }
+        ],
+        ajax:"{% url 'reports:pmdata' %}",
+        columns: [
+                {data: "article_code"},
+                {data: "ean_code"},
+                {data: "product_code"},
+                {data: "old_product_code"},
+                {data: "product_name"},
+                {data: "description"},
+                {data: "brand__code"},
+                {data: "brand__name"},
+                {data: "sub_brand__name"},
+                {data: "category__name"},
+                {data: "product_class__name"},
+                {data: "sub_class__name"},
+                {data: "product_type__name"},
+                {data: "units_of_measure__symbol"},
+                {data: "hsn"},
+                {data: "gst",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "mrp",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "shape_code"},
+                {data: "size"},
+                {data: "style_shape"},
+                {data: "series"},
+                {data: "pattern"},
+                {data: "color_shade_theme"},
+                {data: "country_of_origin"},
+                {data: "inner_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "outer_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "imported_by"},
+                {data: "mfd_by"},
+                {data: "mkt_by"},
+            ],
+        deferRender: true,
+        scrollX:true,
+        scrollY:window.innerHeight-365,
+        scroller: true,
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every( function () {
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that.search(this.value).draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

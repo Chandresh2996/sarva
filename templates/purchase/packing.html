@@ -1,0 +1,165 @@
+{% extends 'base.html'%}
+{% load static %}{% load perms %}
+{% block company %}
+                    <div class="dropdown d-inline-block language-switch">
+                        <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img id="header-lang-img" src="{% static 'assets/images/flags/us.jpg' %}" alt="Company"
+                                height="16">
+                        </button>
+                        {% comment %} <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item notify-item language" >
+                                <img src="{% static 'assets/images/flags/us.jpg' %}" alt="comapny" class="me-1"
+                                    height="12"><span class="align-middle"></span>
+                            </a>
+                        </div> {% endcomment %}
+                    </div>
+                    {% endblock company %}
+
+{% block content %}
+
+<div class="page-content">
+
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Packing Sheet</h4>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            {% comment %} <li class="breadcrumb-item"><a href="javascript: void(0);">Date</a></li>
+                            <li class="breadcrumb-item active">
+                                <script>
+                                    document.write(new Date().getDate())
+                                </script>
+                            </li> {% endcomment %}
+                            <a href="{% url 'sales:adddn' %}">
+                                <button type="button" class="btn btn-success">
+                                    <i class="uil uil-ban">Create</i>
+                                </button>
+                            </a>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header justify-content-between d-flex align-items-center">
+                    <h4 class="card-title">Delivery Notes</h4>
+                </div><!-- end card header -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                    <form action="{% url 'sales:lspdf' %}" method="POST">
+                        {% csrf_token %}
+                        <table class="table mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>DN Number</th>
+                                    <th>Party Name</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Loading Sheet Status</th>
+                                    <th>Select</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for dn in dns %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td> {{dn.dn_date}}</td>
+                                    <td> {{dn.dn_no}}</td>
+                                    <td> {{dn.buyer_name}}</td>
+                                    <td> {{dn.round_off}}</td>
+                                    <td> {{dn.get_status_display}}</td>
+                                    <td> {% if dn.ps_status %} Printed {% endif %}</td>
+                                    <td> <input value="{{dn.pk}}" type="checkbox" name="ls"></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody><!-- end tbody-->
+                        </table><!-- end table-->
+                        <input class="btn btn-primary" type="submit" value="Submit" style="float:right;">
+                    </form>
+                    </div><!-- end table responsive -->
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div>
+    </div><!-- end row -->
+</div> <!-- container-fluid -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+    document.getElementById("so_date").innerHTML = date;
+
+    $("#so_no").change(function () {
+        var so_no = $(this).val();
+        $.ajax({
+			url: "{% url 'sales:ajax_load_so_details' %}",
+			data: {
+				'sono': so_no,
+			},
+			success: function (data) {
+				data = data.split("~");
+                so = data[0].split("|");
+
+                $("#sono").val(so[0])
+                $("#so_date").val(so[1])
+                $("#party_name").val(so[2])
+                $("#party_address_type").val(so[3])
+                $("#party_address").val(so[4])
+                $("#party_gstin").val(so[5])
+                $("#consignee_name").val(so[6])
+                $("#consignee_address_type").val(so[7])
+                $("#consignee_address").val(so[8])
+                $("#consignee_gstin").val(so[9])
+                $("#price_list").val(so[10])
+                $("#mode_of_payment").val(so[11])
+                $("#other_reference").val(so[12])
+                $("#terms_of_delivery").val(so[13])
+                $("#totalcgst").val(so[14])
+                $("#totalsgst").val(so[15])
+                $("#totaligst").val(so[16])
+                $("#totaltcs").val(so[17])
+                $("#other").val(so[18])
+                $("#round_off").val(so[19])
+                $("#narration").val(so[20])
+                $("#isscheme").val(so[21])
+                $("#totalammount").val(so[22])
+                var table = $("#table")
+                $("tbody").remove();
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=1;i<data.length;i++)
+                { 
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+                    
+                    var cell = $("<td />");
+                    cell.html(i);
+                    row.append(cell);  
+                    
+                    for(j=1;j<item.length-1;j++){
+                        var cell = $("<td />");
+                        var input = $("<input />").attr('class','form-control').attr('readonly', true);
+                        input.val(item[j]);
+                        cell.append(input);  
+                        row.append(cell);  
+                    }
+                    var cell = $("<td />");
+                    cell.html(item.pop());
+                    row.append(cell);  
+				 
+	    		}
+		}});
+    });
+
+</script>
+{% endblock %}

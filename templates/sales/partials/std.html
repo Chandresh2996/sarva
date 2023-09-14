@@ -1,0 +1,38 @@
+<div class="row" id="std-item">
+    <div class="col-xl-4">
+        <label for="cost_type" class="col-form-label">Cost Type:</label>
+        <div class="">
+            <select class="form-control">
+                <option>Purchase Cost</option>
+                <option>Selling Price</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <label for="example-text-input"
+            class="col-form-label">Applicable
+            from:</label>
+        <div class="">
+            <input class="form-control" type="date" value=""
+                id="example-text-input">
+        </div>
+    </div>
+    <div class="col-xl-3">
+        <label for="example-text-input"
+            class="col-md-2 col-form-label">rate:</label>
+        <div class="col-md-10">
+            <input class="form-control" type="number" value=""
+                id="example-text-input">
+        </div>
+    </div>
+    <div class="col-xl-1">
+        <div>
+            <button type="button" 
+                class="btn btn-danger btn-sm btn-icon ml-2"
+                hx-get="{% url 'master:clear' %}"
+                hx-swap="outerHTML" hx-target="closest #std-item">
+                <i class="uil uil-ban">X</i>
+            </button>
+        </div>
+    </div>
+</div>

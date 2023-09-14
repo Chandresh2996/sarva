@@ -1,0 +1,567 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<style>
+    tr.shown, tr.hidden {
+        background-color: #d2dce8;
+        display: table-row;
+      }
+
+      tr.hidden {
+        display: none;
+      }
+      .row2 button {
+        background-color: transparent;
+        border: .1em solid transparent;
+        font: inherit;
+        padding: 0.25em 0.5em 0.25em .25em;
+        width: 100%;
+        text-align: left;
+      }
+
+      .row2 button:focus, .row2 button:hover {
+        background-color: #ddd;
+        cursor: pointer;
+      }
+
+      .row2 button svg {
+        width: .8em;
+        height: .8em;
+        margin: 0 0 -.05em 0;
+        fill: #66f;
+        transition: transform 0.25s ease-in;
+        transform-origin: center 45%;
+      }
+
+      .row2 button:hover svg,
+      .row2 button:focus svg {
+        fill: #00c;
+      }
+
+      /* Lean on programmatic state for styling */
+      .row2 button[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+      }
+
+      .cell button {
+        font-size: 60%;
+        color: #000;
+        background-color: #00f;
+        padding: 0.3em 0.2em 0 0.2em;
+        border: 0.2em solid #00f;
+        border-radius: 50%;
+        line-height: 1;
+        text-align: center;
+        text-indent: 0;
+        transform: rotate(270deg);
+      }
+
+      .cell button svg {
+        width: 1.25em;
+        height: 1.25em;
+        fill: #fff;
+        transition: transform 0.25s ease-in;
+        transform-origin: center 45%;
+      }
+
+      .cell button:hover,
+      .cell button:focus {
+        background-color: #fff;
+        outline: none;
+      }
+
+      .cell button:hover svg,
+      .cell button:focus svg {
+        fill: #00f;
+      }
+
+      /* Lean on programmatic state for styling */
+      .cell button[aria-expanded="true"] svg {
+        transform: rotate(90deg);
+      }
+
+      /* Proven method to visually hide something but */
+      /* still make it available to assistive technology */
+      .visually-hidden {
+        position: absolute;
+        top: auto;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px); /* IE 6/7 */
+        clip: rect(1px, 1px, 1px, 1px);
+        width: 1px;
+        height: 1px;
+        white-space: nowrap;
+      }
+    </style>
+{% load mathops %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Scorecard: Report</h1>
+            </div>
+            {% comment %} <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:sales-reports' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Stock Aeging</a> </li>
+                    </ol>
+                </nav>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+{% load humanize %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                {% if error_message %}
+                    <p>{{ error_message }} </p>
+                {% else %}
+                <form action="{% url 'dash:scorecard' %}" method="POST" id="division-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="month" class="form-label mb-0">Month</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="form-control" id="month" name="month">
+                                {% for i in months %}
+                                    {% if currentmonth|date:'n' == i|date:'n' %}
+                                    <option value="{{i|date:'n'}}" selected>{{i|date:'F'}}</option>
+                                    {% else %}
+                                    <option value="{{i|date:'n'}}">{{i|date:'F'}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <select class="form-control" id="year" name="year">
+                                {% for i in years %}
+                                    {% if currentyear|date:'Y' == i|date:"Y" %}
+                                        <option value="{{i|date:'Y'}}" selected>{{ i|date:'Y' }}</option>
+                                    {% else %}
+                                        <option value="{{i|date:'Y'}}">{{ i|date:'Y' }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn ml-5 fa fa-filter" name=""> Filter</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body row2">
+                <table id="stock" class="table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="text-align:right; padding-right:1.5rem"></th>
+                            {% for i in divs %}
+                            <th style="text-align:right; padding-right:1.5rem">{{i}}</th>
+                            {% endfor %}
+                            <th style="text-align:right; padding-right:1.5rem">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th colspan={{divs|length|add:2}} style="text-align:center;" class="bg-light">Business Overview</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center;"><b>Total Turnover</b></td>
+                            {% for i in divs %}
+                                {% with c=totals|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            {% with total=totals|last %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{total.0}}</td>
+                            {% endwith %}
+                        </tr>
+                        {% for i in years %}
+                        <tr>
+                            <td width="10px">
+                                <button type="button" id="btn{{i|date:'Y'}}" aria-expanded="false" onclick="toggle(this.id,'#Q1{{i|date:'Y'}},#Q2{{i|date:'Y'}},#Q3{{i|date:'Y'}},#Q4{{i|date:'Y'}},#Q5{{i|date:'Y'}},#Q6{{i|date:'Y'}}');" aria-controls="Q1{{i|date:'Y'}} Q2{{i|date:'Y'}} Q3{{i|date:'Y'}} Q4{{i|date:'Y'}} Q5{{i|date:'Y'}} Q6{{i|date:'Y'}}" aria-label="3 more from" aria-labelledby="btn{{i|date:'Y'}} lbl{{i|date:'Y'}}">
+                                  <svg xmlns="\http://www.w3.org/2000/svg&quot;" viewBox="0 0 80 80" focusable="false"><path d="M70.3 13.8L40 66.3 9.7 13.8z"></path></svg>
+                                </button>
+                              </td>
+                            <td id="lbl{{i|date:'Y'}}" style="text-align:center;"><b>{{i|date:'Y'}}</b></td>
+                            {% for j in divs %}
+                                {% with f=i|date:'Y' %}
+                                    {% with c=years_totals|has_year:f|has_div:j %}
+                                        <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                            {% with f=i|date:'Y' %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{yearss|has_year:f|default_if_none:0}}</td>
+                            {% endwith %}
+                        </tr>
+                        <tr id="Q1{{i|date:'Y'}}" class="hidden">
+                            <td width="10px"></td>
+                            <td style="text-align:center;"><b>Q1</b></td>
+                            {% for j in divs %}
+                                {% with f=i|date:'Y' %}
+                                    {% with c=quartes|has_year:f|has_divq1:j %}
+                                        <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                            {% with f=i|date:'Y' %}
+                                {% with c=quarters|has_year:f|has_qua:1|first %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endwith %}
+                        </tr>
+                        <tr id="Q2{{i|date:'Y'}}" class="hidden">
+                            <td width="10px"></td>
+                            <td style="text-align:center;"><b>Q2</b></td>
+                            {% for j in divs %}
+                                {% with f=i|date:'Y' %}
+                                    {% with c=quartes|has_year:f|has_divq2:j %}
+                                        <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                            {% with f=i|date:'Y' %}
+                            {% with c=quarters|has_year:f|has_qua:2|first %}
+                                <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                            {% endwith %}
+                        {% endwith %}
+                        </tr>
+                        <tr id="Q3{{i|date:'Y'}}" class="hidden">
+                            <td width="10px"></td>
+                            <td style="text-align:center;"><b>Q3</b></td>
+                            {% for j in divs %}
+                                {% with f=i|date:'Y' %}
+                                    {% with c=quartes|has_year:f|has_divq3:j %}
+                                        <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                            {% with f=i|date:'Y' %}
+                            {% with c=quarters|has_year:f|has_qua:3|first %}
+                                <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                            {% endwith %}
+                        {% endwith %}
+                        </tr>
+                        <tr id="Q4{{i|date:'Y'}}" class="hidden">
+                            <td width="10px"></td>
+                            <td style="text-align:center;"><b>Q4</b></td>
+                            {% for j in divs %}
+                                {% with f=i|date:'Y' %}
+                                    {% with c=quartes|has_year:f|has_divq4:j %}
+                                        <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                            {% with f=i|date:'Y' %}
+                            {% with c=quarters|has_year:f|has_qua:4|first %}
+                                <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                            {% endwith %}
+                        {% endwith %}
+                        </tr>
+                        <tr id="Q5{{i|date:'Y'}}" class="hidden">
+                            <td width="10px"></td>
+                            <td style="text-align:center;"><b>Contribution %</b></td>
+                            {% for j in divs %}
+                                {% with f=i|date:'Y' %}
+                                    {% with c=years_totals|has_year:f|has_div:j k=yearss|has_year:f|default_if_none:0 %}
+                                        <td nowrap style="text-align:right; padding-right:1rem">{{c.total|percentage:k}}</td>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">100</td>
+                        </tr>
+                        <tr id="Q6{{i|date:'Y'}}" class="hidden">
+                            <td width="10px"></td>
+                            <td style="text-align:center;"><b>LY Growth</b></td>
+                            {% for j in divs %}
+                                {% with f=i|date:'Y' l=i|date:'Y'|subtract:1 %}
+                                    {% with c=years_totals|has_year:f|has_div:j k=years_totals|has_year:l|has_div:j %}
+                                        <td nowrap style="text-align:right; padding-right:1rem">{{c.total|subtract:k.total|percentage:k.total}}</td>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem"></td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th colspan={{divs|length|add:2}} style="text-align:center;" class="bg-light">Primary Numbers for the month of {{currentmonth|date:'M-Y'}}</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Target for the month</td>
+                            {% for i in divs %}
+                                {% with c=targets|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.target|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Achievement</td>
+                            {% for i in divs %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Net Sales (Inv)</td>
+                            {% for i in divs %}
+                                {% with c=monthnet|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{monthnet_total}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Gross Sales (Inv)</td>
+                            {% for i in divs %}
+                                {% with c=monthgross|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{monthgross_total}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Return Sales (Inv)</td>
+                            {% for i in divs %}
+                                {% with c=monthreturn|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{monthreturn_total}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Contribution</td>
+                            {% for i in divs %}
+                                {% with c=monthnet|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|percentage:monthnet_total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">100</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Return (Value) %</td>
+                            {% for i in divs %}
+                                {% with c=monthgross|has_div:i k=monthreturn|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{k.total|percentage:c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{monthreturn_total|percentage:monthgross_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">LM Net Sales (Inv)</td>
+                            {% for i in divs %}
+                                {% with c=lmonthnet|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{lmonthnet_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">LY Net Sales (Inv)</td>
+                            {% for i in divs %}
+                                {% with c=lyearnet|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{lyearnet_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">MOM Growth</td>
+                            {% for i in divs %}
+                                {% with c=monthnet|has_div:i k=lmonthnet|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|subtract:k.total|percentage:k.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{monthnet_total|subtract:lmonthnet_total|percentage:lmonthnet_total|default_if_none:0}}</td>
+                            {% comment %} <td nowrap style="text-align:right; padding-right:1rem">{{lmonthnet_total|default_if_none:0}}</td> {% endcomment %}
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">LY Growth</td>
+                            {% for i in divs %}
+                                {% with c=monthnet|has_div:i k=lyearnet|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|subtract:k.total|percentage:k.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{monthnet_total|subtract:lyearnet_total|percentage:lyearnet_total|default_if_none:0}}</td>
+                            {% comment %} <td nowrap style="text-align:right; padding-right:1rem">{{lyearnet_total|default_if_none:0}}</td> {% endcomment %}
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total Units Billed</td>
+                            {% for i in divs %}
+                                {% with c=quantitytotal|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{quantitytotal_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total Customers Billed</td>
+                            {% for i in divs %}
+                                {% with c=customercount|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{customercount_total|default_if_none:0}}</td>
+                        </tr>
+                        {% for zone,items in zonecount.items %}
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Customers Billed in {{zone}} Zone</td>
+                            {% for i in divs %}
+                                {% with c=items|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            {% with items|last as last %}
+                                <td nowrap style="text-align:right; padding-right:1rem">{{ last.grand_total_count }}</td>
+                            {% endwith %}
+                        </tr>
+                        {% endfor %}
+                        {% for zone,items in zonetotals.items %}
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">{{zone}} Zone Net Sales</td>
+                            {% for i in divs %}
+                                {% with c=items|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            {% with items|last as last %}
+                                <td nowrap style="text-align:right; padding-right:1rem">{{ last.grand_total }}</td>
+                            {% endwith %}
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total Products Billed</td>
+                            {% for i in divs %}
+                                {% with c=productcount|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{productcount_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total Brands Billed</td>
+                            {% for i in divs %}
+                                {% with c=brandcount|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brandcount_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total Subbrands Billed</td>
+                            {% for i in divs %}
+                                {% with c=subbrandcount|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{subbrandcount_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total Classes Billed</td>
+                            {% for i in divs %}
+                                {% with c=classcount|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{classcount_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total Subclasses Billed</td>
+                            {% for i in divs %}
+                                {% with c=subclasscount|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{subclasscount_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total States Billed</td>
+                            {% for i in divs %}
+                                {% with c=statecount|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{statecount_total|default_if_none:0}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" nowrap style="text-align:center; padding-right:1rem">Total Cities Billed</td>
+                            {% for i in divs %}
+                                {% with c=citycount|has_div:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_count|default_if_none:0}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{citycount_total|default_if_none:0}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block reportjs %}
+<script>
+
+{% comment %}
+$(document).ready(function() {
+    $('#stock').DataTable( {
+        dom: 'lfrt<"ip"iB>p',
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+        ordering: false,
+        fixedColumns:   {
+            left: 1,
+        },
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Stock Aeging Report',
+                title: '',
+            },
+            'csv',
+        ],
+
+        scrollX:true,
+        scrollY:window.innerHeight-396,
+        scroller: true,
+    } );
+} ); {% endcomment %}
+
+function toggle(btnID, eIDs) {
+    // Feed the list of ids as a selector
+    var theRows = document.querySelectorAll(eIDs);
+    // Get the button that triggered this
+    var theButton = document.getElementById(btnID);
+    // If the button is not expanded...
+    if (theButton.getAttribute("aria-expanded") == "false") {
+      // Loop through the rows and show them
+      for (var i = 0; i < theRows.length; i++) {
+        theRows[i].classList.add("shown");
+        theRows[i].classList.remove("hidden");
+      }
+      // Now set the button to expanded
+      theButton.setAttribute("aria-expanded", "true");
+    // Otherwise button is not expanded...
+    } else {
+      // Loop through the rows and hide them
+      for (var i = 0; i < theRows.length; i++) {
+        theRows[i].classList.add("hidden");
+        theRows[i].classList.remove("shown");
+      }
+      // Now set the button to collapsed
+      theButton.setAttribute("aria-expanded", "false");
+    }
+  }
+</script>
+{% endblock %}

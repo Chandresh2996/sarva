@@ -1,0 +1,33 @@
+{{grn.grn_no}}
+|{{grn.grn_date}}
+|{{grn.seller}}
+|{{grn.seller_address_type}}
+|{{grn.seller_address1}}
+{{grn.seller_address2}}
+{{grn.seller_address3}}
+|{{grn.seller_gstin}}
+|{{grn.shipto}}
+|{{grn.shipto_address_type}}
+|{{grn.shipto_address1}}
+{{grn.shipto_address2}}
+{{grn.shipto_address3}}
+|{{grn.shipto_gstin}}
+|{{grn.mode_of_payment}}
+|{{grn.other_reference}}
+|{{grn.terms_of_delivery}}
+|{{grn.cgst}}
+|{{grn.sgst}}
+|{{grn.igst}}
+|{{grn.tcs}}
+|{{grn.other}}
+|{{grn.round_off}}
+|{{grn.narration}}
+|{{grn.dispatch_through}}
+|{{grn.destintaion}}
+|{{grn.ammount}}
+|{{grn.total}}
+|{{grn.currency}}
+|{{grn.ex_rate}}
+{% for i in items %}
+~|{{i.product_code}}|{{i.item.product_name}}|{{i.mrp}}|{{i.pack}}|{{i.recd_qty}}|{{i.rate}}|{{i.amount}}|{{i.sgstrate}}|{{i.cgstrate}}|{{i.igstrate}}|{{i.sgst}}|{{i.cgst}}|{{i.igst}}
+{% endfor %}

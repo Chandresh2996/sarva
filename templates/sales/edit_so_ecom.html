@@ -1,0 +1,816 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row mx-0">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>ECOM Sales Order: Edit</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav> 
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:sales' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:ecomso' %}"> ECOM Sales Order </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Edit ECOM Sales Order </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mx-0">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0"><span class="fw-bold">Sales Order: </span>{{so.so_no}}</h4>
+                            <div class="page-title-right">
+                                <h4><span class="fw-bold">Date: </span>{{so.so_date|date:'d-m-Y'}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'sales:editecomso' so.pk %}" enctype="multipart/form-data" onsubmit="return handle()">
+                    {% csrf_token %}
+                    <div class="row mx-0">
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label for="party_name" class="form-label">Party Details</label>
+                                <div>
+                                    <select class="form-control" id="party_name" name="party_name" required>
+                                        <option>{{so.buyer}}</option>
+                                        {% for i in parties %}
+                                        <option value="{{i.pk}}">{{i}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="buyer_mailingname" placeholder="Party Name" name="buyer_mailingname" required value="{{so.buyer_mailingname}}">
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="buyer_address1" placeholder="Address 1" name="buyer_address1" required value="{{so.buyer_address1|default_if_none:''}}">
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="buyer_address2" placeholder="Address 2" name="buyer_address2" required value="{{so.buyer_address2|default_if_none:''}}">
+                            </div>
+                            <div class="mb-2">
+                                <div>
+                                    <select class="form-control" id="buyer_state" name="buyer_state" required>
+                                        {% for i in state %}
+                                        {% if i.name == so.buyer_state %}
+                                            <option value="{{i.pk}}" selected>{{i}}</option>
+                                        {% else %}
+                                            <option value="{{i.pk}}">{{i}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <div>
+                                    <select class="form-control" id="buyer_city" name="buyer_city" required>
+                                        {% for i in buyercity %}
+                                        {% if i.name == so.buyer_city %}
+                                            <option value="{{i.pk}}" selected>{{i}}</option>
+                                        {% else %}
+                                            <option value="{{i.pk}}">{{i}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="buyer_pincode" placeholder="Pincode" name="buyer_pincode" required value="{{so.buyer_pincode}}">
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_gstin" placeholder="GSTIN" name="party_gstin" value="{{so.buyer_gstin}}">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label for="consignee_name" class="form-label">Party Details</label>
+                                <input type="text" class="form-control" id="consignee_name" name="consignee_name" readonly value="{{so.shipto}}">
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="shipto_mailingname" placeholder="consignee Name" name="shipto_mailingname" required value="{{so.shipto_mailingname}}">
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="shipto_address1" placeholder="Address 1" name="shipto_address1" required value="{{so.shipto_address1|default_if_none:''}}">
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="shipto_address2" placeholder="Address 2" name="shipto_address2" required value="{{so.shipto_address2|default_if_none:''}}">
+                            </div>
+                            <div class="mb-2">
+                                <div>
+                                    <select class="form-control" id="shipto_state" name="shipto_state" required>
+                                        {% for i in state %}
+                                        {% if i.name == so.shipto_state %}
+                                            <option value="{{i.pk}}" selected>{{i}}</option>
+                                        {% else %}
+                                            <option value="{{i.pk}}">{{i}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <div>
+                                    <select class="form-control" id="shipto_city" name="shipto_city" required>
+                                        {% for i in consigneecity %}
+                                        {% if i.name == so.shipto_city %}
+                                            <option value="{{i.pk}}" selected>{{i}}</option>
+                                        {% else %}
+                                            <option value="{{i.pk}}">{{i}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="shipto_pincode" placeholder="Pincode" name="shipto_pincode" required value="{{so.shipto_pincode}}">
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="consignee_gstin" placeholder="GSTIN" name="consignee_gstin" value="{{so.consignee_gstin}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="so_due_date" class="form-label">SO Due Date</label>
+                                </div>
+                                <div class="col">
+                                    <input type="date" class="form-control" id="so_due_date" name="so_due_date" value="{{so.so_due_date|date:'Y-m-d'}}" min="{{date|date:'Y-m-d'}}">
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="order_no" class="form-label">Order No</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="order_no" name="order_no" value="{{so.order_no}}"/>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="price_list" class="form-label">PriceList</label>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" id="price_list" name="price_list" readonly value="{{so.price_list}}">
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="mode_of_payment" class="form-label">Mode of payment</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="mode_of_payment" name="mode_of_payment" value="{{so.mode_of_payment}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="other_reference" class="form-label">Other Reference</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="other_reference" name="other_reference" value="{{so.other_reference}}">
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="terms_of_delivery" class="form-label">Terms of delivery</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="terms_of_delivery" name="terms_of_delivery" value="{{so.terms_of_delivery}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-2" style="padding-left: 10px;">
+                                <div class="col-lg-6">
+                                    <input type="file" class="form-control" id="excel_file"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="card w-100">
+                            <div class="card-body" style="padding: 0; font-size: 12px;">
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="table" style="min-width:100%">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="10px">#</th>
+                                                <th width="100px">SKU Code</th>
+                                                <th style="min-width:100px; max-width:101px;">SKU Name</th>
+                                                <th width="90px">MRP</th>
+                                                <th width="90px">Offer MRP</th>
+                                                <th width="55px">Pack</th>
+                                                <th width="80px">Stock Qty</th>
+                                                <th width="80px">Total Qty</th>
+                                                <th width="80px">Billed Qty</th>
+                                                <th width="80px">Free Qty</th>
+                                                <th width="90px">Rate</th>
+                                                <th width="60px">Disc(%)</th>
+                                                <th width="110px">Amount</th>
+                                                <th width="50px">GST</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tbody">
+                                            {% for i in products %}
+                                            <tr>
+                                                <th style="min-width:10px; max-width:10px;" scope="row" class="datarow">
+                                                    {{forloop.counter}}
+                                                </th>
+                                                <td style="min-width:100px; max-width:100px;">
+                                                    <input type="text" class="form-control" id="product_code_{{forloop.counter}}" name="product_code" autocomplete = "off" list="pitems" required value="{{i.item}}">
+                                                </td>
+                                                <td style="min-width:100px; max-width:100px;">
+                                                    <input type="text" class="form-control" id="name_of_item_{{forloop.counter}}" name="name_of_item" list="items" readonly value="{{i.item.product_name}}">
+                                                </td>
+                                                <td style="min-width:90px; max-width:90px;">
+                                                    <input type="text" class="form-control text-right" id="batch_{{forloop.counter}}" name="batch" readonly value="{{i.mrp}}">
+                                                </td>
+                                                <td style="min-width:55px; max-width:55px;">
+                                                    <input type="text" class="form-control text-right" id="offermrp_{{forloop.counter}}" name="offermrp" value="{{i.offer_mrp}}">
+                                                </td>
+                                                <td  style="min-width:80px; max-width:80px;">
+                                                    <input type="number" class="form-control text-right" id="inner_{{forloop.counter}}" name="inner" readonly value="{{i.pack|floatformat:'0'}}">
+                                                </td>
+                                                <td style="min-width:80px; max-width:80px;">
+                                                    <input type="number" class="form-control text-right" id="stock_{{forloop.counter}}" name="stock" readonly value="{{i.available_qty|floatformat:'0'}}">
+                                                </td>
+                                                <td style="min-width:80px; max-width:80px;">
+                                                    <input type="number" class="form-control text-right" id="actualqty_{{forloop.counter}}" name="aqty" required value="{{i.actual_qty|floatformat:'0'}}" min="1">
+                                                </td>
+                                                <td style="min-width:80px; max-width:80px;">
+                                                    <input type="number" class="form-control text-right" id="billqty_{{forloop.counter}}" name="billqty" required value="{{i.billed_qty|floatformat:'0'}}">
+                                                </td>
+                                                <td style="min-width:80px; max-width:80px;">
+                                                    <input type="number" class="form-control text-right" id="freeqty_{{forloop.counter}}" name="freeqty" readonly value="{{i.free_qty|floatformat:'0'}}">
+                                                </td>
+                                                <td style="min-width:90px; max-width:90px;">
+                                                    <input type="number" step="any" class="form-control text-right" id="rate_{{forloop.counter}}" name="rate" readonly value="{{i.rate}}">
+                                                </td>
+                                                <td style="min-width:60px; max-width:60px;">
+                                                    <input type="number" step="any" class="form-control text-right" id="discount_{{forloop.counter}}" name="discount" max="100" value="{{i.discount}}">
+                                                </td>
+                                                <td style="min-width:110px; max-width:110px;">
+                                                    <input type="number" step="any" class="form-control text-right" id="ammount_{{forloop.counter}}" name="ammount" readonly value="{{i.amount}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="number" step="any" class="form-control text-right" id="cgst_{{forloop.counter}}" name="cgst" readonly value="{{i.cgstrate}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="number" step="any" class="form-control text-right" id="sgst_{{forloop.counter}}" name="sgst" readonly value="{{i.sgstrate}}">
+                                                </td>
+                                                <td>
+                                                    <input type="number" step="any" class="form-control text-right" id="igst_{{forloop.counter}}" name="igst" readonly value="{{i.igstrate}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="number" step="any" class="form-control text-right" id="cgstrate_{{forloop.counter}}" name="cgstrate" readonly value="{{i.cgst}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="number" step="any" class="form-control text-right" id="sgstrate_{{forloop.counter}}" name="sgstrate" readonly value="{{i.sgst}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="number" step="any" class="form-control text-right" id="igstrate_{{forloop.counter}}" name="igstrate" readonly value="{{i.igst}}">
+                                                </td>
+                                                <td class="align-middle text-center" style="min-width:50px; max-width:50px;">
+                                                    <button type="button"
+                                                            class="btn btn-danger btn-sm btn-icon"
+                                                            hx-get="{% url 'dash:clear' %}"
+                                                            hx-swap="outerHTML"
+                                                            hx-target="closest tr">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                        <tr>
+                                            <td class="align-middle text-center">
+                                                <button type="button"
+                                                        class="btn btn-success btn-sm btn-icon mt-2"
+                                                        hx-get="{% url 'sales:so-item' %}"
+                                                        hx-swap="outerHTML"
+                                                        hx-target="closest tr"
+                                                        hx-vals='{"no": {{products|length}}}'>
+                                                        <i class="fas fa-plus"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!-- end tbody-->
+                                </table>
+                                <!-- end table-->
+                            </div>
+                            <!-- end table responsive -->
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-lg-4 pt-5 mt-5">
+                        <div class="mt-5">
+                            <label for="narration" class="form-label"> Remarks </label>
+                            <input type="text" class="form-control" id="narration" name="narration" value="{{so.narration}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <!-- end col -->
+                        <div class="row align-items-end">
+                            <div class="col">
+                                <label for="totalammount" class="form-label"> SubTotal </label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control text-right" id="totalammount" name="totalammount" readonly value="{{so.ammount}}">
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col">
+                                <label for="extradiscount" class="form-label"> Discount </label>
+                            </div>
+                            <div class="col">
+                                <input type="number" step="any" class="form-control text-right" id="extradiscount" name="extradiscount" value="{{so.discount}}">
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col-xl-4" style="padding: 0px 3px;">
+                                <select class="form-control text-right" id="other_ledger" name="other_ledger">
+                                    <option value=''>{{so.other_ledger}}</option>
+                                    {% for i in ledgers %}
+                                    <option value='{{i.pk}}'>{{i}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-xl-3" style="padding: 0px 3px;">
+                                <select class="form-control text-right" id="other_ledger_per" name="ol_rate">
+                                    <option value='{{so.ol_rate}}'>{{so.ol_rate}} %</option>
+                                    <option value='0'>0 %</option>
+                                    <option value='5'>5 %</option>
+                                    <option value='12'>12 %</option>
+                                    <option value='18'>18 %</option>
+                                    <option value='28'>28 %</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-5" style="padding-left: 3px;">
+                                <input type="text" class="form-control text-right" id="other" value='{{so.other}}' name="other">
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col">
+                                <label for="cgst" class="form-label"> CGST </label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control text-right" id="totalcgst" name="totalcgst" readonly value="{{so.cgst}}">
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col">
+                                <label for="sgst" class="form-label"> SGST </label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control text-right" id="totalsgst" name="totalsgst" readonly value="{{so.sgst}}">
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="row align-items-end">
+                            <div class="col">
+                                <label for="igst" class="form-label"> IGST </label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control text-right" id="totaligst" name="totaligst" readonly value="{{so.igst}}">
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col">
+                                <label for="tcs" class="form-label"> TCS </label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control text-right" id="totaltcs" name="totaltcs" readonly value="{{so.tcs}}">
+                            </div>
+                        </div>
+                        <div class="row align-items-end">
+                            <div class="col">
+                                <label for="total" class="form-label"> Total </label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control text-right" id="total" name="total" readonly value="{{so.total}}">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <div class="row mx-0">
+                    <div class="col-lg-8">
+                        <td class="align-middle">
+                            {% if so.status != '2' and not so.dn %}
+                                <a href="{% url 'sales:cancelso' so.pk %}">
+                                    <button type="button" class="btn btn-danger">Cancel
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </a>
+                            {% endif %}
+                            <button type="button" class="btn btn-primary w-sm ms-auto mr-2" id="export"> Export Error</button>
+                        </td>
+                    </div>
+                    <div class="col-lg-4 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary w-sm ms-auto" id="btnsubmit" style="float:right;" > Submit </button>
+                    </div>
+                </div>
+                <div class="d-none">
+                    <input type="text" id="istcs" value="{{so.buyer.istcsapplicable}}" />
+                <div>
+            </form>
+                <table class="table mb-0 d-none" id="exporttable">
+                    <tr>
+                        <th>#</th>
+                        <th>SKU Code</th>
+                        <th>SKU Name</th>
+                        <th>MRP</th>
+                        <th>Offer MRP</th>
+                        <th>Pack</th>
+                        <th>Available Qty</th>
+                        <th>Total Qty </th>
+                        <th>Billed Qty </th>
+                        <th>Free Qty </th>
+                        <th>Rate </th>
+                        <th>Discount </th>
+                        <th>Ammount </th>
+                    </tr>
+                </table>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end card body -->
+    </div>
+    <!-- end card -->
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    var haskey = [];
+
+    function handle() {
+        var res = true;
+
+        $('input[name="product_code"').each(function(){
+            if (!$(this).val()){
+                window.alert("Please Fill the Product Details first");
+                return false;
+            }
+
+            if (haskey.includes($(this).val())) {
+                window.alert("Some Products Have Duplicate Entries");
+                res = false;
+                return false;
+            } else {
+                haskey.push($(this).val());
+            }
+        });
+        $('input[name="billqty"').each(function(){
+            if ($(this).parent().hasClass("pderror")){
+                window.alert("Please Solve the error first");
+                res = false;
+                return false;
+            }
+            if ($(this).parent().hasClass("errorred")) {
+                window.alert("Please Solve the error first");
+                res = false;
+                return false;
+            }
+        });
+
+        $('input[name="aqty"').each(function () {
+            if ($(this).parent().hasClass("errorred")) {
+                window.alert("Please solve either of the errors: \n 1) Products repeating in sales order \n 2) Imported Order Qty greater than available SOH \n 3) Billed Qty greater than Total Qty");
+                res = false;
+                return false;
+            }
+        });
+        return res;
+    }
+    const excel_file = document.getElementById('excel_file');
+    excel_file.addEventListener('change', (event) => {
+        var price_list = $("#price_list").val();
+        if (!price_list){
+            window.alert("please select the Party First");
+            return false;
+        }
+        if (!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(event.target.files[0].type)) {
+            window.alert("Only .xlsx or .xls file format are allowed");
+
+            excel_file.value = '';
+
+            return false;
+        } else {
+
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(event.target.files[0]);
+
+            reader.onload = function (event) {
+                var data = new Uint8Array(reader.result);
+                var work_book = XLSX.read(data, {
+                    type: 'array'
+                });
+                var sheet_name = work_book.SheetNames;
+                var sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {
+                    header: 1
+                });
+                var price_list = $("#price_list").val();
+                for (var row = 1; row < sheet_data.length; row++) {
+                    var data = {'no': row,'price_level' : price_list}
+                    for (var cell = 0; cell < sheet_data[row].length; cell++) {
+                        var key = sheet_data[0][cell];
+                        data[key] = sheet_data[row][cell];
+                    }
+                    $.ajax({
+                        url: "{% url 'sales:ajax_load_so_upload' %}",
+                        async: false,
+                        data: data,
+                        success: function (data) {
+                            $(".tbody:last").replaceWith(data);
+                        },
+                        error: function () {
+                            window.alert("rate is not defiend in row"+ row );
+                        }
+                    });
+                }
+                e()
+            }
+        }
+    });
+
+    $("table").on("change", e);
+
+    function e() {
+
+        var price_list = $("#price_list").val();
+        if (!price_list){
+            window.alert("please select the Party First");
+            $("#"+ e.arguments[0].target.id +"").val('');
+            return false;
+        }
+
+        var no = e.arguments[0].target.id.split('_').pop();
+        if ("product_code" === e.arguments[0].target.name) {
+            var item = $("#product_code_" + no + "").val();
+
+            if (haskey.includes(item)) {
+                window.alert("Product Already Exist");
+                document.querySelector('#select2-product_code_' + no + '-container').innerHTML = '';
+                return false;
+            }
+            $.ajax({
+                url: "{% url 'sales:ajax_load_product_code' %}",
+                data: {
+                    'item': item
+                },
+                success: function (data) {
+                    haskey.push(item);
+                    data = data.split("|");
+                    $("#name_of_item_" + no + "").val(data[0]);
+                    $("#inner_" + no + "").val(data[1]);
+                    $("#batch_" + no + "").val(data[2]);
+                    $("#stock_" + no + "").val(parseInt(data[3]));
+                    $("#igst_" + no + "").val(parseFloat(data[4]).toFixed(2));
+                    $("#cgst_" + no + "").val(parseFloat(data[5]).toFixed(2));
+                    $("#sgst_" + no + "").val(parseFloat(data[6]).toFixed(2));
+                    $("#offermrp_" + no + "").val(0);
+                    $("#actualqty_" + no + "").val(0);
+                    $("#billqty_" + no + "").val(0);
+                    $("#rate_" + no + "").val(0);
+                    $("#discount_" + no + "").val(0);
+                }
+            });
+
+            if (price_list == 'Manual') {
+                $("#rate_" + no + "").attr('readonly', false);
+            } else {
+                $.ajax({
+                    url: "{% url 'sales:ajax_load_product_rate' %}",
+                    data: {
+                        'price_list': price_list,
+                        'item': item
+                    },
+                    success: function (data) {
+
+                        $("#rate_" + no + "").val(data);
+                    }
+                });
+            }
+        }
+        var pack = parseInt($("#inner_" + no + "").val() || 1);
+        var qty = parseFloat($("#billqty_" + no + "").val() || 0);
+        var sqty = parseFloat($("#stock_" + no + "").val() || 0);
+        var actual = parseFloat($("#actualqty_" + no + "").val() || 0);
+        var rate = parseFloat($("#rate_" + no + "").val() || 0);
+        var dis = parseFloat($("#discount_" + no + "").val() || 0);
+        var extdis = parseFloat($("#extradiscount").val() || 0);
+
+        if(actual > sqty) {
+            actual = 0;
+            alert("Total Qty Cannot be more than Available qty");
+            $("#actualqty_" + no + "").val(0);
+        }
+        else if (qty > actual) {
+            var data = ((actual * rate) * ((100 - dis) / 100));
+            alert("Billed Qty Cannot be more than Actual qty");
+            $("#billqty_" + no + "").val(actual);
+            $("#freeqty_" + no + "").val(parseFloat(0));
+            $("#ammount_" + no + "").val(data.toFixed(2));
+        }
+        // else if (actual == 0){
+        //     alert("Total Qty Cannot be zero");
+        // }
+        else {
+            var free = (actual - qty);
+            $("#freeqty_" + no + "").val(free.toFixed(2));
+            var data = ((qty * rate) * ((100 - dis) / 100));
+            $("#ammount_" + no + "").val(data.toFixed(2));
+        }
+
+        var cgst = parseFloat($("#cgst_"+ no + "").val() || 0);
+        var sgst = parseFloat($("#sgst_"+ no + "").val() || 0);
+        var igst = parseFloat($("#igst_"+ no + "").val() || 0);
+        var ammount = parseFloat($("#ammount_"+ no + "").val() || 0);
+
+        var cgstdata = (((ammount* ((100 - extdis) / 100)) * cgst) / 100);
+        var sgstdata = (((ammount* ((100 - extdis) / 100)) * sgst) / 100);
+        var igstdata = (((ammount* ((100 - extdis) / 100)) * igst) / 100);
+
+        $("#cgstrate_"+ no + "").val(cgstdata);
+        $("#sgstrate_"+ no + "").val(sgstdata);
+        $("#igstrate_"+ no + "").val(igstdata);
+        window.totals()
+    }
+
+    $("#other_ledger_per").change(totals);
+    $('#other').change(totals);
+    $('#extradiscount').change(ed);
+
+    function ed(){
+        ($('[name="ammount"]').each(function (i, j) {
+
+            var extdis   = parseFloat(($("#extradiscount").val() || 0));
+            var no = ($(this).attr("id").split('_').pop());
+
+            var cgst = parseFloat($("#cgst_"+ no + "").val() || 0);
+            var sgst = parseFloat($("#sgst_"+ no + "").val() || 0);
+            var igst = parseFloat($("#igst_"+ no + "").val() || 0);
+            var ammount = parseFloat($("#ammount_"+ no + "").val() || 0);
+            var cgstdata = (((ammount* ((100 - extdis) / 100)) * cgst) / 100);
+            var sgstdata = (((ammount* ((100 - extdis) / 100)) * sgst) / 100);
+            var igstdata = (((ammount* ((100 - extdis) / 100)) * igst) / 100);
+
+            $("#cgstrate_"+ no + "").val(cgstdata);
+            $("#sgstrate_"+ no + "").val(sgstdata);
+            $("#igstrate_"+ no + "").val(igstdata);
+        }));
+        window.totals()
+    }
+
+    function totals(){
+        var cgst = 0;
+        var sgst = 0;
+        var igst = 0;
+        var ammount = 0;
+
+        ($('[name="cgstrate"]').each(function (i, j) {
+            cgst = cgst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="sgstrate"]').each(function (i, j) {
+            sgst = sgst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="igstrate"]').each(function (i, j) {
+            igst = igst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="ammount"]').each(function (i, j) {
+            ammount = ammount + parseFloat($(this).val() || 0);
+        }));
+
+        var extdis = parseFloat(($("#extradiscount").val() || 0));
+
+        var ogr = parseFloat($("#other_ledger_per").val() || 0) / 200
+        var other = parseFloat(($("#other").val() || 0));
+        var gst = (parseFloat(cgst) + (other * ogr));
+
+        $("#totalammount").val((parseFloat(ammount)).toFixed(2));
+        $("#totalcgst").val((gst).toFixed(2));
+        $("#totalsgst").val((gst).toFixed(2));
+        $("#totaligst").val((gst * 2).toFixed(2));
+
+        var total = Math.round((ammount * ((100 - extdis) / 100)) + (gst * 2) + other);
+
+        if ($("#istcs").val() === 'True') {
+            var tcs = (total * 0.001);
+        } else {
+            var tcs = 0
+        }
+        $("#totaltcs").val(tcs.toFixed(2));
+        var total = Math.round(total + tcs);
+        $("#total").val(total);
+    }
+    $("#party_address_type").change(function () {
+        var address = $(this).val();
+        var party = $("#party_name").val();
+        $.ajax({
+            url: "{% url 'sales:ajax_load_party_address' %}",
+            data: {
+                'party': party,
+                'address': address
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#party_address").html(data[0]);
+                $("#party_gstin").val(data[1]);
+            }
+        });
+    });
+    $("#consignee_address_type").change(function () {
+        var address = $(this).val();
+        var party = $("#consignee_name").val();
+        $.ajax({
+            url: "{% url 'sales:ajax_load_party_address' %}",
+            data: {
+                'party': party,
+                'address': address
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#consignee_address").html(data[0]);
+                $("#consignee_gstin").val(data[1]);
+            }
+        });
+    });
+    $("#party_name").change(function () {
+        var partyId = $(this).val();
+        $.ajax({
+            url: "{% url 'sales:ajax_load_address' %}",
+            data: {
+                'party': partyId
+            },
+            success: function (data) {
+                data = data.split("|");
+                console.log(data)
+                $("#party_address_type").html(data[0]);
+                $("#party_address").html(data[1]);
+                $("#party_gstin").val(data[2]);
+                $("#price_list").val(data[3]);
+                $("#istcs").val(data[4]);
+                $("#isloosepack").val('True');
+            }
+        });
+    });
+    $("#consignee_name").change(function () {
+        var partyId = $(this).val();
+        $.ajax({
+            url: "{% url 'sales:ajax_load_address' %}",
+            data: {
+                'party': partyId
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#consignee_address_type").html(data[0]);
+                $("#consignee_address").html(data[1]);
+                $("#consignee_gstin").val(data[2]);
+                if (data[2].substring(0, 2) != '24'){
+                    $("#totalcgst");
+                }
+            }
+        });
+    });
+
+
+    $("#export").on("click" ,function (){
+        $(".errorred").each(function (){
+                $(this).parent("tr").clone().appendTo($("#exporttable"));
+                }
+            );
+            var table2excel = new Table2Excel();
+            table2excel.export(document.querySelectorAll("#exporttable"));
+        });
+
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(".js-example-basic-single").select2();
+    });
+</script>
+
+
+    {% endblock %}

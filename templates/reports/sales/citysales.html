@@ -1,0 +1,167 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Target vs Sales Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:sales-reports' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Target vs Sales Report</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% load humanize %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <form action="{% url 'reports:citysales' %}" method="POST" id="division-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="division" class="form-label mb-0">Division</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="form-control" id="division" name="division">
+                                {% for j in currentdiv%}
+                                <option value="{{j}}">{{j}}</option>
+                                {% endfor %}
+                                {% for i in divs %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endfor %}
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="year" class="form-label mb-0">Year</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="form-control" id="year" name="year">
+                                {% for i in years %}
+                                    {% if current_year == i|date:"Y" %}
+                                        <option value={{i|date:"Y"}} selected>{{ i|date:'Y' }}</option>
+                                    {% else %}
+                                        <option value={{i|date:"Y"}}>{{ i|date:'Y' }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <button type="submit" class="btn ml-5 fa fa-filter" name=""> Filter</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                <table id="stock" class="table nowrap">
+                    <thead>
+                        <tr>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            <th style="text-align:right; padding-right:1.5rem"></th>
+                            {% for i in months %}
+                            <th colspan="3" class="align-middle text-center">{{i|date:'F-y'}}</th>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="text-align:right; padding-right:1.5rem">DIVISION</th>
+                            <th style="text-align:right; padding-right:1.5rem">CHANNEL TYPE</th>
+                            <th style="text-align:right; padding-right:1.5rem">CUSTOMER CODE</th>
+                            <th style="text-align:right; padding-right:1.5rem">CUSTOMER NAME</th>
+                            <th style="text-align:right; padding-right:1.5rem">ZONE</th>
+                            <th style="text-align:right; padding-right:1.5rem">REGION</th>
+                            <th style="text-align:right; padding-right:1.5rem">STATE</th>
+                            <th style="text-align:right; padding-right:1.5rem">CITY</th>
+                            <th style="text-align:right; padding-right:1.5rem">ZSM</th>
+                            <th style="text-align:right; padding-right:1.5rem">RSM</th>
+                            <th style="text-align:right; padding-right:1.5rem">ASM</th>
+                            <th style="text-align:right; padding-right:1.5rem">SE</th>
+                            {% for i in months %}
+                            <th style="text-align:right; padding-right:1.5rem">TARGET</th>
+                            <th style="text-align:right; padding-right:1.5rem">ACTUAL</th>
+                            <th style="text-align:right; padding-right:1.5rem">ACHIVEMENT (%)</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% load mathops %}
+                        {% for i,items in data.items %}
+                        <tr>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.division}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.channel_type}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.customer_code}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.customer_name}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.zone}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.region}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.state}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.city}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.zsm}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.rsm}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.asm}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.se}}</td>
+                            {% for i in months %}
+                                {% with c=items|has_target:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.target}}</td>
+                                    {% with k=items|has_month:i %}
+                                        <td nowrap style="text-align:right; padding-right:1rem">{{k.total}}</td>
+                                        <td nowrap style="text-align:right; padding-right:1rem">{% if c.target%}{{k.total|percentage:c.target|default:0}}{% endif %}</td>
+                                    {% endwith %}
+                                {% endwith %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block reportjs %}
+<script>
+
+$(document).ready(function() {
+    $('#stock').DataTable( {
+        dom: 'lfrt<"ip"iB>p',
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+        fixedColumns:   {
+            left: 4,
+        },
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Target vs Sales Report',
+                title: '',
+            },
+            'csv',
+        ],
+        scrollX:300,
+        scrollY:'400px',
+        scroller: true,
+    } );
+} );
+</script>
+{% endblock %}

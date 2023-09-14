@@ -1,0 +1,41 @@
+<tr>
+    <th scope="row" class="datarow">
+        {{no}}
+    </th>
+    <td>
+        <select class="js-example-basic-single" class="form-control" id="customer" name="customer" required>
+            <option></option>
+            {% for cus in customer %}
+                <option value="{{cus.id}}">{{cus.name}}</option>
+            {% endfor %}
+        </select>
+    </td>
+    <td>
+        <input type="number" class="form-control" id="target" name="target" autocomplete="off" min="0" required>
+    </td>
+    <td>
+        <input type="date" class="form-control" id="target_date" name="target_date" value="" autocomplete="off" required>
+    </td>
+    <td class="align-middle text-center">
+        <button type="button" 
+            class="btn btn-danger btn-sm btn-icon" hx-get="{% url 'dash:clear' %}"
+            hx-swap="outerHTML" hx-target="closest tr">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr>
+<tr>
+    <td class="align-middle text-center">
+        <button type="button" 
+            class="btn btn-success btn-sm btn-icon mt-2"
+            hx-get="{% url 'sales:target-item' %}" hx-swap="outerHTML"
+            hx-target="closest tr" hx-vals='{"no": "1"}'>
+            <i class="fas fa-plus"></i>
+        </button>
+    </td>
+</tr>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".js-example-basic-single").select2();
+    });
+</script>

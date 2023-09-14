@@ -1,0 +1,716 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-content">
+
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Product Master</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Date</a></li>
+                            <li class="breadcrumb-item active">
+                                <script>
+                                    document.write(new Date().getDate())
+                                </script>
+                            </li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- <div class="card-header justify-content-between d-flex align-items-center">
+                        <h4 class="card-title">Add Product</h4>
+                    </div> -->
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'inventory:edit_product' product.pk %}" class="needs-validation" onsubmit="return validate()">
+                            {% csrf_token %}
+                            
+                            <div class="wizard-tab">
+                                <div class="text-center mb-4">
+                                    <h5>Product Details</h5>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Name -->
+                                    <div class="col-xl-6">
+                                        <div class="mb-3 row">
+                                            <label for="product_name" class="col-md-4 col-form-label">Name<span style="color:red">*</span>:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" type="text" id="product_name" value="{{product.product_name}}"
+                                                    autocomplete="off" name="product_name" required />
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <!-- Part Number -->
+                                    <div class="col-xl-2">
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="mb-3 row">
+                                            <label for="part_no" class="col-md-3 col-form-label">SKU Code:</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" autocomplete="off" name="part_no" id="part_no" value="{{product.product_code}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Description -->
+                                    <div class="col-xl-12">
+                                        <div class="mb-3 row">
+                                            <label for="description"
+                                                class="col-md-2 col-form-label">Description:</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" autocomplete="off" name="description" value="{{product.description|default_if_none:''}}"
+                                                    id="description"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Note -->
+                                    <div class="col-xl-12">
+                                        <div class="mb-3 row">
+                                            <label for="note" class="col-md-2 col-form-label">Note:</label>
+                                            <div class="col-md-10">
+                                                <input class="form-control" type="text" value="{{product.notes|default_if_none:''}}" autocomplete="off" name="note"
+                                                    id="note" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-xl-6">
+                                            <div class="row mb-3 md-6">
+                                                <label for="group" class="col-sm-6 col-xl-4 col-form-label">Default ledger for Sales Invoice<span style="color:red">*</span></label>
+                                                <div class="col-sm-6 col-xl-8">
+                                                    <select id="salesledger" name="salesledger" class="form-control" required>
+                                                        <option value="{{product.dl_sales}}">{{product.dl_sales}}</option>
+                                                        {% for ledger in ledgers %}
+                                                        {% if ledger.under.name == 'Sales Accounts' %}
+                                                        <option value="{{ledger.name}}">{{ledger.name}}</option>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div><!-- end row -->
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="row mb-3 md-6">
+                                                <label for="group" class="col-sm-6 col-xl-4 col-form-label">Default ledger for Purchase Invoice<span style="color:red">*</span></label>
+                                                <div class="col-sm-6 col-xl-8">
+                                                    <select id="purchaseledger" name="purchaseledger" class="form-control" required>
+                                                        <option value="{{product.dl_purchase}}">{{product.dl_purchase}}</option>
+                                                        {% for ledger in ledgers %}
+                                                        {% if ledger.under.name == 'Purchase Accounts' %}
+                                                        <option value="{{ledger.name}}">{{ledger.name}}</option>
+                                                        {% endif %}
+                                                            {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div><!-- end row -->
+                                        </div>
+                                        
+                                    </div>
+                                    <hr>
+                                    <!-- brand -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="brand" class="col-sm-4 col-xl-3 col-form-label">Brand</label>
+                                            <div class="col-sm-6 col-xl-9">
+                                                <!-- <input list="brands" autocomplete="off" name="brand" id="brand" class="form-control" value="{{product.brand}}"   
+                                                    pattern="{% for brand in brands %}{{brand.name}}|{% endfor %}"> -->
+                                                <select class="js-example-basic-single" class="form-control" id="brand" name="brand" required>
+                                                    {% for brand in brands %}
+                                                    {% if product.brand == brand.name %}
+                                                        <option value="{{brand.name}}" selected>{{brand.name}}</option>
+                                                    {% else %}
+                                                        <option value="{{brand.name}}">{{brand.name}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+
+                                    <!-- Category -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="categorys"
+                                                class="col-sm-4 col-xl-3 col-form-label">Category</label>
+                                            <div class="col-sm-6 col-xl-9">
+                                                <!-- <input list="category" autocomplete="off" name="categorys" id="categorys"
+                                                    class="form-control" value="{{product.category|default_if_none:'NA'}}" 
+                                                    pattern="{% for categorys in category %}{{categorys.name}}|{% endfor %}"> -->
+                                                <select class="js-example-basic-single" class="form-control" id="categorys" name="categorys" required>
+                                                    {% for categorys in category %}
+                                                    {% if product.category == categorys.category %}
+                                                        <option value="{{categorys.category}}" selected>{{categorys.category}}</option>
+                                                    {% else %}
+                                                        <option value="{{categorys.category}}">{{categorys.category}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
+
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <!-- Class -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="class" class="col-sm-4 col-xl-3 col-form-label">Class</label>
+                                            <div class="col-sm-6 col-xl-9">
+                                                <!-- <input list="classes" autocomplete="off" name="class" id="class" class="form-control" value="{{product.product_class}}" 
+                                                    pattern="{% for class in classes %}{{classes.name|default_if_none:'NA'}}|{% endfor %}"> -->
+                                                <select class="js-example-basic-single" class="form-control" id="class" name="class" required>
+                                                    {% for class in classes %}
+                                                    {% if product.product_class == class.name %}
+                                                        <option value="{{class.name}}" selected>{{class.name}}</option>
+                                                    {% else %}
+                                                        <option value="{{class.name}}">{{class.name}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <!-- Sub Class -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="subclass" class="col-sm-4 col-xl-3 col-form-label">Sub
+                                                Class</label>
+                                            <div class="col-sm-6 col-xl-9">
+                                                <!-- <input list="subclasses" autocomplete="off" name="subclass" id="subclass"  
+                                                    class="form-control" value="{{product.sub_class|default_if_none:'NA'}}" 
+                                                    pattern="{% for subclass in subclasses %}{{subclasses.name}}|{% endfor %}"> -->
+                                                <select class="js-example-basic-single" class="form-control" id="subclass" name="subclass" required>
+                                                    {% for subclass in subclasses %}
+                                                    {% if product.sub_class == subclass.name %}
+                                                        <option value="{{subclass.name}}" selected>{{subclass.name}}</option>
+                                                    {% else %}
+                                                        <option value="{{subclass.name}}">{{subclass.name}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <!-- Sub Brand -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="subbrand" class="col-sm-4 col-xl-3 col-form-label">Sub
+                                                Brand</label>
+                                            <div class="col-sm-6 col-xl-9">
+                                                <!-- <input list="subbrands" autocomplete="off" name="subbrand" id="subbrand"
+                                                    class="form-control" value="{{product.sub_brand|default_if_none:'NA'}}" 
+                                                    pattern="{% for subbrand in subbrands %}{{subbrand.name}}|{% endfor %}"> -->
+                                                <select class="js-example-basic-single" class="form-control" id="subbrand" name="subbrand" required>
+                                                    {% for subbrand in subbrands %}
+                                                    {% if product.sub_brand == subbrand.name %}
+                                                        <option value="{{subbrand.name}}" selected>{{subbrand.name}}</option>
+                                                    {% else %}
+                                                        <option value="{{subbrand.name}}">{{subbrand.name}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <!-- Product Type -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="product_type" class="col-sm-4 col-xl-3 col-form-label">Product
+                                                Type</label>
+                                            <div class="col-sm-6 col-xl-9">
+                                                <!-- <input list="product_types" name="product_type" id="product_type" value="{{product.product_type}}"
+                                                    class="form-control"
+                                                    pattern="{% for product_type in product_types %}{{product_type.name}}|{% endfor %}"> -->
+                                                <select class="js-example-basic-single" class="form-control" id="product_type" name="product_type" required>
+                                                    {% for product_type in product_types %}
+                                                    {% if product.product_type == product_type.name %}
+                                                        <option value="{{product_type.name}}" selected>{{product_type.name}}</option>
+                                                    {% else %}
+                                                        <option value="{{product_type.name}}">{{product_type.name}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <!-- Uom -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="uom" class="col-sm-4 col-xl-3 col-form-label">Units</label>
+                                            <div class="col-sm-6 col-xl-9">
+                                                <!-- <input list="uoms" name="uom" id="uom" class="form-control" value="{{product.units_of_measure}}"
+                                                    pattern="{% for uom in uoms %}{{uom.name}}|{% endfor %}"> -->
+                                                <select class="js-example-basic-single" class="form-control" id="uom" name="uom" required>
+                                                    {% for uom in uoms %}
+                                                    {% if product.units_of_measure == uom.symbol %}
+                                                        <option value="{{uom.symbol}}" selected>{{uom.symbol}}</option>
+                                                    {% else %}
+                                                        <option value="{{uom.symbol}}">{{uom.symbol}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <!-- Alt Uom -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="altuom" class="col-sm-4 col-xl-3 col-form-label">Alternate
+                                                Units</label>
+                                            <div class="col-sm-6 col-xl-9">
+                                                <!-- <input list="altuoms" name="altuom" id="altuom" class="form-control" value="{{product.additional_units|default_if_none:''}}"
+                                                    pattern="{% for uom in uoms %}{{uom.name}}|{% endfor %}"> -->
+                                                <select class="js-example-basic-single" class="form-control" id="altuom" name="altuom" required>
+                                                    {% for uom in uoms %}
+                                                    {% if product.additional_units == uom.symbol %}
+                                                        <option value="{{uom.symbol}}" selected>{{uom.symbol}}</option>
+                                                    {% else %}
+                                                        <option value="{{uom.symbol}}">{{uom.symbol}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <hr>
+                                    <!-- Batch Details -->
+
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md ">
+                                            <input class="form-check-input" type="checkbox" id="batch"
+                                            autocomplete="off" name="maintain_batch">
+                                            <label class="form-check-label" for="batch">Maintain in
+                                                Batches</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md " style="display: none;"
+                                            name="track_mfd">
+                                            <input class="form-check-input" type="checkbox" id="mfd">
+                                            <label class="form-check-label" for="mfd">Track date of
+                                                Manufacturing</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md " style="display: none;"
+                                            name="track_expiry">
+                                            <input class="form-check-input" type="checkbox" id="expiry">
+                                            <label class="form-check-label" for="expiry">Use expiry
+                                                dates</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- BOM -->
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md ">
+                                            <input class="form-check-input" type="checkbox" id="setbom"
+                                                data-bs-toggle="modal" data-bs-target="#bomModal" autocomplete="off"
+                                                name="set_bom">
+                                            <label class="form-check-label" for="setbom">Set components
+                                                (BOM)</label>
+                                        </div>
+                                    </div>
+                                    <!-- Button trigger modal -->
+
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md ">
+                                            <input class="form-check-input" type="checkbox" id="stdrate"
+                                                name="set_std_rate" data-bs-toggle="modal"
+                                                data-bs-target="#stdrateModal" autocomplete="off">
+                                            <label class="form-check-label" for="stdrate">Set standard
+                                                rates</label>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <!-- Article Code -->
+                                    <div class="col-xl-4">
+                                        <div class="mb-3 row">
+                                            <label for="article" class="col-md-4 col-form-label">Article
+                                                Code:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" autocomplete="off" type="text"  name="article_code" value="{{product.article_code}}"
+                                                    id="article">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- EAN Code -->
+                                    <div class="col-xl-4">
+                                        <div class="mb-3 row">
+                                            <label for="eancode" class="col-md-4 col-form-label">EAN
+                                                Code:</label>
+                                            <div class="col-md-8">
+                                                <input class="form-control" autocomplete="off" type="text"  name="ean_code" value="{{product.ean_code}}"
+                                                    id="eancode">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Old SKU Code -->
+                                    <div class="col-xl-4">
+                                        <div class="mb-3 row">
+                                            <label for="oldsku" class="col-md-4 col-xl-3 col-form-label">Old SKU
+                                                Code:</label>
+                                            <div class="col-md-8 col-xl-9">
+                                                <input class="form-control" autocomplete="off" type="text" value="{{product.old_product_code}}" name="old_sku"
+                                                    id="oldsku">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Costing Method -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="costingmethod" class="col-sm-4 col-xl-4 col-form-label">Costing
+                                                Method</label>
+                                            <div class="col-sm-6 col-xl-8">
+                                                <select class="form-control" name="costingmethod">
+                                                    <option>Avg. Cost</option>
+                                                    <option>At Zero Cost</option>
+                                                    <option>FIFO</option>
+                                                    <option>FIFO Perpetual</option>
+                                                    <option>Last Purchase Cost</option>
+                                                    <option>LIFO Annual</option>
+                                                    <option>LIFO Perpetual</option>
+                                                    <option>Monthly Avg. Cost</option>
+                                                    <option>Std. Cost</option>
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+                                    <!-- Market Valuation Method -->
+                                    <div class="col-xl-4">
+                                        <div class="row mb-3 md-6">
+                                            <label for="mvm" class="col-sm-4 col-xl-4 col-form-label">Market Valuation
+                                                Method</label>
+                                            <div class="col-sm-6 col-xl-8">
+                                                <select class="form-control" id="mvm" name="mvm">
+                                                    <option>Avg. Price</option>
+                                                    <option>At Zero Price</option>
+                                                    <option>Std. Price</option>
+                                                    <option>Last Sale Price</option>
+                                                </select>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div>
+
+                                    <div class="col-xl-4">
+
+                                    </div>
+                                    <!-- Set behavior options -->
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md ">
+                                            <input class="form-check-input" type="checkbox" id="behavior"
+                                            autocomplete="off" name="set_behavior_options">
+                                            <label class="form-check-label" for="behavior">Set behavior options</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md " style="display: none;">
+                                            <input class="form-check-input" type="checkbox" id="ipd" name="ipd">
+                                            <label class="form-check-label" for="ipd">Ignore difference due to physical
+                                                counting</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md " style="display: none;">
+                                            <input class="form-check-input" type="checkbox" id="ins" name="ins">
+                                            <label class="form-check-label" for="ins">Ignore negative balances</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md " style="display: none;">
+                                            <input class="form-check-input" type="checkbox" id="tsm" name="tsm">
+                                            <label class="form-check-label" for="tsm">Treat all sales as new
+                                                manufacture</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md " style="display: none;">
+                                            <input class="form-check-input" type="checkbox" id="tpc" name="tpc">
+                                            <label class="form-check-label" for="tpc">Treat all purchases as
+                                                consumed</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <div class="row form-check form-switch form-switch-md " style="display: none;">
+                                            <input class="form-check-input" type="checkbox" id="trs" name="trs">
+                                            <label class="form-check-label" for="trs">Treat all rejections inward as
+                                                scrap</label>
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                            </div>
+                            <!-- wizard-tab -->
+                            <div class="wizard-tab">
+                                <div>
+                                    <div class="text-center mb-4">
+                                        <h5>Statutory Details</h5>
+                                        <p class="card-title-desc">Fill all information below</p>
+                                    </div>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <div class="row mb-3 md-6">
+                                                    <label for="gstapplicable"
+                                                        class="col-sm-4 col-xl-4 col-form-label">GST
+                                                        Applicable</label>
+                                                    <div class="col-sm-6 col-xl-8">
+                                                        <select class="form-control" id="gstapplicable">
+                                                            <option value="1">Not Applicable</option>
+                                                            <option value="2">Applicable</option>
+                                                            <option value="3">Undefined</option>
+                                                        </select>
+                                                    </div>
+                                                </div><!-- end row -->
+                                            </div><!-- end col -->
+                                            <div class="col-xl-4">
+                                                <div class="row form-check form-switch form-switch-md " id="issetgst"
+                                                    style="display: none;">
+                                                    <input class="form-check-input" type="checkbox" id="gst" name="is_set_gst"
+                                                        data-bs-toggle="modal" data-bs-target="#gstModal"
+                                                        autocomplete="off">
+                                                    <label class="form-check-label" for="gst">Set/Alter GST
+                                                        Details</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-xl-4">
+                                                <div class="row mb-3 md-6" id="typeofsupply" style="display: none;">
+                                                    <label for="suply_type" class="col-sm-4 col-xl-4 col-form-label">Type of
+                                                        Supply</label>
+                                                    <div class="col-sm-6 col-xl-8">
+                                                        <select class="form-control" id="suply_type" name="suply_type">
+                                                            <option value="1">Goods</option>
+                                                            <option value="2">Service</option>
+                                                        </select>
+                                                    </div>
+                                                </div><!-- end row -->
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <div class="row form-check form-switch form-switch-md ">
+                                                    <input class="form-check-input" type="checkbox" id="setmrp"
+                                                        data-bs-toggle="modal" data-bs-target="#mrpModal"
+                                                        autocomplete="off">
+                                                    <label class="form-check-label" for="setmrp">Set/Alter Mrp
+                                                        Details</label>
+                                                </div>
+                                            </div><!-- end col -->
+
+                                        </div><!-- end row -->
+                                    </div><!-- end form -->
+                                </div>
+                            </div>
+                            <!-- wizard-tab -->
+                            <div class="wizard-tab">
+                                <div>
+                                    <div class="text-center mb-4">
+                                        <h5>Other Details</h5>
+                                        <p class="card-title-desc">Fill all information below</p>
+                                    </div>
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="shape" class="form-label">Shape Code</label>
+                                                    <input type="text" class="form-control" id="shape" value="{{product.shape_code}}" 
+                                                    autocomplete="off" name="shape_code">
+                                                </div>
+                                            </div><!-- end col -->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="size" class="form-label">Size(ML/L/CM/Inches)</label>
+                                                    <input type="text" class="form-control" id="size" autocomplete="off" name="size" value="{{product.size}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="style" class="form-label">Style/Shape</label>
+                                                    <input type="text" class="form-control" id="style" autocomplete="off" name="style" value="{{product.style_shape}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="series" class="form-label">Series</label>
+                                                    <input type="text" class="form-control" id="series" autocomplete="off" name="series" value="{{product.series}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="pattern" class="form-label">Pattern</label>
+                                                    <input type="text" class="form-control" id="pattern" autocomplete="off" name="pattern" value="{{product.pattern}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="coi" class="form-label">Country of Origin</label>
+                                                    <input type="text" class="form-control" id="coi" autocomplete="off" name="coi" value="{{product.country_of_origin}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="colour" class="form-label">Colour/Shade/Theme</label>
+                                                    <input type="text" class="form-control" id="colour" autocomplete="off" name="colour" value="{{product.color_shade_theme}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="inner" class="form-label">No. of Units in Inner</label>
+                                                    <input type="text" class="form-control" id="inner" autocomplete="off" name="inner" value="{{product.inner_qty}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="outer" class="form-label">No. of Units in Outer</label>
+                                                    <input type="text" class="form-control" id="outer" autocomplete="off" name="outer" value="{{product.outer_qty}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="importedby" class="form-label">Imported By</label>
+                                                    <input type="text" class="form-control" id="importedby" value="{{product.imported_by}}" 
+                                                        autocomplete="off" name="importedby">
+                                                </div>
+                                            </div><!-- end col -->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="mfdby" class="form-label">Manufactured By</label>
+                                                    <input type="text" class="form-control" id="mfdby" autocomplete="off" name="mfdby" value="{{product.mfd_by}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="mktby" class="form-label">Marketed By</label>
+                                                    <input type="text" class="form-control" id="mktby" autocomplete="off" name="mktby" value="{{product.mkt_by}}" >
+                                                </div>
+                                            </div><!-- end col -->
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="portfolio" class="form-label">Product Portfolio</label>
+                                                    <input type="text" class="form-control" id="portfolio" value="{{product.product_portfolio}}" 
+                                                        autocomplete="off" name="portfolio">
+                                                </div>
+                                            </div><!-- end col -->
+                                        </div><!-- end row -->
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-sm ms-auto"  
+                                    style="position: absolute; right: 20px;bottom: 20px; z-index: 10000;">Submit</button>
+                            </div>
+                            <!-- wizard-tab -->
+                            <div class="d-flex align-items-start gap-3 mt-4">
+                                <button type="button" class="btn btn-primary w-sm" id="prevBtn"
+                                    onclick="nextPrev(-1)">Previous</button>
+                                <button type="button" class="btn btn-primary w-sm ms-auto" id="nextBtn"
+                                    onclick="nextPrev(1)">Next</button>
+                            </div>
+                        </form>
+                    </div><!-- end row -->
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+    </div><!-- end row -->
+</div> <!-- container-fluid -->
+
+{% endblock %}
+
+{% block scripts %}
+
+{% load static %}{% load perms %}
+<script src="{% static 'assets/js/pages/form-wizard.init.js' %}"></script>
+
+<script>
+    $("#brand").change(function () {
+        var brand = $(this).val();
+
+        $.ajax({
+            url: "{% url 'inventory:ajax_load_articlecode' %}",
+            data: {
+                'brand': brand
+            },
+            success: function (data) {
+                $("#article").val(data);
+            }
+        });
+
+    });
+
+
+    function calctype() {
+        if (this.value == '2') {
+            document.getElementById("mfd").parentNode.style.display = 'block';
+        } else {
+            document.getElementById("mfd").parentNode.style.display = 'none';
+        }
+    }
+
+    function toggle_batch() {
+        if (this.checked) {
+            document.getElementById("mfd").parentNode.style.display = 'block';
+            document.getElementById("expiry").parentNode.style.display = 'block';
+        } else {
+            document.getElementById("mfd").parentNode.style.display = 'none';
+            document.getElementById("expiry").parentNode.style.display = 'none';
+        }
+    }
+
+    function toggle_behave() {
+        if (this.checked) {
+            document.getElementById("ipd").parentNode.style.display = 'block';
+            document.getElementById("ins").parentNode.style.display = 'block';
+            document.getElementById("tsm").parentNode.style.display = 'block';
+            document.getElementById("tpc").parentNode.style.display = 'block';
+            document.getElementById("trs").parentNode.style.display = 'block';
+        } else {
+            document.getElementById("ipd").parentNode.style.display = 'none';
+            document.getElementById("ins").parentNode.style.display = 'none';
+            document.getElementById("tsm").parentNode.style.display = 'none';
+            document.getElementById("tpc").parentNode.style.display = 'none';
+            document.getElementById("trs").parentNode.style.display = 'none';
+        }
+    }
+
+    function show() {
+        if (this.value == '2') {
+            document.getElementById("typeofsupply").style.display = 'block';
+            document.getElementById("issetgst").style.display = 'block';
+        } else if (this.value == '3') {
+            document.getElementById("typeofsupply").style.display = 'block';
+            document.getElementById("issetgst").style.display = 'none';
+        } else {
+            document.getElementById("typeofsupply").style.display = 'none';
+            document.getElementById("issetgst").style.display = 'none';
+        }
+    }
+
+
+    document.getElementById("gstapplicable").onchange = show;
+    document.getElementById("batch").onclick = toggle_batch;
+    document.getElementById("behavior").onclick = toggle_behave;
+    document.getElementById("calctype").onclick = calctype;
+</script>
+{% endblock %}

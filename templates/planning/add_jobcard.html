@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Job Order: Create</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Transactions </li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'production:production' %}">Production</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'planning:joborder' %}">Job Order</a></li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Create Job Order</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="mb-0"><span class="fw-bold">Job Order: </span>{{job}}</h4>
+                <div class="page-title-right">
+                    <h4><span class="fw-bold">Date: </span>{{date|date:'d-m-Y'}}</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="needs-validation" action="{% url 'planning:add_joborder' %}" method="POST" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Job Name<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Job Details<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="details" name="details" required autocomplete='off'>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Job Category<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="category" name="category" required autocomplete='off'>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="under">Product</label>
+                                <!-- <input name="product" id="under" class="form-control" list="products" autocomplete='off'> -->
+                                <select class="js-example-basic-single" class="form-control" id="under" name="product" required>
+                                    <option></option>
+                                    {% for i in products %}
+                                        <option value="{{ i.product_code }}"> {{ i.product_code }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="bom">BOM</label>
+                                <select class="form-control" id="bom" name="bom">
+                                    <option>
+                                        Select
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="qty">Quantity<span style="color:red">*</span></label>
+                                <input type="number" step="any" class="form-control" id="qty" name="qty" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="due_date">Due Date<span style="color:red">*</span></label>
+                                <input type="date" class="form-control" id="due_date" name="due_date" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="remarks">Special Instructions<span style="color:red">*</span></label>
+                                <textarea type="text" class="form-control" id="remarks" name="remarks" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <button style="float: right;" class="btn btn-primary" type="submit" >Submit</button>
+                        </div>
+                    </form>
+                    <!-- end form -->
+                </div>
+                <!-- end card body -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container col-xxl-12 col-xl-12 mt-3 p-0">
+    <div class="card">
+        <div class="card-header justify-content-between d-flex align-items-center">
+            <h4 class="card-title">RM Indent</h4>
+            <button type="button" class="btn btn-primary w-sm ms-auto" id="export"> Export </button>
+        </div>
+        <!-- end card header -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0" id="table">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>FM Product</th>
+                            <th>Bom</th>
+                            <th>RM Product</th>
+                            <th>Required Quantity</th>
+                            <th>Shortfall</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                    <!-- end tbody-->
+                </table>
+                <!-- end table-->
+                <input class="d-none" type="text" id="shortfall"/>
+            </div>
+            <!-- end table responsive -->
+        </div>
+        <!-- end card body -->
+    </div>
+    <!-- end card -->
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    $("#under").change(function () {
+        var product = $(this).val();
+        $.ajax({
+            url: "{% url 'planning:ajax_load_boms' %}",
+            data: {
+                'product': product,
+            },
+            success: function (data) {
+                $("#bom").html(data);
+            }
+        });
+    });
+
+    $("#qty").change(function () {
+        var qty = $(this).val();
+        var bom = $("#bom").val();
+        var product = $("#under").val();
+        // var job = $("#jobcard").val();
+        if (parseInt(qty) > parseInt($("#qty").val())){
+            window.alert("Production Quantity can not be more than Job Quantity");
+            $(this).val('');
+            return;
+        }
+        $.ajax({
+            url: "{% url 'production:ajax_load_rmindent_withoutjob' %}",
+            data: {
+                // 'job':job,
+                'qty': qty,
+                'bomname': bom,
+                'product':product,
+            },
+            success: function (data) {debugger
+                data=data.split("~");
+                var table = $("#table")
+                $("tbody").remove();
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=0;i<data.length-1;i++)
+                {
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+
+                    for(j=0;j<item.length;j++){
+                        var cell = $("<td />");
+                        cell.append(item[j]);
+                        row.append(cell);
+                    }
+                }
+                $("#shortfall").val(data.pop());
+            }
+        });
+    });
+
+</script>
+<script>
+    $("#export").on("click" ,function (){
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#table"));
+    });
+  </script>
+    {% endblock scripts %}

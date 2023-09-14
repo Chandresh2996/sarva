@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Warehouse Reports</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Reports </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Warehouse</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-start">
+    {% if request.user|has_group:"Admin,GRN Report" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'reports:grn' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-box-arrow-in-down card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'reports:grn' %}">
+                                    <span class="d-block font-25 mt-2">Goods Recieved Note</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,PO vs GRN Report" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'reports:pogrn' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-clipboard2-data card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'reports:pogrn' %}">
+                                    <span class="d-block font-25 mt-2">PO vs GRN</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Delivery Note Report" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'reports:dn' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-file-earmark-minus card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'reports:dn' %}">
+                                    <span class="d-block font-25 mt-2">Delivery Note</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Loading Sheet Report" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'reports:ddn' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-file-earmark-minus card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'reports:ddn' %}">
+                                    <span class="d-block font-25 mt-2">Loading Sheet Report</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Pallet Transfer Report" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'reports:pallet' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-graph-up-arrow card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'reports:pallet' %}">
+                                    <span class="d-block font-25 mt-2">Pallet Transfer</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

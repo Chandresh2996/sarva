@@ -1,0 +1,44 @@
+<tr>
+    <th scope="row" class="datarow">
+        {{no}}
+    </th>
+    <td>
+        <input list="items" class="form-control" name="pcode" id="item_{{no}}" autocomplete="off">
+    </td>
+    <td>
+        <input type="text" class="form-control" id="name_of_item_{{no}}" name="name_of_item" readonly>
+    </td>
+    <td>
+        <select class="form-control" id="gd_{{no}}" name="godown" required>
+            <option value="">
+                Select
+            </option>
+        </select>
+    </td>
+    <td>
+        <input class="form-control" type="text" name="aqty" id="aqty_{{no}}" readonly>
+    </td>
+    <td>
+        <input class="form-control" type="number" name="qty" id="qty_{{no}}">
+    </td>
+    <td>
+        <input class="form-control" type="number" name="cqty" id="cqty">
+    </td>
+    <td class="align-middle text-center">
+        <button type="button" 
+            class="btn btn-danger btn-sm btn-icon" hx-get="{% url 'dash:clear' %}"
+            hx-swap="outerHTML" hx-target="closest tr">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr>
+<tr>
+    <td class="align-middle pt-3">
+        <button type="button" 
+            class="btn btn-success btn-sm btn-icon"
+            hx-get="{% url 'production:consumable-item' %}" hx-swap="outerHTML"
+            hx-target="closest tr" hx-vals='{"no": "{{no}}"}'>
+            <i class="fas fa-plus"></i>
+        </button>
+    </td>
+</tr>

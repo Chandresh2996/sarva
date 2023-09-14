@@ -1,0 +1,222 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Delivery Note: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:warehouse-reports' %}"> Warehouse </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Delivery Note </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <table id="pm" class="table  nowrap" >
+                    <thead>
+                        <tr>
+                            <th>SO DATE</th>
+                            <th>SO NO</th>
+                            <th>DN DATE</th>
+                            <th>DN NO</th>
+                            <th>ORDER NO</th>
+                            <th>PARTY DIVISION</th>
+                            <th>CUSTOMER NAME</th>
+                            <th>CUSTOMER CODE</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>ZSM</th>									
+                            <th>RSM</th>									
+                            <th>ASM</th>
+                            <th>SALES PERSON</th>
+                            <th>CHANNEL TYPE</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>PAYMENT TERMS</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>ALU CODE</th>
+                            <th>EAN / UPC CODE</th>
+                            <th>PRODUCT CODE</th>
+                            <th>PRODUCT NAME</th>
+                            <th>INNER PACK SIZE</th>
+                            <th>OUTER PACK SIZE</th>
+                            <th>SCHEME</th>
+                            <th>QTY(BILLED)</th>
+                            <th>QTY(FREE)</th>
+                            <th>MRP</th>
+                            <th>OFFER PRICE</th>
+                            <th>OMRP</th>
+                            <th>RATE</th>
+                            <th>DISC RATE</th>
+                            <th>AMOUNT</th>
+                            <th>HSN</th>
+                            <th>GST</th>
+                            <th>GST VALUE</th>
+                            <th>INVOICE VALUE</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>SO DATE</th>
+                            <th>SO NO</th>
+                            <th>DN DATE</th>
+                            <th>DN NO</th>
+                            <th>ORDER NO</th>
+                            <th>PARTY DIVISION</th>
+                            <th>CUSTOMER NAME</th>
+                            <th>CUSTOMER CODE</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>ZSM</th>                                    
+                            <th>RSM</th>                                    
+                            <th>ASM</th>
+                            <th>SALES PERSON</th>
+                            <th>CHANNEL TYPE</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>PAYMENT TERMS</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>ALU CODE</th>
+                            <th>EAN / UPC CODE</th>
+                            <th>PRODUCT CODE</th>
+                            <th>PRODUCT NAME</th>
+                            <th>INNER PACK SIZE</th>
+                            <th>OUTER PACK SIZE</th>
+                            <th>SCHEME</th>
+                            <th>QTY(BILLED)</th>
+                            <th>QTY(FREE)</th>
+                            <th>MRP</th>
+                            <th>OFFER PRICE</th>
+                            <th>OMRP</th>
+                            <th>RATE</th>
+                            <th>DISC RATE</th>
+                            <th>AMOUNT</th>
+                            <th>HSN</th>
+                            <th>GST</th>
+                            <th>GST VALUE</th>
+                            <th>INVOICE VALUE</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Delivery Note Report',
+                title: '',
+            },
+            'csv',
+        ],
+        deferRender: true,
+        ajax:"{% url 'reports:dndata' %}",
+        columns: [
+                {data: "dn__sales_order__so_date"},
+                {data: "dn__sales_order__so_no"},
+                {data: "dn__dn_date",render: function (data, type, row) 
+                    {   if (data){
+                            return moment(new Date(data).toString()).format('DD-MM-YYYY');
+                        }else{
+                            return '';
+                        }
+                    }
+                },
+                {data: "dn__dn_no"},
+                {data: "dn__order_no"},
+                {data: "dn__buyer__devision__name"},
+                {data: "dn__buyer__name"},
+                {data: "dn__buyer__vendor_code"},
+                {data: "dn__buyer__zone__name"},
+                {data: "dn__buyer__region__name"},
+                {data: "dn__buyer__zsm__name"},
+                {data: "dn__buyer__rsm__name"},
+                {data: "dn__buyer__asm__name"},
+                {data: "dn__buyer__se__name"},
+                {data: "dn__buyer__party_type__name"},
+                {data: "dn__buyer_state"},
+                {data: "dn__buyer_city"},
+                {data: "dn__mode_of_payment"},
+                {data: "item__brand__name"},
+                {data: "item__sub_brand__name"},
+                {data: "item__category__name"},
+                {data: "item__product_class__name"},
+                {data: "item__sub_class__name"},
+                {data: "item__article_code"},
+                {data: "item__ean_code"},
+                {data: "item__product_code"},
+                {data: "item__product_name"},
+                {data: "item__inner_qty"},
+                {data: "pack"},
+                {data: "dn__scheme"},
+                {data: "billed_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "free_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "mrp",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "offer_mrp",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "offer_mrp",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "rate", className:"text-right"},
+                {data: "discount", className:"text-right"},
+                {data: "amount", className:"text-right"},
+                {data: "item__hsn"},
+                {data: "igstrate",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "igst",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+                {data: "invoice", render:$.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            ],
+        scrollY:500,
+        scrollX:500,
+        scroller: true,
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var that = this;
+ 
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

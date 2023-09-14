@@ -1,0 +1,122 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Stock Aeging: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:sales-reports' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Score Card Report</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% load humanize %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <form action="{% url 'reports:brandsales' %}" method="POST" id="division-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="division" class="form-label mb-0">Division</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="form-control" id="division" name="division">
+                                {% for j in currentdiv%}
+                                <option value="{{j}}">{{j}}</option>
+                                {% endfor %}
+                                {% for i in divs %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endfor %}
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                        {% comment %} <div class="col-lg-1 d-flex align-items-center">
+                            <label for="division" class="form-label mb-0">Value</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <select class="form-control" id="value" name="value">
+                                <option>Invoice</option>
+                                <option>Basic</option>
+                                <option>Mrp</option>
+                            </select>
+                        </div> {% endcomment %}
+                        <button type="submit" class="btn ml-5 fa fa-filter" name=""> Filter</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                <table id="stock" class="table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:right; padding-right:1.5rem">PURCHASE DAYS DIFFERENCE</th>
+                            <th style="text-align:right; padding-right:1.5rem">PURCHASE STATUS</th>
+                            <th style="text-align:right; padding-right:1.5rem">TOTAL SALE UNIT</th>
+                            <th style="text-align:right; padding-right:1.5rem">LAST SALE DATE</th>
+                            <th style="text-align:right; padding-right:1.5rem">SALE DAYS DIFFERENCE</th>
+                            <th style="text-align:right; padding-right:1.5rem">SALE STATUS</th>
+                            <th style="text-align:right; padding-right:1.5rem">SELL THRU %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% load mathops %}
+                        {% for brand,items in data.items %}
+                        <tr>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                            <td nowrap style="text-align:right; padding-right:1rem">{{brand}}</td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block reportjs %}
+<script>
+
+$(document).ready(function() {
+    $('#stock').DataTable( {
+        dom: 'lfrt<"ip"iB>p',
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+        fixedColumns:   {
+            left: 1,
+        },
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Score Card Report',
+                title: '',
+            },
+            'csv',
+        ],
+        scrollX:300,
+        scrollY:'400px',
+        scroller: true,
+    } );
+} );
+</script>
+{% endblock %}

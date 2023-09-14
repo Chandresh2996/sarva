@@ -1,0 +1,573 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Purchase Order: Create</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i> </a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'purchase:purchase' %}"> Purchase </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'purchase:po' %}"> Purchase Order </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Create Purchase Order </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <form method="POST" action="{% url 'purchase:addpo' %}" onsubmit="return validate()" >
+                {% csrf_token %}
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0"><span class="fw-bold">Purchase Order: </span>{{ponumber}}</h4>
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <label for="currency" class="form-label">Currency</label>
+                                        <select class="form-control" id="currency" name="currency">
+                                        {% for i in currency %}
+                                            <option value='{{i.code}}'>{{i.code}}</option>
+                                        {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="page-title-right">
+                                    <h4><span class="fw-bold">Date: </span>{{date|date:'d-m-Y'}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mx-0">
+                        <div class="col-lg-5">
+                            <div class="mb-2">
+                                <label for="party_name" class="form-label">Vendor Details<span style="color:red">*</span></label>
+                                <!-- <input type="text" list="party_names" class="form-control" id="party_name" name="party_name"
+                                    placeholder="Name" autocomplete="off" required> -->
+                                <select class="js-example-basic-single" class="form-control" id="party_name" name="party_name" required>
+                                    <option></option>
+                                    {% for party in parties %}
+                                    <option value="{{ party.name }}"> {{ party.name }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <select class="form-control" id="party_address_type" name="party_address_type">
+                                    <option> Select </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="party_address" name="party_address"
+                                    placeholder="Address" readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_gstin" placeholder="GSTIN"
+                                    name="party_gstin" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-5">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="po_due_date" class="form-label">PO Due Date<span style="color:red">*</span></label>
+                                </div>
+                                <div class="col">
+                                    <input type="date" class="form-control" id="po_due_date" name="po_due_date"
+                                        min="{{date|date:'Y-m-d'}}" required>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="mode_of_payment" class="form-label">Payment Terms</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="mode_of_payment" name="mode_of_payment">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="other_reference" class="form-label">Other Reference</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="other_reference" name="other_reference">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="terms_of_delivery" class="form-label">Terms of delivery</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="terms_of_delivery" name="terms_of_delivery">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="destination" class="form-label">Destination</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input class="form-control" type="text" id="destination" name="destination" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="dispatch_through" class="form-label">Dispatch Through</label>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" id="dispatch_through" name="dispatch_through">
+                                </div>
+                            </div>
+                            <div class="row mb-2" style="padding-left: 10px;">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <a href="{% static 'src\POImport.xlsx' %}" class="btn btn-primary">Download Template</a>
+                                    </div>
+                                </div> 
+                                <div class="col-lg-6">
+                                    <input type="file" class="form-control" id="excel_file" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row w-100">
+                        <div class="card w-100" style="padding:0">
+                            <div class="card-body w-100" style="padding: 0;">
+                                <div class="">
+                                    <table class="table mb-0" id="table">
+                                        <thead class="table-light" style="border-style:none">
+                                            <tr>
+                                                <th width="15">#</th>
+                                                <th width="120">SKU Code</th>
+                                                <th>SKU Name</th>
+                                                <th>Mrp</th>
+                                                <th>Pack</th>
+                                                <th>Qty</th>
+                                                <th>Std Rate</th>
+                                                <th>Rate</th>
+                                                <th>Amount</th>
+                                                <th>Uom</th>
+                                                <th width="50">GST</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tbody">
+                                            <tr>
+                                                <th scope="row" class="datarow" style="min-width:15px ; max-width:15px;"> 1 </th>
+                                                <td style="min-width:40px ; max-width:40px;">
+                                                    <!-- <input type="text" class="form-control" id="product_code_1" list="pitems" autocomplete="off"
+                                                        pattern="{% for item in items %}{{ item.product_code }}|{% endfor %}"
+                                                        required name="product_code"> -->
+                                                    <select class="js-example-basic-single" class="form-control" id="product_code_1" name="product_code" required>
+                                                        <option></option>
+                                                        {% for item in items %}
+                                                        <option value="{{ item.product_code }}">{{ item.product_code }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </td>
+                                                <td style="min-width:100px ; max-width:100px;">
+                                                    <input type="text" class="form-control" id="name_of_item_1" name="name_of_item" list="items" readonly />
+                                                </td>
+                                                <td style="min-width:40px ; max-width:40px;">
+                                                    <input type="text" class="form-control text-right" id="mrp_1" name="mrp" readonly />
+                                                </td>
+                                                <td style="min-width:40px ; max-width:40px;">
+                                                    <input type="text" class="form-control text-right" id="inner_1" name="inner" readonly />
+                                                </td>
+                                                <td style="min-width:40px ; max-width:40px;">
+                                                    <input type="number" class="form-control text-right" id="actualqty_1" min="1" name="aqty" required />
+                                                </td>
+                                                <td style="min-width:40px ; max-width:40px;">
+                                                    <input type="text" class="form-control text-right" id="stdrate_1" name="stdrate" value="0" readonly required />
+                                                </td>
+                                                <td style="min-width:40px ; max-width:40px;">
+                                                    <input type="number" class="form-control text-right" step="any" id="rate_1" name="rate" required />
+                                                </td>
+                                                <td style="min-width:60px ; max-width:60px;">
+                                                    <input type="text" class="form-control text-right" id="ammount_1" name="ammount" value="0" readonly />
+                                                </td>
+                                                <td style="min-width:40px ; max-width:40px;">
+                                                    <input type="text" class="form-control text-right" id="uom_1" name="uom" readonly />
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="cgstrate_1" name="cgstrate" readonly />
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="sgstrate_1" name="sgstrate" readonly />
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="igstrate_1" name="igstrate" readonly />
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="cgst_1" name="cgst" readonly />
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="sgst_1" name="sgst" readonly />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="igst_1" name="igst" readonly />
+                                                </td>
+                                                <td class="align-middle pl-2">
+                                                    <button type="button"
+                                                        class="deleteitem btn btn-danger btn-sm btn-icon" hx-get="{% url 'dash:clear' %}"
+                                                        hx-swap="outerHTML"
+                                                        hx-confirm="Are you sure you wish to delete this item?"
+                                                        hx-target="closest tr">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle p-2">
+                                                    <button type="button"
+                                                        class="btn btn-success btn-sm btn-icon" hx-get="{% url 'purchase:po-item' %}"
+                                                        hx-swap="outerHTML" hx-target="closest tr" hx-vals='{"no": "1"}'>
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 pt-5 mt-5">
+                            <div class="mt-5">
+                                <label for="narration" class="form-label"> Remarks </label>
+                                <input type="text" class="form-control" id="narration" name="narration">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalammount" class="form-label"> SubTotal </label>
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" id="totalammount" name="totalammount" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <select class="form-control" id="other_ledger" name="other_ledger">
+                                        <option value=''>Ledger</option>
+                                        {% for i in ledgers %}
+                                        <option value='{{i.pk}}'>{{i}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xl-3">
+                                    <select class="form-control" id="other_ledger_per" name="ol_rate">
+                                        <option value='0'>0 %</option>
+                                        <option value='5'>5 %</option>
+                                        <option value='12'>12 %</option>
+                                        <option value='18'>18 %</option>
+                                        <option value='28'>28 %</option>
+                                    </select>
+                                </div>
+                                <div class="col-xl-5">
+                                    <input type="text" class="form-control" id="other" value='0' name="other">
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalcgst" class="form-label"> CGST </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="totalcgst" name="totalcgst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalsgst" class="form-label"> SGST </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="totalsgst" name="totalsgst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totaligst" class="form-label"> IGST </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="totaligst" name="totaligst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totaltcs" class="form-label"> TCS (in Rupees) </label>
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" id="totaltcs" value='0' name="totaltcs">
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="total" class="form-label"> Total </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="total" name="total" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="submit" id="btnsubmit" class="btn btn-primary w-sm ms-auto" style="float:right;"> Submit </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+<script>
+    var currentcurrency = $('#currency').val();
+    $('#currency').change(function () {
+        currentcurrency = $('#currency').val();
+    });
+    var notproductselected = true;
+
+    $("#btnsubmit").click(function (g) {
+                
+        // g.preventDefault();
+
+        $('input[name="stdrate"').each(function () {
+            if ($(this).parent().hasClass("errorred")) {
+                window.alert("Product Rate is never be more than Standard Rate");
+                return false;
+            }
+        });
+    });
+
+    const excel_file = document.getElementById('excel_file');
+    excel_file.addEventListener('change', (event) => {
+
+        if (!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/vnd.ms-excel'
+        ].includes(event.target.files[0].type)) {
+            window.alert("Only .xlsx or .xls file format are allowed");
+
+            excel_file.value = '';
+
+            return false;
+        } else {
+
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(event.target.files[0]);
+
+            reader.onload = function (event) {
+                var data = new Uint8Array(reader.result);
+                var work_book = XLSX.read(data, {
+                    type: 'array'
+                });
+                var sheet_name = work_book.SheetNames;
+                var sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {
+                    header: 1
+                });
+                for (var row = 1; row < sheet_data.length; row++) {
+                    var data = {
+                        'no': row,
+                        'currency':currentcurrency
+                    }
+                    for (var cell = 0; cell < sheet_data[row].length; cell++) {
+                        var key = sheet_data[0][cell];
+                        data[key] = sheet_data[row][cell];
+                    }
+                    $.ajax({
+                        url: "{% url 'purchase:ajax_load_po_upload' %}",
+                        async: false,
+                        data: data,
+                        success: function (data) {
+                            $(".tbody:last").replaceWith(data);
+                            if (parseInt($('input[name="rate"]').val()) > parseInt($('input[name="stdrate"]').val())) {
+                                window.alert("Product Rate is never more than the Standard Rate in Row" + row);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            window.alert("Standard Rate is not seted on the Product in Row" + row);
+                        }
+                    });
+                }
+                window.totals()
+            }
+        }
+    });
+
+    $('#totaltcs').change(function () {
+        var tcs = parseFloat($(this).val());
+        var total = parseFloat($("#totaligst").val() || 0) + parseFloat($("#other").val() || 0) +
+            parseFloat($("#totalammount").val() || 0) + tcs;
+        $("#total").val(Math.round(total));
+    });
+
+    $("#other_ledger_per").change(totals);
+    $('#other').change(totals);
+
+    function totals() {
+        var cgst = 0;
+        var sgst = 0;
+        var igst = 0;
+        var ammount = 0;
+
+        ($('[name="cgstrate"]').each(function (i, j) {
+            cgst = cgst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="sgstrate"]').each(function (i, j) {
+            sgst = sgst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="igstrate"]').each(function (i, j) {
+            igst = igst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="ammount"]').each(function (i, j) {
+            ammount = ammount + parseFloat($(this).val() || 0);
+        }));
+        var ogr = parseFloat($("#other_ledger_per").val() || 0) / 200
+        var tcs = parseFloat($("#totaltcs").val() || 0);
+        var other = parseFloat(($("#other").val() || 0));
+        var gst = (parseFloat(cgst) + (other * ogr));
+        $("#totalammount").val((parseFloat(ammount)).toFixed(2));
+        $("#totalcgst").val((gst).toFixed(2));
+        $("#totalsgst").val((gst).toFixed(2));
+        $("#totaligst").val((gst * 2).toFixed(2));
+
+        var total = Math.round(ammount + (gst * 2) + tcs + other);
+        $("#total").val(total);
+    }
+
+    $("table").on("change", e);
+
+    function e() {
+        if (notproductselected) {
+            $('#currency').attr("readonly", true);
+        }
+        notproductselected = false;
+
+
+        var no = e.arguments[0].target.id.split('_').pop();
+
+        if ("product_code" === e.arguments[0].target.name) {
+            var item = $("#product_code_" + no + "").val();
+            ($('[name="product_code"]').each(function (i, j) {
+            }));
+            $.ajax({
+                url: "{% url 'purchase:ajax_load_product_code' %}",
+                data: {
+                    'item': item,
+                    'currentcurrency': currentcurrency,
+                },
+                success: function (data) {
+                    data = data.split('|');
+                    $("#name_of_item_" + no + "").val(data[0]);
+                    $("#inner_" + no + "").val(data[1]);
+                    $("#mrp_" + no + "").val(data[2]);
+                    $("#igst_" + no + "").val(data[3]);
+                    $("#cgst_" + no + "").val(data[4]);
+                    $("#sgst_" + no + "").val(data[5]);
+                    $("#uom_" + no + "").val(data[6]);
+                    $("#stdrate_" + no + "").val(data[7]);
+                },
+                error: function () {
+                    window.alert("Product Does Not Exist");
+                    $("#product_code_" + e.arguments[0].target.id + "").val('');
+                }
+            });
+        }
+
+        if ("rate" === e.arguments[0].target.name) {
+            var rate = document.querySelector('#rate_' + no).value;
+            var stdrate = document.querySelector('#stdrate_' + no).value;
+            if (stdrate.length && stdrate >= 0 && parseFloat(rate) > parseFloat(stdrate)){
+                $("#rate_" + no + "").val('');
+                window.alert("Rate can not be more than Standard Rate");
+            }
+        } else {
+            var std = parseFloat($("#stdrate_" + no + "").val() || 0);
+            var rate = parseFloat($("#rate_" + no + "").val() || 0);
+            if (rate>std){
+                $("#rate_" + no + "").val('');
+                window.alert("Rate can not be more than Standard Rate");
+            }
+        }
+
+        var qty = parseFloat($("#actualqty_" + no + "").val() || 0);
+
+        var ammount = (qty * rate);
+        $("#ammount_" + no + "").val(ammount.toFixed(2));
+
+        var cgst = parseFloat($("#cgst_" + no + "").val() || 0);
+        var sgst = parseFloat($("#sgst_" + no + "").val() || 0);
+        var igst = parseFloat($("#igst_" + no + "").val() || 0);
+
+        var cgstdata = ((ammount * cgst) / 100);
+        var sgstdata = ((ammount * sgst) / 100);
+        var igstdata = ((ammount * igst) / 100);
+
+        $("#cgstrate_" + no + "").val(cgstdata.toFixed(2));
+        $("#sgstrate_" + no + "").val(sgstdata.toFixed(2));
+        $("#igstrate_" + no + "").val(igstdata.toFixed(2));
+
+        window.totals()
+    }
+
+    $("#party_address_type").change(function () {
+        var address = $(this).val();
+        var party = $("#party_name").val();
+        $.ajax({
+            url: "{% url 'purchase:ajax_load_party_address' %}",
+            data: {
+                'party': party,
+                'address': address
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#party_address").html(data[0]);
+                $("#party_gstin").val(data[1]);
+            },
+        });
+    });
+    $("#party_name").change(function () {
+        var partyId = $(this).val();
+        $.ajax({
+            url: "{% url 'purchase:ajax_load_address' %}",
+            data: {
+                'party': partyId
+            },
+            success: function (data) {
+                data = data.split("|");
+                $("#party_address_type").html(data[0]);
+                $("#party_address").html(data[1]);
+                $("#party_gstin").val(data[2]);
+                $("#price_list").val(data[3]);
+            },
+            error: function () {
+                window.alert("Party Does Not Exist");
+                $("#party_name").val('');
+            }
+        });
+    });
+</script>
+{% endblock scripts %}

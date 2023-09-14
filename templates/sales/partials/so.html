@@ -1,0 +1,89 @@
+{{ so.so_no }}
+|{{ so.so_date }}
+|{{ so.buyer }}
+|{{ so.buyer_address_type }}
+|{{ so.buyer_address1 }}
+{{ so.buyer_address2 }}
+{{ so.buyer_address3 }}
+|{{ so.buyer_gstin }}
+|{{ so.shipto }}
+|{{ so.shipto_address_type }}
+|{{ so.shipto_address1 }}
+{{ so.shipto_address2 }}
+{{ so.shipto_address3 }}
+|{{ so.shipto_gstin }}
+|{{ so.price_list }}
+|{{ so.mode_of_payment }}
+|{{ so.other_reference }}
+|{{ so.terms_of_delivery }}
+|{{ so.cgst }}
+|{{ so.sgst }}
+|{{ so.igst }}
+|{{ so.tcs }}
+|{{ so.others }}
+|{{ so.round_off }}
+|{{ so.total }}
+|{{ so.narration }}
+|{% if so.isscheme %}on{% endif %}
+|{{ so.ammount }}
+|{{ so.other_ledger }}
+|{{ so.ol_rate }}
+|{{ so.other }}
+|{{ so.order_no }}
+{% for item in items %}
+    ~|{{ item.item }}
+    |{{ item.item.product_name }}
+    |{{ item.mrp|floatformat:"0" }}
+    |{{ item.offer_mrp|floatformat:"0" }}
+    |{{ item.item.inner_qty|floatformat:"0"}}
+    |{{ item.pack|floatformat:"0" }}
+    |{{ item.available_qty|floatformat:"0" }}
+    |{{ item.actual_qty|floatformat:"0" }}
+    |{{ item.billed_qty|floatformat:"0" }}
+    |{{ item.free_qty|floatformat:"0" }}
+    |{{ item.rate }}
+    |{{ item.discount }}
+    |{{ item.amount }}
+    |{{ item.sgstrate }}
+    |{{ item.cgstrate }}
+    |{{ item.igstrate }}
+    |{{ item.sgst }}
+    |{{ item.cgst }}
+    |{{ item.igst }}
+    |{{ item.qty }}
+    |<label class="form-check-label" for="godown{{ item.item }}"><i class="fa-solid fa-store"></i></label>
+        <input class="form-check-input" type="checkbox" id="godown{{ item.item }}" data-toggle="modal" data-target="#modal{{ item.item.pk}}"
+           autocomplete="off" name="godown{{ item.product_code }}" style="display:None;">
+    |<div class="modal" id="modal{{ item.item.pk }}" tabindex="-1" aria-labelledby="gstModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style = "max-width:700px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">Close</button>
+                </div>
+                <div class="modal-body">
+                    <table class="table mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <td>Godown Name</td>
+                                <td>Item Quantity</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i,j in results.items %}
+                                {% if i == item.item.product_code %}
+                                    {% for g in j %}
+                                        <tr>
+                                            <td> <input value="{{ g.godown }}" name="g{{item}}" readonly></td>
+                                            <td> <input value="{{g.closing_balance}}" name="q{{item}}" readonly></td>
+                                            <td class="d-none"> <input value="{{ g.batch }}" name="b{{item}}" readonly></td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

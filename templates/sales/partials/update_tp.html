@@ -1,0 +1,59 @@
+<tr hx-trigger='cancel' class='editing' hx-get="{% url 'sales:updatetp' dn.pk %}">
+    <th></th>
+    <td>{{ dn.dn_date|date:'d-m-Y' }}</td>
+    <td>{{ dn.dn_no }}</td>
+    <td><input name='dispatch_doc_no' class="form-control" value='{{ dn.buyer|default_if_none:""}}' readonly></td>
+    <td><select class="form-control" id="dispatch_through" name="dispatch_through">
+                                            <option value=""></option>
+                                            {% if dn.dispatch_through == 'Road' %}
+                                                <option value="Road" selected>Road</option>
+                                            {% else %}
+                                                <option value="Road">Road</option>
+                                            {% endif %}
+                                            {% if dn.dispatch_through == 'Rail' %}
+                                                <option value="Rail" selected>Rail</option>
+                                            {% else %}
+                                                <option value="Rail">Rail</option>
+                                            {% endif %}
+                                            {% if dn.dispatch_through == 'Air' %}
+                                                <option value="Air" selected>Air</option>
+                                            {% else %}
+                                                <option value="Air">Air</option>
+                                            {% endif %}
+                                            {% if dn.dispatch_through == 'Ship' %}
+                                                <option value="Ship" selected>Ship</option>
+                                            {% else %}
+                                                <option value="Ship">Ship</option>
+                                            {% endif %}
+                                        </select></td>
+    <td>
+        <select class="js-example-basic-single" class="form-control" id="carrier_agent" name="carrier_agent" required>
+            <option></option>
+            {% for cus in traspoter %}
+                <option value="{{cus.id}}">{{cus.name}}</option>
+                {% endfor %}
+                <option value="0">Self</option>
+        </select>
+    </td>
+    <td><input name='vehical_no' class="form-control" value='{{ dn.vehical_no|default_if_none:""}}'></td>
+    <td><select class="form-control" id="vehicle_type" name="vehicle_type">
+                                            <option value=""></option>
+                                            {% if dn.vehical_type == 'Regular' %}
+                                                <option value="Regular" selected>Regular</option>
+                                            {% else %}
+                                                <option value="Regular">Regular</option>
+                                            {% endif %}
+                                            {% if dn.vehical_type == 'ODC' %}
+                                                <option value="ODC" selected>ODC</option>
+                                            {% else %}
+                                                <option value="ODC">ODC</option>
+                                            {% endif %}
+                                        </select></td>
+    <td><button class="btn btn-danger btn-sm btn-icon" hx-get="{% url 'sales:canceltp' dn.pk %}"> <i class="fas fa-trash-alt"></i> </button> </td>
+    <td><button class="btn btn-success btn-sm btn-icon" hx-post="{% url 'sales:updatetp' dn.pk %}" hx-include="closest tr"> Save </button> </td>
+</tr>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".js-example-basic-single").select2();
+    });
+</script>

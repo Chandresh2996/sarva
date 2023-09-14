@@ -1,0 +1,325 @@
+<tr>
+    <th scope="row" class="datarow">{{no}}</th>
+    {% if actualqty > stock %}
+    <td class="pderror">
+    {% else %}
+    <td>
+    {% endif %}
+        <input type="text"
+               class="form-control"
+               id="product_code{{no}}"
+               name="product_code"
+               value="{{product.product_code}}" readonly>
+    </td>
+    <td>
+        <input type="text"
+               class="form-control"
+               id="name_of_item{{no}}"
+               name="name_of_item"
+               value="{{product.product_name}}" readonly>
+    </td>
+    <td>
+        <input type="text"
+               class="form-control"
+               id="mrp{{no}}"
+               name="mrp"
+               readonly
+               value="{{product.mrp}}">
+    </td>
+    <td>
+        <input type="text"
+               class="form-control"
+               id="inner{{no}}"
+               name="inner"
+               readonly
+               value="{{product.outer_qty}}">
+    </td>
+    <td>
+        <input type="text"
+               class="form-control"
+               id="actualqty{{no}}"
+               name="aqty"
+               value="{{actualqty}}"
+               readonly>
+    </td>
+    {% if rate > standardRate %}
+    <td class="errorred">
+    {% else %}
+    <td>
+    {% endif %}
+        <input type="text" class="form-control" id="stdrate{{no}}" name="stdrate" value="{{standardRate}}" readonly>
+    </td>
+    <td>
+        <input type="text"
+               class="form-control"
+               id="rate{{no}}"
+               name="rate"
+               value="{{rate}}" readonly>
+    </td>
+    <td>
+        <input type="text"
+               class="form-control"
+               id="ammount{{no}}"
+               name="ammount"
+               value="{{amount}}"
+               readonly>
+    </td>
+        <td>
+        <input type="text"
+               class="form-control"
+               id="uom{{no}}"
+               name="uom"
+               value="{{product.units_of_measure.symbol}}"
+               readonly>
+    </td>
+    <td style="display:none;">
+        <input type="text"
+               class="form-control"
+               id="cgst{{no}}"
+               name="cgst"
+               readonly
+               value="{{gst.cgstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text"
+               class="form-control"
+               id="sgst{{no}}"
+               name="sgst"
+               readonly
+               value="{{gst.sgstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text"
+               class="form-control"
+               id="igst{{no}}"
+               name="igst"
+               readonly
+               value="{{gst.igstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text"
+               class="form-control"
+               id="cgstrate{{no}}"
+               name="cgstrate"
+               value="{{cgst}}"
+               readonly>
+    </td>
+    <td style="display:none;">
+        <input type="text"
+               class="form-control"
+               id="sgstrate{{no}}"
+               name="sgstrate"
+               readonly
+               value="{{sgst}}">
+    </td>
+    <td style="display:none;">
+        <input type="text"
+               class="form-control"
+               id="igstrate{{no}}"
+               name="igstrate"
+               readonly
+               value="{{igst}}">
+    </td>
+    {% comment %} <script>
+        $("table").on("change", function (){
+                var item = $("#product_code{{no}}").val();
+                $.ajax({
+                    url: "{% url 'master:ajax_load_product_code' %}",
+                    data: {
+                        'item': item
+                    },
+                    success: function (data) {
+                        $("#name_of_item{{no}}").val(data);
+                    }
+                });
+                $.ajax({
+                    url: "{% url 'master:ajax_load_product_pack' %}",
+                    data: {
+                        'item': item
+                    },
+                    success: function (data) {
+                        $("#inner{{no}}").val(data);
+                    }
+                });
+                $.ajax({
+                    url: "{% url 'master:ajax_load_product_mrp' %}",
+                    data: {
+                        'item': item
+                    },
+                    success: function (data) {
+                        $("#batch{{no}}").val(data);
+                    }
+                });
+                $.ajax({
+                    url: "{% url 'master:ajax_load_product_stock' %}",
+                    data: {
+                        'item': item
+                    },
+                    success: function (data) {
+                        $("#stock{{no}}").val(data);
+                    }
+                });
+        
+                var price_list = $("#price_list").val();
+                $.ajax({
+                    url: "{% url 'master:ajax_load_product_rate' %}",
+                    data: {
+                        'price_list': price_list,
+                        'item': item
+                    },
+                    success: function (data) {
+                        $("#rate{{no}}").val(data);
+                    }
+                });
+                $.ajax({
+                    url: "{% url 'master:ajax_load_product_gst' %}",
+                    data: {
+                        'item': item
+                    },
+                    success: function (data) {
+                        data = data.split("|");
+                        $("#cgst{{no}}").val(parseFloat(data[0]).toFixed(2));
+                        $("#sgst{{no}}").val(parseFloat(data[1]).toFixed(2));
+                        $("#igst{{no}}").val(parseFloat(data[2]).toFixed(2));
+                    }
+                });
+
+                var qty = parseFloat($("#billqty{{no}}").val());
+                var actual = parseFloat($("#actualqty{{no}}").val());
+                var rate = parseFloat($("#rate{{no}}").val());
+                var dis = parseFloat($("#discount{{no}}").val());
+                if (qty > actual) {
+                    var data = (actual * rate) * ((100 - dis) / 100);
+                    alert("Billed Qty Cannot be more than Actual qty");
+                    $(this).val(actual);
+                    $("#freeqty{{no}}").val(parseFloat(0));
+                    $("#ammount{{no}}").val(data.toFixed(2));
+                } else {
+                    if (!qty) {
+                        var data = (actual - parseFloat(0));
+                    } else if (!actual) {
+                        var data = parseFloat(0);
+                    } else {
+                        var data = (actual - qty);
+                    }
+                    $("#freeqty{{no}}").val(data.toFixed(2));
+                    var data = (qty * rate) * ((100 - dis) / 100);
+                    $("#ammount{{no}}").val(data.toFixed(2));
+                }
+        
+                var cgst = parseFloat($("#cgst{{no}}").val());
+                var sgst = parseFloat($("#sgst{{no}}").val());
+                var igst = parseFloat($("#igst{{no}}").val());
+                var ammount = parseFloat($("#ammount{{no}}").val());
+                var cgstdata = ((ammount * cgst) / 100);
+                var sgstdata = ((ammount * sgst) / 100);
+                var igstdata = ((ammount * igst) / 100);
+                $("#cgstrate{{no}}").val(cgstdata);
+                $("#sgstrate{{no}}").val(sgstdata);
+                $("#igstrate{{no}}").val(igstdata);
+
+        });
+
+        {% comment %} $("#billqty{{no}}").change(function () {
+                var qty = parseFloat($(this).val());
+                var actual = parseFloat($("#actualqty{{no}}").val());
+                var rate = parseFloat($("#rate{{no}}").val());
+                var dis = parseFloat($("#discount{{no}}").val());
+                if (qty > actual) {
+                        var data = (actual * rate) * ((100 - dis) / 100);
+                        alert("Billed Qty Cannot be more than Actual qty");
+                        $(this).val(actual);
+                        $("#freeqty{{no}}").val(parseFloat(0));
+                        $("#ammount{{no}}").val(data.toFixed(2));
+
+                } else {
+                        if (!qty) {
+                                var data = (actual - parseFloat(0))
+                        } else if (!actual) {
+                                var data = parseFloat(0);
+                        } else {
+                                var data = (actual - qty)
+                        }
+                        $("#freeqty{{no}}").val(data.toFixed(2));
+                        var data = (qty * rate) * ((100 - dis) / 100);
+                        $("#ammount{{no}}").val(data.toFixed(2));
+                }
+        });
+        $("#actualqty{{no}}").change(function () {
+                var actual = parseFloat($(this).val());
+                var qty = parseFloat($("#billqty{{no}}").val());
+                var available = parseFloat($("#stock{{no}}").val());
+
+                if (actual > available) {
+                        alert("Total Qty Cannot be more than Available qty")
+                        $(this).val(available);
+                }
+                else if (actual < qty) {
+                        $(this).val(qty);
+                        $("#freeqty{{no}}").val(0);
+                        alert("Total Qty Cannot be Less than Billed qty")
+                } else {
+                        if (!qty) {
+                                var data = (actual - parseFloat(0))
+                        } else if (!actual) {
+                                var data = parseFloat(0);
+                        } else {
+                                var data = (actual - qty)
+                        }
+                }
+                $("#freeqty{{no}}").val(data.toFixed(2));
+        });
+        $("#rate{{no}}").change(function () {
+                var rate = $(this).val();
+                var dis = $("#discount{{no}}").val();
+                var qty = $("#billqty{{no}}").val();
+                var data = (parseFloat(qty) * parseFloat(rate)) * ((100 - parseFloat(dis)) / 100);
+                $("#ammount{{no}}").val(data.toFixed(2));
+        });
+        $("#discount{{no}}").change(function () {
+                var dis = parseFloat($(this).val());
+                var rate = parseFloat($("#rate{{no}}").val());
+                var qty = parseFloat($("#billqty{{no}}").val());
+
+                var data = (qty * rate) * ((100 - dis) / 100);
+
+                $("#ammount{{no}}").val(data.toFixed(2));
+
+        });
+
+        $("#product_code{{no}}").change(function () {
+                var item = $(this).val();
+                $.ajax({
+                        url: "{% url 'master:ajax_load_product_gst' %}",
+                        data: {
+                                'item': item
+                        },
+                        success: function (data) {
+                                data = data.split("|")
+                                $("#cgst{{no}}").val(parseFloat(data[0]).toFixed(2));
+                                $("#sgst{{no}}").val(parseFloat(data[1]).toFixed(2));
+                                $("#igst{{no}}").val(parseFloat(data[2]).toFixed(2));
+                        }
+                });
+        });
+
+        {% comment %} $("#rate{{no}}, #discount{{no}}, #billqty{{no}}").change(function () {
+                var cgst = parseFloat($("#cgst{{no}}").val());
+                var sgst = parseFloat($("#sgst{{no}}").val());
+                var igst = parseFloat($("#igst{{no}}").val());
+                var ammount = parseFloat($("#ammount{{no}}").val());
+
+                var cgstdata = ((ammount * cgst) / 100);
+                var sgstdata = ((ammount * sgst) / 100);
+                var igstdata = ((ammount * igst) / 100);
+
+                $("#cgstrate{{no}}").val(cgstdata.toFixed(2));
+                $("#sgstrate{{no}}").val(sgstdata.toFixed(2));
+                $("#igstrate{{no}}").val(igstdata.toFixed(2));
+
+
+        }); 
+    </script> {% endcomment %}
+</tr>
+<tr class="tbody">
+</tr>

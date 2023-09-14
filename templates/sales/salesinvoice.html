@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Sales Invoice</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:sales' %}">
+                                Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href=""> Sales
+                                Invoice </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="card-title">Sales Invoices</h4>
+                <form method='GET' action='{% url "sales:inv" %}'>
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="mx-1">
+                            <input class="form-control" type="text" name="q" autocomplete="off" placeholder="Search">
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="mb-3">
+                    <a href="{% url 'sales:addinv' %}">
+                        <button type="button" class="btn btn-success">
+                            <i class="uil uil-ban">Create</i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+                <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th width="40">#</th>
+                                <th>Date</th>
+                                <th>Invoice Number</th>
+                                <th>Party Name</th>
+                                <th>Amount</th>
+                                <th>SO Number</th>
+                                <th>DN Number</th>
+                                <th>Status</th>
+                                <th width="2%"></th>
+                                <th width="2%"></th>
+                                <th width="2%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% load humanize %}
+                            {% for inv in invs %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td class="align-middle">{{ inv.inv_date|date:'d-m-Y' }}</td>
+                                    <td class="align-middle">{{ inv.inv_no }}</td>
+                                    <td class="align-middle">{{ inv.buyer }}</td>
+                                    <td class="align-middle">{{ inv.total|intcomma }}</td>
+                                    <td class="align-middle">{{ inv.dn.sales_order }}</td>
+                                    <td class="align-middle">{{ inv.dn }}</td>
+                                    <td class="align-middle">{{ inv.get_status_display }}</td>
+                                    <td class="align-middle">
+                                        <a href="{% url 'sales:showinv' inv.pk %}">
+                                            <button type="button" class="btn btn-primary btn-sm btn-icon">
+                                                <i class="far fa-eye"></i>
+                                            </button>
+                                        </a>
+                                    </td>
+                                    <td class="align-middle">
+                                        {% if inv.status != '2'  %}
+                                            <a href="{% url 'sales:invpdf' inv.pk %}">
+                                                <button type="button" class="btn btn-dark btn-sm btn-icon">
+                                                    <i class="fas fa-print"></i>
+                                                </button>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="align-middle">
+                                        {% if request.user|has_group:"Admin,Sales Invoice Email" %}
+                                        <a href="#myModal" class="trigger-btn" data-toggle="modal" data-id="{{inv.buyer.email_id}}" data-id2="{{inv.buyer.cc_email}}" data-id3="{% url 'sales:mailinv' inv.pk %}">
+                                            <button type="button" class="btn btn-warning btn-sm btn-icon"> <i class="fas fa-envelope"></i> </button>
+                                        </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <!-- end tbody-->
+                    </table>
+                    {% if is_paginated %}
+            {% load proper_paginate %}
+            {% load url_replace %}
+            <nav aria-label="Page navigation example" class="mt-3">
+                <ul class="pagination">
+                    {% if page_obj.number == 1 %}
+                    <li class="disabled page-item">
+                        <span class="page-link">First</span>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% url_replace request 'page' 1 %}">First</a>
+                    </li>
+                    {% endif %}
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="?{% url_replace request 'page' page_obj.previous_page_number %}">&laquo;</a>
+                    </li>
+                    {% else %}
+                    <li class="disabled page-item">
+                        <span class="page-link">&laquo;</span>
+                    </li>
+                    {% endif %}
+                    {% for i in paginator|proper_paginate:page_obj.number %}
+                    {% if page_obj.number == i %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ i }} <span class="sr-only">(current)</span></span>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% url_replace request 'page' i %}">{{ i }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="?{% url_replace request 'page' page_obj.next_page_number %}">&raquo;</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">&raquo;</span>
+                    </li>
+                    {% endif %}
+                    {% if page_obj.number == paginator.num_pages %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Last</span>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link"
+                            href="?{% url_replace request 'page' paginator.num_pages %}">Last</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+                    <!-- end table-->
+                </div>
+                <!-- end table responsive -->
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+    </div>
+
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <h4 class="modal-title">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to Send these records? This process cannot be undone.</p>
+                <p>Email ID: <span id="bookId"/></p>
+                <p>Email CC: <span id="bookId2"/></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                <button type="button" id="sendmail" class="btn btn-danger">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).on("click", ".trigger-btn", function () {
+            $(".modal-body #bookId").text($(this).data('id'));
+            $(".modal-body #bookId2").text($(this).data('id2'));
+            var abcd = $(this).data("id3");
+            if (abcd) {
+                $(".modal-footer #sendmail").attr("onclick", abcd);
+            }
+        });
+
+        $('#sendmail').click(function(ev) {
+            window.location.href = ev.target.attributes.onclick.value;
+        });
+    </script>
+    <script>
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+    document.getElementById("so_date").innerHTML = date;
+
+    $("#dn_no").change(function () {
+        var so_no = $(this).val();
+        $.ajax({
+			url: "{% url 'sales:ajax_load_dn_details' %}",
+			data: {
+				'sono': so_no,
+			},
+			success: function (data) {
+				data = data.split("~");
+                so = data[0].split("|");
+
+                $("#sono").val(so[0])
+                $("#so_date").val(so[1])
+                $("#party_name").val(so[2])
+                $("#party_address_type").val(so[3])
+                $("#party_address").val(so[4])
+                $("#party_gstin").val(so[5])
+                $("#consignee_name").val(so[6])
+                $("#consignee_address_type").val(so[7])
+                $("#consignee_address").val(so[8])
+                $("#consignee_gstin").val(so[9])
+                $("#price_list").val(so[10])
+                $("#mode_of_payment").val(so[11])
+                $("#other_reference").val(so[12])
+                $("#terms_of_delivery").val(so[13])
+                $("#cgst").val(so[14])
+                $("#sgst").val(so[15])
+                $("#igst").val(so[16])
+                $("#tcs").val(so[17])
+                $("#other").val(so[18])
+                $("#round_off").val(so[19])
+                $("#narration").val(so[20])
+                $("#isscheme").val(so[21])
+                $("#dispatch_doc_no").val(so[22])
+                $("#dispatch_through").val(so[23])
+                $("#destintaion").val(so[24])
+                $("#carrier_agent").val(so[25])
+                $("#lr_no").val(so[26])
+                $("#lr_date").val(so[27])
+                $("#vehical_no").val(so[28])
+                $("#totalammount").val(so[29])
+                var table = $("#table")
+                $("tbody").remove();
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=1;i<data.length;i++)
+                {
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+
+                    var cell = $("<td />");
+                    cell.html(i);
+                    row.append(cell);
+
+                    for(j=1;j<item.length-1;j++){
+                        var cell = $("<td />");
+                        var input = $("<input />").attr('class','form-control').attr('readonly', true);
+                        input.val(item[j]);
+                        cell.append(input);
+                        row.append(cell);
+                    }
+                    var cell = $("<td />");
+                    cell.html(item.pop());
+                    row.append(cell);
+
+	    		}
+		}});
+    });
+
+    </script>
+{% endblock %}

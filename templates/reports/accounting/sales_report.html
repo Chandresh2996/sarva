@@ -1,0 +1,482 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Sales Invoice: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:sales-reports' %}">
+                                Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Sales Invoice
+                            </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <table cellspacing="5" cellpadding="5" style="position: fixed; right: 25px;; z-index: 10;">
+                    <tbody>
+                        <tr>
+                            <td>From:</td>
+                            <td><input type="date" id="min" value="{{date|date:'Y-m-d'}}" name="min"></td>
+                            <td>To:</td>
+                            <td><input type="date" id="max" value="{{date|date:'Y-m-d'}}" name="max"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="pm" class="table nowrap ">
+                    <thead>
+                        <tr>
+                            <th>DIVISION</th>
+                            <th>CUSTOMER NAME</th>
+                            <th>CUSTOMER CODE</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>ZSM</th>
+                            <th>RSM</th>
+                            <th>ASM</th>
+                            <th>SALES EXECUTIVE</th>
+                            <th>CHANNEL TYPE</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>ALU CODE</th>
+                            <th>EAN CODE</th>
+                            <th>SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>INNER PACK SIZE</th>
+                            <th>OUTER PACK SIZE</th>
+                            <th>SO NO</th>
+                            <th>REF NO</th>
+                            <th>SO DATE</th>
+                            <th>DN NO</th>
+                            <th>DN DATE</th>
+                            <th>INVOICE NO</th>
+                            <th>INVOICE DATE</th>
+                            <th>BILLED QTY</th>
+                            <th>FREE QTY</th>
+                            <th>TOTAL QTY</th>
+                            <th>RATE</th>
+                            <th>DISCOUNT</th>
+                            <th>MRP</th>
+                            <th>MRP VALUE</th>
+                            <th>OMRP</th>
+                            <th>OMRP VALUE</th>
+                            <th>BASIC VALUE</th>
+                            <th>INV DISCOUNT</th>
+                            <th>GST </th>
+                            <th>GST VALUE</th>
+                            <th>INVOICE VALUE</th>
+                            <th>HSN</th>
+                            <th>COMPANY NAME</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>DIVISION</th>
+                            <th>CUSTOMER NAME</th>
+                            <th>CUSTOMER CODE</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>ZSM</th>
+                            <th>RSM</th>
+                            <th>ASM</th>
+                            <th>SALES EXECUTIVE</th>
+                            <th>CHANNEL TYPE</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>ALU CODE</th>
+                            <th>EAN CODE</th>
+                            <th>SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>INNER PACK SIZE</th>
+                            <th>OUTER PACK SIZE</th>
+                            <th>SO NO</th>
+                            <th>REF NO</th>
+                            <th>SO DATE</th>
+                            <th>DN NO</th>
+                            <th>DN DATE</th>
+                            <th>INVOICE NO</th>
+                            <th>INVOICE DATE</th>
+                            <th>BILLED QTY</th>
+                            <th>FREE QTY</th>
+                            <th>TOTAL QTY</th>
+                            <th>RATE</th>
+                            <th>DISCOUNT</th>
+                            <th>MRP</th>
+                            <th>MRP VALUE</th>
+                            <th>OMRP</th>
+                            <th>OMRP VALUE</th>
+                            <th>BASIC VALUE</th>
+                            <th>INV DISCOUNT</th>
+                            <th>GST </th>
+                            <th>GST VALUE</th>
+                            <th>INVOICE VALUE</th>
+                            <th>HSN</th>
+                            <th>COMPANY NAME</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block reportjs %}
+
+<script>
+
+    $.fn.dataTable.render.moment = function (from, to, locale) {
+        // Argument shifting
+        if (arguments.length === 1) {
+            locale = 'en';
+            to = from;
+            from = 'YYYY-MM-DD';
+        } else if (arguments.length === 2) {
+            locale = 'en';
+        }
+
+        return function (d, type, row) {
+            if (!d) {
+                return type === 'sort' || type === 'type' ? 0 : d;
+            }
+
+            var m = window.moment(d, from, locale, true);
+
+            // Order and type get a number value from Moment, everything else
+            // sees the rendered value
+            return m.format(type === 'sort' || type === 'type' ? 'x' : to);
+        };
+    };
+
+    $(document).ready(function () {
+
+        $('#pm tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+
+        //minDate = $('#min').val();
+        //maxDate = $('#max').val();
+        // DataTable
+
+        var table = $('#pm').DataTable({
+            dom: 'lfrt<"ip"iB>p',
+            buttons: [
+                'copy',
+                {
+                    extend: 'excel',
+                    filename: 'Sales Invoice Report',
+                    title: '',
+                },
+                'csv',
+            ],
+            deferRender: true,
+            ajax: {
+                url: "{% url 'reports:invdata' %}",
+                type: 'GET',
+                data: function (d) {
+                    d.from = $('#min').val();
+                    d.to = $('#max').val();
+                },
+            },
+            columns: [{
+                    data: 'inv__division'
+                },
+                {
+                    data: "inv__buyer__name"
+                },
+                {
+                    data: "inv__buyer__vendor_code"
+                },
+                {
+                    data: "inv__buyer__zone__name"
+                },
+                {
+                    data: "inv__buyer__region__name"
+                },
+                {
+                    data: "inv__buyer_state"
+                },
+                {
+                    data: "inv__buyer_city"
+                },
+                {
+                    data: "inv__buyer__zsm__name"
+                },
+                {
+                    data: "inv__buyer__rsm__name"
+                },
+                {
+                    data: "inv__buyer__asm__name"
+                },
+                {
+                    data: "inv__buyer__se__name"
+                },
+                {
+                    data: "inv__channel"
+                },
+                {
+                    data: "item__brand__name"
+                },
+                {
+                    data: "item__sub_brand__name"
+                },
+                {
+                    data: "item__category__name"
+                },
+                {
+                    data: "item__product_class__name"
+                },
+                {
+                    data: "item__sub_class__name"
+                },
+                {
+                    data: "item__article_code"
+                },
+                {
+                    data: "item__ean_code"
+                },
+                {
+                    data: "item__product_code"
+                },
+                {
+                    data: "item__product_name"
+                },
+                {
+                    data: "item__inner_qty",
+                    render: $.fn.dataTable.render.number(',', '.', 0, ''),
+                    className: "text-right"
+                },
+                {
+                    data: "item__outer_qty",
+                    render: $.fn.dataTable.render.number(',', '.', 0, ''),
+                    className: "text-right"
+                },
+                {
+                    data: "inv__dn__sales_order__so_no",
+                    defaultContent: ""
+                },
+                {
+                    data: null,
+                    defaultContent: "",
+                    render: function (data, type, row) {
+                        if (data.inv__inv__inv_no)
+                            return data.inv__inv__inv_no;
+                        else if (data.inv__inv__inv_no)
+                            return data.inv__inv__inv_no;
+                        else if (data.inv__inv__inv_no)
+                            return data.inv__inv__inv_no;
+                        else
+                            return data.inv__order_no;
+                    }
+                },
+                {
+                    data: "inv__dn__sales_order__so_date",
+                    defaultContent: "",
+                    render: $.fn.dataTable.render.moment('DD-MM-YYYY')
+                },
+                {
+                    data: "inv__dn__dn_no",
+                    defaultContent: ""
+                },
+                {
+                    data: "inv__dn__dn_date",
+                    defaultContent: "",
+                    render: $.fn.dataTable.render.moment('DD-MM-YYYY')
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__cn_no)
+                            return data.inv__cn_no;
+                        else if (data.inv__qdn_no)
+                            return data.inv__qdn_no;
+                        else if (data.inv__rso_no)
+                            return data.inv__rso_no;
+                        else
+                            return data.inv__inv_no;
+                    },
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__cn_date)
+                            return data.inv__cn_date;
+                        else if (data.inv__qdn_date)
+                            return data.inv__qdn_date;
+                        else if (data.inv__rso_date)
+                            return data.inv__rso_date;
+                        else
+                            return data.inv__inv_date;
+                    }
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__qdn_date)
+                            return -(data.billed_qty);
+                        else if (data.inv__rso_date)
+                            return -(data.billed_qty);
+                        else if (data.inv__cn_date)
+                            return 0;
+                        else
+                            return data.billed_qty;
+                    }
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__qdn_date)
+                            return -(data.free_qty);
+                        else if (data.inv__rso_date)
+                            return -(data.free_qty);
+                        else if (data.inv__cn_date)
+                            return 0;
+                        else
+                            return data.free_qty;
+                    }
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__qdn_date)
+                            return -(parseInt(data.free_qty) + parseInt(data.billed_qty));
+                        else if (data.inv__rso_date)
+                            return -(parseInt(data.free_qty) + parseInt(data.billed_qty));
+                        else if (data.inv__cn_date)
+                            return 0;
+                        else
+                            return data.actual_qty;
+                    }
+                },
+                {
+                    data: "rate"
+                },
+                 {
+                    data: "discount",
+                    defaultContent: "",
+                    render: $.fn.dataTable.render.number(',', '.', 2, ''),
+                    className: "text-right"
+                },
+                {
+                    data: "mrp",
+                    defaultContent: "",
+                    render: $.fn.dataTable.render.number(',', '.', 0, ''),
+                    className: "text-right"
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__inv_no)
+                            return data.mrpvalue;
+                        else
+                            return -(data.mrpvalue);
+                    }
+                },
+                {
+                    data: "offer_mrp",
+                    defaultContent: "",
+                    render: $.fn.dataTable.render.number(',', '.', 0, ''),
+                    className: "text-right"
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__inv_no)
+                            return data.omrpvalue;
+                        else
+                            return -(data.omrpvalue);
+                    }
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__inv_no)
+                            return data.amount;
+                        else
+                            return -(data.amount);
+                    }
+                },
+                {
+                    data: "inv__discount",
+                },
+                {
+                    data: "igstrate",
+                    render: $.fn.dataTable.render.number(',', '.', 0, ''),
+                    className: "text-right"
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__inv_no)
+                            return data.igst;
+                        else
+                            return -(data.igst);
+                    }
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        if (data.inv__inv_no)
+                            return data.total;
+                        else
+                            return -(data.total);
+                    }
+                },
+                {
+                    data: "item__hsn"
+                },
+                {
+                    data: "inv__company__name"
+                },
+            ],
+        deferRender: true,
+        scrollX:true,
+        scrollY:window.innerHeight-385,
+        scroller: true,
+            initComplete: function () {
+                // Apply the search
+                this.api().columns().every(function () {
+                    var that = this;
+
+                    $('input', this.footer()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            }
+        });
+        $('#min, #max').on('change', function () {
+            table.ajax.reload();
+            table.draw();
+        });
+    });
+</script>
+{% endblock %}

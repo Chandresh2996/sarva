@@ -1,0 +1,13 @@
+{{product.0.product_name}}|
+{{product.0.outer_qty|default_if_none:0}}|
+{{product.0.mrp|default_if_none:0}}|
+{% if currentcurrency != 'INR' %}
+0|
+0|
+0|
+{% else %}
+{{product.0.gst|default_if_none:0}}|
+{% widthratio product.0.gst 2 1 %}|
+{% widthratio product.0.gst 2 1 %}|
+{% endif %}
+{{product.0.units_of_measure}}|{{std}}

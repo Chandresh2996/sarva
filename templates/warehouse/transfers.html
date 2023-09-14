@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row mx-0">
+    <div class="col-md-12 m-b-30">
+        <!-- begin page title -->
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Transfers</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            Transactions
+                        </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Transfers</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- end page title -->
+    </div>
+</div>
+<div class="row justify-content-start">
+    {% if request.user|has_group:"Admin,Shortage/Damage" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'warehouse:shortage' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-exclamation-triangle card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{sd}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'warehouse:shortage' %}">
+                                    <span class="d-block font-25 mt-2">Shortage/Damage</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,ICT View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:ict' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-repeat card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{ict}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'inventory:ict' %}">
+                                    <span class="d-block font-25 mt-2">Inter Company Transfer</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,IVT View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:ivt' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-arrow-left-right card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{ivt}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'inventory:ivt' %}">
+                                    <span class="d-block font-25 mt-2">Inter Vendor Transfer</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

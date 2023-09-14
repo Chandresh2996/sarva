@@ -1,0 +1,153 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Payment Receivable: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:purchase-reports' %}"> Purchase </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Payment Receivable</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <table id="pm" class="table nowrap w-100" >
+                    <thead>
+                        <tr>
+                            <th>DIVISION</th>
+                            <th>CHANNEL</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>ZSM</th>
+                            <th>RSM</th>
+                            <th>ASM</th>
+                            <th>SE</th>
+                            <th>CODE</th>
+                            <th>NAME</th>
+                            <th>PARTY MARGIN</th>
+                            <th>INVOICE</th>
+                            <th>DATE</th>
+                            <th>CREDIT DAYS</th>
+                            <th>INVOICE TOTAL</th>
+                            <th>RECIEVED AMOUNT</th>
+                            <th>OUTSTANDING</th>
+                            <th>OVERDUE</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>DIVISION</th>
+                            <th>CHANNEL</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>ZSM</th>
+                            <th>RSM</th>
+                            <th>ASM</th>
+                            <th>SE</th>
+                            <th>CODE</th>
+                            <th>NAME</th>
+                            <th>PARTY MARGIN</th>
+                            <th>INVOICE</th>
+                            <th>DATE</th>
+                            <th>CREDIT DAYS</th>
+                            <th>INVOICE TOTAL</th>
+                            <th>RECIEVED AMOUNT</th>
+                            <th>OUTSTANDING</th>
+                            <th>OVERDUE</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Payment Receivable Report',
+                title: '',
+            },
+            'csv',
+        ],
+        deferRender: true,
+        ajax:"{% url 'reports:paymentreceivabledata' %}",
+        columns: [
+            {data: 'division'},
+            {data: 'channel'},
+            {data: 'zone'},
+            {data: 'region'},
+            {data: 'state'},
+            {data: 'city'},
+            {data: 'zsm'},
+            {data: 'rsm'},
+            {data: 'asm'},
+            {data: 'se'},
+            {data: 'code'},
+            {data: 'name'},
+            {data: 'party_margin'},
+            {data: 'inv_no'},
+            {data: 'date',render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+            {data: 'credit_days'},
+            {data: 'amount'},
+            {data: 'received_amt'},
+            {data: 'outstanding'},
+            {data: 'overdue'},
+        ],
+        scrollX:300,
+        scrollY:400,
+        scroller: true,
+        initComplete: function () {
+
+            this.api().columns().every( function () {
+                var that = this;
+ 
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

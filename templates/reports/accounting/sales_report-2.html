@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+{% endblock extracss %}
+{% block content %}
+<script src="https://cdn.flexmonster.com/flexmonster.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.flexmonster.com/demo.css">
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Sales Invoice: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:sales-reports' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Sales Invoice </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <div id="pivot-table-container" data-url="{% url 'reports:invdata' %}"></div>
+                <div id="pivot-chart-container"></div>
+                    </div>
+                    <!-- end card body -->
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+
+    </div> <!-- container-fluid -->
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+    function processData(dataset) {
+        var result = []
+        dataset = JSON.parse(dataset);
+        dataset.forEach(item => result.push(item.fields));
+        return result;
+    }
+    $.ajax({
+        url: $("#pivot-table-container").attr("data-url"),
+        dataType: 'json',
+        success: function(data) {
+            console.log(data);
+            new Flexmonster({
+                container: "#pivot-table-container",
+                componentFolder: "https://cdn.flexmonster.com/",
+                width: "100%",
+                height: 430,
+                toolbar: true,
+                report: {
+                    dataSource: {
+                        type: "json",
+                        data: data
+                    },
+                    slice: {}
+                }
+            });
+            new Flexmonster({
+                container: "#pivot-chart-container",
+                componentFolder: "https://cdn.flexmonster.com/",
+                width: "100%",
+                height: 430,
+                //toolbar: true,
+                report: {
+                    dataSource: {
+                        type: "json",
+                        data: data
+                    },
+                    slice: {},
+                    "options": {
+                        "viewType": "charts",
+                        "chart": {
+                            "type": "pie"
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

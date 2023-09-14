@@ -1,0 +1,164 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Customer Master: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:sales-reports' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Customer Master </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <table id="pm" class="table nowrap" >
+                    <thead>
+                        <tr>
+                            <th>CODE</th>
+                            <th>NAME</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>ZSM</th>
+                            <th>RSM</th>
+                            <th>ASM</th>
+                            <th>SE</th>
+                            <th>CHANNEL</th>
+                            <th>DIVISION</th>
+                            <th>ADDRESS1</th>
+                            <th>ADDRESS2</th>
+                            <th>ADDRESS3</th>
+                            <th>PIN CODE</th>
+                            <th>CONTACT PERSON</th>
+                            <th>PHONE</th>
+                            <th>MOBILE</th>
+                            <th>EMAIL</th>
+                            <th>CC EMAIL</th>
+                            <th>GSTIN</th>
+                            <th>PAYMENT TERMS</th>
+                            <th>CREDIT LIMIT</th>
+                            <th>MARGIN</th>
+                            <th>CLOSING BALANCE</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>CODE</th>
+                            <th>NAME</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>ZSM</th>
+                            <th>RSM</th>
+                            <th>ASM</th>
+                            <th>SE</th>
+                            <th>CHANNEL</th>
+                            <th>DIVISION</th>
+                            <th>ADDRESS1</th>
+                            <th>ADDRESS2</th>
+                            <th>ADDRESS3</th>
+                            <th>PIN CODE</th>
+                            <th>CONTACT PERSON</th>
+                            <th>PHONE</th>
+                            <th>MOBILE</th>
+                            <th>EMAIL</th>
+                            <th>CC EMAIL</th>
+                            <th>GSTIN</th>
+                            <th>PAYMENT TERMS</th>
+                            <th>CREDIT LIMIT</th>
+                            <th>MARGIN</th>
+                            <th>CLOSING BALANCE</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="'+title+'" />' );
+    } );
+
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Customer Master Report',
+                title: '',
+            },
+            'csv',
+        ],
+        stateSave: true,
+        ajax:"{% url 'reports:cmdata' %}",
+        columns: [
+                {data: "vendor_code"},
+                {data: "name"},
+                {data: "zone__name"},
+                {data: "region__name"},
+                {data: "state__name"},
+                {data: "city__name"},
+                {data: "zsm__name"},
+                {data: "rsm__name"},
+                {data: "asm__name"},
+                {data: "se__name"},
+                {data: "party_type__name"},
+                {data: "devision__name"},
+                {data: "addressline1"},
+                {data: "addressline2"},
+                {data: "addressline3"},
+                {data: "pin_code"},
+                {data: "contact_person"},
+                {data: "phone_no"},
+                {data: "mobile_no"},
+                {data: "email_id"},
+                {data: "cc_email"},
+                {data: "gstin"},
+                {data: "payment_terms"},
+                {data: "credit_limit"},
+                {data: "price_level__name"},
+                {data: "closing_balance",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            ],
+        deferRender: true,
+        scrollY:500,
+        scrollX:500,
+        scroller: true,
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var that = this;
+
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that.search( this.value ).draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

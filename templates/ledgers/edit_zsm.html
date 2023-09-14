@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">ZSM</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="needs-validation"  action="{% url 'ledgers:edit_zsm' zsm.pk %}" method="POST" onsubmit="return validate()">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="under">Zone</label>
+                                        <!-- <input name="zone" id="under" list="zone" class="form-control" value="{{zsm.zone}}"
+                                            pattern="{% for i in zones %}{{i.name}}|{% endfor %}"> -->
+                                        <select class="js-example-basic-single" class="form-control" id="under" name="zone" required>
+                                            {% for brand in zones %}
+                                            {% if zsm.zone == brand.name %}
+                                                <option value="{{brand.pk}}" selected>{{brand.name}}</option>
+                                            {% else %}
+                                                <option value="{{brand.pk}}">{{brand.name}}</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="name">Name<span style="color:red">*</span></label>
+                                        <input type="text" class="form-control" id="name" name="name" required value="{{zsm.name}}">
+
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-md-4 d-flex align-items-center justify-content-end">
+                                    <button class="btn btn-primary" type="submit" >Submit</button>
+                                </div>
+                            </div><!-- end row -->
+                        </form><!-- end form -->
+                    </div><!-- end card body -->
+                </div><!-- end card -->
+            </div> <!-- end col -->
+            <!-- end col -->
+        </div><!-- end row -->
+
+{% endblock %}

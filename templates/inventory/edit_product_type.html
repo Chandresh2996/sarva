@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Product Type: Edit</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"> Master </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:inventory' %}">Registration</a></li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:product_type' %}"> Product Type </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Edit Product Type </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="needs-validation"  action="{% url 'inventory:edit_product_type' pt.pk %}" method="POST" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4 col-sm-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Name<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="name" autocomplete="off" name="name" value="{{pt.name}}" required>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 col-sm-12">
+                            <div class="mb-3">
+                                <label for="salesledger" class="form-label">Default ledger for Sales Invoice<span style="color:red">*</span></label>
+                                <select class="form-control" id="salesledger" name="salesledger" required>
+                                    <option value="{{pt.dl_sales}}">{{pt.dl_sales}}</option>
+                                    {% for ledger in ledgers %}
+                                        {% if ledger.under.name == 'Sales Accounts' %}
+                                            <option value="{{ledger.name}}">{{ledger.name}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 col-sm-12">
+                            <div class="mb-3">
+                                <label for="purchaseledger" class="form-label">Default ledger for Purchase Invoice<span style="color:red">*</span></label>
+                                <select class="form-control" id="purchaseledger" name="purchaseledger" required>
+                                    <option value="{{pt.dl_purchase}}">{{pt.dl_purchase}}</option>
+                                    {% for ledger in ledgers %}
+                                        {% if ledger.under.name == 'Purchase Accounts' %}
+                                            <option value="{{ledger.name}}">{{ledger.name}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-end">
+                        <button class="btn btn-primary" type="submit" >Submit</button>
+                    </div>
+                </form><!-- end form -->
+            </div><!-- end card body -->
+        </div><!-- end card -->
+    </div> <!-- end col -->
+    <!-- end col -->
+</div><!-- end row -->
+
+{% endblock %}

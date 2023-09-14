@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <!-- begin page title -->
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Material Transfer</h1> </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Transactions </li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'production:production' %}">Production</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'production:mt' %}">Material Transfer</a></li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Material Transfer:Create</li> </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header justify-content-between d-flex align-items-center">
+            <h4 class="card-title">Material Transfer: Create</h4>
+            
+        </div>
+        <div class="card-body">
+            <form class="needs-validation" id="soform" action="{% url 'production:addmt' %}" method="POST" onsubmit="return validate()">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label" for="jobcard">RM Indent<span style="color:red">*</span></label>
+                        <select class="form-control" id="jobcard" name="jobcard" required>
+                            <option value="">select</option>
+                            {% for i in jobcards %}
+                            <option value="{{ i.id }}">{{i.no}} ({{i.jobcard}})</option>
+                            {% endfor %}
+                        <select />
+                    </div>
+                    <div class="col-md-8 d-flex align-items-center justify-content-end">
+                        <button class="btn btn-primary" type="submit" >Accept</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container col-xl-12 mt-3">
+            <div class="card">
+                <div class="card-header justify-content-between d-flex align-items-center">
+                    <h4 class="card-title">RM Indent</h4>
+                    {% comment %} <button type="button" class="btn btn-primary w-sm ms-auto" id="export"> Export </button> {% endcomment %}
+                </div>
+                <!-- end card header -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table mb-0" id="table">
+                            <thead class="table-light">
+                                <tr>
+                                    <th width="3%">#</th>
+                                    <th width="10%">FM Product</th>
+                                    <th width="30%">Bom</th>
+                                    <th width="10%">RM Product</th>
+                                    <th width="10%">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <!-- end tbody-->
+                        </table>
+                        <!-- end table-->
+                    </div>
+                    <!-- end table responsive -->
+                </div>
+                <!-- end card body -->
+            </div>
+            <!-- end card -->
+        </div>
+    </div>
+</div>
+<!-- End Page-content -->
+{% endblock content %}
+{% block scripts %}
+<script>
+
+    {% comment %} $("#btnsubmit").click(function(event) {
+
+        event.preventDefault();
+        if (! $("#duration").val()){
+            window.alert("Please Select Start Date");
+            return false;
+        }
+        if (($("#pqty").val() | 0) <=0 ){
+            window.alert("Please add Prodcution Quantity");
+            return false;
+        }
+        if ($("#shortfall").val() === 'True'){
+            window.alert("There is a shortfall in RM");
+            return false;
+        }
+        $("#soform").submit();
+    }); {% endcomment %}
+
+    $("#jobcard").change(function () {
+        var job = $(this).val();
+        $.ajax({
+            url: "{% url 'production:loadrm' %}",
+            data: {
+                'job': job,
+            },
+            success: function (data) {
+                data=data.split("|");
+                window.e();
+            }
+        });
+    });
+
+    function e() {
+        var qty = $("#qty").val();
+        var job = $("#jobcard").val();
+        if (parseInt(qty) > parseInt($("#qty").val())){
+            window.alert("Production Quantity can not be more than Job Quantity");
+            $(this).val('');
+            return;
+        }
+        $.ajax({
+            url: "{% url 'production:ajax_load_rmgodown' %}",
+            data: {
+                'job':job,
+                'qty': qty,
+            },
+            success: function (data) {
+                data=data.split("~");
+                var table = $("#table")
+                $("tbody").remove();
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=0;i<data.length-1;i++)
+                {
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+
+                    for(j=0;j<item.length-2;j++){
+                        var cell = $("<td />");
+                        var input = $("<input />").attr('class','form-control').attr('readonly', true);
+                        input.val(item[j]);
+                        cell.append(input);
+                        row.append(cell);
+                    }
+	    		}
+            }
+        });
+    }
+
+</script>
+
+<script>
+    $("#export").on("click" ,function (){
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#table"));
+    });
+  </script>
+
+{% endblock scripts %}

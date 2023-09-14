@@ -1,0 +1,6 @@
+<option value="">Select</option>
+{% for pd in products %}
+{% if pd.product %}<option value="{{ pd.product.product_code }}">{{ pd.product.product_code}}</option>
+{% else %}<option value="{{ pd.item.product_code }}">{{ pd.item.product_code}}</option>
+{% endif %}
+{% endfor %}

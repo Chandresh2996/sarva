@@ -1,0 +1,52 @@
+<tr>
+    <th scope="row" class="datarow">{{no}}</th>
+    <td>
+        <input type="text" class="form-control" id="product_code_{{no}}" name="product_code" value="{{product.product_code}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="name_of_item_{{no}}" name="name_of_item" value="{{product.product_name}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="mrp_{{no}}" name="mrp" readonly value="{{batch}}">
+    </td>
+    <td>
+        <input type="text" class="form-control text-right" id="inner_1" name="inner" readonly value="{{inner}}">
+    </td>
+    <td>
+        <input type="text" class="form-control" id="actualqty_{{no}}" name="aqty" value="{{billqty}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="rate_{{no}}" name="rate" value="{{rate}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="ammount_{{no}}" name="ammount" value="{{amount}}" readonly>
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="cgst_{{no}}" name="cgst" readonly value="{{cgstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="sgst_{{no}}" name="sgst" readonly value="{{sgstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="igst_{{no}}" name="igst" readonly value="{{igstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="cgstrate_{{no}}" name="cgstrate" value="{{cgst}}" readonly>
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="sgstrate_{{no}}" name="sgstrate" readonly value="{{sgst}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="igstrate_{{no}}" name="igstrate" readonly value="{{igst}}">
+    </td>
+    <td class="align-middle text-center">
+        <button type="button"
+                class="btn btn-danger btn-sm btn-icon"
+                hx-get="{% url 'dash:clear' %}"
+                hx-swap="outerHTML"
+                hx-target="closest tr">
+        <i class="fas fa-trash-alt"></i>
+    </button> </td>
+</tr>
+<tr class="tbody">
+</tr>

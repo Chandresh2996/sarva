@@ -1,0 +1,12 @@
+<tr>
+    <th scope="row">{{ forloop.counter }}</th>
+    <td class="align-middle">{{ dn.dn_date|date:'d-m-Y' }}</td>
+    <td class="align-middle">{{ dn.dn_no }}</td>
+    <td class="align-middle">{{ dn.dispatch_doc_no}}</td>
+    <td class="align-middle">{{ dn.dispatch_through}}</td>
+    <td class="align-middle">{{ dn.carrier_agent}}</td>
+    <td class="align-middle">{{ dn.vehical_no}}</td>
+    <td class="align-middle">{{ dn.vehical_type}}</td>
+    <td> </td>
+    <td> <a type="button" class="btn btn-success btn-sm btn-icon" hx-get="{% url 'sales:updatetp' dn.pk %}"><i class="fas fa-edit"></i></a> </td>
+</tr>

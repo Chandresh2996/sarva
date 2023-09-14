@@ -1,0 +1,226 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Order vs Sales : Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a></li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:warehouse-reports' %}"> Warehouse </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Order vs Sales </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <table cellspacing="5" cellpadding="5" style="position: fixed; right: 25px;; z-index: 10;">
+                    <tbody>
+                        <tr>
+                            <td>From:</td>
+                            <td><input type="date" id="min" value="{{date|date:'Y-m-d'}}" name="min"></td>
+                            <td>To:</td>
+                            <td><input type="date" id="max" value="{{date|date:'Y-m-d'}}" name="max"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table id="pm" class="table nowrap" >
+                    <thead>
+                        <tr>
+                            <th>DIVISION</th>
+                            <th>SO DATE</th>
+                            <th>SO NO</th>
+                            <th>ORDER NO</th>
+                            <th>CUSTOMER NAME</th>
+                            <th>CUSTOMER CODE</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>ZSM</th>
+                            <th>RSM</th>
+                            <th>ASM</th>
+                            <th>SE</th>
+                            <th>CHANNEL</th>
+                            <th>PAYMENT TERMS</th>
+                            <th>SO BILLED QTY</th>
+                            <th>SO FREE QTY</th>
+                            <th>SO VALUE</th>
+                            <th>DN NO</th>
+                            <th>DN DATE</th>
+                            <th>DN BILLED QTY</th>
+                            <th>DN FREE QTY</th>
+                            <th>DN VALUE</th>
+                            <th>INV NO</th>
+                            <th>INV DATE</th>
+                            <th>INV BILLED QTY</th>
+                            <th>INV FREE QTY</th>
+                            <th>TAXABLE VALUE</th>
+                            <th>INVOICE VALUE</th>
+                            <th>TRANSPORTER</th>
+                            <th>LR NO</th>
+                            <th>LR DATE</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>DIVISION</th>
+                            <th>SO DATE</th>
+                            <th>SO NO</th>
+                            <th>ORDER NO</th>
+                            <th>CUSTOMER NAME</th>
+                            <th>CUSTOMER CODE</th>
+                            <th>ZONE</th>
+                            <th>REGION</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>ZSM</th>
+                            <th>RSM</th>
+                            <th>ASM</th>
+                            <th>SE</th>
+                            <th>CHANNEL</th>
+                            <th>PAYMENT TERMS</th>
+                            <th>SO BILLED QTY</th>
+                            <th>SO FREE QTY</th>
+                            <th>SO VALUE</th>
+                            <th>DN NO</th>
+                            <th>DN DATE</th>
+                            <th>DN BILLED QTY</th>
+                            <th>DN FREE QTY</th>
+                            <th>DN VALUE</th>
+                            <th>INV NO</th>
+                            <th>INV DATE</th>
+                            <th>INV BILLED QTY</th>
+                            <th>INV FREE QTY</th>
+                            <th>TAXABLE VALUE</th>
+                            <th>INVOICE VALUE</th>
+                            <th>TRANSPORTER</th>
+                            <th>LR NO</th>
+                            <th>LR DATE</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+
+    // DataTable
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Order vs Sales Report',
+                title: '',
+            },
+            'csv',
+        ],
+        deferRender: true,
+        ajax:{ url:"{% url 'reports:sodninvdata' %}",
+            type: 'GET',
+            data: function (d) {
+                d.from = $('#min').val();
+                d.to = $('#max').val();
+            },
+        },
+        columns: [
+            {data: "buyer__devision__name"},
+            {data: "so_date",render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+            {data: "so_no"},
+            {data: "order_no"},
+            {data: "buyer__name"},
+            {data: "buyer__vendor_code"},
+            {data: "buyer__zone__name"},
+            {data: "buyer__region__name"},
+            {data: "buyer_state"},
+            {data: "buyer_city"},
+            {data: "buyer__zsm__name"},
+            {data: "buyer__rsm__name"},
+            {data: "buyer__asm__name"},
+            {data: "buyer__se__name"},
+            {data: "buyer__party_type__name"},
+            {data: "buyer__payment_terms"},
+            {data: "bill_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "free_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "total",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "dn__dn_no"},
+            {data: "dn__dn_date", render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+            {data: "dn__bill_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "dn__free_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "dn__total",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "dn__inv__inv_no"},
+            {data: "dn__inv__inv_date",render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+            {data: "dn__inv__bill_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "dn__inv__free_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "dn__inv__ammount", className:"text-right"},
+            {data: "dn__inv__total",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "dn__carrier_agent"},
+            {data: "dn__inv__lr_no"},
+            {data: "dn__inv__lr_date"},
+        ],
+        scrollX:true,
+        scrollY:400,
+        scroller: true,
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every( function () {
+                var that = this;
+
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+    });
+
+    $('#min, #max').on('change', function () {
+        table.ajax.reload();
+        table.draw();
+    });
+} );
+</script>
+{% endblock %}

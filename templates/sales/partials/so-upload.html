@@ -1,0 +1,79 @@
+<tr>
+    <th scope="row" class="datarow">{{no}}</th>
+    <td>
+        <input type="text" class="form-control" id="product_code{{no}}" name="product_code" value="{{product.product_code}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="name_of_item{{no}}" name="name_of_item" value="{{product.product_name}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="batch{{no}}" name="batch" readonly value="{{batch}}">
+    </td>
+    <td>
+        <input type="text" class="form-control" id="offermrp{{no}}" name="offermrp" value="{{offermrp}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="inner{{no}}" name="inner" readonly value="{{product.outer_qty}}">
+    </td>
+    <td>
+        <input type="text" class="form-control" id="stock{{no}}" name="stock" readonly value="{{stock|default_if_none:'0'}}">
+    </td>
+    {% if actualqty > stock %}
+    <td class="errorred">
+    {% else %}
+    <td>
+    {% endif %}
+        <input type="text" class="form-control" id="actualqty{{no}}" name="aqty" value="{{actualqty}}" readonly>
+    </td>
+    {% if billqty > actualqty %}
+    <td class="errorred">
+    {% else %}
+    <td>
+    {% endif %}
+        <input type="text" class="form-control" id="billqty{{no}}" name="billqty" value="{{billqty}}" readonly>
+    </td>
+    {% if freeqty > actualqty %}
+    <td class="errorred">
+    {% else %}
+    <td>
+    {% endif %}
+        <input type="text" class="form-control" id="freeqty{{no}}" name="freeqty" readonly value={{freeqty}}>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="rate{{no}}" name="rate" value="{{rate}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="discount{{no}}" name="discount" value="{{discount}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="ammount{{no}}" name="ammount" value="{{amount}}" readonly>
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="cgst{{no}}" name="cgst" readonly value="{{cgstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="sgst{{no}}" name="sgst" readonly value="{{sgstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="igst{{no}}" name="igst" readonly value="{{igstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="cgstrate{{no}}" name="cgstrate" value="{{cgst}}" readonly>
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="sgstrate{{no}}" name="sgstrate" readonly value="{{sgst}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="igstrate{{no}}" name="igstrate" readonly value="{{igst}}">
+    </td>
+    <td class="align-middle text-center">
+        <button type="button"
+                class="btn btn-danger btn-sm btn-icon"
+                hx-get="{% url 'dash:clear' %}"
+                hx-swap="outerHTML"
+                hx-target="closest tr">
+        <i class="fas fa-trash-alt"></i>
+    </button> </td>
+</tr>
+<tr class="tbody">
+</tr>

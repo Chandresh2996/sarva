@@ -1,0 +1,142 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Multi Address: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:sales-reports' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Multi Address Report</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <table id="pm" class="table nowrap" >
+                    <thead>
+                        <tr>
+                            <th>PARTY NAME</th>
+                            <th>ADDRESS TYPE</th>
+                            <th>MAILLING NAME</th>
+                            <th>ADDRESS LINE1</th>
+                            <th>ADDRESS LINE2</th>
+                            <th>ADDRESS LINE3</th>
+                            <th>COUNTRY</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>PINCODE</th>
+                            <th>CONTACT PERSON</th>
+                            <th>PHONE NO</th>
+                            <th>MOBILE NO</th>
+                            <th>FAX NO</th>
+                            <th>EMAIL</th>
+                            <th>PAN NO</th>
+                            <th>REGISTRATION TYPE</th>
+                            <th>GSTIN</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>PARTY NAME</th>
+                            <th>ADDRESS TYPE</th>
+                            <th>MAILLING NAME</th>
+                            <th>ADDRESS LINE1</th>
+                            <th>ADDRESS LINE2</th>
+                            <th>ADDRESS LINE3</th>
+                            <th>COUNTRY</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>PINCODE</th>
+                            <th>CONTACT PERSON</th>
+                            <th>PHONE NO</th>
+                            <th>MOBILE NO</th>
+                            <th>FAX NO</th>
+                            <th>EMAIL</th>
+                            <th>PAN NO</th>
+                            <th>REGISTRATION TYPE</th>
+                            <th>GSTIN</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Multi Address Report',
+                title: '',
+            },
+            'csv',
+        ],
+        deferRender: true,
+        ajax:"{% url 'reports:multiaddressdata' %}",
+        columns: [
+            {data: "party__name"},
+            {data: "address_type"},
+            {data: "mailing_name"},
+            {data: "addressline1"},
+            {data: "addressline2"},
+            {data: "addressline3"},
+            {data: "country__name"},
+            {data: "state__name"},
+            {data: "city__name"},
+            {data: "pin_code"},
+            {data: "contact_person"},
+            {data: "phone_no"},
+            {data: "mobile_no"},
+            {data: "fax_no"},
+            {data: "email_id"},
+            {data: "pan_no"},
+            {data: "gst_registration_type"},
+            {data: "gstin"},
+        ],
+        scrollX:300,
+        scrollY:400,
+        scroller: true,
+        initComplete: function () {
+
+            this.api().columns().every( function () {
+                var that = this;
+ 
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

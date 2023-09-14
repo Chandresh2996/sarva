@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>PriceList: Import</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:sales' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:pricelist' %}">PriceLists</a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Import PriceList </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-secondary">
+  <div class="card-header">
+    <h3 class="card-title">Sample File</h3>
+  </div>
+  <div class="card-body row">
+    <h6 class="col col-md-6">Download Sample excel file to import PriceList:</h6>
+    <div class="col col-md-6">
+      <a href="{% url 'inventory:pl_download' %}" class="btn btn-primary" style="float: right;">Download</a>
+    </div>
+  </div>
+</div>
+<div class="card card-secondary">
+  <div class="card-header">
+    <h3 class="card-title">Import Price List</h3>
+  </div>
+  <div class="card-body">
+    <form role="form" method="POST" action="{% url 'inventory:pl_import_data' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row mb-3 md-6">
+        <div class="col-xl-4">
+            <label>Choose Excel File to Upload</label>
+            <input class="form-control mb-2" type="file" name="importData">
+        </div>
+        <div class="col-xl-2 mt-4">
+            <button type="submit" class="btn btn-primary btn-block">Import</button>
+        </div>
+    </div>
+    </form>
+  </div>
+</div>
+<div class="card card-secondary">
+  <div class="card-header">
+    <h3 class="card-title">Existing PriceList</h3>
+  </div>
+  <div class="card-body row">
+    <h6 class="col col-md-6">Download excel file to update existing PriceList:</h6>
+    <div class="col col-md-6">
+      <a href="{%  static 'src\PriceList.xlsx' %}" class="btn btn-primary" style="float: right;">Download</a>
+    </div>
+  </div>
+</div>
+{% endblock %} 

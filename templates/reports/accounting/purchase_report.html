@@ -1,0 +1,223 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Purchase: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:purchase-reports' %}"> Purchase </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Purchase </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <table id="pm" class="table nowrap" >
+                    <thead>
+                        <tr>
+                            <th>INVOICE DATE</th>
+                            <th>INVOICE NO</th>
+                            <th>ORDER DUE DATE</th>
+                            <th>ORDER DATE</th>
+                            <th>ORDER NO</th>
+                            <th>REF NO</th>
+                            <th>GRN DATE</th>
+                            <th>GRN NO</th>
+                            <th>SUPPLIER INVOICE</th>
+                            <th>PARTY NAME</th>
+                            <th>ZONE</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>PIN CODE</th>
+                            <th>ADDRESS</th>
+                            <th>GST NO</th>
+                            <th>ALU CODE</th>
+                            <th>EAN CODE</th>
+                            <th>SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>INNER PACK SIZE</th>
+                            <th>OUTER PACK SIZE</th>
+                            <th>COMPANY NAME</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>HSN CODE</th>
+                            <th>MRP</th>
+                            <th>MRP VALUE</th>
+                            <th>BILLED QTY</th>
+                            <th>RATE</th>
+                            <th>BASIC VALUE</th>
+                            <th>GST(%)</th>
+                            <th>GST VALUE</th>
+                            <th>INVOICE VALUE</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>INVOICE DATE</th>
+                            <th>INVOICE NO</th>
+                            <th>ORDER DUE DATE</th>
+                            <th>ORDER DATE</th>
+                            <th>ORDER NO</th>
+                            <th>REF NO</th>
+                            <th>GRN DATE</th>
+                            <th>GRN NO</th>
+                            <th>SUPPLIER INVOICE</th>
+                            <th>PARTY NAME</th>
+                            <th>ZONE</th>
+                            <th>STATE</th>
+                            <th>CITY</th>
+                            <th>PIN CODE</th>
+                            <th>ADDRESS</th>
+                            <th>GST NO</th>
+                            <th>ALU CODE</th>
+                            <th>EAN CODE</th>
+                            <th>SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>INNER PACK SIZE</th>
+                            <th>OUTER PACK SIZE</th>
+                            <th>COMPANY NAME</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>HSN CODE</th>
+                            <th>MRP</th>
+                            <th>MRP VALUE</th>
+                            <th>BILLED QTY</th>
+                            <th>RATE</th>
+                            <th>BASIC VALUE</th>
+                            <th>GST(%)</th>
+                            <th>GST VALUE</th>
+                            <th>INVOICE VALUE</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+ 
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Purchase Report',
+                title: '',
+                customize: function( xlsx ) {
+                    var sheet = xlsx.xl.worksheets['sheet1.xml'];
+     
+                    $('row c[r^="F"]', sheet).attr( 's', '52' );
+                    $('row c[r^="I"]', sheet).attr( 's', '52' );
+                    $('row c[r^="S"]', sheet).attr( 's', '50' );
+                }
+            },
+            'csv',
+        ],
+        deferRender: true,
+        ajax:"{% url 'reports:purchasedata' %}",
+        columns: [
+            {data: "pi__pi_date",render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+            {data: "pi__pi_no"},
+            {data: "grn__po__po_due_date", render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+            {data: "grn__po__po_date", render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+            {data: "grn__po__po_no"},
+            {data: "grn__other_reference"},
+            {data: "grn__grn_date", render: function (data, type, row) {
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }},
+            {data: "grn__grn_no"},
+            {data: "pi__supplier_invoice"},
+            {data: "pi__seller__name"},
+            {data: "pi__seller__zone__name"},
+            {data: "pi__seller_state"},
+            {data: "pi__seller_city"},
+            {data: "pi__seller_pincode"},
+            {data: "pi__seller_address1"},
+            {data: "pi__seller_gstin"},
+            {data: "item__article_code"},
+            {data: "item__ean_code"},
+            {data: "product_code"},
+            {data: "item__product_name"},
+            {data: "item__inner_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "item__outer_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "pi__company__name"},
+            {data: "item__brand__name"},
+            {data: "item__sub_brand__name"},
+            {data: "item__category__name"},
+            {data: "item__product_class__name"},
+            {data: "item__sub_class__name"},
+            {data: "item__hsn"},
+            {data: "mrp",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "mrptotal",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "recd_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "rate", className:"text-right"},
+            {data: "amount", className:"text-right"},
+            {data: "igstrate",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "igst",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "total", className:"text-right"},
+        ],
+        scrollX:300,
+        scrollY:400,
+        scroller: true,
+        initComplete: function () {
+
+            this.api().columns().every( function () {
+                var that = this;
+ 
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

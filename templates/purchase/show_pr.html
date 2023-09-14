@@ -1,0 +1,486 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+{% load humanize %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Purchase Return: View</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'purchase:purchase' %}"> Purchase </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'purchase:pr' %}"> Purchase Return </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">View Purchase Return </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="mb-0"><span class="fw-bold">Purchase Return: </span>{{pi.db_no}}</h4>
+                <div class="page-title-right">
+                    <h4><span class="fw-bold">Date: </span>{{pi.db_date|date:'d-m-Y'}}</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'purchase:addpi' %}" class="needs-validation" >
+                    {% csrf_token %}
+                    <div class="row mx-0">
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_no" class="col-md-4 col-form-label">PR No</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" id="pi_no" name="pi_no" readonly value={{pi.pr_no}}>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_no" class="col-md-4 col-form-label">Puchase No</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" id="po_no" name="po_no" value="{{pi.pi_no}}" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_no" class="col-md-4 col-form-label">Supplier Invoice</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" id="po_no" name="po_no" value="{{pi.pi_no.supplier_invoice}}"  readonly/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_date" class="col-md-5  col-form-label">PR Date</label>
+                                <div class="col-md-7">
+                                    <input readonly type="text" class="form-control" id="so_date" value="{{pi.pi_no.pi_date|date:'d-m-Y'}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <div class="mb-2 w-90">
+                                    <label for="party_name" class="form-label">Bill To</label>
+                                    <input type="text" class="form-control" id="party_name" name="party_name" placeholder="Name" value="{{pi.seller}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-2 w-90">
+                                    <input type="text" class="form-control" id="party_address_type" placeholder="Address Type" name="party_address_type" value="{{pi.seller_address_type}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-2 w-90">
+                                    <textarea type="textfield"
+                                                class="form-control"
+                                                id="party_address"
+                                                name="party_address"
+                                                placeholder="Address"
+                                                readonly> {{pi.seller_address1}},{{pi.seller_address2}},{{pi.seller_address3}} </textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-2 w-90">
+                                    <input type="text"
+                                            class="form-control"
+                                            id="party_gstin"
+                                            placeholder="GSTIN"
+                                            name="party_gstin"
+                                            value="{{pi.seller_gstin}}"
+                                            readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row">
+                                <div class="mb-2 w-90">
+                                    <label for="consignee_name" class="form-label">Ship To</label>
+                                    <input type="text"
+                                            class="form-control"
+                                            id="consignee_name"
+                                            placeholder="Name"
+                                            name="consignee_name"
+                                            value="{{pi.shipto}}"
+                                            readonly>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row">
+                                <div class="mb-2 w-90">
+                                    <input type="text"
+                                            class="form-control"
+                                            id="consignee_address_type"
+                                            placeholder="Address Type"
+                                            name="consignee_address_type"
+                                            value="{{pi.shipto_address_type}}"
+                                            readonly>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row">
+                                <div class="mb-2 w-90">
+                                    <textarea type="textfield"
+                                                class="form-control"
+                                                id="consignee_address"
+                                                placeholder="Address"
+                                                name="consignee_address"
+                                                readonly>{{pi.shipto_address1}},{{pi.shipto_address2}},{{pi.shipto_address3}}</textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-2 w-90">
+                                    <input type="text"
+                                            class="form-control"
+                                            id="consignee_gstin"
+                                            placeholder="GSTIN"
+                                            name="consignee_gstin"
+                                            value="{{pi.shipto_gstin}}"
+                                            readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="dispatch_through" class="form-label">Dispatch Through</label>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" value="{{pi.get_dispatch_through_display}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="destination" class="form-label">
+                                        Destination
+                                    </label >
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control"
+                                            id="destination"
+                                            readonly
+                                            value="{{pi.destination}}"
+                                            name="destination">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="mode_of_payment" class="form-label">
+                                        Mode of payment
+                                    </label >
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control"
+                                            id="mode_of_payment"
+                                            readonly
+                                            value="{{pi.mode_of_payment}}"
+                                            name="mode_of_payment">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="other_reference" class="form-label">Other Reference</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control"
+                                            id="other_reference"
+                                            value="{{pi.other_reference}}"
+                                            readonly
+                                            name="other_reference">
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="terms_of_delivery" class="form-label">Terms of delivery</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control"
+                                            id="terms_of_delivery"
+                                            readonly
+                                            value="{{pi.terms_of_delivery}}"
+                                            name="terms_of_delivery">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mx-0 p-3">
+                        <div class="card w-100">
+                            <div class="card-body" style="padding: 0;">
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="table">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="2%">#</th>
+                                                <th width="10%">SKU Code</th>
+                                                <th width="25%">SKU Name</th>
+                                                <th width="8%">MRP</th>
+                                                <th width="8%">Pack</th>
+                                                <th width="10%">Invoice Qty</th>
+                                                <th width="8%">Damage Qty</th>
+                                                <th width="8%">Rate</th>
+                                                <th width="10%">Ammount</th>
+                                                <th width="10%">GST</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                                {% for i in items %}
+                                                <tr>
+                                                <td>{{forloop.counter}}</td>
+                                                <td>{{i.item}}</td>
+                                                <td>{{i.item.product_name}}</td>
+                                                <td>{{i.mrp}}</td>
+                                                <td>{{i.pack}}</td>
+                                                <td>{{i.actual_qty}}</td>
+                                                <td>{{i.return_qty}}</td>
+                                                <td>{{i.rate}}</td>
+                                                <td>{{i.amount}}</td>
+                                                <td>{{i.igstrate|floatformat:'0'}}</td>
+                                                </tr>
+                                                {% endfor %}
+                                        </tbody>
+                                        <!-- end tbody-->
+                                    </table>
+                                    <!-- end table-->
+                                </div>
+                                <!-- end table responsive -->
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4">
+                            <!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label">
+                                        SubTotal
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control text-right"
+                                            id="totalammount"
+                                            name="totalammount"
+                                            value="{{pi.ammount}}"
+                                            readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="cgst" class="form-label">
+                                        {{pi.other_ledger|default_if_none:' '}}
+                                    </label>                                                      
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control text-right"
+                                            id="other"
+                                            value="{{pi.other}}"
+                                            readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label">
+                                        CGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="cgst" name="cgst" value="{{pi.cgst}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="sgst" class="form-label">
+                                        SGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="sgst" name="sgst" value="{{pi.sgst}}" readonly>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="igst" class="form-label">
+                                        IGST
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="igst" name="igst" value="{{pi.igst}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="tcs" class="form-label"> TCS </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="tcs" name="tcs" value="{{pi.tcs}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="round_off" class="form-label">
+                                        Round Off
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                            class="form-control text-right"
+                                            id="round_off"
+                                            name="round_off"
+                                            value="{{pi.round_off}}"
+                                            readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="total" class="form-label">
+                                        Total
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="total" value="{{pi.total|intcomma}}" name="total" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <div class="row align-items-end">
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label for="narration" class="form-label">
+                                    Remarks
+                                </label>
+                                <input type="text" class="form-control" value="{{pi.narration|default_if_none:' '}}" readonly>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                    <button type="submit"
+                            class="btn btn-primary w-sm ms-auto"
+                            style="position: absolute;
+                                    right: 20px;
+                                    bottom: 20px;">
+                        Submit
+                    </button>
+                </form>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end card body -->
+    </div>
+    <!-- end card -->
+</div>
+{% endblock %}
+{% block scripts %}
+    <script>
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+    document.getElementById("so_date").innerHTML = date;
+
+    $("#po_no").change(function () {
+        var po = $(this).val();
+        $.ajax({
+			url: "{% url 'purchase:ajax_load_grn_list' %}",
+			data: {
+				'grn': po,
+			},
+			success: function (data) {
+				$("#grn_no").html(
+                    data);}
+
+    });
+});
+
+    $("#grn_no").change(function () {
+        var so_no = $(this).val();
+        $.ajax({
+			url: "{% url 'purchase:ajax_load_grn_details' %}",
+			data: {
+				'grn': so_no,
+			},
+			success: function (data) {
+				data = data.split("~");
+                so = data[0].split("|");
+
+                $("#sono").val(so[0])
+                $("#so_date").val(so[1])
+                $("#party_name").val(so[2])
+                $("#party_address_type").val(so[3])
+                $("#party_address").val(so[4])
+                $("#party_gstin").val(so[5])
+                $("#consignee_name").val(so[6])
+                $("#consignee_address_type").val(so[7])
+                $("#consignee_address").val(so[8])
+                $("#consignee_gstin").val(so[9])
+                $("#mode_of_payment").val(so[10])
+                $("#other_reference").val(so[11])
+                $("#terms_of_delivery").val(so[12])
+                $("#cgst").val(so[13])
+                $("#sgst").val(so[14])
+                $("#igst").val(so[15])
+                $("#tcs").val(so[16])
+                $("#other").val(so[17])
+                $("#round_off").val(so[18])
+                $("#narration").val(so[19])
+                $("#dispatch_through").val(so[20])
+                $("#destination").val(so[21])
+                $("#totalammount").val(so[22])
+                $("#total").val(so[23])
+                var table = $("#table")
+                
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=1;i<data.length;i++)
+                { 
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+                    
+                    var cell = $("<td />");
+                    cell.html(i);
+                    row.append(cell);  
+                    
+                    for(j=1;j<item.length;j++){
+                        var cell = $("<td />");
+                        var input = $("<input />").attr('class','form-control').attr('readonly', true);
+                        input.val(item[j]);
+                        cell.append(input);  
+                        row.append(cell);  
+                    }
+                    
+				 
+	    		}
+		}});
+    });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% load mathops %}
+{% if po %}
+{{ po.po_no }}
+|{{ po.po_date }}
+|{{ po.seller }}
+|{{ po.seller_address_type }}
+|{{ po.seller_address1 }}
+ {{ po.seller_address2 }}
+ {{ po.seller_address3 }}
+|{{ po.seller_gstin }}
+|{{ po.shipto }}
+|{{ po.shipto_address_type }}
+|{{ po.shipto_address1 }}
+ {{ po.shipto_address2 }}
+ {{ po.shipto_address3 }}
+|{{ po.shipto_gstin }}
+|{{ po.mode_of_payment }}
+|{{ po.other_reference }}
+|{{ po.terms_of_delivery }}
+|0
+|0
+|0
+|0
+|0
+|0
+|{{ po.narration }}
+|{{ po.currency }}
+{% for i in items %}
+~|{{ i.product_code }}
+|{{ i.item.product_name }}
+|{{ i.pack }}
+|{{ i.item.mrp }}
+|{{ i.actual_qty}}
+|
+|{{ i.rate }}
+|0
+|{{ i.item.gst|divide:2 }}
+|{{ i.item.gst|divide:2 }}
+|{{ i.item.gst }}
+|0
+|0
+|0
+{% endfor %}
+{% else %}
+{{ rso.rso_no }}
+|{{ rso.rso_date }}
+|{{ rso.inv.buyer }}
+|{{ rso.inv.buyer_address_type }}
+|{{ rso.inv.buyer_address1 }}
+ {{ rso.inv.buyer_address2 }}
+ {{ rso.inv.buyer_address3 }}
+|{{ rso.inv.buyer_gstin }}
+|{{ rso.inv.shipto }}
+|{{ rso.inv.shipto_address_type }}
+|{{ rso.inv.shipto_address1 }}
+ {{ rso.inv.shipto_address2 }}
+ {{ rso.inv.shipto_address3 }}
+|{{ rso.inv.shipto_gstin }}
+|{{ rso.mode_of_payment }}
+|{{ rso.other_reference }}
+|{{ rso.terms_of_delivery }}
+|0
+|0
+|0
+|0
+|0
+|0
+|{{ rso.narration }}
+{% for i in is %}
+~|{{ i.i }}
+|{{ i.i.product_name }}
+|{{ i.i.outer_qty }}
+|{{ i.i.mrp }}
+|{{ i.rso_qty}}
+|
+|{{ i.rate }}
+|0
+|{{ i.sgstrate }}
+|{{ i.cgstrate }}
+|{{ i.igstrate }}
+|0
+|0
+|0
+{% endfor %}
+{% endif %}

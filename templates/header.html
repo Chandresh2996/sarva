@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function subst() {
+            var vars = {};
+            var query_strings_from_url = document.location.search.substring(1).split('&');
+            for (var query_string in query_strings_from_url) {
+                if (query_strings_from_url.hasOwnProperty(query_string)) {
+                    var temp_var = query_strings_from_url[query_string].split('=', 2);
+                    vars[temp_var[0]] = decodeURI(temp_var[1]);
+                }
+            }
+            var css_selector_classes = ['page', 'frompage', 'topage', 'webpage', 'section', 'subsection', 'date', 'isodate', 'time', 'title', 'doctitle', 'sitepage', 'sitepages'];
+            for (var css_class in css_selector_classes) {
+                if (css_selector_classes.hasOwnProperty(css_class)) {
+                    var element = document.getElementsByClassName(css_selector_classes[css_class]);
+                    for (var j = 0; j < element.length; ++j) {
+                        element[j].textContent = vars[css_selector_classes[css_class]];
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+            color: rgba(0, 0, 0, 0.87);
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            padding: 0;
+            padding-top: 0;
+            width: 200mm;
+            height: 287mm;
+            page-break-inside: auto;
+        }
+
+        .responsive-table {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 1.5em;
+            border-spacing: 0;
+        }
+
+
+        table {
+            page-break-inside: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            height: fit-content !important;
+            page-break-after: auto;
+            page-break-inside: auto;
+        }
+
+        table,
+        tbody {
+            vertical-align: top;
+            overflow: visible;
+        }
+
+        tbody {
+            height: fit-content !important;
+            max-height: max-content !important;
+            display: block !important;
+            page-break-inside: avoid;
+        }
+
+        td {
+            border: 1px solid;
+            vertical-align: middle;
+            padding: 5px;
+            page-break-after: auto;
+            page-break-inside: auto;           
+        }
+
+        tr {
+            page-break-after: auto;
+            page-break-inside: auto;
+        }
+
+         th {
+            letter-spacing: 2px;
+            font-weight: 900;
+            border: 1px solid;
+
+        } 
+        th p {
+            vertical-align: middle !important;
+            align-items: center !important;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .s1 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 24pt;
+        }
+
+        .s2 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        .s3 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s4 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        .s5 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11px;
+            word-wrap: break-word;
+            word-break: break-word;
+        
+        }
+
+        .s6 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 11px;
+            word-wrap: break-word;
+            word-break: break-all;
+            
+        }
+
+        .s7 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11px;
+            line-height: 15px;
+            word-wrap: break-word;
+        }
+
+        .s8 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+            word-wrap: break-word;
+        }
+
+        .s9 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 9pt;
+            line-height: 25px;
+            word-wrap: break-word;
+        }
+
+        .s10 {
+            color: black;
+            font-family: "Times New Roman", serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+            word-wrap: break-word;  
+        }
+
+        .s11 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        p {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            /* letter-spacing: 2px; */
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+            margin: 0pt;
+           
+        }
+
+        ol,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ol {
+            counter-reset: foo;
+            display: table;
+        }
+
+        li {
+            list-style: none;
+            counter-increment: foo;
+            display: table-row;
+            line-height: 30px;
+        }
+
+        li::before {
+            content: counter(foo) ".";
+            display: table-cell;
+            text-align: right;
+            padding-right: .8em;
+            line-height: 40pt;
+        }
+
+        h3 {
+            text-decoration: underline;
+        }
+
+        .b-t-none {
+            border-top: none;
+        }
+
+        .b-r-none {
+            border-right: none;
+        }
+
+        .b-b-none {
+            border-bottom: none;
+        }
+
+        .b-l-none {
+            border-left: none;
+        }
+
+        .border-none {
+            border: none;
+        }
+
+        /* p {
+            padding: 2.5px;
+        } */
+
+        .th-wrap-padding td , .th-wrap-padding td p {
+            padding: 0 2px 0 2px;
+            vertical-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <table style="border-collapse:collapse ;
+                          min-width:100%;
+                          " cellspacing="0" class="responsive-table mb-0 table-1 ">
+      <tr style="height: 200px !important;">
+                {% if inv.company.id == 1 %}
+                <td style="" colspan="10">
+                    <p class="s1" style="
+                                    padding: 11pt 0 0 0;
+                                  text-indent: 0pt;
+                                  text-align: center;">
+                        STONE SAPPHIRE (INDIA) PRIVATE LIMITED
+                    </p>
+                    <p class="s2" style="                                  text-indent: 0pt;
+                                  text-align: center;">
+                        Plot No. 901/05/10,
+                    </p>
+                    <p class="s2" style=" text-align: center;">
+                        G.I.D.C. Industrial Estate, Makarpura, Vadodara.
+                    </p>
+                    <p style="text-indent: 0pt;text-align: center;">
+                        <a href="mailto:contact@stonesapphire.com" class="s3" target="_blank">Mo:- 9586167020 /
+                            7229039622 E-Mail ID :- contact@stonesapphire.com</a>
+                    </p>
+                    <p class="s2" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: center;">
+                        State Code : 24 GSTIN : 24AAKCS5015L1Z8
+                    </p>
+                </td>
+                {% endif %}
+            </tr>
+            <tr style="height:40px !important;">
+                <td style="width:fit-content !important; max-width: fit-content!important;" colspan="10">
+                    <p class="s4" style="
+                                  text-indent: 0pt;
+                                  line-height: 13pt;
+                                  text-align: center;
+                                  ">
+                        INVOICE
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:fit-content !important;">
+                <td style="width: fit-content!important; max-width: fit-content!important;  padding-bottom: 0; " class="b-b-none" colspan="4">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;
+                                   ">
+                        Consignee (Ship to)
+                    </p>
+                </td>
+                 
+                <td style="width:126px !important; max-width:126px!important;  padding-bottom: 0; padding-top: 0;" class="b-b-none" colspan="3">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;
+                                  padding-bottom: 0; padding-top: 0">
+                        Invoice
+                    </p>
+                </td>
+                <td style="width:126px !important; max-width:126px!important;  padding-bottom: 0; padding-top: 0" colspan="3" class="b-b-none">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;
+                                  padding-bottom: 0;
+                                  padding-top: 0
+                                  ">
+                        Dated
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:fit-content !important;">
+                <td style=" vertical-align: top;width: 500px!important; max-width: 500px!important; padding-top: 0;  " class="b-t-none" colspan="4" rowspan="3">
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  text-align: left;
+                                  padding-top: 0;
+                                  ">
+                        {{ inv.shipto }}
+                    </p>
+                    <p class="s7" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ inv.shipto_address1 }}{{ inv.shipto_address2 }}{{ inv.shipto_address3 }}
+                    </p>
+            
+                    <p class="s7" style="
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        GSTIN/UIN : {{ inv.shipto_gstin }}
+                    <p class="s7" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        State Name : {{ inv.shipto_state }}, Code : {{ inv.shipto_gstin|slice:":2" }}
+                    </p>
+                    <p class="s7" style="
+                    text-indent: 0pt;
+                    line-height: 11pt;
+                    text-align: left;">
+                        Pincode : {{ inv.shipto_pincode }}
+                    </p>
+                    <p class="s7" style="
+      text-indent: 0pt;
+      line-height: 11pt;
+      text-align: left;">
+                        Contact Person : {{ inv.shipto.contact_person }}
+                    </p>
+                    <p class="s7" style="
+text-indent: 0pt;
+line-height: 11pt;
+text-align: left;">
+                        Contact : {{ inv.shipto.mobile_no }}
+                    </p>
+                </td>
+                <td style="width:126px !important; max-width:126px!important;" class="b-t-none" colspan="3">
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                           {{ inv.inv_no }}
+                    </p>
+                </td>
+                <td style="width:126px !important; max-width:126px!important;" class="b-t-none" colspan="3">
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                       {{ inv.inv_date|date:'d-m-Y'}}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:30px !important;">
+                <td style="width:126px !important; max-width:126px!important;" colspan="3">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:126px !important; max-width:126px!important;" colspan="3">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Mode/Terms of Payment
+                    </p>
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ inv.mode_of_payment|default_if_none:''}}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:0 !important;">
+                <td style="width:126px !important; max-width:126px!important;" colspan="3" rowspan="2">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                       Reference No. &amp; Date.
+                    </p>
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                       {{ inv.dn.sales_order.order_no|default_if_none:''}}
+                    </p>
+                </td>
+                <td style="width:126px !important; max-width:126px!important;" colspan="3" rowspan="2">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Other References
+                    </p>
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                         {{ inv.other_reference|default_if_none:''}}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:unset!important; ">
+                <td style="width: 500px!important; max-width: 500px;" colspan="4" rowspan="3">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                         Buyer (Bill to)
+                    </p>
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                      {{ inv.buyer }}
+                    </p>
+                    <p class="s7" style="
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        {{ inv.buyer_address1 }}{{ inv.buyer_address2 }}{{ inv.buyer_address3 }}
+                    </p>
+                    <p class="s7" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                         GSTIN/UIN : {{ inv.buyer_gstin }}
+                    </p>
+                    <p class="s7" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        State Name : {{ inv.buyer_state }}, Code : {{ inv.buyer_gstin|slice:":2" }}
+                    </p>
+
+                    <p class="s7" style="
+                    text-indent: 0pt;
+                    line-height: 11pt;
+                    text-align: left;">
+          Pincode : {{ inv.buyer_pincode }}
+      </p>
+      <p class="s7" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        Contact Person : {{ inv.buyer.contact_person }}
+                    </p>
+                    <p class="s7" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        Contact : {{ inv.buyer.mobile_no }}
+                    </p>
+
+                </td>
+            </tr>
+            <tr style="height: 50px !important;">
+                <td style="width:126px !important; max-width:126px!important;" colspan="3">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Dispatched through
+                    </p>
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ inv.dispatch_through|default_if_none:''}}
+                    </p>
+                </td>
+                <td style="width:126px !important; max-width:126px!important;" colspan="3">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Destination
+                    </p>
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ inv.destintaion|default_if_none:''}}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height: 50px !important;">
+                <td style="width: 360px !important; max-width: 360px!important; vertical-align: top;" colspan="6">
+                    <p class="s5" style="
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Terms of Delivery
+                    </p>
+                    <p class="s6" style="
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        {{ inv.terms_of_delivery }}
+                    </p>
+                </td>
+            </tr>
+    </table>
+</body>
+</html>

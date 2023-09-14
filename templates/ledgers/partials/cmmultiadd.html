@@ -1,0 +1,203 @@
+<div id="multiaddress" class="row">
+    <hr style="border: 10px solid green; border-radius: 5px;">
+    <div class="row w-100">
+        <div class="col">
+            <button type="button" style="margin-top:12px;padding: 0.20rem 0.50rem; float:right;"
+            class="btn btn-danger" hx-get="{% url 'dash:clear' %}" hx-swap="outerHTML" hx-target="closest #multiaddress">
+            <i class="uil uil-ban">X</i>
+        </button>
+    </div>
+</div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="address_type1" class="form-label"> Address Type<span style="color:red">*</span> </label>
+            <input autocomplete="off" type="text" class="form-control" id="address_type1" name="address_type1">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="mailing_name1" class="form-label"> Mailling Name<span style="color:red">*</span> </label>
+            <input autocomplete="off" type="text" class="form-control" id="mailing_name1" name="mailing_name1">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_addressline11" class="form-label"> Address Line1<span style="color:red">*</span> </label>
+            <input autocomplete="off" type="text" class="form-control" id="pcd_addressline11" name="pcd_addressline11">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_addressline21" class="form-label"> Address Line2<span style="color:red">*</span> </label>
+            <input autocomplete="off" type="text" class="form-control" id="pcd_addressline21" name="pcd_addressline21">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_addressline31" class="form-label"> Address Line3<span style="color:red">*</span> </label>
+            <input autocomplete="off" type="text" class="form-control" id="pcd_addressline31" name="pcd_addressline31">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <label for="countryoptions{{no}}" class="form-label">Country<span style="color:red">*</span></label>
+        <div>
+            <select class="form-control" id="countryoptions{{no}}" name="pcd_country">
+                <option value="">---------</option>
+                {% for country in countries %}
+                <option value="{{ country.pk }}">{{ country.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div><!-- end col -->
+    <div class="col-lg-4">
+        <label for="stateoptions{{no}}" class="form-label">State<span style="color:red">*</span></label>
+        <div>
+            <select class="form-control" id="stateoptions{{no}}" name="pcd_state">
+                <option>Select</option>
+            </select>
+        </div>
+    </div><!-- end col -->
+    <div class="col-lg-4">
+        <label for="cityoptions{{no}}" class="form-label">City<span style="color:red">*</span></label>
+        <div>
+            <select class="form-control" id="cityoptions{{no}}" name="pcd_city">
+                <option>Select</option>
+            </select>
+        </div>
+    </div><!-- end col -->
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_pincode1" class="form-label">Pincode<span style="color:red">*</span></label>
+            <input autocomplete="off" type="text"
+                    class="form-control"
+                    id="pcd_pincode1"
+                    name="pcd_pincode">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_contact_person1" class="form-label">
+                Contact
+                Person<span style="color:red">*</span>
+            </label>
+            <input autocomplete="off" type="text"
+                    class="form-control"
+                    id="pcd_contact_person1"
+                    name="pcd_contact_person1">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_phone_no1" class="form-label">Phone no<span style="color:red">*</span></label>
+            <input autocomplete="off" type="text" value=""
+                    class="form-control"
+                    id="pcd_phone_no1"
+                    name="pcd_phone_no">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_mobile_no1" class="form-label">Mobile No<span style="color:red">*</span></label>
+            <input autocomplete="off" type="text" value=" "
+                    class="form-control"
+                    id="pcd_mobile_no1"
+                    name="pcd_mobile_no">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_fax_no1" class="form-label">Fax No</label>
+            <input autocomplete="off" type="text" value=" "
+                    class="form-control"
+                    id="pcd_fax_no1"
+                    name="pcd_fax_no">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_email_id1" class="form-label">Email<span style="color:red">*</span></label>
+            <input autocomplete="off" type="email" value=" "
+                    class="form-control"
+                    id="pcd_email_id1"
+                    name="pcd_email_id">
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="pcd_pan_no1" class="form-label">PAN No<span style="color:red">*</span></label>
+            <input autocomplete="off" type="text" class="form-control" id="pcd_pan_no1" name="pcd_pan_no">
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <label for="gst_registration_type1" class="form-label">
+            Registration
+            Type
+        </label>
+        <div>
+            <select class="form-control" name="pcd_gst_registration_type1">
+                <option value="Unknown">
+                    Unknown
+                </option>
+                <option value="Composition">
+                    Composition
+                </option>
+                <option value="Consumer">
+                    Consumer
+                </option>
+                <option value="Regular">
+                    Regular
+                </option>
+                <option value="Unregistered">
+                    Unregistered
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="mb-3">
+            <label for="gstin1" class="form-label">GSTIN</label>
+            <input autocomplete="off" type="text" class="form-control" id="gstin1" name="pcd_gstin">
+        </div>
+    </div>
+</div>
+<button type="button"
+        class="btn btn-success"
+        hx-get="{% url 'ledgers:cmmultiadd' %}"
+        hx-swap="outerHTML"
+        hx-vals='{"no": {{no}}}'>
+    <i class="uil uil-ban">Add More Address</i>
+</button>
+
+<script>
+    $("#countryoptions{{no}}").change(function () {
+        var countryId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:ajax_load_states' %}",
+            data: {
+                'country': countryId
+            },
+            success: function (data) {
+                $("#stateoptions{{no}}").html(
+                    data);
+            }
+        });
+
+    });
+
+    $("#stateoptions{{no}}").change(function () {
+        var stateId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:ajax_load_cities' %}",
+            data: {
+                'state': stateId
+            },
+            success: function (data) {
+                $("#cityoptions{{no}}").html(
+                    data);
+            }
+        });
+
+    });
+</script>

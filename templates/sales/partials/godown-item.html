@@ -1,0 +1,22 @@
+<tr>
+    <td> <input name="g{{no}}" autocomplete="off" /></td>
+    <td> <input name="q{{no}}" autocomplete="off" /></td>
+    <td class="align-middle text-center">
+        <button type="button"
+                class="btn btn-danger btn-sm btn-icon ml-2"
+                hx-get="{% url 'dash:clear' %}"
+                hx-swap="outerHTML"
+                hx-target="closest tr">
+        <i class="fas fa-trash-alt"></i>
+    </button>
+</tr>
+<td class="align-middle">
+    <button type="button"
+            class="btn btn-success btn-sm btn-icon"
+            hx-get="{% url 'sales:godown-item' %}"
+            hx-swap="outerHTML"
+            hx-target="closest tr"
+            hx-vals='{"no": "{{no}}"}'>
+            <i class="fas fa-plus"></i>
+    </button>
+</td>

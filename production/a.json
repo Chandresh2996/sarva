@@ -1,0 +1,27 @@
+[{
+        'bom__product__product_code': '070/ANJC',
+        'item': 2,
+        'bom': 1,
+        'bom__name': 'BOM 1',
+        'item__product_code': '1086/PTLB',
+        'qty': Decimal('100.0000'),
+        'sqty': 0
+    },
+    {
+        'bom__product__product_code': '070/ANJC',
+        'item': 3,
+        'bom': 1,
+        'bom__name': 'BOM 1',
+        'item__product_code': '1186/CFAP',
+        'qty': Decimal( '200.0000'),
+        'sqty': Decimal('100.00'),
+        'inner': [{
+            'bom__product__product_code': '1186/CFAP',
+            'item': 5,
+            'bom__name': 'bom 2',
+            'item__product_code': '36465',
+            'qty': Decimal('800.0000'),
+            'sqty': Decimal('400.00')
+        }]
+    }
+]

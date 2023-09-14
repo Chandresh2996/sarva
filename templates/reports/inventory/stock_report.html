@@ -1,0 +1,162 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Stock Report: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:inventory-reports' %}"> Inventory </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Stock Report </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-0">
+            <div class="card-body" >
+                <table id="pm" class="table nowrap" >
+                    <thead>
+                        <tr>
+                            <th>ALU CODE</th>
+                            <th>EAN CODE</th>
+                            <th>SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>DESCRIPTION</th>
+                            <th>INNER PACK SIZE</th>
+                            <th>OUTER PACK SIZE</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>SERIES</th>
+                            <th>SHAPE CODE</th>
+                            <th>PATTERN</th>
+                            <th>UOM</th>
+                            <th>HSN / SAC CODE</th>
+                            <th>GST (%)</th>
+                            <th>GODOWN NAME</th>
+                            <th>GODOWN TYPE</th>
+                            <th>MRP</th>
+                            <th>QUANTITY</th>
+                            <th>RATE</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>ALU CODE</th>
+                            <th>EAN CODE</th>
+                            <th>SKU CODE</th>
+                            <th>SKU NAME</th>
+                            <th>DESCRIPTION</th>
+                            <th>INNER PACK SIZE</th>
+                            <th>OUTER PACK SIZE</th>
+                            <th>BRAND</th>
+                            <th>SUB BRAND</th>
+                            <th>CATEGORY</th>
+                            <th>CLASS</th>
+                            <th>SUB CLASS</th>
+                            <th>SERIES</th>
+                            <th>SHAPE CODE</th>
+                            <th>PATTERN</th>
+                            <th>UOM</th>
+                            <th>HSN / SAC CODE</th>
+                            <th>GST (%)</th>
+                            <th>GODOWN NAME</th>
+                            <th>GODOWN TYPE</th>
+                            <th>MRP</th>
+                            <th>QUANTITY</th>
+                            <th>RATE</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+
+    // DataTable
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Stock Report',
+                title: '',
+            },
+            'csv',
+        ],
+        deferRender: true,
+        ajax:"{% url 'reports:stockdata' %}",
+        columns: [
+            {data: "product__article_code"},
+            {data: "product__ean_code"},
+            {data: "product__product_code"},
+            {data: "product__product_name"},
+            {data: "product__description"},
+            {data: "product__inner_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "product__outer_qty",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "product__brand__name"},
+            {data: "product__sub_brand__name"},
+            {data: "product__category__name"},
+            {data: "product__product_class__name"},
+            {data: "product__sub_class__name"},
+            {data: "product__series"},
+            {data: "product__shape_code"},
+            {data: "product__pattern"},
+            {data: "product__units_of_measure__symbol"},
+            {data: "product__hsn"},
+            {data: "product__gst",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "godown__name"},
+            {data: "godown__godown_type"},
+            {data: "mrp",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "closing_balance",render: $.fn.dataTable.render.number(',', '.', 0, ''), className:"text-right"},
+            {data: "rate", className:"text-right"},
+        ],
+        deferRender: true,
+        scrollX:300,
+        scrollY:'500px',
+        scroller: true,
+        nowrap:true,
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every( function () {
+                var that = this;
+
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

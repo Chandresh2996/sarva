@@ -1,0 +1,56 @@
+<tr>
+    <th scope="row" class="datarow">{{no}}</th>
+    {% if actualqty > stock or billqty > stock %}
+    <td class="errorred">
+    {% else %}
+    <td>
+    {% endif %}
+        <input type="text" class="form-control" id="product_code_{{no}}" name="product_code" value="{{product.product_code}}" autocomplete="off" required readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="name_of_item_{{no}}" name="name_of_item" value="{{product.product_name}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="batch_{{no}}" name="batch" readonly value="{{batch}}">
+    </td>
+    <td>
+        <input type="text" class="form-control" id="inner_{{no}}" name="inner" readonly value="{{product.outer_qty}}">
+    </td>
+    <td>
+        <input type="text" class="form-control" id="stock_{{no}}" name="stock" readonly value="{{stock}}">
+    </td>
+
+    {% if actualqty > stock or billqty > stock %}
+    <td class="errorred">
+    {% else %}
+    <td>
+    {% endif %}
+        <input type="text" class="form-control" id="billqty_{{no}}" name="billqty" value="{{billqty}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="rate_{{no}}" name="rate" value="{{rate}}" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control" id="ammount_{{no}}" name="ammount" value="{{amount}}" readonly>
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="cgst_{{no}}" name="cgst" readonly value="{{gst.cgstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="sgst_{{no}}" name="sgst" readonly value="{{gst.sgstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="igst_{{no}}" name="igst" readonly value="{{gst.igstrate}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="cgstrate_{{no}}" name="cgstrate" value="{{cgst}}" readonly>
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="sgstrate_{{no}}" name="sgstrate" readonly value="{{sgst}}">
+    </td>
+    <td style="display:none;">
+        <input type="text" class="form-control" id="igstrate_{{no}}" name="igstrate" readonly value="{{igst}}">
+    </td>
+</tr>
+<tr class="tbody">
+</tr>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Product Class: Create</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"> Master </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:inventory' %}">Registration</a></li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:class' %}"> Class </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Create Class </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="needs-validation"  action="{% url 'inventory:add_class' %}" method="POST" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Name<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center justify-content-end">
+                            <button class="btn btn-primary" type="submit" >Submit</button>
+                        </div>
+                    </div>
+                </form><!-- end form -->
+            </div><!-- end card body -->
+        </div><!-- end card -->
+    </div>
+</div>
+
+{% endblock %}

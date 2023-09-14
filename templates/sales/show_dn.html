@@ -1,0 +1,400 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% load mathops %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+{% load humanize %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Delivery Note: View</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'warehouse:warehouse' %}">warehouse</a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:dn' %}">Delivery Notes</a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">View Delivery Note </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="mb-0"><span class="fw-bold">Delivery Note: </span>{{dn.dn_no}}</h4>
+                <div class="page-title-right">
+                    <h4><span class="fw-bold">Date: </span>{{date|date:'d-m-Y'}}</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'sales:adddn' %}" class="needs-validation" >
+                    {% csrf_token %}
+                    <div class="row mx-0">
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_no" class="col-md-4 col-form-label">SO NO</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" id="so_no" name="so_no" value="{{dn.sales_order}}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-lg-3">
+                            <div class="mb-2">
+                                <label for="party_name" class="form-label">Bill To</label>
+                                <input type="text" class="form-control" id="party_name" name="party_name" value="{{dn.buyer}}" placeholder="Name" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_address_type" value="{{dn.buyer_address_type}}" placeholder="Address Type" name="party_address_type" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="party_address" value="{{dn.buyer_address}}" name="party_address" placeholder="Address" readonly>
+{{dn.buyer_address1|default_if_none:''}},                                                
+{{dn.buyer_address2|default_if_none:''}},                                                
+{{dn.buyer_address3|default_if_none:''}},                                               
+PIN:{{so.buyer_pincode}} 
+                                </textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_gstin" placeholder="GSTIN" value="{{dn.buyer_gstin}}" name="party_gstin" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mb-2">
+                                <label for="consignee_name" class="form-label">Ship To</label>
+                                <input type="text" class="form-control" id="consignee_name" value="{{dn.shipto}}"
+                                    placeholder="Name" name="consignee_name" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="consignee_address_type" value="{{dn.shipto_address_type}}"
+                                    placeholder="Address Type" name="consignee_address_type" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="consignee_address" value="{{dn.shipto_address}}"
+                                    placeholder="Address" name="consignee_address" readonly>
+{{dn.shipto_address1|default_if_none:''}},                                                
+{{dn.shipto_address2|default_if_none:''}},                                                
+{{dn.shipto_address3|default_if_none:''}},                                               
+PIN:{{so.shipto_pincode}}  
+                                </textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="consignee_gstin" value="{{dn.shipto_gstin}}" placeholder="GSTIN" name="consignee_gstin" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="dispatch_doc_no" class="form-label">Transport Doc No</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="dispatch_doc_no" name="dispatch_doc_no" value="{{dn.dispatch_doc_no|default_if_none:''}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="lr_date" class="form-label">Transport Doc Date</label>
+                                </div>
+                                <div class="col">
+                                    <input type="date" class="form-control" id="lr_date" name="lr_date" value="{{dn.lr_date|date:'Y-m-d'}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="dispatch_through" class="form-label">Mode Transport</label>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" id="dispatch_through" name="dispatch_through">
+                                        <option value="{{dn.dispatch_through}}">{{dn.dispatch_through}}</option>
+                                        <option value="1">Road</option>
+                                        <option value="2">Rail</option>
+                                        <option value="3">Air</option>
+                                        <option value="4">Ship</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="destintaion" class="form-label">Distance</label>
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" id="destintaion" name="destintaion" value="{{dn.destintaion}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="carrier_agent" class="form-label">Transporter</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="carrier_agent" name="carrier_agent" value="{{dn.carrier_agent|default_if_none:''}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="vehicle_type" class="form-label">Vehicle Type</label>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" id="vehicle_type" name="vehicle_type">
+                                        <option value="0">--------</option>
+                                        <option value="1">Regular</option>
+                                        <option value="2">ODC</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="vehical_no" class="form-label">Vehical No</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="vehical_no" name="vehical_no" value="{{dn.vehical_no|default_if_none:''}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="price_list" class="form-label">Price List</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="price_list" name="price_list" readonly value="{{dn.sales_order.price_list}}">
+                                </div>
+                            </div><!-- end col -->
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="mode_of_payment" class="form-label">Mode of payment</label >
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="mode_of_payment" readonly value="{{dn.sales_order.mode_of_payment}}"
+                                        name="mode_of_payment">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="other_reference" class="form-label">Other Reference</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="other_reference" readonly value="{{dn.order_no|default_if_none:''}}" name="other_reference">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="terms_of_delivery" class="form-label">Terms of delivery</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="terms_of_delivery" readonly value="{{dn.sales_order.terms_of_delivery}}" name="terms_of_delivery">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="card">
+                            <div class="card-body" style="padding: 0;">
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="table">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="15">#</th>
+                                                <th>SKU Code</th>
+                                                <th>SKU Name</th>
+                                                <th>MRP</th>
+                                                <th>Offer MRP</th>
+                                                <th>Pack</th>
+                                                <th>Available Qty</th>
+                                                <th>Total Qty</th>
+                                                <th>Billed Qty</th>
+                                                <th>Free Qty</th>
+                                                <th>Rate</th>
+                                                <th>Discount</th>
+                                                <th>Amount</th>
+                                                <th width="50">GST</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                            {% for item in items %}
+                                            <tr>
+                                                <th scope="row">{{forloop.counter}}</th>
+                                                <td><input type="text" class="form-control" id="product_code" value="{{item.item__product_code}}" readonly name="product_code"></td>
+                                                <td><input type="text" class="form-control" id="name_of_item" value="{{item.item__product_name}}" readonly name="name_of_item"></td>
+                                                <td><input type="text" class="form-control text-right" id="batch" value="{{item.mrp}}" name="batch" readonly></td>
+                                                <td><input type="text" class="form-control text-right" id="offermrp" value="{{item.offer_mrp}}" readonly name="offermrp"></td>
+                                                <td><input type="text" class="form-control text-right" id="inner" value="{{item.pack}}" name="inner" readonly></td>
+                                                <td><input type="text" class="form-control text-right" id="stock" value="{{item.available_qty}}" name="stock" readonly></td>
+                                                <td><input type="text" class="form-control text-right" id="actualqty" value="{{item.actual_qty}}" readonly name="actualqty "></td>
+                                                <td><input type="text" class="form-control text-right" id="billqty" value="{{item.billed_qty}}" readonly name="billqty"></td>
+                                                <td><input type="text" class="form-control text-right" id="freeqty" value="{{item.free_qty}}" readonly name="freeqty"></td>
+                                                <td><input type="text" class="form-control text-right" id="rate" value="{{item.rate}}" readonly name="rate"></td>
+                                                <td><input type="text" class="form-control text-right" id="discount" value="{{item.discount}}" readonly name="discount"></td>
+                                                <td><input type="text" class="form-control text-right" id="ammount" readonly value="{{item.amount}}" name="ammount" readonly></td>
+                                                <td><input type="text" class="form-control text-right" id="igstrate" readonly value="{{item.igstrate|floatformat:'0'}}" name="igstrate" readonly></td>
+                                                <td class="align-middle"><label class="form-check-label" for="godown{{ item.item__product_code }}"><i style="padding: 5px" class="fa-solid fa-store btn-info"></i></label>
+                                                    <input class="form-check-input" type="checkbox" id="godown{{ item.item__product_code }}" data-toggle="modal" data-target="#modal{{forloop.counter}}" autocomplete="off" name="godown{{ item.product_code }}" style="display:None;">
+                                                    <div class="modal" id="modal{{forloop.counter}}" tabindex="-1" aria-labelledby="gstModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" style = "max-width:700px;">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table class="table mb-0">
+                                                                        <thead class="table-light">
+                                                                            <tr>
+                                                                                <td>Godown Name</td>
+                                                                                <td>Item Quantity</td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {% for i in item.gd %}
+                                                                                        <tr>
+                                                                                            <td> <input value="{{ i.godown }}" name="g{{item}}" readonly></td>
+                                                                                            <td> <input value="{{ i.qty }}" name="q{{item}}" readonly></td>
+                                                                                        </tr>
+                                                                            {% endfor %}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-lg-4 pt-5 mt-5">
+                            <div class="mt-5">
+                                <label for="narration" class="form-label"> Remarks </label>
+                                <input type="text" class="form-control" id="narration" value="{{dn.narration}}" name="narration">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label"> SubTotal </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalammount" name="ammount" value="{{dn.ammount}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+
+                                <div class="col">
+                                    <label for="extradiscount" class="form-label">Discount</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="extradiscount" name="extradiscount" value="{{dn.discount}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col-xl-4" style="padding: 0px 3px;">
+                                    <input class="form-control text-right" id="other_ledger" name="other_ledger" value="{{dn.other_ledger}}"/>
+                                        {% comment %} <option value=''>Ledger</option>
+                                        {% for i in ledgers %}
+                                        <option value='{{i.pk}}'>{{i}}</option>
+                                        {% endfor %}
+                                    </input>{% endcomment %}
+                                </div>
+                                <div class="col-xl-3" style="padding: 0px 3px;">
+                                    <input class="form-control text-right" id="other_ledger_per" name="ol_rate" value="{{dn.ol_rate}}" />
+                                        {% comment %} <option value='0'>0 %</option>
+                                        <option value='5'>5 %</option>
+                                        <option value='12'>12 %</option>
+                                        <option value='18'>18 %</option>
+                                        <option value='28'>28 %</option>
+                                    </input> {% endcomment %}
+                                </div>
+                                <div class="col-xl-5" style="padding-left: 3px;">
+                                    <input type="text" class="form-control text-right" id="other" value='0' name="other" value="{{d.ol_rate}}">
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalcgst" class="form-label">CGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalcgst" value="{{dn.cgst}}" name="totalcgst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalsgst" class="form-label">SGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalsgst" value="{{dn.sgst}}" name="totalsgst" readonly>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totaligst" class="form-label">IGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totaligst" value="{{dn.igst}}" name="totaligst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totaltcs" class="form-label">TCS</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totaltcs" value="{{dn.tcs}}" name="totaltcs" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="total" class="form-label"> Total </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="total" name="total" value="{{dn.total|intcomma}}" readonly>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+                    </div><!-- end col -->
+                    <div class="row">
+                        <div class="col-lg-4">
+                            {% if dn.status == '1' %}
+                                <a href="{% url 'sales:canceldn' dn.pk %}">
+                                    <button type="button" class="btn btn-danger"> Cancel <i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-4">
+                            {% if dn.status == '1' %}
+                            <a href="{% url 'sales:editdn' dn.pk %}">
+                                <button type="button" class="btn btn-danger"> Edit <i class="fab fa-expeditedssl"></i> </button>
+                            </a>
+                        {% endif %}
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="submit" class="btn btn-primary w-sm ms-auto" id="btnsubmit" style="float:right;">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div><!-- end row -->
+        </div>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

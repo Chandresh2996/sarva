@@ -1,0 +1,138 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Shortage-Damange: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:inventory-reports' %}"> Inventory </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Shortage-Damange </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-0">
+            <div class="card-body">
+                <table id="pm" class="table nowrap">
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>SKU</th>
+                            <th>SKU NAME</th>
+                            <th>PURCHASE</th>
+                            <th>JOB CARD</th>
+                            <th>SHORATGE QTY</th>
+                            <th>SHORATGE REMARKS</th>
+                            <th>DAMAGE QTY</th>
+                            <th>DAMAGE REMARKS</th>
+                            <th>CREATED BY</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>DATE</th>
+                            <th>SKU</th>
+                            <th>SKU NAME</th>
+                            <th>PURCHASE</th>
+                            <th>JOB CARD</th>
+                            <th>SHORATGE QTY</th>
+                            <th>SHORATGE REMARKS</th>
+                            <th>DAMAGE QTY</th>
+                            <th>DAMAGE REMARKS</th>
+                            <th>CREATED BY</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block reportjs %}
+<script>
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder='+title+' />' );
+    } );
+
+    // DataTable
+    var table = $('#pm').DataTable({
+        dom: 'lfrt<"ip"iB>p',
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+        processing: true,
+        searching: true,
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Shortage Damange Report',
+                title: '',
+            },
+            'csv',
+            {
+                extend: 'print',
+                title: 'Pallet Transfer Report',
+                messageTop: 'This print was produced using the Print button for DataTables'
+            },
+            { 
+                extend: 'colvis',
+                text: 'Select Columns',
+            }
+        ],
+        ajax:"{% url 'reports:shortagedata' %}",
+        columns: [
+                {data: "created",render: function (data, type, row) { if (data){
+                return moment(new Date(data).toString()).format('DD-MM-YYYY');
+            }else{
+                return '';
+            }
+                }},
+                {data: "item__product_code"},
+                {data: "item__product_name"},
+                {data: "purchase__pi_no"},
+                {data: "jobwork__no"},
+                {data: "sqty",render: $.fn.dataTable.render.number(',', '.', 2, ''), className:"text-right"},
+                {data: "sremarks"},
+                {data: "dqty",render: $.fn.dataTable.render.number(',', '.', 2, ''), className:"text-right"},
+                {data: "dremarks"},
+                {data: "createdby", className:'text-right'},
+            ],
+        iDisplayLength: 10,
+        deferRender: true,
+        scrollX:300,
+        scrollY:'500px',
+        scroller: true,
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every( function () {
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that.search(this.value).draw();
+                    }
+                } );
+            } );
+        }
+    });
+} );
+</script>
+{% endblock %}

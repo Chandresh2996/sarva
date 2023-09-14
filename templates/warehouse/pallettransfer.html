@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row mx-0">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Pallet Transfer</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'warehouse:warehouse' %}">warehouse</a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Pallet Transfer</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mx-0">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="card-title">Pallet Transfer</h4>
+                <div class="mb-3">
+                    <a href="{% url 'warehouse:pt_upload' %}">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa-solid fa-upload"></i> Upload
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="needs-validation" action="{% url 'warehouse:pt' %}" name="form" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="under">Godown<span style="color:red">*</span></label>
+                                <!-- <input type="text" list="brands" class="form-control" id="godown" name="godown" autofocus required autocomplete="off" pattern="{% for brand in godowns %}{{ brand.name }}|{% endfor %}"> -->
+                                <select class="js-example-basic-single" class="form-control" id="godown" name="godown" required>
+                                    <option></option>
+                                    {% for brand in godowns %}<option value="{{ brand.name }}">{{ brand.name }}</option>{% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Product</label>
+                                <!-- <input class="form-control" list="pds" id="products" name="product" autocomplete="off"> -->
+                                <select class="js-example-basic-single form-control" id="products" name="product" required>
+                                    <option>
+                                        Select
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Available Quantity</label>
+                                <input type="text" class="form-control" id="quantity" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="tgt">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">Transfer Qty<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" id="qty" name="qty"required autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">Transfer Godown<span style="color:red">*</span></label>
+                                    <!-- <input type="text" list="brand" class="form-control" id="target" name="target" required autocomplete="off" pattern="{% for brand in godowns %}{{ brand.name }}|{% endfor %}"> -->
+                                    <select class="js-example-basic-single" class="form-control" id="target" name="target" required>
+                                        <option></option>
+                                        {% for brand in godowns %}<option value="{{ brand.name }}">{{ brand.name }}</option>{% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success" hx-get="{% url 'warehouse:targetgodown' %}" hx-swap="beforeend" hx-target="#tgt">
+                        <i class="uil uil-ban">Add More</i>
+                    </button>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <!-- end row -->
+                        <div class="col-md-4">
+                            <button style="float: right;" id="btnsubmit" class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end row -->
+                </form>
+                <!-- end form -->
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+{% endblock %}
+{% block scripts %}
+    <script>
+
+        $("#btnsubmit").click(function (g) {
+
+            g.preventDefault();
+            var qty = 0;
+            $('input[name="qty"').each(function () {
+                qty += parseInt($(this).val());
+            });
+            var aqty = parseInt($("#quantity").val());
+
+            if (aqty < qty) {
+                window.alert("Transfer quantity can not be grater than Available quantity");
+                return false;
+            }
+            else{
+                document.form.submit();
+                return true;
+            }
+        });
+
+        $("#godown").change(function () {
+            var godown = $(this).val();
+            $.ajax({
+                url: "{% url 'warehouse:ajax_load_products' %}",
+                data: {
+                    'godown': godown
+                },
+                success: function (data) {
+                    $("#products").html(data);
+                }
+            });
+        });
+
+        $("#products").change(function () {
+            var godown = $("#godown").val();
+            var product = $(this).val();
+            $.ajax({
+                url: "{% url 'warehouse:load_pt_qty' %}",
+                data: {
+                    'product': product,
+                    'godown': godown
+                },
+                success: function (data) {
+                    $("#quantity").val(data);
+                }
+            });
+        });
+    </script>
+{% endblock scripts %}

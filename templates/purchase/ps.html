@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset=" utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loading Sheet</title>
+        <style>
+            html {
+                box-sizing: border-box;
+              }
+              
+              *,
+              *:before,
+              *:after {
+                box-sizing: inherit;
+              }
+              
+              body {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+                color: rgba(0, 0, 0, 0.87);
+              }
+              
+              .container {
+                margin: 5% 3%;
+                max-width:70em;
+              }
+              .responsive-table {
+                width: 100%;
+                margin-bottom: 1.5em;
+                border-spacing: 0;
+              }
+              .responsive-table thead {
+
+                clip: rect(1px 1px 1px 1px);
+                padding: 0;
+                border: 0;
+                height: 1px;
+                width: 1px;
+                overflow: hidden;
+              }
+              .responsive-table thead th {
+                background-color: #0A81D1;
+                border: 1px solid #0A81D1;
+                font-weight: normal;
+                text-align: center;
+                color: white;
+              }
+              .responsive-table thead th:first-of-type {
+                text-align: left;
+              }
+              .responsive-table tbody,
+              .responsive-table tr,
+              .responsive-table th,
+              .responsive-table td {
+                padding: 0;
+                border: 1px solid #0A81D1;
+                text-align: left;
+                white-space: normal;
+              }
+
+              .responsive-table th,
+              .responsive-table td {
+                padding: 0.5em;
+                vertical-align: middle;
+              }
+
+              .responsive-table tfoot {
+                font-size: 0.8em;
+                font-style: italic;
+              }
+
+              .responsive-table tbody tr {
+                margin-bottom: 1em;
+              }
+
+              .responsive-table tbody tr:last-of-type {
+                margin-bottom: 0;
+              }
+
+              .responsive-table tbody th[scope=row] {
+                background-color: #0A81D1;
+                color: white;
+              }
+
+              .responsive-table tbody td {
+                text-align: right;
+              }
+
+              table { 
+                page-break-inside:auto;
+                display: table-header-group;
+              }
+              tr    { page-break-inside:auto; }
+              .row {
+                display:flex;
+                justify-content:space-between;
+              }
+        </style>
+    </head>
+    <body>
+      <div class="container">
+     
+            <table class="responsive-table">
+              <caption style="margin-bottom:10px;">-: Loading Sheet :-</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">DN Number</th>
+                        <th scope="col">Product Code</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Mrp</th>
+                        <th scope="col">Offer Mrp</th>
+                        <th scope="col">Pack Size</th>
+                        <th scope="col">Godown Name</th>
+                        <th scope="col">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for l in ls %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ l.dn }}</td>
+                            <td>{{ l.item.product_code }}</td>
+                            <td>{{ l.item.product_name }}</td>
+                            <td>{{ l.mrp }}</td>
+                            <td>{{ l.offermrp }}</td>
+                            <td>{{ l.item.inner_qty }}</td>
+                            <td>{{ l.godown }}</td>
+                            <td>{{ l.qty }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

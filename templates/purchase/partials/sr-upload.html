@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Standard Cost: Import</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Transactions </li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'purchase:purchase' %}">Purchase</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'purchase:stdrate' %}">Standard Cost</a></li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"><a href="">Import Standard Cost</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="card card-secondary">
+      <div class="card-header">
+        <h3 class="card-title">Sample File</h3>
+      </div>
+      <div class="card-body row">
+        <h6 class="col col-md-6">Download Sample excel file to import Standard Cost:</h6>
+        <div class="col col-md-6">
+          <a href="{% static 'src\StandardRateImport.xlsx' %}" class="btn btn-primary" style="float: right;">Download</a>
+        </div>
+      </div>
+    </div>
+    <div class="card card-secondary">
+      <div class="card-header">
+        <h3 class="card-title">Import Standard Cost</h3>
+      </div>
+      <div class="card-body">
+        <form role="form" method="POST" action="{% url 'purchase:standard_cost_import_data' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row mb-3 md-6">
+            <div class="col-xl-4">
+              <label>Choose Excel File to Upload</label>
+              <input class="form-control mb-2" type="file" name="importData" required>
+              {% comment %} <select class="custom-select" name="file-format1">
+                <option selected>Choose format...</option>
+                <option>Excel</option>
+                <option>CSV</option>
+              </select> {% endcomment %}
+            </div>
+            <div class="col-xl-2 d-flex align-items-end mb-2">
+              <button type="submit" class="btn btn-primary btn-block">Import</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}

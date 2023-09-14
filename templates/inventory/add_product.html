@@ -1,0 +1,714 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Product</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Master </li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'inventory:inventory' %}">Registration</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'inventory:product' %}">Products</a></li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"><a href="">Create Product</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="{% url 'inventory:add_product' %}" onsubmit="return validate()">
+            {% csrf_token %}
+            <div class="modal fade" id="gstModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="verticalCenterTitle">Modal GST</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="mb-3 row">
+                                        <label for="hsnmastername" class="col-md-3 col-form-label">Description:</label>
+                                        <div class="col-md-9">
+                                            <input class="form-control" type="text" value="" autocomplete="off" name="hsnmastername" id="hsnmastername" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="mb-3 row">
+                                        <label for="hsncode" class="col-md-3 col-form-label">HSN/SAC:</label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" type="text" value="" autocomplete="off" name="hsncode" id="hsncode" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-check form-switch form-switch-md ">
+                                        <input class="form-check-input" type="checkbox" id="is_Non_gst" autocomplete="off" name="is_Non_gst" />
+                                        <label class="form-check-label" for="is_Non_gst"> Is non-GST Goods</label>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="col-xl-6">
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-4 col-xl-4 col-form-label">Calculation type</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" id="calctype" name="calc_type">
+                                                <option value="1">On value</option>
+                                                <option value="2">On Item Rate</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-4 col-xl-4 col-form-label">Taxability</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" name="taxability">
+                                                <option>Exempt</option>
+                                                <option>Nil Rated</option>
+                                                <option>Taxable</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-check form-switch form-switch-md">
+                                        <input class="form-check-input" type="checkbox" autocomplete="off" name="reverse_charge" id="reverse" />
+                                        <label class="form-check-label" for="reverse">Is reverse charge applicable</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="form-check form-switch form-switch-md ">
+                                        <input class="form-check-input" type="checkbox" id="inputcredit" />
+                                        <label class="form-check-label" for="inputcredit" autocomplete="off" name="input_credit_ineligible">Is ineligible for input credit</label>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 table-responsive">
+                                    <table class="table mb-0">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <td>Tax Type</td>
+                                                <td>Valuation Type</td>
+                                                <td>Rate</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td> <label for="igst" class="col-form-label">Integrated tax:</label> </td>
+                                                <td>Based On Value</td>
+                                                <td><input class="form-control" type="number" value="" max="99" autocomplete="off" name="igst" id="igst" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td> <label for="cgst" class="col-form-label">Central tax:</label> </td>
+                                                <td>Based On Value</td>
+                                                <td><input class="form-control" type="number" value="" autocomplete="off" name="cgst" readonly id="cgst" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td> <label for="sgst" class="col-form-label">State tax:</label> </td>
+                                                <td>Based On Value</td>
+                                                <td><input class="form-control" type="number" value="" autocomplete="off" name="sgst" readonly id="sgst" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mx-0">
+                <div class="col-xl-6">
+                    <div class="mb-3 row">
+                        <label for="product_name" class="col-md-4 col-form-label">SKU Name<span style="color:red">*</span></label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text" id="product_name" autocomplete="off" name="product_name" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2">
+                </div>
+                <div class="col-xl-4">
+                    <div class="mb-3 row">
+                        <label for="part_no" class="col-md-3 col-form-label">SKU Code<span style="color:red">*</span></label>
+                        
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" autocomplete="off" name="part_no" id="part_no" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="mb-3 row">
+                        <label for="description" class="col-md-2 col-form-label">Description</label>
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" autocomplete="off" name="description" id="description" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3 md-6">
+                        <label for="product_type" class="col-sm-4 col-xl-3 col-form-label">Product Type<span style="color:red">*</span></label>
+                        <div class="col-sm-6 col-xl-9">
+                            <select class="js-example-basic-single" class="form-control" id="product_type" name="product_type" required>
+                                <option></option>
+                                {% for product_type in product_types %}
+                                    <option value="{{product_type.name}}">
+                                        {{product_type.name}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <!-- <input list="product_types" autocomplete="off" name="product_type" id="product_type" autocomplete="off" required class="form-control"
+                                pattern="{% for product_type in product_types %}{{product_type.name}}|{% endfor %}" /> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3 md-6">
+                        <label for="brand" class="col-sm-4 col-xl-3 col-form-label">Brand<span style="color:red">*</span></label>
+                        <div class="col-sm-6 col-xl-9">
+                            <select class="js-example-basic-single" class="form-control" id="brand" name="brand" required>
+                                <option></option>
+                                {% for brand in brands %}
+                                    <option value="{{brand.name}}">
+                                        {{brand.name}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <!-- <input list="brands" autocomplete="off" name="brand" id="brand" class="form-control" autocomplete="off"
+                                required pattern="{% for brand in brands %}{{brand.name}}|{% endfor %}" /> -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3 md-6">
+                        <label for="subbrand" class="col-sm-4 col-xl-3 col-form-label">Sub Brand<span style="color:red">*</span></label>
+                        <div class="col-sm-6 col-xl-9">
+                            <select class="js-example-basic-single" class="form-control" id="subbrand" name="subbrand" required>
+                                <option></option>
+                                {% for subbrand in subbrands %}
+                                    <option value="{{subbrand.name}}">
+                                        {{subbrand.name}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <!-- <input list="subbrands" autocomplete="off" name="subbrand" id="subbrand" autocomplete="off" required class="form-control"
+                                pattern="{% for subbrand in subbrands %}{{subbrand.name}}|{% endfor %}" /> -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3 md-6">
+                        <label for="categorys" class="col-sm-4 col-xl-3 col-form-label">Category<span style="color:red">*</span></label>
+                        <div class="col-sm-6 col-xl-9">
+                            <select class="js-example-basic-single" class="form-control" id="categorys" name="categorys" required>
+                                <option></option>
+                                {% for categorys in category %}
+                                    <option value="{{categorys.name}}">
+                                        {{categorys.name}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <!-- <input list="category" autocomplete="off" name="categorys" id="categorys" autocomplete="off" required class="form-control"
+                                pattern="{% for categorys in category %}{{categorys.name}}|{% endfor %}" /> -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3 md-6">
+                        <label for="class" class="col-sm-4 col-xl-3 col-form-label">Class<span style="color:red">*</span></label>
+                        <div class="col-sm-6 col-xl-9">
+                            <select class="js-example-basic-single" class="form-control" id="class" name="class" required>
+                                <option></option>
+                                {% for class in classes %}
+                                    <option value="{{class.name}}">
+                                        {{class.name}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <!-- <input list="classes" autocomplete="off" name="class" id="class" class="form-control" required autocomplete="off" /> -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3 md-6">
+                        <label for="subclass" class="col-sm-4 col-xl-3 col-form-label">Sub
+                            Class<span style="color:red">*</span></label>
+                        <div class="col-sm-6 col-xl-9">
+                            <select class="js-example-basic-single" class="form-control" id="subclass" name="subclass" required>
+                                <option></option>
+                                {% for subclass in subclasses %}
+                                    <option value="{{subclass.name}}">
+                                        {{subclass.name}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <!-- <input list="subclasses" autocomplete="off" name="subclass" id="subclass" autocomplete="off" required
+                                class="form-control" pattern="{% for subclass in subclasses %}{{subclass.name}}|{% endfor %}" /> -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3">
+                        <label for="inner" class="col-xl-3 form-label">No. of Units in Inner</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="inner" autocomplete="off" name="inner" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="outer" class="col-xl-3 form-label">No. of Units in Outer</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="outer" autocomplete="off" name="outer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3 md-6">
+                        <label for="uom" class="col-sm-4 col-xl-3 col-form-label">Units<span style="color:red">*</span></label>
+                        <div class="col-sm-6 col-xl-9">
+                            <select class="js-example-basic-single" class="form-control" id="uom" name="uom" required>
+                                <option></option>
+                                {% for uom in uoms %}
+                                    <option value="{{uom.symbol}}">
+                                        {{uom.symbol}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <!-- <input list="uoms" autocomplete="off" name="uom" id="uom" class="form-control" autocomplete="off" required
+                                pattern="{% for uom in uoms %}{{uom.symbol}}|{% endfor %}" /> -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="row mb-3 md-6">
+                        <label for="altuom" class="col-sm-4 col-xl-3 col-form-label">Alternate Units</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <select class="js-example-basic-single" class="form-control" id="altuom" name="altuom">
+                                <option></option>
+                                {% for uom in uoms %}
+                                    <option value="{{uom.symbol}}">
+                                        {{uom.symbol}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <!-- <input list="altuoms" autocomplete="off" name="altuom" id="altuom" class="form-control" autocomplete="off"
+                                pattern="{% for uom in uoms %}{{uom.name}}|{% endfor %}" /> -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Article Code -->
+                <div class="col-xl-4">
+                    <div class="mb-3 row">
+                        <label for="article" class="col-md-3 col-form-label">Article
+                            Code<span style="color:red">*</span></label>
+                            
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" value="" autocomplete="off" name="article_code" readonly required id="article" />
+                        </div>
+                    </div>
+                </div>
+                <!-- EAN Code -->
+                <div class="col-xl-4">
+                    <div class="mb-3 row">
+                        <label for="eancode" class="col-md-3 col-form-label">EAN
+                            Code</label>
+                        <div class="col-md-9">
+                            <input class="form-control" type="text" value="" autocomplete="off" name="ean_code" id="eancode" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="mb-3 row">
+                        <label for="oldsku" class="col-md-4 col-xl-3 col-form-label">Old SKU
+                            Code</label>
+                        <div class="col-md-8 col-xl-9">
+                            <input class="form-control" type="text" value="" autocomplete="off" name="old_sku" id="oldsku" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="shape" class="col-xl-3 form-label">Shape Code</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="shape" autocomplete="off" name="shape_code" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="size" class="col-xl-3 form-label">Size(ML/L/CM/Inches)</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="size" autocomplete="off" name="size" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="style" class="col-xl-3 form-label">Style/Shape</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="style" autocomplete="off" name="style" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="series" class="col-xl-3 form-label">Series</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="series" autocomplete="off" name="series" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="pattern" class="col-xl-3 form-label">Pattern</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="pattern" autocomplete="off" name="pattern" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="coi" class="col-xl-3 form-label">Country of Origin</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="coi" autocomplete="off" name="coi" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="colour" class="col-xl-3 form-label">Colour/Shade/Theme</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="colour" autocomplete="off" name="colour" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="importedby" class="col-xl-3 form-label">Imported By</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="importedby" autocomplete="off" name="importedby" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="mfdby" class="col-xl-3 form-label">Manufactured By</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="mfdby" autocomplete="off" name="mfdby" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label for="mktby" class="col-xl-3 form-label">Marketed By</label>
+                        <div class="col-sm-6 col-xl-9">
+                            <input type="text" class="form-control" id="mktby" autocomplete="off" name="mktby" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row mb-3">
+                        <label class="col-xl-3 form-label" for="stdrate">Mrp</label>
+                        <div class="col-xl-9">
+                            <input class="form-control" type="number" id="mrp" step=".01" autocomplete="off" name="mrp" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 col-xl-4 pl-4">
+                    <div class="row form-check form-switch form-switch-md ">
+                        <input class="form-check-input" type="checkbox" id="batch" autocomplete="off" name="maintain_batch" />
+                        <label class="form-check-label" for="batch">Maintain in Batches</label>
+                    </div>
+                </div>
+                <div class="col-xl-4  pl-4">
+                    <div class="row form-check form-switch form-switch-md " style="display: none;" autocomplete="off" name="track_mfd">
+                        <input class="form-check-input" type="checkbox" id="mfd" />
+                        <label class="form-check-label" for="mfd">Track date of Manufacturing</label>
+                    </div>
+                </div>
+                <div class="col-xl-4 pl-4">
+                    <div class="row form-check form-switch form-switch-md " style="display: none;" autocomplete="off" name="track_expiry">
+                        <input class="form-check-input" type="checkbox" id="expiry" />
+                        <label class="form-check-label" for="expiry">Use expiry dates</label>
+                    </div>
+                </div>
+                <div class="col-xl-4 pl-4">
+                    <div class="row form-check form-switch form-switch-md ">
+                        <input class="form-check-input" type="checkbox" id="behavior" autocomplete="off" name="set_behavior_options" />
+                        <label class="form-check-label" for="behavior">Set behavior options</label>
+                    </div>
+                </div>
+                <div class="col-xl-4 pl-4">
+                    <div class="row form-check form-switch form-switch-md " style="display: none;">
+                        <input class="form-check-input" type="checkbox" id="ipd" autocomplete="off" name="ipd" />
+                        <label class="form-check-label" for="ipd">Ignore difference due to physical
+                            counting</label>
+                    </div>
+                </div>
+                <div class="col-xl-4 pl-4">
+                    <div class="row form-check form-switch form-switch-md " style="display: none;">
+                        <input class="form-check-input" type="checkbox" id="ins" autocomplete="off" name="ins" />
+                        <label class="form-check-label" for="ins">Ignore negative balances</label>
+                    </div>
+                </div>
+                <div class="col-xl-4 pl-4">
+                    <div class="row form-check form-switch form-switch-md " style="display: none;">
+                        <input class="form-check-input" type="checkbox" id="tsm" autocomplete="off" name="tsm" />
+                        <label class="form-check-label" for="tsm">Treat all sales as new
+                            manufacture</label>
+                    </div>
+                </div>
+                <div class="col-xl-4 pl-4">
+                    <div class="row form-check form-switch form-switch-md " style="display: none;">
+                        <input class="form-check-input" type="checkbox" id="tpc" autocomplete="off" name="tpc" />
+                        <label class="form-check-label" for="tpc">Treat all purchases as consumed</label>
+                    </div>
+                </div>
+                <div class="col-xl-4 pl-4">
+                    <div class="row form-check form-switch form-switch-md " style="display: none;">
+                        <input class="form-check-input" type="checkbox" id="trs" autocomplete="off" name="trs" />
+                        <label class="form-check-label" for="trs">Treat all rejections inward as scrap</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+            <div class="row mx-0">
+                    <div class="col-xl-4">
+                        <div class="row mb-3 md-6">
+                            <label for="gstapplicable" class="col-sm-4 col-xl-4 col-form-label">GST
+                                Applicable</label>
+                            <div class="col-sm-6 col-xl-8">
+                                <select class="form-control" id="gstapplicable">
+                                    <option value="1">Not Applicable</option>
+                                    <option value="2">Applicable</option>
+                                    <option value="3">Undefined</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="row form-check form-switch form-switch-md " id="issetgst" style="display: none;">
+                            <input class="form-check-input" type="checkbox" id="gst" autocomplete="off" name="is_set_gst" data-toggle="modal" data-target="#gstModal" />
+                            <label class="form-check-label" for="gst">Set/Alter GST Details</label>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="mb-3 row" id="typeofsupply" style="display: none;">
+                            <label class="col-sm-6 col-xl-4 col-form-label" for="suply_type">Type of Supply</label>
+                            <div class="col-sm-6 col-xl-8">
+                                <select class="form-control" id="suply_type" name="suply_type">
+                                    <option value="1">Goods</option>
+                                    <option value="2">Service</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="row mb-3 d-flex align-items-center">
+                            <div class="col-xl-4 col-md-6 col-sm-12">
+                                <label for="salesledger" class="col-form-label mb-0 p-0">Default ledger for Sales Invoice<span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-sm-6 col-xl-8">
+                                <input class="form-control" type="text" value="" autocomplete="off" name="salesledger" readonly required id="salesledger" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="row mb-3 d-flex align-items-center">
+                            <div class="col-xl-4 col-md-6 col-sm-12">
+                            <label for="purchaseledger" class="col-form-label mb-0 p-0">Default ledger for Purchase Invoice<span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-sm-6 col-xl-8">
+                                <input class="form-control" type="text" value="" autocomplete="off" name="purchaseledger" readonly required id="purchaseledger" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="row mb-3 d-flex align-items-center">
+                            <div class="col-xl-4 col-md-6 col-sm-12">
+                            <label for="costingmethod" class="col-form-label mb-0 p-0">Costing
+                                Method</label>
+                            </div>
+                            <div class="col-sm-6 col-xl-8">
+                                <select class="form-control" id="costingmethod" name="costingmethod" required>
+                                    <option value="1">Avg. Cost</option>
+                                    <option value="2">At Zero Cost</option>
+                                    <option value="3">FIFO</option>
+                                    <option value="4">FIFO Perpetual</option>
+                                    <option value="5">Last Purchase Cost</option>
+                                    <option value="6">LIFO Annual</option>
+                                    <option value="7">LIFO Perpetual</option>
+                                    <option value="8">Monthly Avg. Cost</option>
+                                    <option value="9">Std. Cost</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                        <div class="row mb-3 d-flex align-items-center">
+                            <div class="col-xl-4 col-md-6 col-sm-12">
+                            <label for="mvm" class="col-form-label mb-0 p-0">Market Valuation Method</label>
+                            </div>
+                            <div class="col-sm-6 col-xl-8">
+                                <select class="form-control" id="mvm" name="mvm" required>
+                                    <option value="1">Avg. Price</option>
+                                    <option value="4">At Zero Price</option>
+                                    <option value="2">Std. Price</option>
+                                    <option value="3">Last Sale Price</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-sm ms-auto" style="float:right">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+    $("#brand").focus(function(){
+        console.log('abc');
+        $("#brand").mouseover();
+    });
+
+    $("#igst").change(function () {
+        var igst = parseInt($(this).val());
+        $("#sgst").val(igst / 2);
+        $("#cgst").val(igst / 2);
+
+    })
+
+    $("#brand").change(function () {
+        var brand = $(this).val();
+
+        $.ajax({
+            url: "{% url 'inventory:ajax_load_articlecode' %}",
+            data: {
+                'brand': brand
+            },
+            success: function (data) {
+                $("#article").val(data);
+            }
+        });
+
+    });
+
+    $("#product_type").change(function () {
+        var product_type = $(this).val();
+
+        $.ajax({
+            url: "{% url 'inventory:ajax_load_ledgers' %}",
+            data: {
+                'product_type': product_type
+            },
+            success: function (data) {
+                data = data.split(',');
+                $("#salesledger").val(data[0]);
+                $("#purchaseledger").val(data[1]);
+            }
+        });
+
+    });
+
+    function calctype() {
+        if (this.value == '2') {
+            document.getElementById("mfd").parentNode.style.display = 'block';
+        } else {
+            document.getElementById("mfd").parentNode.style.display = 'none';
+        }
+    }
+
+    function toggle_batch() {
+        if (this.checked) {
+            document.getElementById("mfd").parentNode.style.display = 'block';
+            document.getElementById("expiry").parentNode.style.display = 'block';
+        } else {
+            document.getElementById("mfd").parentNode.style.display = 'none';
+            document.getElementById("expiry").parentNode.style.display = 'none';
+        }
+    }
+
+    function toggle_behave() {
+        if (this.checked) {
+            document.getElementById("ipd").parentNode.style.display = 'block';
+            document.getElementById("ins").parentNode.style.display = 'block';
+            document.getElementById("tsm").parentNode.style.display = 'block';
+            document.getElementById("tpc").parentNode.style.display = 'block';
+            document.getElementById("trs").parentNode.style.display = 'block';
+        } else {
+            document.getElementById("ipd").parentNode.style.display = 'none';
+            document.getElementById("ins").parentNode.style.display = 'none';
+            document.getElementById("tsm").parentNode.style.display = 'none';
+            document.getElementById("tpc").parentNode.style.display = 'none';
+            document.getElementById("trs").parentNode.style.display = 'none';
+        }
+    }
+
+    function show() {
+        if (this.value == '2') {
+            document.getElementById("typeofsupply").style.display = 'block';
+            document.getElementById("issetgst").style.display = 'block';
+        } else if (this.value == '3') {
+            document.getElementById("typeofsupply").style.display = 'block';
+            document.getElementById("issetgst").style.display = 'none';
+        } else {
+            document.getElementById("typeofsupply").style.display = 'none';
+            document.getElementById("issetgst").style.display = 'none';
+        }
+    }
+
+    document.getElementById("gstapplicable").onchange = show;
+    document.getElementById("batch").onclick = toggle_batch;
+    document.getElementById("behavior").onclick = toggle_behave;
+    document.getElementById("calctype").onclick = calctype;
+
+    $("#part_no").change(function () {
+        if ($(this).val() == $("#product_name").val()) {
+            $(this).val('');
+            alert("Product Name and Product Code can not be same.");
+        }
+    })
+</script>
+{% endblock %}

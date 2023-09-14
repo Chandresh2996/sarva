@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}{% load perms %}
+
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0">Std Cost</h4>
+                        <div class="mb-3"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+            <div class="card card-secondary">
+                <div class="card-header">
+                  <h3 class="card-title">Sample File</h3>
+                </div>
+                <div class="card-body row">
+                  <h6 class="col col-md-6">Download Sample excel file to import Standard Cost:</h6>
+                  <div class="col col-md-6">
+                    <a href="{% static 'src\std_cost.xlsx' %}" class="btn btn-primary" style="float: right;">Download</a>
+                  </div>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form role="form"
+                                  method="POST"
+                                  action="{% url 'inventory:sc_import_data' %}"
+                                  enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row mb-3 md-6">
+                                    <div class="col-xl-4">
+                                        <label>Choose Excel File to Upload</label>
+                                        <input class="form-control mb-2" type="file" autocomplete="off" name="importData">
+                                        {% comment %} <select class="custom-select" name="file-format1">
+                                <option selected>Choose format...</option>
+                                <option>Excel</option>
+                                <option>CSV</option>
+                                        </select> {% endcomment %}
+                                    </div>
+                                    <div class="col-xl-2 mt-4">
+                                        <button type="submit" class="btn btn-primary btn-block">Import</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- end form -->
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col -->
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+            <div class="container col-xxl-8 col-xl-12 ">
+                <div class="card">
+                    <div class="card-header justify-content-between d-flex align-items-center">
+                        <h4 class="card-title">Std Cost</h4>
+                    </div>
+                    <!-- end card header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Rate Type</th>
+                                        <th>Product</th>
+                                        <th>Rate</th>
+                                        <th>Applicable From</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for brand in std %}
+                                        <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ brand.get_rate_type_display }}</td>
+                                            <td>{{ brand.product.product_code }}</td>
+                                            <td>{{ brand.rate }}</td>
+                                            <td>{{ brand.applicable_from }}</td>
+                                            <td>
+                                                <a type="button"
+                                                   style="padding: 0.25rem 0.55rem;"
+                                                   class="btn btn-success"
+                                                   href="{% url 'inventory:editstdcost' brand.pk %}">
+                                                    edit
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                                <!-- end tbody-->
+                            </table>
+                            <!-- end table-->
+                        </div>
+                        <!-- end table responsive -->
+                    </div>
+                    <!-- end card body -->
+                </div>
+                <!-- end card -->
+            </div>
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+{% endblock %}

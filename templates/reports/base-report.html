@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block extracss %}
+<link href="{% static 'dataTables/datatables.css' %}" rel="stylesheet" type="text/css" />
+
+{% comment %} <link href="{% static 'dataTables/Responsive-2.3.0/css/responsive.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'dataTables/Scroller-2.0.7/css/scroller.bootstrap5.css' %}" rel="stylesheet" type="text/css" /> {% endcomment %}
+
+{% comment %} <link href="{% static 'dataTables/Buttons-2.2.3/css/buttons.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'dataTables/Buttons-2.2.3/css/buttons.dataTables.css' %}" rel="stylesheet" type="text/css" /> {% endcomment %}
+{% comment %} 
+<link href="{% static 'dataTables/Editor/css/editor.dataTables.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'dataTables/Editor/css/editor.bootstrap5.css' %}" rel="stylesheet" type="text/css" /> {% endcomment %}
+{% comment %} 
+<link href="{% static 'dataTables/FixedColumns-4.1.0/css/fixedColumns.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'dataTables/FixedHeader-3.2.4/css/fixedHeader.bootstrap5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'dataTables/SearchBuilder-1.3.4/css/searchBuilder.bootstrap5.css' %}" rel="stylesheet" type="text/css" /> {% endcomment %}
+
+{% endblock extracss %}
+
+{% block content %}
+
+{% endblock %}
+
+
+{% block scripts %}
+{% comment %} <script src="{% static 'dataTables/DataTables-1.12.1/js/dataTables.bootstrap5.js' %}"></script>
+
+<script src="{% static 'dataTables/Buttons-2.2.3/js/dataTables.buttons.js' %}"></script>
+<script src="{% static 'dataTables/Buttons-2.2.3/js/buttons.html5.js' %}"></script>
+
+<script src="{% static 'dataTables/FixedColumns-4.1.0/js/fixedColumns.bootstrap5.js' %}"></script>
+<script src="{% static 'dataTables/FixedColumns-4.1.0/js/dataTables.fixedColumns.js' %}"></script>
+
+<script src="{% static 'dataTables/pdfmake-0.1.36/pdfmake.js' %}"></script>
+<script src="{% static 'dataTables/JSZip-2.5.0/jszip.js' %}"></script>
+
+<script src="{% static 'dataTables/Responsive-2.3.0/js/dataTables.responsive.js' %}"></script>
+<script src="{% static 'dataTables/Responsive-2.3.0/js/responsive.bootstrap5.js' %}"></script>
+
+<script src="{% static 'dataTables/Scroller-2.0.7/js/dataTables.scroller.js' %}"></script>
+<script src="{% static 'dataTables/Scroller-2.0.7/js/scroller.bootstrap5.js' %}"></script>
+
+<script src="{% static 'dataTables/SearchBuilder-1.3.4/js/dataTables.searchBuilder.js' %}"></script>
+<script src="{% static 'dataTables/SearchBuilder-1.3.4/js/searchBuilder.bootstrap5.js' %}"></script>
+
+<script src="{% static 'dataTables/DataTables-1.12.1/js/jquery.dataTables.js' %}"></script>
+<script src="{% static 'dataTables/DataTables-1.12.1/js/dataTables.dataTables.js' %}"></script> {% endcomment %}
+
+{% comment %} <script src="{% static 'dataTables/Editor/js/dataTables.editor.js' %}"></script>
+<script src="{% static 'dataTables/Editor/js/editor.bootstrap5.js' %}"></script> {% endcomment %}
+<script src="{% static 'dataTables/datatables.js' %}"></script>
+    {% block reportjs %}
+
+    {% endblock reportjs %}
+{% endblock scripts %}

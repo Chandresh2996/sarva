@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Company: View</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Masters </li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'company:home' %}">Company</a></li>
+                        <!-- <li class="breadcrumb-item" aria-current="page"><a href="{% url 'company:company' %}">Company List</a>
+                        </li> -->
+                        <li class="breadcrumb-item active text-primary" aria-current="page">View Company</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-statistics">
+            <div class="card-body">
+                <form action="{% url 'company:add_perms' user.pk %}" method="POST">
+                    {% csrf_token %}
+                    <div class="duallistbox">
+                        <select multiple="multiple" size="10" id="duallistbox" name="selectedlist">
+                            {% for i in groups %}
+                            {% if i in user.groups.all %}
+                                <option value="{{i.pk}}" selected>{{i}}</option>
+                            {% else %}
+                                <option value="{{i.pk}}">{{i}}</option>
+                            {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

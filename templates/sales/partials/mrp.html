@@ -1,0 +1,37 @@
+<div class="row" id="mrp-item">
+    <div class="col-xl-4">
+        <label for="mrpdate" class="col-form-label">Applicable from:</label>
+        <div class="">
+            <input class="form-control" type="date" value="" id="mrpdate" name="mrpdate">
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <label for="mrpstate" class="col-form-label">State
+            Name:</label>
+        <div class="">
+            <select class="form-control" name="mrpstate">
+            {% for i in states %}
+                <option>{{i.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="col-xl-3">
+        <label for="mrprate"
+            class="col-md-2 col-form-label">rate:</label>
+        <div class="col-md-10">
+            <input class="form-control" type="number" value="" name="mrprate"
+                id="mrprate">
+        </div>
+    </div>
+    <div class="col-xl-1">
+        <div>
+            <button type="button"
+                class="btn btn-danger btn-sm btn-icon ml-2"
+                hx-get="{% url 'master:clear' %}"
+                hx-swap="outerHTML" hx-target="closest #mrp-item">
+                <i class="uil uil-ban">X</i>
+            </button>
+        </div>
+    </div>
+</div>

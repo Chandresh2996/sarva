@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+{% load humanize %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Inter Vendor Transfer</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'warehouse:transfers' %}"> Transfers </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Inter Vendor Transfer</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header justify-content-between d-flex align-items-center">
+            <h4 class="card-title">Inter Vendor Transfers</h4>
+            <a href="{% url 'inventory:add_ivt' %}">
+                <button type="button" class="btn btn-success"> <i class="uil uil-ban">Purchase</i> </button>
+            </a>
+            <a href="{% url 'inventory:add_ivt_sale' %}">
+                <button type="button" class="btn btn-success"> <i class="uil uil-ban">Sale</i> </button>
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th width="2%">#</th>
+                            <th width="6%">Date</th>
+                            <th width="6%">Invoice No</th>
+                            <th width="20%">Party Name</th>
+                            <th width="8%">Amount</th>
+                            <th width="6%">Status</th>
+                            <th width="1%"></th>
+                            <th width="1%"></th>
+                            <th width="1%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for so in sos %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ so.rso_date|date:'d-m-Y' }}</td>
+                            <td>{{ so.rso_no }}</td>
+                            <td>{{ so.buyer }}</td>
+                            <td>{{ so.total|intcomma }}</td>
+                            <td>{{ so.get_status_display }}</td>
+                            <td>
+                                {% if so.status == '1'  %}
+                                    <a href="{% url 'inventory:edit_ivt' so.pk %}">
+                                        <button type="button" class="btn btn-success btn-sm btn-icon">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </a>
+                            </td>
+                            <td>
+                                {% endif %}
+                                <a href="{% url 'inventory:show_ivt' so.pk %}">
+                                    <button type="button" class="btn btn-primary btn-sm btn-icon" >
+                                        <i class="far fa-eye"></i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                {% if so.status == '1'  %}
+                                    <a href="{% url 'sales:sendcreditmemo' so.pk %}">
+                                        <button type="button" class="btn btn-success btn-sm btn-icon">
+                                            <i class="far fa-paper-plane  ms-1"></i>
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <!-- end tbody-->
+                </table>
+                <!-- end table-->
+            </div>
+            <!-- end table responsive -->
+        </div>
+        <!-- end card body -->
+    </div>
+</div>
+{% endblock content %}

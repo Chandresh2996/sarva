@@ -1,0 +1,6 @@
+<select class="js-example-basic-single" class="form-control" id="region" name="region" required>
+    <option></option>
+    {% for city in cities %}
+    	<option value="{{ city.pk }}">{{ city.name }}</option>
+    {% endfor %}
+</select>

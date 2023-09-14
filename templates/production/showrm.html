@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <!-- begin page title -->
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Material Transfer: View</h1> </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Transactions </li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'production:production' %}">Production</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'production:mt' %}">Material Transfer</a></li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Material Transfer View</li> </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header justify-content-between d-flex align-items-center">
+            <h4 class="card-title">Job Card: {{job.jobcard}}</h4>
+        </div>
+        <!-- end card header -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th width="3%">#</th>
+                            <th>FM Product</th>
+                            <th>Bom</th>
+                            <th>RM Product</th>
+                            <th style="text-align:end; padding-right:30px;">Required Qty</th>
+                            <th width="5%">Godown</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for so in jobs %}
+                            <tr class="table-primary">
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ so.rmindent__jobcard__product }}</td>
+                                <td>{{ so.bom__name }}</td>
+                                <td>{{ so.item__product_code }}</td>
+                                <td style="text-align:end; padding-right:20px;">{{ so.qty }}</td>
+                                <td style="text-align:center;"><label class="form-check-label" for="godown{{ so.id }}"><i class="fa-solid fa-store"></i></label>
+                                    <input class="form-check-input"
+                                            type="checkbox"
+                                            id="godown{{ so.id }}"
+                                            data-toggle="modal"
+                                            data-target="#modal{{ so.id }}"
+                                            autocomplete="off"
+                                            name="godown{{ so.id }}"
+                                            style="display:None;">
+                                    <div class="modal"
+                                            id="modal{{ so.id }}"
+                                            tabindex="-1"
+                                            aria-labelledby="gstModalLabel"
+                                            aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" style = "max-width:700px;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button"
+                                                            class="btn-close"
+                                                            data-dismiss="modal"
+                                                            aria-label="Close">Close</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table mb-0">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <td>Godown Name</td>
+                                                                <td>Item Quantity</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for i in so.godown %}
+                                                                <tr>
+                                                                    <td> <input value="{{i.godown}}" readonly></td>
+                                                                    <td> <input value="{{i.qty}}" readonly></td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <!-- end tbody-->
+                </table>
+                <!-- end table-->
+                {% comment %} <div style="float:right; padding:10px" >
+
+                <a href="{% url 'production:printrm' job.id  %}">
+                        <button type="button" class="btn btn-primary">
+                            <i class="uil uil-ban">Approve</i>
+                        </button>
+                    </a>
+
+                </div> {% endcomment %}
+            </div>
+            <!-- end table responsive -->
+        </div>
+        <!-- end card body -->
+    </div>
+    <!-- end card -->
+</div>
+{% endblock content %}

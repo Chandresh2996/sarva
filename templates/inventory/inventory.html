@@ -1,0 +1,342 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Registration Form</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Master </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"><a href="">Registration</a>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-start">
+    {% if request.user|has_group:"Admin,Article View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:product' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-box-seam card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{products}} </span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:product' %}">
+                                <span class="d-block font-25 mt-2">Article Creation</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Brand View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:brand' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-bookmark-star-fill card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{brands}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:brand' %}">
+                                <span class="d-block font-25 mt-2">Brand</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Subbrand View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:subbrand' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-bookmark-star card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{subbrands}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:subbrand' %}">
+                                <span class="d-block font-25 mt-2">Sub Brand</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Category View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:category' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-bookmark-dash card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{categories}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:category' %}">
+                                <span class="d-block font-25 mt-2">Category</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Product Class View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:class' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-bookmarks-fill card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{p_classes}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:class' %}">
+                                <span class="d-block font-25 mt-2">Class</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Subclass View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:subclass' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-bookmarks card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{subcalsses}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:subclass' %}">
+                                <span class="d-block font-25 mt-2">Subclass</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Product Type View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:product_type' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-tags card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{producttypes}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block"
+                                href="{% url 'inventory:product_type' %}">
+                                <span class="d-block font-25 mt-2">Product Type</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Godown View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:godown' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-shop-window card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{godowns}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:godown' %}">
+                                <span class="d-block font-25 mt-2">Godown</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Units Of Measure View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:uom' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-rulers card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{uoms}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:uom' %}">
+                                <span class="d-block font-25 mt-2">Unit of Measure</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Currency View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:currency' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-rulers card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{currency}}</span>
+                            <span class="text-orange"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'inventory:currency' %}">
+                                <span class="d-block font-25 mt-2">Currency</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+    {% endblock content %}
+    {% block scripts %}
+    {% endblock scripts %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Unit of Measure: Edit</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"> Master </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:inventory' %}">Registration</a></li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:uom' %}">Unit of Measure </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Edit Unit of Measure </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="needs-validation"  action="{% url 'inventory:edit_uom' uom.pk %}" method="POST" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="under">UQC<span style="color:red">*</span></label>
+                                <!-- <input type="text" list="brands" class="form-control" id="under" name="under" required value="{{uom.uqc}}"
+                                pattern="{% for brand in uqcs %}{{brand.name}}|{% endfor %}"> -->
+                                <select class="js-example-basic-single" class="form-control" id="under" name="under" required>
+                                    {% for brand in uqcs %}
+                                    {% if uom.uqc == brand.name %}
+                                        <option value="{{brand.name}}" selected>{{brand.name}}</option>
+                                    {% else %}
+                                        <option value="{{brand.name}}">{{brand.name}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Symbol<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="symbol" name="symbol" value="{{uom.symbol}}" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Formal Name<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{uom.name}}" autocomplete="off" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">No of Decimal Places<span style="color:red">*</span></label>
+                                <input type="number" class="form-control" id="decimal" autocomplete="off" name="decimal" value="{{uom.decimal_places}}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <button style="float: right;" class="btn btn-primary" type="submit" >Submit</button>
+                        </div>
+                    </div><!-- end row -->
+                </form><!-- end form -->
+            </div><!-- end card body -->
+        </div><!-- end card -->
+    </div> <!-- end col -->
+</div><!-- end row -->
+
+{% endblock %}

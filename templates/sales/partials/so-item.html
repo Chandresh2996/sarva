@@ -1,0 +1,88 @@
+<tr>
+    <th scope="row" class="datarow">{{no}}</th>
+    <td >
+        <select class="js-example-basic-single" class="form-control" id="product_code_{{no}}" name="product_code" required>
+            <option></option>
+            {% for item in items %}
+            <option value="{{ item.product_code }}">{{ item.product_code }}</option>
+            {% endfor %}
+        </select>
+    </td>
+    <td style="max-width: 125px;">
+        <input type="text" class="form-control" id="name_of_item_{{no}}" name="name_of_item" list="items" readonly>
+    </td>
+    <td style="max-width: 85px;">
+        <input type="text" class="form-control text-right" id="batch_{{no}}" name="batch" readonly>
+    </td>
+    <td style="max-width: 50px;">
+        <input type="number" class="form-control text-right" id="offermrp_{{no}}" name="offermrp" value="0">
+    </td>
+    <td style="max-width: 70px;">
+        <input type="text" class="form-control text-right" id="inner_{{no}}" name="inner" readonly value="0">
+    </td>
+    <td style="max-width: 85px;">
+        <input type="text" class="form-control text-right" id="stock_{{no}}" name="stock" readonly value="0">
+    </td>
+    <td style="max-width: 85px;">
+        <input type="number" class="form-control text-right" id="actualqty_{{no}}" name="aqty" min="1" required>
+    </td>
+    <td style="max-width: 70px;">
+        <input type="number" class="form-control text-right" id="billqty_{{no}}" name="billqty" required>
+    </td>
+    <td style="max-width: 70px;">
+        <input type="text" class="form-control text-right" id="freeqty_{{no}}" name="freeqty" readonly value="0">
+    </td>
+    <td style="max-width: 70px;">
+        <input type="text" class="form-control text-right" id="rate_{{no}}" name="rate" value="0" readonly>
+    </td>
+    <td style="max-width: 70px;">
+        <input type="number" class="form-control text-right" id="discount_{{no}}" name="discount" value="0">
+    </td>
+    <td style="max-width: 125px;">
+        <input type="text" class="form-control text-right" id="ammount_{{no}}" name="ammount" value="0" readonly>
+    </td>
+    <td class="d-none">
+        <input type="text" class="form-control text-right" id="cgst_{{no}}" name="cgst" readonly>
+    </td>
+    <td class="d-none">
+        <input type="text" class="form-control text-right" id="sgst_{{no}}" name="sgst" readonly>
+    </td>
+    <td>
+        <input type="text" class="form-control text-right" id="igst_{{no}}" name="igst" readonly>
+    </td>
+    <td class="d-none">
+        <input type="text" class="form-control text-right" id="cgstrate_{{no}}" name="cgstrate" readonly>
+    </td>
+    <td class="d-none">
+        <input type="text" class="form-control text-right" id="sgstrate_{{no}}" name="sgstrate" readonly>
+    </td>
+    <td class="d-none">
+        <input type="text" class="form-control text-right" id="igstrate_{{no}}" name="igstrate" readonly>>
+    </td>
+    <td class="align-middle text-center">
+        <button type="button"
+                class="btn btn-danger btn-sm btn-icon"
+                hx-get="{% url 'dash:clear' %}"
+                hx-swap="outerHTML"
+                hx-target="closest tr">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr>
+<tr>
+    <td class="align-middle text-center">
+        <button type="button"
+                class="btn btn-success btn-sm btn-icon mt-2"
+                hx-get="{% url 'sales:so-item' %}"
+                hx-swap="outerHTML"
+                hx-target="closest tr"
+                hx-vals='{"no": "{{no}}"}'>
+            <i class="fas fa-plus"> </i>
+        </button>
+    </td>
+</tr>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".js-example-basic-single").select2();
+    });
+</script>

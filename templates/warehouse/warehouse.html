@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <!-- begin page title -->
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Warehouse</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            Transactions
+                        </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Warehouse</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- end page title -->
+    </div>
+</div>
+<div class="row justify-content-start">
+    {% if request.user|has_group:"Admin,GRN View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'purchase:grn' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-box-arrow-in-down card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{grn}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'purchase:grn' %}">
+                                <span class="d-block font-25 mt-2">Goods Recieved Note</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Delivery Note View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'sales:dn' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-box-arrow-up-right card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{dn}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'sales:dn' %}">
+                                <span class="d-block font-25 mt-2">Delivery Note</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Loading Sheet View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'sales:ls' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-grid-3x3 card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{dn}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'sales:ls' %}">
+                                <span class="d-block font-25 mt-2">Loading Sheet</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Packing Sheet View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'sales:ps' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-file-earmark-spreadsheet card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{ps}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'sales:ps' %}">
+                                <span class="d-block font-25 mt-2">Packing Sheet</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Pallet Transfer" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'warehouse:pt' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-minecart-loaded card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'warehouse:pt' %}">
+                                <span class="d-block font-25 mt-2">Pallet Transfer</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,LR Details View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'sales:addlr' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-file-text card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{lr}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'sales:addlr' %}">
+                                <span class="d-block font-25 mt-2">LR Details</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Transport Details View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'sales:addtp' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-truck card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{tr}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'sales:addtp' %}">
+                                <span class="d-block font-25 mt-2">Transport Details</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

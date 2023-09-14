@@ -1,0 +1,750 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="page-content">
+
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Ledger Master</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Date</a></li>
+                            <li class="breadcrumb-item active">
+                                <script>
+                                    document.write(new Date().getDate())
+                                </script>
+                            </li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- <div class="card-header justify-content-between d-flex align-items-center">
+                        <h4 class="card-title">Add Product</h4>
+                    </div> -->
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'ledgers:ledger' %}" class="needs-validation" onsubmit="return validate()" >
+                            {% csrf_token %}
+                            <div class="text-center mb-4">
+                                <h5>Ledger Details</h5>
+                            </div>
+                            {% comment %} <div class="modal" id="gstModal" tabindex="-1" aria-labelledby="gstModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="multiaddress" class="row">
+                                                <div class="row">
+                                                    <div class="col-lg-2">
+                                                        <label for="mailing_name" class="form-label">Address
+                                                            Type</label>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <input type="text" class="form-control" id="mailing_name"
+                                                            name="mailing_name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="mailing_name" class="form-label">Mailling
+                                                            Name</label>
+                                                        <input type="text" class="form-control" id="mailing_name"
+                                                            name="mailing_name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_addressline1" class="form-label">Address
+                                                            Line1</label>
+                                                        <input type="text" class="form-control" id="pcd_addressline1"
+                                                            name="pcd_addressline1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_addressline2" class="form-label">Address
+                                                            Line2</label>
+                                                        <input type="text" class="form-control" id="pcd_addressline2"
+                                                            name="pcd_addressline2">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="pcd_country"
+                                                        class="col-sm-4 col-xl-4 col-form-label">Country</label>
+                                                    <div class="col-sm-6 col-xl-8">
+                                                        <select class="form-control">
+                                                            <option>Select</option>
+                                                            <option>Large select</option>
+                                                            <option>Small select</option>
+                                                        </select>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-lg-4">
+                                                    <label for="pcd_state"
+                                                        class="col-sm-4 col-xl-4 col-form-label">State</label>
+                                                    <div class="col-sm-6 col-xl-8">
+                                                        <select class="form-control">
+                                                            <option>Select</option>
+                                                            <option>Large select</option>
+                                                            <option>Small select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label for="pcd_city"
+                                                        class="col-sm-4 col-xl-4 col-form-label">city</label>
+                                                    <div class="col-sm-6 col-xl-8">
+                                                        <select class="form-control">
+                                                            <option>Select</option>
+                                                            <option>Large select</option>
+                                                            <option>Small select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_pincode" class="form-label">Pincode</label>
+                                                        <input type="text" class="form-control" id="pcd_pincode"
+                                                            name="pcd_pincode">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_contact_person" class="form-label">Contact
+                                                            Person</label>
+                                                        <input type="text" class="form-control" id="pcd_contact_person"
+                                                            name="pcd_contact_person">
+                                                    </div>
+                                                </div> 
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_phone_no" class="form-label">Phone no</label>
+                                                        <input type="text" class="form-control" id="pcd_phone_no"
+                                                            name="pcd_phone_no">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_mobile_no" class="form-label">Mobile No</label>
+                                                        <input type="text" class="form-control" id="pcd_mobile_no"
+                                                            name="pcd_mobile_no">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_fax_no" class="form-label">Fax No</label>
+                                                        <input type="text" class="form-control" id="pcd_fax_no"
+                                                            name="pcd_fax_no">
+                                                    </div>
+                                                </div> 
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_email_id" class="form-label">Email</label>
+                                                        <input type="text" class="form-control" id="pcd_email_id"
+                                                            name="pcd_email_id">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pcd_cc_email" class="form-label">CC to (if
+                                                            any)</label>
+                                                        <input type="text" class="form-control" id="pcd_cc_email"
+                                                            name="pcd_cc_email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="pan_no" class="form-label">PAN No</label>
+                                                        <input type="text" class="form-control" id="pan_no"
+                                                            name="pan_no">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="tin_no" class="form-label">TIN</label>
+                                                        <input type="text" class="form-control" id="tin_no"
+                                                            name="tin_no">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-4">
+                                                    <label for="gst_registration_type"
+                                                        class="col-sm-4 col-xl-4 col-form-label">Registration
+                                                        Type</label>
+                                                    <div class="col-sm-6 col-xl-8">
+                                                        <select class="form-control" name="gst_registration_type">
+                                                            <option value="0">Unknown</option>
+                                                            <option value="1">Composition</option>
+                                                            <option value="2">Consumer</option>
+                                                            <option value="3">Regular</option>
+                                                            <option value="4">Unregistered</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <label for="gstin" class="form-label">GSTIN</label>
+                                                        <input type="text" class="form-control" id="gstin" name="gstin">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-success"
+                                                hx-get="{% url 'ledgers:cmmultiadd' %}" hx-swap="outerHTML" <i
+                                                class="uil uil-ban">Add More Address</i></button>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+                            <div class="row">
+                                <!-- Name -->
+
+                                <div class="col-xl-6">
+                                    <div class="mb-3 row">
+                                        <label for="ledger_name" class="col-md-3 col-form-label">Ledger Name<span style="color:red">*</span></label>
+                                        <div class="col-md-9">
+                                            <input class="form-control" type="text" id="ledger_name"
+                                                name="ledger_name" required value="{{ledgers.name}}" />
+                                        </div>
+                                    </div><!-- end row -->
+                                </div>
+                                <!-- Group -->
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="row mb-3 md-6">
+                                        <label for="group" class="col-sm-4 col-xl-3 col-form-label">Group</label>
+                                        <div class="col-sm-6 col-xl-9">
+                                            <select id="groups" name="group" class="form-control">
+                                                <option value="{{ledgers.under}}" >{{ledgers.under}}</option>
+                                                {% for group in groups %}
+                                                <option value="{{ledgers.under}}">{{ledgers.under}}</option>
+                                                    {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div><!-- end row -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="row mb-3 md-6">
+                                        <label for="gstapplicable"
+                                            class="col-sm-4 col-xl-4 col-form-label">GST
+                                            Applicable</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" id="gstapplicable" name="gstapplicable">
+                                                <option value="{{ ledgers.gst_applicable }}">{{ ledgers.gst_applicable }}</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div><!-- end row -->
+                                </div><!-- end col -->
+                                <div class="col-xl-4">
+                                    <div class="row mb-3 md-6" id="typeofsupply">
+                                        <label for="suply_type" class="col-sm-4 col-xl-4 col-form-label">Type of
+                                            Supply</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" id="suply_type" name="suply_type">
+                                                <option value="{{ ledgers.type_of_supply }}">{{ ledgers.type_of_supply }}</option>
+                                            </select>
+                                        </div>
+                                    </div><!-- end row -->
+                                </div>
+                            </div>
+                            <div class="row">
+
+                            {% comment %} <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="row form-check form-switch form-switch-md ">
+                                        <input class="form-check-input" type="checkbox" id="maintain_bbb"
+                                            name="maintain_bbb">
+                                        <label class="form-check-label" for="maintain_bbb">Maintain balances
+                                            bill-by-bill</label>
+                                    </div>
+                                </div>
+                                <!-- Article Code -->
+                                <div class="col-xl-4">
+                                    <div class="mb-3 row">
+                                        <label for="dafault_credit_period" class="col-md-4 col-form-label">Default
+                                            Credit
+                                            Period(Days):</label>
+                                        <div class="col-md-8" style="display: none;">
+                                            <input class="form-control" type="text" value=""
+                                                name="dafault_credit_period" id="dafault_credit_period">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="mb-3 row">
+                                        <label for="check_credit_days" class="col-md-4 col-form-label">Check Credit Days
+                                        </label>
+                                        <input class="form-check-input" type="checkbox" id="check_credit_days"
+                                            name="check_credit_days">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="mb-3 row">
+                                        <div class="col-md-6">
+                                            <label for="payment_terms" class="form-label">Payment Terms</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="payment_terms"
+                                                name="payment_terms">
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-lg-4">
+                                    <div class="mb-3 row">
+                                        <div class="col-md-6">
+                                            <label for="credit_limit" class="form-label">Credit Limit</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="credit_limit"
+                                                name="credit_limit">
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-lg-4">
+                                    <div class="mb-3 row">
+                                        <div class="col-md-6">
+
+                                            <label for="override_credit_limit" class="form-label">Override Credit Limit
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="checkbox" class="form-check-input" id="override_credit_limit"
+                                                name="override_credit_limit">
+                                        </div>
+                                    </div>
+                                </div><!-- end col -->
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <div class="row mb-3 md-6">
+                                        <label for="region" class="col-sm-4 col-xl-4 col-form-label">Region</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" id="regionoptions" name="region">
+                                                <option value="0">---------</option>
+                                                {% for i in regions %}
+                                                <option value="{{i.pk}}">{{i.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div><!-- end row -->
+                                </div>
+
+                                <div class="col-xl-4">
+                                    <div class="row mb-3 md-6">
+                                        <label for="zone" class="col-sm-4 col-xl-4 col-form-label">Zone</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" id="zoneoptions" name="zone">
+                                                <option>Select</option>
+                                            </select>
+                                        </div>
+                                    </div><!-- end row -->
+                                </div><!-- end col -->
+
+                                <div class="col-xl-4">
+                                    <div class="row mb-3 md-6">
+                                        <label for="zsm_name" class="col-sm-4 col-xl-4 col-form-label">ZSM_name</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" id="zsmoptions" name="zsm_name">
+                                                <option>Select</option>
+                                            </select>
+                                        </div>
+                                    </div><!-- end row -->
+                                </div><!-- end col -->
+                                <div class="col-xl-4">
+                                    <div class="row mb-3 md-6">
+                                        <label for="asm_name" class="col-sm-4 col-xl-4 col-form-label">ASM_Name</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" id="asmoptions" name="asm_name">
+                                                <option>Select</option>
+                                            </select>
+                                        </div>
+                                    </div><!-- end row -->
+                                </div><!-- end col -->
+                                <div class="col-xl-4">
+                                    <div class="row mb-3 md-6">
+                                        <label for="se_name" class="col-sm-4 col-xl-4 col-form-label">SE Name</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" id="seoptions" name="se_name">
+                                                <option>Select</option>
+                                            </select>
+                                        </div>
+                                    </div><!-- end row -->
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="row mb-3 md-6">
+                                        <label for="party_type" class="col-sm-4 col-xl-4 form-label">Paty Type</label>
+                                        <div class="col-sm-6 col-xl-8">
+                                            <select class="form-control" name="party_type">
+                                                <option>--------</option>
+                                                {% for i in party_types %}
+                                                <option>{{i.name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- end col --> {% endcomment %}
+                    </div><!-- end col -->
+                    {% comment %} <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="vendor_code" class="form-label">Vendor Code</label>
+                                <input type="text" class="form-control" id="vendor_code" name="vendor_code">
+                            </div>
+                        </div><!-- end col -->
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <h5>Address Details</h5>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="mailing_name" class="form-label">Mailling Name</label>
+                                <input type="text" class="form-control" id="mailing_name" name="mailing_name">
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="addressline1" class="form-label">Address Line1</label>
+                                <input type="text" class="form-control" id="addressline1" name="addressline1">
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="addressline2" class="form-label">Address Line2</label>
+                                <input type="text" class="form-control" id="addressline2" name="addressline2">
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col-lg-4">
+                            <label for="countryoptions" class="col-sm-4 col-xl-4 col-form-label">Country</label>
+                            <div class="col-sm-6 col-xl-8">
+                                <select class="form-control" id="countryoptions" name="country">
+                                    <option value="">---------</option>
+                                    {% for country in countries %}
+                                    <option value="{{ country.pk }}">{{ country.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col-lg-4">
+                            <label for="stateoptions" class="col-sm-4 col-xl-4 col-form-label">State</label>
+                            <div class="col-sm-6 col-xl-8">
+                                <select class="form-control" id="stateoptions" name="state">
+                                    <option>Select</option>
+                                </select>
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col-lg-4">
+                            <label for="cityoptions" class="col-sm-4 col-xl-4 col-form-label">City</label>
+                            <div class="col-sm-6 col-xl-8">
+                                <select class="form-control" id="cityoptions" name="city">
+                                    <option>Select</option>
+                                </select>
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="pin_code" class="form-label">Pincode</label>
+                                <input type="text" class="form-control" id="pin_code" name="pin_code">
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="mobile_no" class="form-label">Mobile</label>
+                                <input type="text" class="form-control" id="mobile_no" name="mobile_no">
+                            </div>
+                        </div><!-- end col -->
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="pan_no" class="form-label">PAN No</label>
+                                <input type="text" class="form-control" id="pan_no" name="pan_no">
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <label for="registration_types" class="col-sm-4 col-xl-4 col-form-label">Registration
+                                Type</label>
+                            <div class="col-sm-6 col-xl-8">
+                                <select class="form-control" id="registration_types" name="registration_type">
+                                    <option value="0">Unknown</option>
+                                    <option value="1">Composition</option>
+                                    <option value="2">Consumer</option>
+                                    <option value="3">Regular</option>
+                                    <option value="4">Unregistered</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="mb-3">
+                                <label for="gstin" class="form-label">GSTIN</label>
+                                <input type="text" class="form-control" id="gstin" name="gstin">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="row form-check form-switch form-switch-md ">
+                                <input class="form-check-input" type="checkbox" id="provide_contact_details"
+                                    name="provide_contact_details">
+                                <label class="form-check-label" for="provide_contact_details">Provide Contact
+                                    Details</label>
+                            </div>
+                        </div>
+                        <div class="col-xl-8" id="contactdetails" style="display: none;">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="contact_person" class="form-label">Contact Person</label>
+                                        <input type="text" class="form-control" id="contact_person"
+                                            name="contact_person">
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="phone_no" class="form-label">Phone no</label>
+                                        <input type="text" class="form-control" id="phone_no" name="phone_no">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="fax_no" class="form-label">Fax No</label>
+                                        <input type="text" class="form-control" id="fax_no" name="fax_no">
+                                    </div>
+                                </div><!-- end col -->
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="email_id" class="form-label">Email</label>
+                                        <input type="text" class="form-control" id="email_id" name="email_id">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="cc_email" class="form-label">CC to (if any)</label>
+                                        <input type="text" class="form-control" id="cc_email" name="cc_email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label for="website" class="form-label">website</label>
+                                        <input type="text" class="form-control" id="website" name="website">
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="row form-check form-switch form-switch-md ">
+                                <input class="form-check-input" type="checkbox" id="multiple_address_list"
+                                    data-bs-toggle="modal" data-bs-target="#gstModal" autocomplete="off"
+                                    name="mailing_details">
+                                <label class="form-check-label" for="multiple_address_list">Set.alter multiple mailing
+                                    details</label>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div> {% endcomment %}
+                </div>
+                <hr>
+                {% comment %} <div class="row">
+                    <h5>Bank Details</h5>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="transation_types" class="form-label">Transation Type</label>
+                            <input type="text" class="form-control" id="transation_types" name="transation_type">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="bank" class="form-label">Bank</label>
+                            <input type="text" class="form-control" id="bank" name="bank">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="ifsc_code" class="form-label">IFSC CODE</label>
+                            <input type="text" class="form-control" id="ifsc_code" name="ifsc_code">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="account_no" class="form-label">Account Code</label>
+                            <input type="text" class="form-control" id="account_no" name="account_no">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="account_name" class="form-label">Account Name</label>
+                            <input type="text" class="form-control" id="account_name" name="account_name">
+                        </div>
+                    </div>
+
+                </div><!-- end row --> {% endcomment %}
+                <button type="submit" class="btn btn-primary w-sm ms-auto" style="float: right;" >Submit</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% load static %}{% load perms %}
+
+<script>
+    // State
+    $("#countryoptions").change(function () {
+        var countryId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:ajax_load_states' %}",
+            data: {
+                'country': countryId
+            },
+            success: function (data) {
+                $("#stateoptions").html(
+                    data);
+            }
+        });
+
+    });
+
+    // City
+    $("#stateoptions").change(function () {
+        var stateId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:ajax_load_cities' %}",
+            data: {
+                'state': stateId
+            },
+            success: function (data) {
+                $("#cityoptions").html(
+                    data);
+            }
+        });
+
+    });
+
+    //region
+    $("#regionoptions").change(function () {
+        var regionId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:ajax_load_zones' %}",
+            data: {
+                'region': regionId
+            },
+            success: function (data) {
+                $("#zoneoptions").html(
+                    data);
+            }
+        });
+
+    });
+
+    //zsm
+    $("#zoneoptions").change(function () {
+        var zoneId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:ajax_load_zsms' %}",
+            data: {
+                'zone': zoneId
+            },
+            success: function (data) {
+                $("#zsmoptions").html(
+                    data);
+            }
+        });
+
+    });
+
+    //asm
+    $("#zsmoptions").change(function () {
+        var zsmId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:ajax_load_asms' %}",
+            data: {
+                'zsm': zsmId
+            },
+            success: function (data) {
+                $("#asmoptions").html(
+                    data);
+            }
+        });
+
+    });
+
+    //se
+    $("#asmoptions").change(function () {
+        var asmId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:ajax_load_ses' %}",
+            data: {
+                'asm': asmId
+            },
+            success: function (data) {
+                $("#seoptions").html(
+                    data);
+            }
+        });
+
+    });
+
+    function toggle_batch() {
+        if (this.checked) {
+            document.getElementById("dafault_credit_period").parentNode.style.display = 'block';
+            document.getElementById("check_credit_days").parentNode.style.display = 'block';
+        } else {
+            document.getElementById("dafault_credit_period").parentNode.style.display = 'none';
+            document.getElementById("check_credit_days").parentNode.style.display = 'none';
+        }
+    }
+
+    function toggle_behave() {
+        if (this.checked) {
+            document.getElementById("contactdetails").style.display = 'block';
+        } else {
+            document.getElementById("contactdetails").style.display = 'none';
+        }
+    }
+
+    document.getElementById("maintain_bbb").onclick = toggle_batch;
+    document.getElementById("provide_contact_details").onclick = toggle_behave;
+</script>
+
+{% endblock %}

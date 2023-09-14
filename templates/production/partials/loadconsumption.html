@@ -1,0 +1,14 @@
+{% for item in items %}
+{{forloop.counter}}|
+{{ item.bom__product__product_code }}|
+{{ item.bom__name }}|
+{{ item.item__product_code }}|
+{{ item.qty }}|
+{{ item.sqty }}|
+{{ item.item__description }}~
+{% if item.inner %}
+{{forloop.counter}}.
+{% include "production/rec_item.html" with items=item.inner %}
+{% endif %}
+{% endfor %}
+{{shortfall}}

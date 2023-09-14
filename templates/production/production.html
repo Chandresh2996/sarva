@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <!-- begin page title -->
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Production</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            Transactions
+                        </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Production</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- end page title -->
+    </div>
+</div>
+<div class="row justify-content-start">
+    {% if request.user|has_group:"Admin,BOM View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'planning:bom' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-journal-text card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{bom}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'planning:bom' %}">
+                                    <span class="d-block font-25 mt-2">Bill of Material(BOM)</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,JobOrder View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'planning:joborder' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-journal-check card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{jo}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'planning:joborder' %}">
+                                    <span class="d-block font-25 mt-2">Job Order</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Job Card View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'production:listjobwork' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-journal-medical card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{jc}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'production:listjobwork' %}">
+                                    <span class="d-block font-25 mt-2">Job Card</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,RM Indent View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'production:rm-indent' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-file-earmark-binary card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{indent}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'production:rm-indent' %}">
+                                    <span class="d-block font-25 mt-2">RM Indent</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Material Transfer View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'production:mt' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-indent card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'production:mt' %}">
+                                    <span class="d-block font-25 mt-2">Material Transfer</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Consumables View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'production:consumables' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-file-earmark-diff card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{con}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'production:consumables' %}">
+                                    <span class="d-block font-25 mt-2">Consumables</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Production View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'production:consumption' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-gear-wide-connected card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{consumption}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'production:consumption' %}">
+                                    <span class="d-block font-25 mt-2">Production</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

@@ -1,0 +1,115 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Scheme</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="needs-validation" action="{% url 'inventory:scheme' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <select class="form-control" id="scheme" name="scheme">
+                                        <option value="1">Type 1</option>
+                                        <option value="2">Type 2</option>
+                                        <option value="3">Type 3</option>
+                                        <option value="4">Type 4</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="name">Name<span style="color:red">*</span></label>
+                                        <input type="text" class="form-control" id="name" autocomplete="off" name="name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                </div><!-- end row -->
+                                <div class="col-md-4">
+                                    <button style="float: right;" class="btn btn-primary" type="submit">Submit form</button>
+                                </div><!-- end row -->
+                            </div><!-- end row -->
+                        </form><!-- end form -->
+                    </div><!-- end card body -->
+                </div><!-- end card -->
+            </div> <!-- end col -->
+            <!-- end col -->
+        </div><!-- end row -->
+        <div class="col-xxl-8 col-xl-12">
+            <div class="card">
+                <div class="card-header justify-content-between d-flex align-items-center">
+                    <h4 class="card-title">Schemes</h4>
+                </div><!-- end card header -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for brand in subclasses %}
+                                <tr>
+                                    <th scope="row">{{forloop.counter}}</th>
+                                    <td>{{brand.name}}</td>
+                                    <td><a type="button"
+                                        class="btn btn-success"
+                                        href="{% url 'inventory:editscheme' %}">
+                                         edit
+                                     </a></td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody><!-- end tbody-->
+                        </table><!-- end table-->
+                    </div><!-- end table responsive -->
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    function scheme() {
+        if (this.value == '4') {
+            document.getElementById("type4").style.display = 'block';
+            document.getElementById("type3").style.display = 'none';
+            document.getElementById("type2").style.display = 'none';
+            document.getElementById("type1").style.display = 'none';
+        } else if (this.value == '3') {
+            document.getElementById("type3").style.display = 'block';
+            document.getElementById("type4").style.display = 'none';
+            document.getElementById("type2").style.display = 'none';
+            document.getElementById("type1").style.display = 'none';
+        } else if (this.value == '2') {
+            document.getElementById("type2").style.display = 'block';
+            document.getElementById("type4").style.display = 'none';
+            document.getElementById("type3").style.display = 'none';
+            document.getElementById("type1").style.display = 'none';
+        } else {
+            document.getElementById("type1").style.display = 'block';
+            document.getElementById("type4").style.display = 'none';
+            document.getElementById("type3").style.display = 'none';
+            document.getElementById("type2").style.display = 'none';
+        }
+    }
+    document.getElementById("scheme").onchange = scheme;
+</script>
+
+{% endblock %}

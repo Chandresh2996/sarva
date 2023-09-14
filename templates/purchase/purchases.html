@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <!-- begin page title -->
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Purcahse</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            Master
+                        </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Purcahse</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- end page title -->
+    </div>
+</div>
+<div class="row justify-content-start">
+    {% if request.user|has_group:"Admin,Standard Cost View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'purchase:stdrate' %}">
+            <div class="card card-statistics">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-currency-exchange card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block">{{sr}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <span class="bg-white text-center d-block" href="{% url 'purchase:stdrate' %}">
+                                <span class="d-block font-25 mt-2">Standard Cost</span>
+                            </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Purchase Order View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12">
+        <a href="{% url 'purchase:po' %}">
+            <div class="card card-statistics">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-bag-check card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="d-block">{{po}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'purchase:po' %}">
+                                    <span class="d-block font-25 mt-2">Purchase Order</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Purchase View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12">
+        <a href="{% url 'purchase:pi' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-receipt card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="d-block">{{purchase}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'purchase:pi' %}">
+                                    <span class="d-block font-25 mt-2">Purchase Invoice</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,DebitNote View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12">
+        <a href="{% url 'purchase:db' %}">
+            <div class="card card-statistics">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-file-earmark-minus card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="d-block">{{db}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'purchase:db' %}">
+                                    <span class="d-block font-25 mt-2">Debit Note</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Purchase QDN View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12">
+        <a href="{% url 'purchase:qdn' %}">
+            <div class="card card-statistics">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-file-earmark-diff card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="d-block">{{qdn}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'purchase:qdn' %}">
+                                    <span class="d-block font-25 mt-2">QDN</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Purchase Return View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12">
+        <a href="{% url 'purchase:pr' %}">
+            <div class="card card-statistics">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-bag-dash card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="d-block">{{pr}}</span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'purchase:pr' %}">
+                                    <span class="d-block font-25 mt-2">Purchase Return</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

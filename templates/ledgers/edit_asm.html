@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Area Sales Manager: Edit</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Masters </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'ledgers:ledgers' %}"> Registration </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'ledgers:asm' %}"> ASM </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href=""> Edit ASM </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="needs-validation"  action="{% url 'ledgers:edit_asm' asm.pk %}" method="POST" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="zone">Zone</label>
+                                <!-- <input name="zone" id="zone" list="zones" class="form-control" value="{{asm.zone}}"
+                                    pattern="{% for brand in zones %}{{brand.name}}|{% endfor %}"> -->
+                                <select class="js-example-basic-single" class="form-control" id="zone" name="zone" required>
+                                    {% for brand in zone %}
+                                    {% if asm.zone == brand.name %}
+                                        <option value="{{brand.pk}}" selected>{{brand.name}}</option>
+                                    {% else %}
+                                        <option value="{{brand.pk}}">{{brand.name}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="region">Region</label>
+                                <!-- <input name="region" id="region" list="regions" class="form-control" value="{{asm.region}}"
+                                    pattern="{% for i in regions %}{{i.name}}|{% endfor %}"> -->
+                                <select class="js-example-basic-single" class="form-control" id="region" name="region" required>
+                                    {% for i in regions %}
+                                    {% if asm.region == i.name %}
+                                        <option value="{{i.pk}}" selected>{{i.name}}</option>
+                                    {% else %}
+                                        <option value="{{i.pk}}">{{i.name}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="zsm">ZSM</label>
+                                <!-- <input name="zsm" id="zms" list="sms" class="form-control" value="{{asm.zsm}}"
+                                    pattern="{% for i in zsms %}{{i.name}}|{% endfor %}"> -->
+                                <select class="js-example-basic-single" class="form-control" id="zms" name="zsm" required>
+                                    {% for i in zsms %}
+                                    {% if asm.zsm == i.name %}
+                                        <option value="{{i.pk}}" selected>{{i.name}}</option>
+                                    {% else %}
+                                        <option value="{{i.pk}}">{{i.name}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="rsm">RSM</label>
+                                <!-- <input name="rsm" id="rsm" list="brands" class="form-control" value="{{asm.rsm}}"
+                                    pattern="{% for i in rsms %}{{i.name}}|{% endfor %}"> -->
+                                <select class="js-example-basic-single" class="form-control" id="rsm" name="rsm" required>
+                                    {% for i in rsms %}
+                                    {% if asm.rsm == i.name %}
+                                        <option value="{{i.pk}}" selected>{{i.name}}</option>
+                                    {% else %}
+                                        <option value="{{i.pk}}">{{i.name}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Name<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="name" name="name" required value="{{asm.name}}">
+
+                            </div>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <button style="float: right;" class="btn btn-primary" type="submit" >Submit</button>
+                        </div>
+                </form><!-- end form -->
+            </div><!-- end card body -->
+        </div><!-- end card -->
+    </div> <!-- end col -->
+</div>
+
+{% endblock %}
+{% block scripts %}
+    <script>
+    $("#zone").change(function () {
+        var regionId = $(this).val();
+
+        $.ajax({
+            url: "{% url 'ledgers:load_zones' %}",
+            data: {
+                'region': regionId
+            },
+            success: function (data) {
+                $("#region").html(data);
+            }
+        });
+
+    });
+
+    $("#region").change(function () {
+        var regionId = $("#zone").val();
+
+        $.ajax({
+            url: "{% url 'ledgers:load_zsms' %}",
+            data: {
+                'region': regionId
+            },
+            success: function (data) {
+                $("#zms").html(data);
+            }
+        });
+
+    });
+    $("#zms").change(function () {
+        var zoneId = $("#zone").val();
+        var regionId = $("#region").val();
+        var zsm = $(this).val();
+        $.ajax({
+            url: "{% url 'ledgers:load_rsms' %}",
+            data: {
+                'zone': zoneId,
+                'region': regionId,
+                'zsm': zsm
+            },
+            success: function (data) {
+                $("#rsm").html(data);
+            }
+        });
+
+    });
+</script>
+
+{% endblock %}

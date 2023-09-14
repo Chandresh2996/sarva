@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Brand: Edit</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"> Master </li>
+                        <li class="breadcrumb-item" aria-current="page"><a
+                                href="{% url 'inventory:inventory' %}">Registration</a></li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{% url 'inventory:brand' %}">Brands</a>
+                        </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page">Edit Brand</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="needs-validation" action="{% url 'inventory:edit_brand' brands.pk %}" onsubmit="return validate()" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="under">Under</label>
+                                <input value="Primary" autocomplete="off" name="under" id="under" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Name<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="name" autocomplete="off" name="name" required
+                                    value="{{brands.name}}">
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="group_code">Group Code<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="group_code" autocomplete="off" name="group_code" required
+                                    value="{{brands.code}}">
+                            </div>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <button style="float: right;" class="btn btn-primary" type="submit" >Submit</button>
+                        </div>
+                </form>
+                <!-- end form -->
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+    </div>
+</div>
+{% endblock %}

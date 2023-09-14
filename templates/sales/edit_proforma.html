@@ -1,0 +1,543 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% load mathops %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row mx-0">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Proforma Inovice: Edit</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:sales' %}">sales</a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:proformainv' %}">Proforma Inovice</a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:showproformainv' dn.pk %}">View Proforma Inovice</a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Edit Proforma Inovice </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mx-0">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="mb-0"><span class="fw-bold">Proforma Inovice: </span>{{dn.inv_no}}</h4>
+                <div class="page-title-right">
+                    <h4><span class="fw-bold">Date: </span>{{date|date:'d-m-Y'}}</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{% url 'sales:editproformainv' dn.pk %}" class="needs-validation" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="row mx-0">
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="dn_no" class="col-md-4 col-form-label">DN NO</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" id="dn_no" name="dn_no" value="{{dn.dn|default_if_none:''}}" readonly/>
+                                </div>
+                            </div><!-- end row -->
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_no" class="col-md-5  col-form-label">SO NO</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" id="so_no" name="so_no" value="{{dn.dn.sales_order|default_if_none:''}}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="so_date" class="col-md-5  col-form-label">DN DATE</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" value="{{dn.dn.dn_date|default_if_none:''|date:'d-m-Y'}}" readonly name="so_date"></input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-lg-3">
+                            <div class="mb-2">
+                                <label for="party_name" class="form-label">Bill To</label>
+                                <input type="text" class="form-control" id="party_name" value="{{dn.buyer}}"
+                                    placeholder="Name" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_address_type" value="{{dn.buyer_address_type}}"
+                                    placeholder="Address Type" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="party_address" value="{{dn.buyer_address}}"
+                                    placeholder="Address" readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_gstin" placeholder="GSTIN" value="{{dn.buyer_gstin}}"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mb-2">
+                                <label for="consignee_name" class="form-label">Ship To</label>
+                                <input type="text" class="form-control" id="consignee_name" value="{{dn.shipto}}"
+                                    placeholder="Name" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="consignee_address_type" value="{{dn.shipto_address_type}}"
+                                    placeholder="Address Type" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="consignee_address" value="{{dn.shipto_address}}"
+                                    placeholder="Address" readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="consignee_gstin" value="{{dn.shipto_gstin}}"
+                                    placeholder="GSTIN" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="dispatch_doc_no" class="form-label">Trans Doc No</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="dispatch_doc_no" value="{{dn.dispatch_doc_no}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="lr_date" class="form-label">Trans Doc Date</label>
+                                </div>
+                                <div class="col">
+                                    <input type="date" class="form-control" id="lr_date" value="{{dn.lr_date}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="dispatch_through" class="form-label">Trans Mode</label>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" id="dispatch_through" value="{{dn.dispatch_through}}">
+                                        <option value="0">--------</option>
+                                        <option value="1">Road</option>
+                                        <option value="2">Rail</option>
+                                        <option value="3">Air</option>
+                                        <option value="4">Ship</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="destintaion" class="form-label">Distance</label>
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control" id="destintaion" value="{{dn.destintaion}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="carrier_agent" class="form-label">Transporter</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="carrier_agent" value="{{dn.carrier_agent}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="vehicle_type" class="form-label">Vehicle Type</label>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" id="vehicle_type">
+                                        <option value="0">--------</option>
+                                        <option value="1">Regular</option>
+                                        <option value="2">ODC</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="vehical_no" class="form-label">Vehical No</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="vehical_no" value="{{dn.vehical_no}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="order_no" class="form-label">Order No</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="order_no" name="order_no" value="{{dn.order_no}}">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="price_list" class="form-label">Price List</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="price_list" readonly value="{{dn.sales_order.price_list}}">
+                                </div>
+                            </div><!-- end col -->
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="mode_of_payment" class="form-label">Mode of payment</label >
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="mode_of_payment" readonly value="{{dn.sales_order.mode_of_payment}}" >
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="other_reference" class="form-label">Other Reference</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="other_reference" readonly value="{{dn.sales_order.other_reference}}" >
+                                </div>
+                            </div><!-- end col -->
+
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="terms_of_delivery" class="form-label">Terms of delivery</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="terms_of_delivery" readonly value="{{dn.sales_order.terms_of_delivery}}" >
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="card w-100">
+                            <div class="card-body" style="padding: 0;">
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="table">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th width="15">#</th>
+                                                <th>SKU Code</th>
+                                                <th>SKU Name</th>
+                                                <th>MRP</th>
+                                                <th>Offer MRP</th>
+                                                <th>Pack</th>
+                                                <th>Available Qty</th>
+                                                <th>Total Qty</th>
+                                                <th>Billed Qty</th>
+                                                <th>Free Qty</th>
+                                                <th>Rate</th>
+                                                <th>Discount</th>
+                                                <th>GST</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody">
+                                            {% for i in items %}
+                                            <tr>
+                                                <th scope="row" class="datarow">
+                                                    {{forloop.counter}}
+                                                </th>
+                                                <td>
+                                                    <input type="text" class="form-control" id="product_code_{{forloop.counter}}" name="product_code" autocomplete = "off" list="pitems" readonly value="{{i.item}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="name_of_item_{{forloop.counter}}" name="name_of_item" list="items" readonly value="{{i.item.product_name}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="batch_{{forloop.counter}}" name="mrp" readonly value="{{i.mrp|floatformat:0}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="offermrp_{{forloop.counter}}" name="offermrp" readonly value="{{i.offer_mrp|floatformat:0}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="inner_{{forloop.counter}}" name="inner" readonly value="{{i.pack|floatformat:0}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="stock_{{forloop.counter}}" name="stock" readonly value="{{i.available_qty|floatformat:0}}">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control text-right" id="actualqty_{{forloop.counter}}" name="aqty" required value="{{i.actual_qty|floatformat:0}}">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control text-right" id="billqty_{{forloop.counter}}" name="billqty" required value="{{i.billed_qty|floatformat:0}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="freeqty_{{forloop.counter}}" name="freeqty" readonly value="{{i.free_qty|floatformat:0}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="rate_{{forloop.counter}}" name="rate" readonly value="{{i.rate}}">
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control text-right" id="discount_{{forloop.counter}}" name="discount" readonly value="{{i.discount}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="ammount_{{forloop.counter}}" name="ammount" readonly value="{{i.amount}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="cgst_{{forloop.counter}}" name="cgst" readonly value="{{i.cgstrate}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="sgst_{{forloop.counter}}" name="sgst" readonly value="{{i.sgstrate}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control text-right" id="igst_{{forloop.counter}}" name="igst" readonly value="{{i.igstrate}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="cgstrate_{{forloop.counter}}" name="cgstrate" readonly value="{{i.cgst}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="sgstrate_{{forloop.counter}}" name="sgstrate" readonly value="{{i.sgst}}">
+                                                </td>
+                                                <td class="d-none">
+                                                    <input type="text" class="form-control text-right" id="igstrate_{{forloop.counter}}" name="igstrate" readonly value="{{i.igst}}">
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <button type="button"
+                                                            class="btn btn-danger btn-sm btn-icon"
+                                                            hx-get="{% url 'dash:clear' %}"
+                                                            hx-swap="outerHTML"
+                                                            hx-target="closest tr">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button> </td>
+                                        </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-lg-4 pt-5 mt-5">
+                            <div class="mt-5">
+                                <label for="narration" class="form-label"> Remarks </label>
+                                <input type="text" class="form-control" id="narration" value="{{dn.narration}}" name="narration">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-4 mb-4">
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label"> SubTotal </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalammount" value="{{dn.ammount}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+
+                                <div class="col">
+                                    <label for="extradiscount" class="form-label">Discount</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="extradiscount" name="extradiscount" value="{{dn.discount|default_if_none:0}}" >
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col-xl-4" style="padding: 0px 3px;">
+                                    <input class="form-control text-right" id="other_ledger" value="{{dn.other_ledger}}"/>
+                                        {% comment %} <option value=''>Ledger</option>
+                                        {% for i in ledgers %}
+                                        <option value='{{i.pk}}'>{{i}}</option>
+                                        {% endfor %}
+                                    </input>{% endcomment %}
+                                </div>
+                                <div class="col-xl-3" style="padding: 0px 3px;">
+                                    <input class="form-control text-right" id="other_ledger_per" value="{{dn.ol_rate}}" />
+                                        {% comment %} <option value='0'>0 %</option>
+                                        <option value='5'>5 %</option>
+                                        <option value='12'>12 %</option>
+                                        <option value='18'>18 %</option>
+                                        <option value='28'>28 %</option>
+                                    </input> {% endcomment %}
+                                </div>
+                                <div class="col-xl-5" style="padding-left: 3px;">
+                                    <input type="text" class="form-control text-right" id="other" value='0' value="{{d.ol_rate}}">
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalcgst" class="form-label">CGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalcgst" value="{{dn.cgst}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalsgst" class="form-label">SGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalsgst" value="{{dn.sgst}}" readonly>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totaligst" class="form-label">IGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totaligst" value="{{dn.igst}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totaltcs" class="form-label">TCS</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totaltcs" value="{{dn.tcs}}" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="total" class="form-label"> Total </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="total" value="{{dn.total}}" readonly>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+                    </div><!-- end col -->
+                        <div class="row mx-0">
+                            <div class="col-lg-4">
+                            </div>
+                            <div class="col-lg-4">
+                            </div>
+                            <div class="col-lg-4">
+                                <button type="submit" class="btn btn-primary w-sm ms-auto" id="btnsubmit" style="float:right;" > Submit </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- end row -->
+        </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $("table").on("change", e);
+
+    function e() {
+
+        var no = e.arguments[0].target.id.split('_').pop()
+        var pack = parseInt($("#inner_" + no + "").val() || 1);
+        var qty = parseFloat($("#billqty_" + no + "").val() || 0);
+        var sqty = parseFloat($("#stock_" + no + "").val() || 0);
+        var actual = parseFloat($("#actualqty_" + no + "").val() || 0);
+        var rate = parseFloat($("#rate_" + no + "").val() || 0);
+        var dis = parseFloat($("#discount_" + no + "").val() || 0);
+        var extdis = parseFloat($("#extradiscount").val() || 0);
+
+        if(actual > sqty) {
+            actual = 0;
+            alert("Total Qty Cannot be more than Available qty");
+            $("#actualqty_" + no + "").val(0);
+        }
+        else if (qty > actual) {
+            var data = ((actual * rate) * ((100 - dis) / 100));
+            alert("Billed Qty Cannot be more than Actual qty");
+            $("#billqty_" + no + "").val(actual);
+            $("#freeqty_" + no + "").val(parseFloat(0));
+            $("#ammount_" + no + "").val(data.toFixed(2));
+        }
+        else if (actual == 0){
+            alert("Total Qty Cannot be zero");
+        }
+        else {
+            var free = (actual - qty);
+            $("#freeqty_" + no + "").val(free.toFixed(2));
+            var data = ((qty * rate) * ((100 - dis) / 100));
+            $("#ammount_" + no + "").val(data.toFixed(2));
+        }
+
+        var cgst = parseFloat($("#cgst_"+ no + "").val() || 0);
+        var sgst = parseFloat($("#sgst_"+ no + "").val() || 0);
+        var igst = parseFloat($("#igst_"+ no + "").val() || 0);
+        var ammount = parseFloat($("#ammount_"+ no + "").val() || 0);
+
+        var cgstdata = (((ammount* ((100 - extdis) / 100)) * cgst) / 100);
+        var sgstdata = (((ammount* ((100 - extdis) / 100)) * sgst) / 100);
+        var igstdata = (((ammount* ((100 - extdis) / 100)) * igst) / 100);
+
+        $("#cgstrate_"+ no + "").val(cgstdata);
+        $("#sgstrate_"+ no + "").val(sgstdata);
+        $("#igstrate_"+ no + "").val(igstdata);
+        window.totals()
+    }
+
+    $("#other_ledger_per").change(totals);
+    $('#other').change(totals);
+    $('#extradiscount').change(ed);
+
+    function ed(){
+        ($('[name="ammount"]').each(function (i, j) {
+
+            var extdis   = parseFloat(($("#extradiscount").val() || 0));
+            var no = ($(this).attr("id").split('_').pop());
+
+            var cgst = parseFloat($("#cgst_"+ no + "").val() || 0);
+            var sgst = parseFloat($("#sgst_"+ no + "").val() || 0);
+            var igst = parseFloat($("#igst_"+ no + "").val() || 0);
+            var ammount = parseFloat($("#ammount_"+ no + "").val() || 0);
+            var cgstdata = (((ammount* ((100 - extdis) / 100)) * cgst) / 100);
+            var sgstdata = (((ammount* ((100 - extdis) / 100)) * sgst) / 100);
+            var igstdata = (((ammount* ((100 - extdis) / 100)) * igst) / 100);
+
+            $("#cgstrate_"+ no + "").val(cgstdata);
+            $("#sgstrate_"+ no + "").val(sgstdata);
+            $("#igstrate_"+ no + "").val(igstdata);
+        }));
+        window.totals()
+    }
+
+    function totals(){
+        var cgst = 0;
+        var sgst = 0;
+        var igst = 0;
+        var ammount = 0;
+
+        ($('[name="cgstrate"]').each(function (i, j) {
+            cgst = cgst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="sgstrate"]').each(function (i, j) {
+            sgst = sgst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="igstrate"]').each(function (i, j) {
+            igst = igst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="ammount"]').each(function (i, j) {
+            ammount = ammount + parseFloat($(this).val() || 0);
+        }));
+
+        var extdis = parseFloat(($("#extradiscount").val() || 0));
+
+        var ogr = parseFloat($("#other_ledger_per").val() || 0) / 200
+        var other = parseFloat(($("#other").val() || 0));
+        var gst = (parseFloat(cgst) + (other * ogr));
+
+        $("#totalammount").val((parseFloat(ammount)).toFixed(2));
+        $("#totalcgst").val((gst).toFixed(2));
+        $("#totalsgst").val((gst).toFixed(2));
+        $("#totaligst").val((gst * 2).toFixed(2));
+
+        var total = Math.round((ammount * ((100 - extdis) / 100)) + (gst * 2) + other);
+
+        if ($("#istcs").val() === 'True') {
+            var tcs = (total * 0.001);
+        } else {
+            var tcs = 0
+        }
+        $("#totaltcs").val(tcs.toFixed(2));
+        var total = Math.round(total + tcs);
+        $("#total").val(total);
+    }
+</script>
+{% endblock %}

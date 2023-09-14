@@ -1,0 +1,46 @@
+{{dn.dn_no}}
+|{{dn.dn_date}}
+|{{dn.buyer}}
+|{{dn.buyer_address_type}}
+|{{dn.buyer_address1}}
+{{dn.buyer_address2}}
+{{dn.buyer_address3}}
+pincode:{{dn.buyer_pincode}}
+|{{dn.buyer_gstin}}
+|{{dn.shipto}}
+|{{dn.shipto_address_type}}
+|{{dn.shipto_address1}}
+{{dn.shipto_address2}}
+{{dn.shipto_address3}}
+pincode:{{dn.shipto_pincode}}
+|{{dn.shipto_gstin}}
+|{{dn.price_list}}
+|{{dn.mode_of_payment}}
+|{{dn.other_reference}}
+|{{dn.terms_of_delivery}}
+|{{dn.cgst}}
+|{{dn.sgst}}
+|{{dn.igst}}
+|{{dn.tcs}}
+|{{dn.others}}
+|{{dn.round_off}}
+|{{dn.narration}}
+|{% if dn.isscheme %}on{% endif %}
+|{{dn.dispatch_doc_no}}
+|{{dn.dispatch_through}}
+|{{dn.destintaion}}
+|{{dn.carrier_agent}}
+|{{dn.lr_no}}
+|{{dn.lr_date}}
+|{{dn.vehical_no}}
+|{{dn.ammount}}
+|{{dn.total}}
+|{{dn.order_no}}
+{% for item in items %}
+~|{{item.item}}
+|{{item.item.product_name}}
+|{{item.mrp}}
+|{{item.offer_mrp|default_if_none:'0'}}
+|{{item.pack}}
+|{{item.actual_qty}}
+{% endfor %}

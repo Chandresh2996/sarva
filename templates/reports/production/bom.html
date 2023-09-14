@@ -1,0 +1,112 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/cr-1.5.6/date-1.1.2/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/sr-1.1.1/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/cr-1.5.6/date-1.1.2/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/sr-1.1.1/datatables.min.js"></script>
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Bill Of Material: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:production-reports' %}"> Production </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Bill Of Material </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body" >
+                <table id="stock" class="table" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>PRODUCT</th>
+                            <th>BOM</th>
+                            <th>RM</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>PRODUCT</th>
+                            <th>BOM</th>
+                            <th>RM</th>
+                            <th>Qty</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block reportjs %}
+<script>
+
+$(document).ready(function() {
+
+    $('#stock tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="'+title+'" />' );
+    } );
+
+    $('#stock').DataTable( {
+        dom: 'lfrt<"ip"iB>p',
+        fixedHeader: true,
+        processing: true,
+        searching: true,
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Bill Of Material Report',
+                title: '',
+            },
+            'csv',
+        ],
+        ajax:"{% url 'reports:bomdata' %}",
+        columns: [
+            {data: "bom__product__product_code"},
+            {data: "bom__name"},
+            {data: "item__product_code"},
+            {data: "qty",className:"text-right"},
+        ],
+        iDisplayLength: 10,
+        deferRender: true,
+        scrollX:true,
+        scrollY:window.innerHeight-425,
+        scroller: true,
+        initComplete: function () {
+            // Apply the search
+            this.api().columns().every( function () {
+                var that = this;
+                $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                    if ( that.search() !== this.value ) {
+                        that.search(this.value).draw();
+                    }
+                } );
+            } );
+        }
+    } );
+} );
+</script>
+{% endblock %}

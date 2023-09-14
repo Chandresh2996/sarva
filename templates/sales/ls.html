@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset=" utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1.0">
+        <title>Loading Sheet</title>
+        <style type="text/css">
+            html {
+                box-sizing: border-box;
+              }
+
+              *,
+              *:before,
+              *:after {
+                box-sizing: inherit;
+                margin:0; padding:0; text-indent:0;
+              }
+
+              body {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+                color: rgba(0, 0, 0, 0.87);
+              }
+
+              .container {
+                padding:10mm;
+                width: 210mm;
+                height: 297mm;
+              }
+              .responsive-table {
+                width: 100%;
+                height: 100%;
+                margin-bottom: 1.5em;
+                border-spacing: 0;
+              }
+              .responsive-table thead {
+
+                clip: rect(1px 1px 1px 1px);
+                padding: 0;
+                border: 0;
+                height: 1px;
+                width: 1px;
+                overflow: hidden;
+              }
+              .responsive-table thead th {
+                background-color: #0A81D1;
+                border: 1px solid #0A81D1;
+                font-weight: normal;
+
+                color: white;
+              }
+              .responsive-table thead th:first-of-type {
+                text-align: left;
+              }
+              .responsive-table tbody,
+              .responsive-table tr,
+              .responsive-table th,
+              .responsive-table td {
+                padding: 0;
+                text-align: left;
+                white-space: normal;
+              }
+
+              .responsive-table th,
+              .responsive-table td {
+                padding: 3pt;
+                vertical-align: middle;
+              }
+
+              .responsive-table tfoot {
+                font-size: 0.8em;
+                font-style: italic;
+              }
+
+              .responsive-table tbody tr {
+                margin-bottom: 1em;
+              }
+
+              .responsive-table tbody tr:last-of-type {
+                margin-bottom: 0;
+              }
+
+              .responsive-table tbody th[scope=row] {
+                background-color: #0A81D1;
+                color: white;
+              }
+
+              table {
+                page-break-inside:auto;
+              }
+              td    { page-break-inside:avoid; page-break-after:auto }
+              tr
+              {
+                  page-break-inside:avoid; page-break-after:auto  }
+              .row {
+                display:flex;
+                justify-content:space-between;
+              }
+              td{
+                border-top-style:solid;
+                border-top-width:1pt;
+                border-left-style:solid;
+                border-left-width:1pt;
+                border-bottom-style:solid;
+                border-bottom-width:1pt;
+                border-right-style:solid;
+                border-right-width:1pt;
+              }
+              td p{
+                text-indent: 0pt;
+                line-height: 10pt;
+                text-align: center;
+              }
+
+        .s1 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 24pt; }
+        .s2 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 11pt; }
+        .s3 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 9pt; }
+        .s4 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 12pt; }
+        .s5 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 9pt; }
+        .s6 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 10pt; }
+        .s7 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 10pt; }
+        .s8 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 10pt; }
+        .s9 { color: black; font-family:Arial, sans-serif; font-style: italic; font-weight: bold; text-decoration: none; font-size: 10pt; }
+        .s10 { color: black; font-family:"Times New Roman", serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 12pt; }
+        .s11 { color: black; font-family:Arial, sans-serif; font-style: italic; font-weight: normal; text-decoration: none; font-size: 9pt; }
+
+        p {
+          color: black;
+          font-family:Arial, sans-serif;
+          font-style: normal;
+          font-weight: normal;
+          text-decoration: none;
+          font-size: 9pt;
+          margin:0pt;
+        }
+        table, tbody {vertical-align: top; overflow: visible; }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <table style="border-collapse:collapse;
+                          min-width:100%;
+                          min-height:100%;"
+                   cellspacing="0"
+                   class="responsive-table">
+                <tr style="height:101pt">
+                    {% if company.id == 1 %}
+                    <td colspan="10">
+                        <p class="s1" style="line-height:30pt">
+                            STONE SAPPHIRE (INDIA) PRIVATE LIMITED
+                        </p>
+                        <p class="s2" style="line-height:13pt">
+                            Plot No. 901/05/10,
+                        </p>
+                        <p class="s2" style="line-height:13pt">
+                            G.I.D.C. Industrial Estate, Makarpura, Vadodara.
+                        </p>
+                        <p style="line-height:13pt">
+                            <a href="mailto:contact@stonesapphire.com" class="s3" target="_blank">Mo:- 9586167020 / 7229039622 E-Mail ID :- contact@stonesapphire.com</a>
+                        </p>
+                        <p class="s2" style="line-height:13pt">
+                            State Code : 24 GSTIN : 24AAKCS5015L1Z8
+                        </p>
+                    </td>
+                    {% else %}
+                    <td colspan="10">
+                        <p class="s1" style="line-height:30pt">
+                            REDRIDGE INDIA PVT LTD
+                        </p>
+                        <p class="s2" style="line-height:13pt">
+                            Plot No. 901/05/10,
+                        </p>
+                        <p class="s2" style="line-height:13pt">
+                            G.I.D.C. Industrial Estate, Makarpura, Vadodara.
+                        </p>
+                        <p style="line-height:13pt">
+                            <a href="mailto:contact@stonesapphire.com" class="s3" target="_blank">Mo:- 9586167020 / 7229039622 E-Mail ID :- contact@stonesapphire.com</a>
+                        </p>
+                        <p class="s2" style="line-height:13pt">
+                            State Code : 24 GSTIN : 24AAJCR4497G1Z1
+                        </p>
+                    </td>
+                    {% endif %}
+                </tr>
+                <tr style="height:15pt">
+                    <td colspan="10">
+                        <p class="s4" style="  line-height: 13pt; ">
+                            Loading Sheet
+                        </p>
+                    </td>
+                </tr>
+                <tr style="height:23pt">
+                    <td>
+                        <p class="s3">
+                            Sr No.
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            Delivery Note
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            Description of Goods
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            SKU Code
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            Article Code
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            Mrp
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            Offer Mrp
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            Pack
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            Godown
+                        </p>
+                    </td>
+                    <td>
+                        <p class="s3">
+                            Quantity
+                        </p>
+                    </td>
+                </tr>
+                {% for l in ls %}
+                    <tr style="height:14pt;">
+                        <td>
+                            <p style="text-align: right;"> {{ forloop.counter }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: left;"> {{ l.dn__dn_no }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: left;"> {{ l.item__product_name }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: left;"> {{ l.item__product_code }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: left;"> {{ l.item__article_code }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: right;"> {{ l.mrp }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: right;"> {{ l.offermrp }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: right;"> {{ l.item__outer_qty |floatformat:'0' }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: left;"> {{ l.godown }}</p>
+                        </td>
+                        <td>
+                            <p style="text-align: right;"> {{ l.qty|floatformat:'0' }}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr style="height:43pt;">
+                    <td >
+                      {{document.location.search.substring.1}}
+                    </td>
+                    <td colspan="5" style="vertical-align:bottom">
+                      <p class="s5" style="padding-right: 2pt;   text-align: left;">
+                        Printed On: {{date|date:'d-m-Y'}}.
+                        Printed by: {{request.user}}
+                      </p>
+                    </td>
+                    <td colspan="4" style="vertical-align:bottom">
+                        <p class="s5" style="padding-right: 2pt;   text-align: right;">
+                            Authorised Signatory
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

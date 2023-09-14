@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>BOM: View</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item">Tansactions</li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'production:production' %}">Production</a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'planning:bom' %}">BOM</a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Show BOM</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="card-title">BOM</h4>
+                {% comment %} <a href="{% url 'inventory:add_ivt' %}">
+                    <button type="button" class="btn btn-success">
+                        <i class="uil uil-ban">Purchase</i>
+                    </button>
+                </a> {% endcomment %}
+            </div>
+            <div class="card-body">
+                <form class="needs-validation" action="{% url 'planning:bom' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="under">Product</label>
+                                <input name="product" id="under" class="form-control" list="products" autocomplete='off'>
+                                <datalist id="products">
+                                    {% for i in products %}
+                                    <option value="{{ i.product_code }}"> {{ i.product_code }}</option>
+                                    {% endfor %}
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <label for="bom_name" class="form-label"> BOM Name </label>
+                            <input class="form-control" type="text" autocomplete="off" name="bom_name" id="bom_name">
+                        </div>
+                        <div class="col-xl-6">
+                            <label for="description" class="form-label"> Description </label>
+                            <textarea class="form-control" name="description" id="description"> </textarea>
+                        </div>
+                    </div>
+                    <div id="bom-items">
+                        <div class="row" id="bom-item">
+                            <div class="col-xl-7">
+                                <label for="cost_type" class="form-label">RM Product</label>
+                                <input class="form-control" list="items" name="bom_item" id="bom_item"
+                                    autocomplete="off">
+                                <datalist id="items">
+                                    {% for item in products %}<option value="{{ item.product_code }}">{{ item.product_code }}</option>{% endfor %}
+                                </datalist>
+                            </div>
+                            <div class="col-xl-4">
+                                <label for="qty" class="form-label">RM QTY</label>
+                                <input class="form-control" type="number" value="" name="bom_item_qty" id="qty">
+                            </div>
+                            <div class="col-xl-1">
+                                <div style="margin-top: 10px;">
+                                    <button type="button" style="padding: 0.25rem 0.55rem;" class="btn btn-success"
+                                        hx-vals='{"no": "1"}' hx-get="{% url 'inventory:bom-item' %}"
+                                        hx-swap="beforeend" hx-target="closest #bom-items"> <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4 pb-2 pr-4">
+                    <button style="float: right;" class="btn btn-primary" type="submit"> Submit </button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+<script>
+    $("#under").change(function () {
+        var product = $(this).val();
+        $.ajax({
+            url: "{% url 'planning:ajax_load_product_boms' %}",
+            data: {
+                'product': product,
+            },
+            success: function (data) {
+                $("#productboms").html(data);
+            }
+        });
+    });
+</script>
+{% endblock scripts %}

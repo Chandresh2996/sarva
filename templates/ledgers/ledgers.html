@@ -1,0 +1,468 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Registration Form</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            Master
+                        </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"><a href="">Registration</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <!-- end page title -->
+    </div>
+</div>
+<div class="row justify-content-start">
+    {% if request.user|has_group:"Admin,Customer View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:cm' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-person-lines-fill card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{customer}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:cm' %}">
+                                    <span class="d-block font-25 mt-2">Create Customer</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Vendor View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:vm' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-people-fill card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{vendor}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:vm' %}">
+                                    <span class="d-block font-25 mt-2">Create Vendor</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Country View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:country' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-c-circle card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{country}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:country' %}">
+                                    <span class="d-block font-25 mt-2">Country</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Zone View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:zone' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-geo-alt card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{zone}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:zone' %}">
+                                    <span class="d-block font-25 mt-2">Zone</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Region View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:region' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-pin-map card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{region}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:region' %}">
+                                    <span class="d-block font-25 mt-2">Region</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,State View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:state' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-bank card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{state}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:state' %}">
+                                    <span class="d-block font-25 mt-2">State</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,City View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:city' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-building card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{city}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:city' %}">
+                                    <span class="d-block font-25 mt-2">City</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,ZSM View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:zsm' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-person-bounding-box card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{zsm}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:zsm' %}">
+                                    <span class="d-block font-25 mt-2">Zonal Sales Manager</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,RSM View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:rsm' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-person-square card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{rsm}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:rsm' %}">
+                                    <span class="d-block font-25 mt-2">Regional Sales Manager</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,ASM View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:asm' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-person-circle card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{asm}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:asm' %}">
+                                    <span class="d-block font-25 mt-2">Area Sales Manager</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,SE View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:se' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-people card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{se}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:se' %}">
+                                    <span class="d-block font-25 mt-2">Sales Executive</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Division View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:division' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-diagram-3 card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{division}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:division' %}">
+                                    <span class="d-block font-25 mt-2">Division</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Channel View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'ledgers:party_type' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-shuffle card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{channel}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'ledgers:party_type' %}">
+                                    <span class="d-block font-25 mt-2">Channel</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+    {% if request.user|has_group:"Admin,Customer Margin View" %}
+    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 position-relative">
+        <a href="{% url 'inventory:pricelevel' %}">
+            <div class="card card-statistics">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="media">
+                                <i class="bi bi-sliders2-vertical card-icons"></i>
+                            </div>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="d-block" style="font-weight:700">{{pricelevel}}</span>
+                            <span class="text-blue"></span>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                                <span class="bg-white text-center d-block" href="{% url 'inventory:pricelevel' %}">
+                                    <span class="d-block font-25 mt-2">Customer Margin</span>
+                                </span>
+                        </div>
+                        <div class="number-list-wrapper ml-auto text-right">
+                            <span class="badge badge-dark-inverse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

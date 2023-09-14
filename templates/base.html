@@ -1,0 +1,719 @@
+{% load perms %}
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <title>Neti</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Neti" />
+    <meta name="author" content="Pratha Systech Pvt Ltd" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- app favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% comment %} <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" /> {% endcomment %}
+    <script src="https://unpkg.com/htmx.org@1.8.0" integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc" crossorigin="anonymous"></script>
+    <!-- plugin stylesheets -->
+    <link href="{% static 'assets/css/vendors.css' %} " id="app-style" rel="stylesheet" type="text/css" />
+    <!-- app style -->
+    <link href="{% static 'assets/css/dashboard_temp.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/style.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/mousetrap/1.4.6/mousetrap.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    {% block extracss %}
+
+    {% endblock extracss %}
+
+</head>
+
+<body>
+    <div class="app">
+        <div class="app-wrap">
+            <header class="app-header top-bar">
+                <nav class="navbar navbar-expand-md">
+                    <div class="navbar-header d-flex align-items-center">
+                        <a href="{% url 'dash:home' %}" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
+                        <a class="navbar-brand" href="{% url 'dash:home' %}">
+                            <img src="{% static 'assets/images/logo-light.svg' %}" class="img-fluid logo-desktop" alt="logo" />
+                            <img src="{% static 'assets/images/logo-sm-light.svg' %}" class="img-fluid logo-mobile" alt="logo" />
+                        </a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti ti-align-left"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="navigation d-flex align-items-center" id="page-topbar" style="background-color:#2c2e3e;">
+                            <ul class="navbar-nav nav-left">
+                                <li class="nav-item">
+                                    <a href="javascript:void(0)" class="nav-link sidebar-toggle">
+                                        <i class="ti ti-align-right"></i>
+                                    </a>
+                                </li>
+                                {% comment %} <li class="nav-item">
+                                    <a class="nav-link  " href="javascript:void(0)" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mega Menu
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu mega-menu animated fadeIn"
+                                        aria-labelledby="navbarDropdown">
+                                        <div class="row no-gutters">
+                                            <div class="col-sm-2 p-20">
+                                                <h4>UI Kit</h4>
+                                                <ul>
+                                                    <li class="nav-link">
+                                                        <a href="ui-alerts.html">Alerts</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="ui-button.html">Buttons</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="ui-cards.html">Cards</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="ui-carousel.html">Carousel</a>
+                                                    </li>
+
+                                                    <li class="nav-link">
+                                                        <a href="ui-dropdowns.html">Dropdowns</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="ui-list-group.html">List Group</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="ui-modals.html">Modals</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="ui-progressbars.html">Progress Bars</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="ui-tabs.html">Tabs</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-2 p-20">
+                                                <h4>Pages</h4>
+                                                <ul>
+                                                    <li class="nav-link">
+                                                        <a href="page-account-settings.html">Account Settings</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="page-clients.html">Clients</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="page-contacts.html">Contacts</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="page-gallery.html">Gallery</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="page-pricing.html">Pricing</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="page-task-list.html">Task List</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="page-404.html">404</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="page-500.html">500</a>
+                                                    </li>
+                                                    <li class="nav-link">
+                                                        <a href="page-coming-soon.html">Coming Soon</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-4 p-20">
+                                                <h4>Contact Us</h4>
+                                                <div>
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="Password1"
+                                                                placeholder="Enter Name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="email" class="form-control" id="Email1"
+                                                                placeholder="Enter Email">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" placeholder="Message"
+                                                                id="Textarea1" rows="3"></textarea>
+                                                        </div>
+                                                        <button type="submit"
+                                                            class="btn btn-primary text-uppercase">Submit</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="chart-wrap">
+                                                    <div class="p-20">
+                                                        <h4 class="mb-1">Page Views</h4>
+                                                        <p>Daily page visitors</p>
+                                                        <h2 class="text-primary font-xxl mt-2">80+</h2>
+                                                    </div>
+                                                    <div class="apexchart-wrapper">
+                                                        <div id="pageview"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li> {% endcomment %}
+                                <li class="nav-item dropdown">
+                                    {% block dropdown %}
+                                    {% comment %} <a href="javascript:void(0)" class="nav-link " id="navbarDropdown1" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Drop Down
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item nav-link" href="javascript:void(0)">Action</a>
+                                        <a class="dropdown-item nav-link" href="javascript:void(0)">Another action</a>
+                                        <a class="dropdown-item nav-link" href="javascript:void(0)">Something else
+                                            here</a>
+                                    </div> {% endcomment %}
+                                    {% endblock dropdown %}
+
+                                </li>
+                                <li class="nav-item full-screen d-none d-lg-block" id="btnFullscreen">
+                                    <a href="javascript:void(0)" class="nav-link expand">
+                                        <i class="icon-size-fullscreen"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <h3 id="companyname" class="mb-0 text-white">{{ sid.company.company.name }}</h3>
+
+                            <ul class="navbar-nav nav-right h-100 ml-auto">
+                                {% block company %}
+                                <li class="nav-item dropdown">
+                                    <a href="javascript:void(0)" class="nav-link" id="navbarDropdown1" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-disc"></i>
+                                    </a>
+                                    <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown" style="background-color:#2c2e3e">
+                                        {% for i in companies %}
+                                        <a class="dropdown-item nav-link" href="javascript:com({{ i.pk }})"
+                                            style="padding:.7rem 1.5rem .7rem 1.5rem">{{ i.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </li>
+                                {% endblock company %}
+                                {% comment %} <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown2"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ti ti-email"></i>
+                                    </a>
+                                    <div class="dropdown-menu extended animated fadeIn"
+                                        aria-labelledby="navbarDropdown">
+                                        <ul>
+                                            <li class="dropdown-header bg-gradient p-4 text-white text-left">Messages
+                                                <label class="label label-info label-round">6</label>
+                                                <a href="#"
+                                                    class="float-right btn btn-square btn-inverse-light btn-xs m-0">
+                                                    <span class="font-13"> Mark all as read</span></a>
+                                            </li>
+                                            <li class="dropdown-body">
+                                                <ul class="scrollbar scroll_dark max-h-240">
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <img class="img-fluid"
+                                                                        src="{% static 'assets/assets/img/avtar/03.jpg' %}"
+                                                                        alt="user3">
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Brianing Leyon</p>
+                                                                    <small>You will sail along until you...</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <img class="img-fluid"
+                                                                        src="{% static 'assets/assets/img/avtar/01.jpg' %}"
+                                                                        alt="user">
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Jimmyimg Leyon</p>
+                                                                    <small>Okay</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <img class="img-fluid"
+                                                                        src="{% static 'assets/assets/img/avtar/02.jpg' %}"
+                                                                        alt="user2">
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Brainjon Leyon</p>
+                                                                    <small>So, make the decision...</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <img class="img-fluid"
+                                                                        src="{% static 'assets/assets/img/avtar/04.jpg' %}"
+                                                                        alt="user4">
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Smithmin Leyon</p>
+                                                                    <small>Thanks</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <img class="img-fluid"
+                                                                        src="{% static 'assets/assets/img/avtar/05.jpg' %}"
+                                                                        alt="user5">
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Jennyns Leyon</p>
+                                                                    <small>How are you</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <img class="img-fluid"
+                                                                        src="{% static 'assets/assets/img/avtar/06.jpg' %}"
+                                                                        alt="user6">
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Demian Leyon</p>
+                                                                    <small>I like your themes</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-footer">
+                                                <a class="font-13" href="javascript:void(0)"> View All messages </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown3"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fe fe-bell"></i>
+                                        <span class="notify">
+                                            <span class="blink"></span>
+                                            <span class="dot"></span>
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu extended animated fadeIn"
+                                        aria-labelledby="navbarDropdown">
+                                        <ul>
+                                            <li class="dropdown-header bg-gradient p-4 text-white text-left">
+                                                Notifications
+                                                <a href="#"
+                                                    class="float-right btn btn-square btn-inverse-light btn-xs m-0">
+                                                    <span class="font-13"> Clear all</span></a>
+                                            </li>
+                                            <li class="dropdown-body min-h-240 nicescroll">
+                                                <ul class="scrollbar scroll_dark max-h-240">
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <div class="bg-type bg-type-md">
+                                                                        <span>HY</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">New registered user</p>
+                                                                    <small>Just now</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <div class="bg-type bg-type-md bg-success">
+                                                                        <span>GM</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">New invoice received</p>
+                                                                    <small>22 min</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <div class="bg-type bg-type-md bg-danger">
+                                                                        <span>FR</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Server error report</p>
+                                                                    <small>7 min</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <div class="bg-type bg-type-md bg-info">
+                                                                        <span>HT</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Database report</p>
+                                                                    <small>1 day</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <div
+                                                                class="notification d-flex flex-row align-items-center">
+                                                                <div class="notify-icon bg-img align-self-center">
+                                                                    <div class="bg-type bg-type-md">
+                                                                        <span>DE</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="notify-message">
+                                                                    <p class="font-weight-bold">Order confirmation</p>
+                                                                    <small>2 day</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown-footer">
+                                                <a class="font-13" href="javascript:void(0)"> View All Notifications
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li> {% endcomment %}
+                                {% comment %} <li class="nav-item">
+                                    <a class="nav-link search" href="javascript:void(0)">
+                                        <i class="ti ti-search"></i>
+                                    </a>
+                                    <div class="search-wrapper">
+                                        <div class="close-btn">
+                                            <i class="ti ti-close"></i>
+                                        </div>
+                                        <div class="search-content">
+                                            <form>
+                                                <div class="form-group">
+                                                    <i class="ti ti-search magnifier"></i>
+                                                    <input type="text" class="form-control autocomplete"
+                                                        placeholder="Search Here"
+                                                        autofocus="autofocus">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li> {% endcomment %}
+                                <li class="nav-item dropdown user-profile">
+                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="{% static 'assets/assets/img/avtar/02.jpg' %}" alt="avtar-img">
+                                        {% comment %} <span class="bg-success user-status"></span> {% endcomment %}
+                                    </a>
+                                    <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
+                                        <div class="bg-gradient px-4 py-3">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="mr-1">
+                                                    <h4 class="text-white mb-0">{{request.user.first_name}}</h4>
+                                                    <small class="text-white">{{request.user.email}}</small>
+                                                </div>
+                                                <a href="{% url 'logout' %}" class="text-white font-20 tooltip-wrapper"
+                                                    data-toggle="tooltip" data-placement="top" title=""
+                                                    data-original-title="Logout"> <i class="zmdi zmdi-power"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="p-4">
+                                            {% comment %} <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
+                                                <i class="fa fa-user pr-2 text-success"></i> Profile</a>
+                                            <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
+                                                <i class="fa fa-envelope pr-2 text-primary"></i> Inbox
+                                                <span class="badge badge-primary ml-auto">6</span>
+                                            </a> {% endcomment %}
+                                            <a class="dropdown-item d-flex nav-link" href="{% url 'admin:index' %}">
+                                                <i class=" ti ti-settings pr-2 text-info"></i> Settings
+                                            </a>
+
+                                            <a class="dropdown-item d-flex nav-link" href="{% url 'account:changepass' %}">
+                                                <i class=" ti ti-settings pr-2 text-info"></i> Change Password
+                                            </a>
+
+                                            {% comment %} <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
+                                                <i class="fa fa-compass pr-2 text-warning"></i> Need help?</a>
+                                            <div class="row mt-2">
+                                                <div class="col">
+                                                    <a class="bg-light p-3 text-center d-block" href="#">
+                                                        <i class="fe fe-mail font-20 text-primary"></i>
+                                                        <span class="d-block font-13 mt-2">My messages</span>
+                                                    </a>
+                                                </div>
+                                                <div class="col">
+                                                    <a class="bg-light p-3 text-center d-block" href="#">
+                                                        <i class="fe fe-plus font-20 text-primary"></i>
+                                                        <span class="d-block font-13 mt-2">Compose new</span>
+                                                    </a>
+                                                </div>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end navigation -->
+                </nav>
+                <!-- end navbar -->
+            </header>
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class="app-container">
+                <!-- begin app-nabar -->
+                <aside class="app-navbar">
+                    <!-- begin sidebar-nav -->
+                    <div class="sidebar-nav scrollbar scroll_light">
+                        <ul class="metismenu " id="sidebarNav">
+                            <li class="nav-static-title">Dashboards</li>
+                            <li class="false">
+                                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                                    <i class="nav-icon bi bi-speedometer2"></i>
+                                    <span class="nav-title">Dashboards</span>
+                                    {% comment %} <span class="nav-label label label-danger">9</span> {% endcomment %}
+                                </a>
+                                 <ul aria-expanded="false">
+                                    <li class="false">
+                                        <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                                            <i class="nav-icon bi bi-speedometer2"></i>
+                                            <span class="nav-title">Sales</span>
+                                        </a>
+                                        <ul aria-expanded="false">
+                                        {% if request.user|has_group:"Admin,DSR Report" %}
+                                            <li class="active"> <a href="{% url 'dash:dsrReport' %}">DSR Report</a> </li>
+                                        {% endif %}
+                                        {% if request.user|has_group:"Admin,Score Card Report" %}
+                                            <li class="active"> <a href="{% url 'dash:scorecard' %}">Scorecard</a> </li>
+                                        {% endif %}
+                                        </ul>
+                                    </li>
+                                    {% comment %}
+                                    <li> <a href='index-ecommerce.html'>Ecommerce</a> </li>
+                                    <li> <a href='index-car-dealer.html'>Car Dealer</a> </li>
+                                    <li> <a href='index-stock-market.html'>Stock Market</a> </li>
+                                    <li> <a href='index-dating.html'>Dating</a> </li>
+                                    <li> <a href='index-job-portal.html'>Job Portal</a> </li>
+                                    <li> <a href='index-crm.html'>CRM</a> </li>
+                                    <li> <a href='index-real-estate.html'>Real Estate</a> </li>
+                                    <li> <a href='index-crypto-currency.html'>Crypto Currency</a> </li>
+                                    {% endcomment %}
+                                </ul>
+                            </li>
+                            <li class="nav-static-title">Masters</li>
+                            <li><a href="{% url 'company:home' %}" aria-expanded="false"><i
+                                class="nav-icon bi bi-box-seam"></i><span class="nav-title">Company</span></a>
+                            </li>
+                            <li><a href="{% url 'ledgers:ledgers' %}" aria-expanded="false"><i
+                                        class="nav-icon bi bi-person"></i><span class="nav-title">Customer</span></a>
+                            </li>
+                            <li><a href="{% url 'inventory:inventory' %}" aria-expanded="false"><i
+                                        class="nav-icon bi bi-box-seam"></i><span class="nav-title">Product</span></a>
+                            </li>
+
+                            <li class="nav-static-title">Transactions</li>
+                            <li><a href="{% url 'production:production' %}" aria-expanded="false"><i
+                                        class="nav-icon bi bi-gear-wide-connected"></i><span class="nav-title">Production</span></a>
+                            </li>
+                            <li><a href="{% url 'purchase:purchase' %}" aria-expanded="false"><i
+                                        class="nav-icon bi bi-truck"></i><span class="nav-title">Purchase</span></a>
+                            </li>
+                            <li><a href="{% url 'sales:sales' %}" aria-expanded="false"><i
+                                class="nav-icon bi bi-cart "></i><span class="nav-title">Sales</span></a> </li>
+                            <li><a href="{% url 'warehouse:transfers' %}" aria-expanded="false"><i
+                                class="nav-icon bi bi-arrow-left-right"></i><span class="nav-title">Transfers</span></a>
+                            </li>
+                            <li><a href="{% url 'warehouse:warehouse' %}" aria-expanded="false"><i
+                                        class="nav-icon bi bi-shop-window"></i><span class="nav-title">Warehouse</span></a>
+                            </li>
+                            <li class="nav-static-title">Reports</li>
+                            <li><a href="{% url 'reports:inventory-reports' %}" aria-expanded="false"><i
+                                class="nav-icon bi bi-file-medical"></i><span class="nav-title">Inventory</span></a>
+                            </li>
+                            <li><a href="{% url 'reports:production-reports' %}" aria-expanded="false"><i
+                                class="nav-icon bi bi-file-plus"></i><span class="nav-title">Production</span></a>
+                            </li>
+                            <li><a href="{% url 'reports:purchase-reports' %}" aria-expanded="false"><i
+                                class="nav-icon bi bi-file-earmark-arrow-down"></i><span class="nav-title">Purchase</span></a>
+                            </li>
+                            <li><a href="{% url 'reports:sales-reports' %}" aria-expanded="false"><i
+                                        class="nav-icon bi bi-file-earmark-arrow-up"></i><span class="nav-title">Sales</span></a>
+                            </li>
+                            <li><a href="{% url 'reports:warehouse-reports' %}" aria-expanded="false"><i
+                                        class="nav-icon bi bi-journal-album"></i><span class="nav-title">Warehouse</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end sidebar-nav -->
+                </aside>
+                <!-- end app-navbar -->
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <div class="modal overflow-hidden fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog search-modal" role="document">
+                                <div class="modal-content overflow-hidden">
+                                    <div class="modal-header">
+                                        <div class="mb-3 row" style="flex-grow:0.3">
+                                            <label for="hsncode" class="col-md-4 col-form-label">Product Code</label>
+                                            <div class="col-md-5">
+                                                <input class="form-control" type="text" name="hsncode" id="searchProduct">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="btn btn-primary" type="submit" name="submit" value="Submit" id="searchProductsubmit">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" id="searchResult">
+                                        {% comment %} <div class="row">
+                                        </div> {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% block content %}
+
+                        {% endblock content %}
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+            </div>
+        </div>
+        <!-- end app-wrap
+        <footer class="footer">
+            <div class="row">
+                <div class="col-12 col-sm-6 text-center text-sm-left">
+                    <p>&copy; Copyright 2019. All rights reserved.</p>
+                </div>
+                <div class="col  col-sm-6 ml-sm-auto text-center text-sm-right">
+                    <p><a target="_blank" href="https://www.prathasystech.in">PSPL</a></p>
+                </div>
+            </div>
+        </footer>-->
+        <!-- end footer -->
+    </div>
+    <!-- end app -->
+    <!-- plugins -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js"></script> -->
+    <script src="{% static 'assets/js/jquery3-6-1.js' %}"></script>
+    <script src="{% static 'assets/js/vendors.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <script type="text/javascript" src="{% static 'assets/js/table2excel.js' %}"></script>
+    <!-- custom app -->
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    <script type="text/javascript">
+        function validate() {
+            let abc = confirm("Are You Sure You Want To Submit?");
+            if (abc) {
+                document.querySelector('button[type="submit"]').disabled = true;
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".js-example-basic-single").select2();
+        });
+    </script>
+    <script>
+        Mousetrap.bind('?', function() {
+            $('#searchModal').modal('show');
+        });
+
+        $('#searchModal').on('shown.bs.modal', function () {
+            $('#searchProduct').focus();
+          })
+
+        $("#searchProductsubmit").click(function (){
+            id = $('#searchProduct').val();
+            $.ajax({
+                url: "{% url 'inventory:search' %}",
+                data: {
+                    'q': id
+                },
+                success: function (data) {
+                    $("#searchResult").html(data);
+                }
+            });
+        })
+
+        $(document).ready(function() {
+            $(window).keydown(function(event){
+                if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+                }
+            });
+        });
+
+        </script>
+
+    {% block scripts %}
+
+    {% endblock %}
+</body>
+</html>

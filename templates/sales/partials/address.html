@@ -1,0 +1,12 @@
+<option value="Default" selected="selected" disabled="disabled">Default</option>
+{% for city in address_types %}
+<option value="{{ city.address_type }}">{{ city.address_type }}</option>
+{% endfor %}
+|{{address.addressline1}},
+{{address.addressline2}},
+{{address.addressline3}},
+{{address.state}},{{address.country}},
+{{address.city}}-{{address.pin_code}}.
+|{{address.gstin}}|{{address.price_level}}|{{address.istcsapplicable}}|{{address.allow_loose_packing}}
+|{{address.dafault_credit_period}}
+|{{address.payment_terms}}

@@ -1,0 +1,455 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Goods Recieved Note: Create</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'warehouse:warehouse' %}">warehouse</a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'purchase:grn' %}">Goods Recieved Notes</a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Create GRN </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">          
+        <div class="card">
+            <form method="POST" action="{% url 'purchase:addgrn' %}" class="needs-validation" onsubmit="return validate()" >
+                {% csrf_token %}
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="mb-0"><span class="fw-bold">GRN: </span>{{grnnumber}}</h4>
+                <div class="row">
+                    <div class="col-xl-4">
+                        <label for="currency" class="form-label">Currency</label>
+                        <input type="text" class="form-control" id="currency" readonly name="currency">
+                    </div>
+                    <div class="col-xl-4">
+                        <label for="exchangerate" class="form-label">Exchange Rate<span style="color:red">*</span></label>
+                        <input type="text" class="form-control" id="exchangerate" required name="exchangerate">
+                    </div>
+                </div>
+                <div class="page-title-right">
+                    <h4><span class="fw-bold">Date: </span>{{date|date:'d-m-Y'}}</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-3">
+                            <div class="mb-2 row">
+                                <label for="po_no" class="col-md-4 col-form-label">PO NO<span style="color:red">*</span></label>
+                                <div class="col-md-8">
+                                    <select class="js-example-basic-single" class="form-control" id="po_no" name="po_no" required>
+                                        <option></option>
+                                        {% for po in pos %}
+                                            <option value="{{ po.pk }}">
+                                                {{ po.po_no }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div><!-- end row -->
+                        </div>
+                    </div>
+                    <hr style="margin-top:0">
+                    <div class="row mx-0">
+                        <div class="col-lg-3">
+                            <div class="mb-2">
+                                <label for="party_name" class="form-label">Seller Details</label>
+                                <input type="text" class="form-control" id="party_name" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_address_type"
+                                    placeholder="Address Type" name="party_address_type" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="party_address" name="party_address" placeholder="Address" readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="party_gstin" placeholder="GSTIN" name="party_gstin" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="mb-2">
+                                <label for="consignee_name" class="form-label">Ship To</label>
+                                <input type="text" class="form-control" id="consignee_name"
+                                    placeholder="Name" name="consignee_name" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="consignee_address_type"
+                                    placeholder="Address Type" name="consignee_address_type" readonly>
+                            </div>
+                            <div class="mb-2">
+                                <textarea type="textfield" class="form-control" id="consignee_address"
+                                    placeholder="Address" name="consignee_address" readonly></textarea>
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" id="consignee_gstin"
+                                    placeholder="GSTIN" name="consignee_gstin" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="dispatch_through" class="form-label">Dispatch Through</label>
+                                </div>
+                                <div class="col">
+                                    <select class="form-control" id="dispatch_through" name="dispatch_through">
+                                        <option value="0">--------</option>
+                                        <option value="1">Road</option>
+                                        <option value="2">Rail</option>
+                                        <option value="3">Air</option>
+                                        <option value="4">Ship</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="destination" class="form-label">Destination</label >
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="destination" readonly
+                                        name="destination">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="mode_of_payment" class="form-label">Mode of payment</label >
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="mode_of_payment" readonly
+                                        name="mode_of_payment">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="other_reference" class="form-label">Other Reference</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="other_reference" readonly
+                                        name="other_reference">
+                                </div>
+                            </div><!-- end col -->
+
+                            <div class="row mb-2">
+                                <div class="col-lg-4">
+                                    <label for="terms_of_delivery" class="form-label">Terms of delivery</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="terms_of_delivery" readonly
+                                        name="terms_of_delivery">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mx-0 p-2">
+                        <div class="card w-100">
+                            <div class="card-body" style="padding: 0;">
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="table">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th style="min-width: 15px; max-width: 15px; " >#</th>
+                                                <th style="min-width: 60px; max-width: 60px; " >SKU Code</th>
+                                                <th style="min-width: 100px; max-width: 100px; " >SKU Name</th>
+                                                <th style="min-width: 40px; max-width: 40px; " >Pack</th>
+                                                <th style="min-width: 60px; max-width: 60px; " >Mrp</th>
+                                                <th style="min-width: 40px; max-width: 40px; " >PO Qty</th>
+                                                <th style="min-width: 40px; max-width: 40px; " >Recieved Qty</th>
+                                                <th style="min-width: 40px; max-width: 40px; " >Rate</th>
+                                                <th style="min-width: 60px; max-width: 60px; " >Amount</th>
+                                                <th style="min-width: 60px; max-width: 60px; " >GST</th>
+                                            </tr>
+                                        </thead>
+                                    </table><!-- end table-->
+                                </div><!-- end table responsive -->
+                            </div><!-- end card body -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9">
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="cgst" class="form-label">
+                                        SubTotal
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalammount" name="totalammount" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-4">
+                                    <select class="form-control text-right" id="other_ledger" name="other_ledger">
+                                        <option value=''>Ledger</option>
+                                        {% for i in ledgers %}
+                                        <option value='{{i.pk}}'>{{i}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xl-3">
+                                    <select class="form-control" id="other_ledger_per" name="ol_rate">
+                                        <option value='0'>0 %</option>
+                                        <option value='5'>5 %</option>
+                                        <option value='12'>12 %</option>
+                                        <option value='18'>18 %</option>
+                                        <option value='28'>28 %</option>
+                                    </select>
+                                </div>
+                                <div class="col-xl-5">
+                                    <input type="text" class="form-control text-right" id="other" value='0' name="other">
+                                </div>
+                            </div>
+
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalcgst" class="form-label">CGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalcgst" name="totalcgst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totalsgst" class="form-label">SGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totalsgst" name="totalsgst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totaligst" class="form-label">IGST</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="totaligst" name="totaligst" readonly>
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="totaltcs" class="form-label">TCS (in Rupees)</label>
+                                </div>
+                                <div class="col">
+                                    <input type="number" class="form-control text-right" id="totaltcs" name="totaltcs">
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="total" class="form-label">Total</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right" id="total" name="total"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="mb-2">
+                                <label for="narration" class="form-label">Remarks</label>
+                                <input type="text" class="form-control" id="narration" name="narration">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-sm ms-auto" 
+                        style="position: absolute; right: 20px;bottom: 20px;">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $("#po_no").change(function () {
+        var po_no = $(this).val();
+        $.ajax({
+			url: "{% url 'purchase:ajax_load_po_details' %}",
+			data: {
+				'pono': po_no,
+			},
+			success: function (data) {
+				data = data.split("~");
+                po = data[0].split("|");
+
+                $("#pono").val(po[0])
+                $("#po_date").val(po[1])
+                $("#party_name").val(po[2])
+                $("#party_address_type").val(po[3])
+                $("#party_address").val(po[4])
+                $("#party_gstin").val(po[5])
+                $("#consignee_name").val(po[6])
+                $("#consignee_address_type").val(po[7])
+                $("#consignee_address").val(po[8])
+                $("#consignee_gstin").val(po[9])
+                $("#mode_of_payment").val(po[10])
+                $("#other_reference").val(po[11])
+                $("#terms_of_delivery").val(po[12])
+                $("#totalcgst").val(po[13])
+                $("#totalsgst").val(po[14])
+                $("#totaligst").val(po[15])
+                $("#totaltcs").val(po[16])
+                $("#totalammount").val(po[17])
+                $("#total").val(po[18])
+                $("#narration").val(po[19])
+                $("#currency").val(po[20])
+                
+                if ($("#currency").val() == 'INR'){
+                    $('#exchangerate').attr('readonly', true);
+                } 
+
+                var table = $("#table")
+                $("tbody").remove();
+                var tbody = document.createElement('tbody');
+                table.append(tbody);
+                for(i=1;i<data.length;i++)
+                {
+                    var item = data[i].split("|");
+                    row = $(tbody.insertRow(-1));
+
+                    var cell = $("<td />");
+                    cell.html(i);
+                    row.append(cell);
+
+                    for(j=1;j<item.length;j++){
+                        var cell = $("<td />");
+                        if (j==1){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'item');
+                        }
+                        if (j==2){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'name_of_item');
+                        }
+                        if (j==3){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'pack');
+                        }
+                        if (j==4){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'mrp').attr('id', 'mrp'+i);
+                        }
+                        if (j==5){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', 'true').attr('name', 'actualqty').attr('id', 'actualqty'+i);
+                        }
+                        if (j==6){
+                            var input = $("<input />").attr('class','form-control').attr('name', 'recd_qty').attr('required', true).attr('id', 'recd_qty'+i).attr('autocomplete', 'off');
+                        }
+                        if (j==7){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'rate').attr('id', 'rate'+i);
+                        }
+                        if (j==8){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'ammount').attr('id', 'ammount'+i);
+                        }
+                        if (j==9){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('name', 'sgstrate').attr('id', 'sgstrate'+i);
+                        }
+                        if (j==10){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('name', 'cgstrate').attr('id', 'cgstrate'+i);
+                        }
+                        if (j==11){
+                            var input = $("<input />").attr('class','form-control').attr('readonly', true).attr('name', 'igstrate').attr('id', 'igstrate'+i);
+                        }
+                        if (j==12){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('name', 'sgst').attr('id', 'sgst'+i);
+                        }
+                        if (j==13){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('name', 'cgst').attr('id', 'cgst'+i);
+                        }
+                        if (j==14){
+                            var input = $("<input />").attr('class','form-control').attr('type', 'hidden').attr('name', 'igst').attr('id', 'igst'+i);
+                        }
+                        input.val(item[j]);
+                        cell.append(input);
+                        row.append(cell);
+                    }
+	    		}
+            }
+		});
+    });
+
+    $('#totaltcs').change(function () {
+        var tcs = parseFloat($(this).val());
+        var total = parseFloat($("#totaligst").val() || 0) + parseFloat($("#other").val() || 0) + parseFloat($("#totalammount").val() || 0) + tcs;
+        $("#total").val(Math.round(total));
+    });
+
+    $("#other_ledger_per").change(totals);
+    $('#other').change(totals);
+
+    function totals() {
+        var cgst = 0;
+        var sgst = 0;
+        var igst = 0;
+        var ammount = 0;
+
+        ($('[name="cgst"]').each(function (i, j) {
+            cgst = cgst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="sgst"]').each(function (i, j) {
+            sgst = sgst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="igst"]').each(function (i, j) {
+            igst = igst + parseFloat($(this).val() || 0);
+        }));
+        ($('[name="ammount"]').each(function (i, j) {
+            ammount = ammount + parseFloat($(this).val() || 0);
+        }));
+        var ogr     = parseFloat($("#other_ledger_per").val() || 0) / 200
+        var tcs     = parseFloat($("#totaltcs").val() || 0);
+        var other   = parseFloat(($("#other").val() || 0));
+        var gst     = (parseFloat(cgst) + (other * ogr));
+        $("#totalammount").val((parseFloat(ammount)).toFixed(2));
+        $("#totalcgst").val((gst).toFixed(2));
+        $("#totalsgst").val((gst).toFixed(2));
+        $("#totaligst").val((gst*2).toFixed(2));
+
+        var total   = Math.round(ammount + (gst*2) + tcs + other);
+        $("#total").val(total);
+    }
+
+    $("table").on("change", e);
+    function e() {
+        var no = e.arguments[0].target.id.split('qty')[1]
+        var qty = parseFloat($("#"+ e.arguments[0].target.id+ "").val());
+        var poqty = parseFloat($("#actualqty"+ no + "").val());
+        if (poqty < qty){
+            qty = 0;
+            $("#"+ e.arguments[0].target.id + "").val(0);
+            alert("Recieved Qty Can not be greater than Total Qty");
+        }
+        var rate = parseFloat($("#rate"+ no + "").val());
+        var data = (qty * rate);
+        $("#ammount"+ no + "").val(data.toFixed(2));
+
+        var cgst = parseFloat($("#cgstrate"+ no + "").val());
+        var sgst = parseFloat($("#sgstrate"+ no + "").val());
+        var igst = parseFloat($("#igstrate"+ no + "").val());
+
+        var ammount = $("#ammount"+ no + "").val();
+
+        var cgstdata = ((ammount * cgst) / 100);
+        var sgstdata = ((ammount * sgst) / 100);
+        var igstdata = ((ammount * igst) / 100);
+
+        $("#cgst"+ no + "").val(cgstdata.toFixed(2));
+        $("#sgst"+ no + "").val(sgstdata.toFixed(2));
+        $("#igst"+ no + "").val(igstdata.toFixed(2));
+        window.totals()
+    }
+</script>
+{% endblock %}

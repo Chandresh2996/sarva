@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load static %}{% load perms %}
+
+{% block company %}
+                    <div class="dropdown d-inline-block language-switch">
+                        <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img id="header-lang-img" src="{% static 'assets/images/flags/us.jpg' %}" alt="Company"
+                                height="16">
+                        </button>
+                        {% comment %} <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item notify-item language" >
+                                <img src="{% static 'assets/images/flags/us.jpg' %}" alt="comapny" class="me-1"
+                                    height="12"><span class="align-middle"></span>
+                            </a>
+                        </div> {% endcomment %}
+                    </div>
+                    {% endblock company %}
+
+{% block content %}
+<div class="page-content">
+    GRN
+</div>
+    
+{% endblock %}

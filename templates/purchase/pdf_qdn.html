@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+{% load humanize %}
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset=" utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0">
+    <title>Quantity Discrepancy Note</title>
+    <style type="text/css">
+        html {
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+            color: rgba(0, 0, 0, 0.87);
+        }
+
+        .container {
+            padding: 10mm;
+            padding-top:0;
+            width: 210mm;
+            height: 297mm;
+        }
+
+        .responsive-table {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 1.5em;
+            border-spacing: 0;
+        }
+
+        .responsive-table thead {
+
+            clip: rect(1px 1px 1px 1px);
+            padding: 0;
+            border: 0;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+
+        .responsive-table thead th {
+            background-color: #0A81D1;
+            border: 1px solid #0A81D1;
+            font-weight: normal;
+            text-align: center;
+            color: white;
+        }
+
+        .responsive-table thead th:first-of-type {
+            text-align: left;
+        }
+
+        .responsive-table tbody,
+        .responsive-table tr,
+        .responsive-table th,
+        .responsive-table td {
+            padding: 0;
+            text-align: left;
+            white-space: normal;
+        }
+
+        .responsive-table th,
+        .responsive-table td {
+            padding: 0.3em;
+            vertical-align: middle;
+        }
+
+        .responsive-table tfoot {
+            font-size: 0.8em;
+            font-style: italic;
+        }
+
+        .responsive-table tbody tr {
+            margin-bottom: 1em;
+        }
+
+        .responsive-table tbody tr:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .responsive-table tbody th[scope=row] {
+            background-color: #0A81D1;
+            color: white;
+        }
+
+        .responsive-table tbody td {
+            text-align: right;
+        }
+
+        table {
+            page-break-inside: auto;
+        }
+
+        td {
+            page-break-inside: avoid !important;
+            page-break-after: auto
+        }
+
+        tr {
+            page-break-inside: avoid !important;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .s1 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 24pt;
+        }
+
+        .s2 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        .s3 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s4 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        .s5 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s6 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        .s7 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        .s8 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        .s9 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 10pt;
+        }
+
+        .s10 {
+            color: black;
+            font-family: "Times New Roman", serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 12pt;
+        }
+
+        .s11 {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: italic;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        p {
+            color: black;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+            margin: 0pt;
+        }
+
+        table,
+        tbody {
+            vertical-align: top;
+            overflow: visible;
+        }
+
+        ol,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ol {
+            counter-reset: foo;
+            display: table;
+        }
+
+        li {
+            list-style: none;
+            counter-increment: foo;
+            display: table-row;
+            line-height: 30px;
+
+        }
+
+        li::before {
+            content: counter(foo) ".";
+            display: table-cell;
+            text-align: right;
+            padding-right: .8em;
+            line-height: 40pt;
+        }
+
+        h3 {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table style="border-collapse:collapse;
+                          min-width:100%;
+                          min-height:100%;" cellspacing="0" class="responsive-table">
+            <tr style="height:101pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="10">
+                    <p class="s1" style="padding-top: 11pt;
+                                  text-indent: 0pt;
+                                  text-align: center;">
+                        STONE SAPPHIRE (INDIA) PRIVATE LIMITED
+                    </p>
+                    <p class="s2" style="padding-top: 1pt;
+                                  text-indent: 0pt;
+                                  text-align: center;">
+                        Plot No. 901/05/10,
+                    </p>
+                    <p class="s2" style=" text-align: center;">
+                        G.I.D.C. Industrial Estate, Makarpura, Vadodara.
+                    </p>
+                    <p style="padding-top: 1pt; text-indent: 0pt;text-align: center;">
+                        <a href="mailto:contact@stonesapphire.com" class="s3" target="_blank">Mo:- 9586167020 /
+                            7229039622 E-Mail ID :- contact@stonesapphire.com</a>
+                    </p>
+                    <p class="s2" style="padding-top: 3pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: center;">
+                        State Code : 24 GSTIN : 24AAKCS5015L1Z8
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:15pt">
+                <td style="width:468pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="10">
+                    <p class="s4" style="padding-left: 2pt;
+                                  padding-right: 7pt;
+                                  text-indent: 0pt;
+                                  line-height: 13pt;
+                                  text-align: center;">
+                        QUANTITY DISCREPANCY NOTE
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:13pt">
+                <td style="width:236pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="4">
+                    <p class="s5" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Consignee (Ship to)
+                    </p>
+                </td>
+                <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3">
+                    <p class="s5" style="padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Debit Note
+                    </p>
+                </td>
+                <td style="width:115pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3">
+                    <p class="s5" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Dated
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:13pt">
+                <td style="width:236pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="4" rowspan="3">
+                    <p class="s6" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        {{ po.shipto }}
+                    </p>
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ po.shipto_address1 }}, {{ po.shipto_address2 }}, {{ po.shipto_address3 }}-{{ po.shipto_pincode }}
+                    </p>
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        <a href="mailto:contact@stonesapphire.com" class="s8" target="_blank">-mail :
+                            contact@stonesapphire.com</a>
+                        </p>
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        GSTIN/UIN : {{ po.shipto_gstin }}
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        State Name : {{ po.shipto_state }}, Code : 24
+                    </p>
+                </td>
+                <td style="width:117pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3">
+                    <p class="s6" style="padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ po.qdn_no }}
+                    </p>
+                </td>
+                <td style="width:115pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3">
+                    <p class="s6" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ po.qdn_date }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:26pt">
+                <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:115pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3">
+                    <p class="s5" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Mode/Terms of Payment
+                    </p>
+                    <p class="s6" style="padding-top: 3pt;
+                                  padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ po.mode_of_payment }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:20pt">
+                <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3" rowspan="2">
+                    <p class="s5" style="padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Reference No. &amp; Date.
+                    </p>
+                    <p class="s6" style="padding-top: 3pt;
+                                  padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ po.pi_no.supplier_invoice }} / {{ po.pi_no.supplier_date|date:'d-m-Y' }}
+                    </p>
+                </td>
+                <td style="width:115pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3" rowspan="2">
+                    <p class="s5" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Other References
+                    </p>
+                    <p class="s6" style="padding-top: 3pt;
+                                  padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ po.other_reference|default_if_none:"" }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:6pt">
+                <td style="width:236pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="4" rowspan="3">
+                    <p class="s5" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Supplier (Bill from)
+                    </p>
+                    <p class="s6" style="padding-top: 2pt;
+                                  padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        {{ po.seller }}
+                    </p>
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        {{ po.seller_address1 }}{{ po.seller_address2 }}{{ po.seller_address3 }}
+                    </p>
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        GSTIN/UIN : {{ po.seller_gstin }}
+                    </p>
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        State Name : {{ po.seller_state }}, Code : {{ po.seller_gstin|slice:2 }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:26pt">
+                <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3">
+                    <p class="s5" style="padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Dispatched through
+                    </p>
+                    <p class="s6" style="padding-top: 3pt;
+                                  padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ po.dispatch_through|default_if_none:"" }}
+                    </p>
+                </td>
+                <td style="width:115pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="3">
+                    <p class="s5" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Destination
+                    </p>
+                    <p class="s6" style="padding-top: 3pt;
+                                  padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        {{ po.destintaion|default_if_none:"" }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:76pt;">
+                <td style="vertical-align:top; width:232pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="6">
+                    <p class="s5" style="padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Terms of Delivery
+                    </p>
+                    <p class="s6" style="padding-top: 2pt;
+                                  padding-left: 4pt;
+                                  text-indent: 0pt;
+                                  text-align: left;">
+                        {{ po.terms_of_delivery }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:23pt">
+                <td
+                    style="width:14pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        Sr
+                    </p>
+                    <p class="s7" style="padding-left: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: left;">
+                        No.
+                    </p>
+                </td>
+                <td
+                    style="width:49pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-left: 8pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        SKU Code.
+                    </p>
+                </td>
+                <td
+                    style="width:260pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-left: 48pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Description of Goods
+                    </p>
+                </td>
+                <td
+                    style="width:38pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-left: 7pt;
+                                  padding-right: 8pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: center;">
+                        MRP
+                    </p>
+                </td>
+                
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: center;">
+                        HSN
+                    </p>
+                </td>
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: center;">
+                        GST
+                    </p>
+                </td>
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: center;">
+                        Quantity
+                    </p>
+                </td>
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-left: 14pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Rate
+                    </p>
+                </td>
+                <td
+                    style="width:21pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-left: 3pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        UOM
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-left: 18pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  text-align: left;">
+                        Amount
+                    </p>
+                </td>
+            </tr>
+            {% for i in poitems %}
+            <tr style="height:23pt">
+                <td
+                    style="width:14pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s7" style="padding-top: 5pt;
+                                      padding-left: 2pt;
+                                      text-indent: 0pt;
+                                      text-align: left;">
+                        {{ forloop.counter }}
+                    </p>
+                </td>
+                <td
+                    style="width:49pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      padding-right: 2pt;
+                                      text-indent: 0pt;
+                                      text-align: right;">
+                        {{ i.item.product_code }}
+                    </p>
+                </td>
+                <td
+                    style="width:184pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      padding-left: 2pt;
+                                      text-indent: 0pt;
+                                      line-height: 12pt;
+                                      text-align: left;">
+                        {{ i.item.product_name }}
+                    </p>
+                </td>
+                <td
+                    style="width:38pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      padding-left: 7pt;
+                                      padding-right: 5pt;
+                                      text-indent: 0pt;
+                                      text-align: center;">
+                        {{ i.item.mrp }}
+                    </p>
+                </td>
+                
+                
+                <td
+                    style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      padding-right: 2pt;
+                                      text-indent: 0pt;
+                                      text-align: right;">
+                        {{ i.item.gstdetail.last.hsncode }}
+                    </p>
+                </td>
+                <td
+                    style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      padding-right: 2pt;
+                                      text-indent: 0pt;
+                                      text-align: right;">
+                        {{ i.igstrate|floatformat:'0' }}
+                    </p>
+                </td>
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      text-indent: 0pt;
+                                      text-align: center;">
+                        {{ i.qdn_qty|floatformat:'0' }}
+                    </p>
+                </td>
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      padding-left: 22pt;
+                                      text-indent: 0pt;
+                                      text-align: left;">
+                        {{ i.rate }}
+                    </p>
+                </td>
+                <td
+                    style="width:21pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      padding-left: 2pt;
+                                      text-indent: 0pt;
+                                      text-align: left;">
+                        {{ i.item.units_of_measure }}
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 5pt;
+                                      padding-right: 2pt;
+                                      text-indent: 0pt;
+                                      text-align: right;">
+                        {{ i.amount }}
+                    </p>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr style="height:6pt">
+                <td style="width:14pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    rowspan="7">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:14pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    rowspan="7">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:14pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    rowspan="7">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:184pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:38pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:49pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    rowspan="7">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    rowspan="7">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    rowspan="7">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:21pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    rowspan="7">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:14pt">
+                <td
+                    style="width:184pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:38pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s7" style="padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: right;">
+                        {{ po.ammount }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:15pt">
+                <td
+                    style="width:184pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="padding-top: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: right;">
+                        {% if po.other_ledger %}{{po.other_ledger}} {% endif %}
+                    </p>
+                </td>
+                <td>
+                    <p class="s9" style="padding-top: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: center;">
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s6" style="padding-top: 3pt;
+                                  padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: right;">
+                        {% if po.other_ledger %}{{po.other}} {% endif %}
+                    </p>
+                </td>
+            </tr>
+            {% if po.seller_gstin|slice:2 == '24' %}
+            <tr style="height:15pt">
+                <td
+                    style="width:184pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="padding-top: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: right;">
+                        INPUT SGST
+                    </p>
+                </td>
+                <td>
+                    <p class="s9" style="padding-top: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: center;">
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s6" style="padding-top: 3pt;
+                                  padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: right;">
+                        {{ po.sgst }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:12pt">
+                <td
+                    style="width:184pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: right;">
+                        INPUT CGST
+                    </p>
+                </td>
+                <td
+                    style="width:38pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: center;">
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s6" style="padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: right;">
+                        {{ po.cgst }}
+                    </p>
+                </td>
+            </tr>
+            {% else %}
+            <tr style="height:15pt">
+                <td
+                    style="width:184pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="padding-top: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: right;">
+                        
+                    </p>
+                </td>
+                <td>
+                    <p class="s9" style="padding-top: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: center;">
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s6" style="padding-top: 3pt;
+                                  padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: right;">
+
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:12pt">
+                <td
+                    style="width:184pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: right;">
+                        INPUT IGST
+                    </p>
+                </td>
+                <td
+                    style="width:38pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: center;">
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s6" style="padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: right;">
+                        {{ po.igst }}
+                    </p>
+                </td>
+            </tr>
+            {% endif %}
+            <tr style="height:12pt">
+                <td
+                    style="width:184pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: right;">
+                        TCS
+                    </p>
+                </td>
+                <td
+                    style="width:38pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: center;">
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s6" style="padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: right;">
+                        {{ po.tcs }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="vertical-align: top;">
+                <td
+                    style="vertical-align: top; width:184pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="text-indent: 0pt;text-align: right;">
+                        Round Off
+                    </p>
+                </td>
+                <td
+                    style="vertical-align: top; width:38pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s9" style="text-indent: 0pt;text-align: center;">
+                    </p>
+                </td>
+                <td
+                    style="vertical-align: top; width:68pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s6" style="padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  text-align: right;">
+                        {{ po.round_off }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:15pt">
+                <td
+                    style="width:14pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:14pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:14pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:176pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 10pt;
+                                  font-weight: bold;
+                                  text-align: right;">
+                        Total
+                    </p>
+                </td>
+                <td
+                    style="width:46pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:49pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s6" style="padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 11pt;
+                                  text-align: right;">
+                    </p>
+                </td>
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:21pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:68pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s4" style="padding-right: 2pt;
+                                  text-indent: 0pt;
+                                  line-height: 13pt;
+                                  text-align: right;">
+                        ₹<span class="s10"></span>{{ po.total|intcomma }}
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:54pt; page-break-after:avoid !important;">
+                <td style="width:236pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt"
+                    colspan="4">
+                    <p class="s5" style="padding-left: 2pt;
+                              text-indent: 0pt;
+                              line-height: 10pt;
+                              text-align: left;">
+                        Amount Chargeable (in words)
+                    </p>
+                    <p class="s2" style="padding-top: 2pt;
+                              padding-left: 2pt;
+                              text-indent: 0pt;
+                              text-align: left;">
+                        Indian Rupees {{total}} Only
+                    </p>
+                    <p class="s5" style="padding-top: 5pt;
+                              padding-left: 2pt;
+                              text-indent: 0pt;
+                              text-align: left;">
+                        Company&#39;s PAN : <b>{{ po.company.pan_no }}</b>
+                    </p>
+                </td>
+                <td
+                    style="width:49pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                 <td
+                    style="width:47pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:21pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td
+                    style="width:26pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:68pt; border-right-style:solid;border-right-width:1pt">
+                    <p class="s11" style="padding-right: 2pt;
+                              text-indent: 0pt;
+                              line-height: 10pt;
+                              text-align: right;">
+                        E. &amp; O.E
+                    </p>
+                </td>
+            </tr>
+            <tr style="height:43pt;page-break-before:avoid !important;">
+                <td style="width:236pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                </td>
+                <td style="width:232pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    colspan="6">
+                    <p class="s2" style="padding-left: 47pt;
+                              text-indent: 0pt;
+                              line-height: 10pt;
+                              text-align: left;">
+                        for {{ po.company.name }}
+                    </p>
+                    <p style="text-indent: 0pt;text-align: left;">
+                        <br />
+                    </p>
+                    <p class="s5" style="padding-right: 2pt;
+                              text-indent: 0pt;
+                              line-height: 10pt;
+                              text-align: right;">
+                        Authorised Signatory
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

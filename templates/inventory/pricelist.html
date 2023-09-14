@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/cr-1.5.6/date-1.1.2/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/sr-1.1.1/datatables.min.css"/>
+
+{% endblock extracss %}
+{% block content %}
+<div class="row mx-0">
+    <div class="col-md-12 m-b-30 p-0">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>PriceList</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'sales:sales' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="">PriceLists</a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 mb-3">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">Price List</h4>
+            <div>
+                <a href="{% url 'inventory:load_pl_upload' %}">
+                    <button type="button" class="btn btn-primary"> Upload </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="needs-validation"  action="{% url 'inventory:add_pricelist' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row mx-0">
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label class="form-label" for="under">Price Level<span style="color:red">*</span></label>
+                                <!-- <input type="text" list="brands" class="form-control" id="under" name="under" required autocomplete="off"> -->
+                                <select class="js-example-basic-single" class="form-control" id="under" name="under" required>
+                                    <option></option>
+                                    {% for brand in pricelevels %} <option value="{{brand.name}}">{{brand.name}}</option> {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label" for="under">Product<span style="color:red">*</span></label>
+                                <!-- <input type="text" list="items" class="form-control" id="item" name="item" autocomplete="off" required pattern="{% for brand in items %}{{brand.product_code}}|{% endfor %}"> -->
+                                <select class="js-example-basic-single" class="form-control" id="item" name="item" required>
+                                    <option></option>
+                                    {% for brand in items %}
+                                    <option value="{{brand.product_code}}">{{brand.product_code}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Rate<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="rate" autocomplete="off" name="rate" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Applicable From</label>
+                                <input type="text" class="form-control" id="date" autocomplete="off" name="date" value="{{date|date:'d-m-Y'}}" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-0">
+                        <div class="col-md-8">
+                        </div><!-- end row -->
+                        <div class="col-md-4 d-flex justify-content-end">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div><!-- end row -->
+                    </div><!-- end row -->
+                </form><!-- end form -->
+            </div><!-- end card body -->
+        </div><!-- end card -->
+    </div> <!-- end col -->
+    <!-- end col -->
+</div><!-- end row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header justify-content-between d-flex align-items-center">
+                <h4 class="card-title">Price List</h4>
+            </div>
+            <div class="card-body">
+                <table id="pm" class="table ">
+                    <thead>
+                        <tr>
+                            <th>Product Code</th>{% for i in pricelevels %}
+                            <th>{{i.name}}</th>{% endfor %}
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Product Code</th>{% for i in pricelevels %}
+                            <th>{{i.name}}</th>{% endfor %}
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/cr-1.5.6/date-1.1.2/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/sr-1.1.1/datatables.min.js"></script>
+<script>
+
+var columns = [];
+$(document).ready(function() {
+
+    $('#pm tfoot th').each( function () {
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder='+title+' />' );
+    } );
+
+    var table = $('#pm').DataTable( {
+            dom: 'lfrt<"ip"iB>p',
+            fixedHeader: true,
+            buttons: [
+                'copy',
+                'excel',
+                'csv',
+            ],
+            ajax: "{% url 'inventory:pricelistdata' %}",
+            columns: [{data: "code", title:"Product Code"},
+            {% for i in pricelevels %}{data: "{{i.pk|safe}}",defaultContent: ""},{% endfor %}
+            ],
+            iDisplayLength: 10,
+            deferRender: true,
+            scrollX:300,
+            scrollY:'500px',
+            scroller: true,
+            initComplete: function () {
+                // Apply the search
+                this.api().columns().every( function () {
+                    var that = this;
+                    $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                        if ( that.search() !== this.value ) {
+                            that.search(this.value).draw();
+                        }
+                    } );
+                } );
+            }
+        });
+    } );
+</script>
+{% endblock %}

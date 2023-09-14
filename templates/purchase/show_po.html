@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}{% load perms %}
+{% load mathops %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+{% load humanize %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Purchase Order: View</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Tansactions </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'purchase:purchase' %}"> Purchase </a> </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'purchase:po' %}"> Purchase Order </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">View Purchase Order </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0"><span class="fw-bold">Purchase Order: </span>{{ po.po_no }}</h4>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <label for="currency" class="form-label">Currency</label>
+                                    <select class="form-control" id="currency" name="currency" disabled>
+                                        <option value='{{po.currency}}'>{{po.currency}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="page-title-right">
+                                <h4><span class="fw-bold">Date: </span>{{po.po_date|date:"d-m-Y"}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mx-0">
+                    <div class="col-lg-5">
+                        <div class="mb-2">
+                            <label for="party_name" class="form-label">Vendor Details</label>
+                            <input type="text" list="party_names" class="form-control" readonly value="{{po.seller}}">
+                            {% comment %} <select class="js-example-basic-single" class="form-control" id="party_name" name="party_name" required>
+                                    {% for party in parties %}
+                                    {% if po.seller == party.name %}
+                                        <option value="{{party.name}}" selected>{{party.name}}</option>
+                                    {% else %}
+                                        <option value="{{party.name}}">{{party.name}}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select> {% endcomment %}
+                        </div>
+                        <div class="mb-2">
+                            <select class="form-control" disabled>
+                                <option value="{{po.seller_address_type}}"> {{po.seller_address_type}} </option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <textarea type="textfield" class="form-control" id="party_address" name="party_address" placeholder="Address" readonly>
+{{po.seller_address1|default_if_none:''}},
+{{po.seller_address2|default_if_none:''}},
+{{po.seller_address3|default_if_none:''}}
+                            </textarea>
+                        </div>
+                        <div class="mb-2">
+                            <input type="text" class="form-control" id="party_gstin" placeholder="GSTIN" name="party_gstin" readonly value="{{po.seller_gstin}}">
+                        </div>
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-5">
+                        <div class="row mb-2">
+                            <div class="col-lg-4">
+                                <label for="po_due_date" class="form-label">PO Due Date</label>
+                            </div>
+                            <div class="col">
+                                <input type="date" class="form-control" readonly value="{{po.po_due_date|date:'Y-m-d'}}">
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="row mb-2">
+                            <div class="col-lg-4">
+                                <label for="mode_of_payment" class="form-label">Mode of payment</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" readonly value="{{po.mode_of_payment}}">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-4">
+                                <label for="other_reference" class="form-label">Other Reference</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" readonly value="{{po.other_reference}}">
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="row mb-2">
+                            <div class="col-lg-4">
+                                <label for="terms_of_delivery" class="form-label">Terms of delivery</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" readonly value="{{po.terms_of_delivery}}">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-4">
+                                <label for="destination" class="form-label">Destination</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" readonly value="{{po.destintaion}}"/>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-lg-4">
+                                <label for="dispatch_through" class="form-label">Dispatch Through</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" readonly value="{{po.dispatch_through}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        
+                    </div>
+                </div>
+                <hr>
+                <div class="row mx-0 p-3">
+                    <div class="card">
+                        <div class="card-body" style="padding: 0;">
+                            <div class="table-responsive">
+                                <table class="table mb-0" id="table">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th width="15">#</th>
+                                            <th>SKU Code</th>
+                                            <th>SKU Name</th>
+                                            <th>Mrp</th>
+                                            <th>Pack</th>
+                                            <th>ActualQty</th>
+                                            <th>Rate</th>
+                                            <th>Amount</th>
+                                            <th width="50">GST</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbody">
+                                        {% for i in items %}
+                                        <tr>
+                                            <th scope="row" class="datarow">
+                                                {{forloop.counter}}
+                                            </th>
+                                            <td>
+                                                <input type="text" class="form-control" value="{{i.product_code}}" readonly>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" value="{{i.item.product_name}}" readonly>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control text-right"  value="{{i.item.mrp}}" readonly>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control text-right"  value="{{i.pack}}" readonly>
+                                            </td>
+                                            <td class="text-center">
+                                                <input type="text" class="form-control text-right"  value="{{i.basic_qty|addition:i.amend_qty}}" readonly>
+                                            </td>
+                                            <td class="text-end">
+                                                <input type="text" class="form-control text-right"  value="{{i.rate}}" readonly>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control text-right"  value="{{i.amount}}" readonly>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control text-right"  value="{{i.igstrate|floatformat:'0'}}" readonly>
+                                            </td>
+                                    </tr>
+                                    {% endfor %}
+                                    
+                                </tbody>
+                                <!-- end tbody-->
+                            </table>
+                            <!-- end table-->
+                        </div>
+                        <!-- end table responsive -->
+                    </div>
+                    <!-- end card body -->
+                </div>
+            </div>
+            <div class="row mx-0">
+                <div class="col-lg-4 pt-5 mt-5">
+                    <div class="mt-5">
+                        <label for="narration" class="form-label">
+                            Remarks
+                        </label>
+                        <input type="text" class="form-control" value="{{po.narration}}" readonly>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <!-- end col -->
+                    <div class="row align-items-end">
+                        <div class="col">
+                            <label for="totalammount" class="form-label"> SubTotal </label>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control text-right" id="totalammount" name="totalammount" value="{{po.ammount}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <select class="form-control text-right" disabled>
+                                <option>{{po.other_ledger}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-3">
+                            <select class="form-control text-right" id="other_ledger_per" disabled>
+                                <option>{{po.ol_rate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-5">
+                            <input class="form-control text-right" type="number" value={{po.other}} readonly>
+                        </div>
+                    </div>
+                    <div class="row align-items-end">
+                        <div class="col">
+                            <label for="totalcgst" class="form-label"> CGST </label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control text-right" id="totalcgst" name="totalcgst" value="{{po.cgst}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row align-items-end">
+                        <div class="col">
+                            <label for="totalsgst" class="form-label"> SGST </label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control text-right" id="totalsgst" name="totalsgst" value="{{po.sgst}}" readonly>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="row align-items-end">
+                        <div class="col">
+                            <label for="totaligst" class="form-label"> IGST </label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control text-right" id="totaligst" name="totaligst" value="{{po.igst}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row align-items-end">
+                        <div class="col">
+                            <label for="totaltcs" class="form-label"> TCS </label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control text-right" value="{{po.tcs}}" readonly>
+                        </div>
+                    </div>
+                    <div class="row align-items-end">
+                        <div class="col">
+                            <label for="total" class="form-label">
+                                Total
+                            </label>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control text-right" value="{{po.total|intcomma}}" readonly>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <!-- {% if request.user|has_group:"Admin, Purchase Order Amend" %} -->
+                        <!-- {% if po.status != 5 and  po.status != 2 %} -->
+                        <!-- {% endif %} -->
+                        <!-- {% endif %} -->
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                    <a href="{% url 'purchase:amendpo' po.pk %}">
+                        <button type="button" class="btn btn-danger">
+                            Amend <i class="fab fa-expeditedssl"></i>
+                        </button>
+                    </a>
+                    <button type="btn" class="btn btn-primary w-sm ms-auto" style="float:right;" onclick="window.location=document.referrer;">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block scripts %}
+{% endblock scripts %}

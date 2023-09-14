@@ -1,0 +1,174 @@
+{% extends 'reports/base-report.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>Zonal Sales Performance: Report</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Report </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'reports:sales-reports' %}"> Sales </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Zonal Sales Perfomence </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% load humanize %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <form action="{% url 'reports:zonewisebrandreport' %}" method="POST" id="division-form">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="division" class="form-label mb-0">Division</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <select class="form-control" id="division" name="division">
+                                {% for j in currentdiv%}
+                                <option value="{{j}}">{{j}}</option>
+                                {% endfor %}
+                                {% for i in divs %}
+                                <option value="{{i}}">{{i}}</option>
+                                {% endfor %}
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="defaultfilter" class="form-label mb-0">Category</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <select class="form-control" id="defaultfilter" name="defaultfilter">currentfilter
+                                {% if currentfilter == 'item__brand__name' %}
+                                <option value="item__brand__name" selected>Brand</option>
+                                {% else %}
+                                <option value="item__brand__name">Brand</option>
+                                {% endif %}
+                                {% if currentfilter == 'item__product_class__name' %}
+                                <option value="item__product_class__name" selected>Class</option>
+                                {% else %}
+                                <option value="item__product_class__name">Class</option>
+                                {% endif %}
+                                {% if currentfilter == 'item__sub_class__name' %}
+                                <option value="item__sub_class__name" selected>Sub class</option>
+                                {% else %}
+                                <option value="item__sub_class__name">Sub class</option>
+                                {% endif %}
+                                {% if currentfilter == 'item__product_name' %}
+                                <option value="item__product_name" selected>Product</option>
+                                {% else %}
+                                <option value="item__product_name">Product</option>
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="col-lg-1 d-flex align-items-center">
+                            <label for="defaultfilter" class="form-label mb-0">Date Range</label>
+                        </div>
+                        <div class="date-width">
+                            <div class="d-flex calendar-wrapper">
+                                <input class="form-control mb-md-0 mb-sm-2 mb-xs-2" name="startdate" type="date" autocomplete="off" value="{{start}}"/>
+                                <input class="form-control mb-md-0 mb-sm-2 mb-xs-2" name="enddate" type="date" autocomplete="off" value="{{end}}"/>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn ml-5 fa fa-filter" name=""> Filter</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                <table id="stock" class="table w-100">
+                    <thead>
+                        <tr>
+                            {% if currentfilter == 'item__product_name' %}
+                            <th colspan="2" class="align-middle text-center"></th>
+                            {% else %}
+                            <th class="align-middle text-center"></th>
+                            {% endif %}
+                            {% for i in zones %}
+                            <th colspan="4" class="align-middle text-center">{{i}}</th>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% if currentfilter == 'item__brand__name' %}
+                                <th style="text-align:right; padding-right:1.5rem"> BRAND </th>
+                            {% elif currentfilter == 'item__product_class__name' %}
+                                <th style="text-align:right; padding-right:1.5rem"> Class </th>
+                            {% elif currentfilter == 'item__sub_class__name' %}
+                                <th style="text-align:right; padding-right:1.5rem"> SUB CLASS </th>
+                            {% elif currentfilter == 'item__product_name' %}
+                            <th style="text-align:left; padding-right:1.5rem"> PRODUCT </th>
+                            <th nowrap style="text-align:right; padding-right:1rem">SKU CODE</th>
+                            {% endif %}
+
+                            {% for i in zones %}
+                            <th style="text-align:right; padding-right:1.5rem">QTY</th>
+                            <th style="text-align:right; padding-right:1.5rem">BASIC</th>
+                            <th style="text-align:right; padding-right:1.5rem">INVOICE</th>
+                            <th style="text-align:right; padding-right:1.5rem">MRP</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% load mathops %}
+                        {% for brand,items in data.items %}
+                        <tr>
+                            <td nowrap style="text-align:left; padding-right:1rem">{{brand}}</td>
+                            {% if currentfilter == 'item__product_name' %}
+                            <td nowrap style="text-align:right; padding-right:1rem">{{items.0.item__product_code}}</td>
+                            {% endif %}
+                            {% for i in zones %}
+                                {% with c=items|has_zone:i %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.total_qty|stringformat:"d"|intcomma}}</td>
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.basic|intcomma}}</td>
+                                    {% comment %} <td nowrap style="text-align:right; padding-right:1rem">{{c.basic|intcomma}}</td> {% endcomment %}
+                                    <td nowrap style="text-align:right; padding-right:1rem">{% if c %} {{c.total_price|addition:c.basic|intcomma}}{% endif %}</td>
+                                    <td nowrap style="text-align:right; padding-right:1rem">{{c.mrp|intcomma}}</td>
+                                {% endwith %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block reportjs %}
+<script>
+
+$(document).ready(function() {
+    $('#stock').DataTable( {
+        dom: 'lfrt<"ip"iB>p',
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+        fixedColumns:   {
+            left: 1,
+        },
+        buttons: [
+            'copy',
+            {
+                extend: 'excel',
+                filename: 'Zonal Sales Report',
+                title: '',
+            },
+            'csv',
+        ],
+        scrollX:300,
+        scrollY:'400px',
+        scroller: true,
+    } );
+} );
+</script>
+{% endblock %}

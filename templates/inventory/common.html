@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extracss %}
+
+{% endblock extracss %}
+{% block content %}
+<head>
+    <style>
+        .error-sidebar
+        {
+            position: absolute;
+            top: 120px;
+            right: 0;
+            width: 430px;
+            z-index: 1;
+        }
+    </style>    
+</head>
+<div class="row">
+    <div class="col-md-12 m-b-30">
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+            <div class="page-title mb-2 mb-sm-0">
+                <h1>{{ title }}: {{action}}</h1>
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+                <nav>
+                    <ol class="breadcrumb p-0 m-b-0">
+                        <li class="breadcrumb-item"> <a href="{% url 'dash:home' %}"><i class="ti ti-home"></i></a> </li>
+                        <li class="breadcrumb-item"> Masters </li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="{% url 'inventory:inventory' %}">Registration</a></li>
+                        <li class="breadcrumb-item" aria-current="page"> <a href="/ivt/{{url|lower}}">{{title}} </a> </li>
+                        <li class="breadcrumb-item active text-primary" aria-current="page"> <a href="">Create {{title}} </a> </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="needs-validation"   method="POST" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <!-- Form content will be changed below-->
+                    <div class="row mt-10">
+                        {% for field in form %}    
+                        <div class="col-md-{{div}}">
+                            <div class="mb-3">
+                               {{field.label_tag}}{{ field }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-10"></div>
+                        <div class="col-md-2 d-flex align-items-center justify-content-end">
+                            <button class="btn btn-primary" type="submit" >Submit</button>
+                        </div>
+                    </div>
+                </form><!-- end form -->
+            </div><!-- end card body -->
+        </div><!-- end card -->
+    </div> <!-- end col -->
+    <!-- end col -->
+</div>
+{% if form.errors %}
+    {% for key, value in form.errors.items %}
+        {% for error in value %}
+            <div class="col-md-12 alert alert-danger alert-dismissible fade show p-10 error-sidebar" role="alert">
+                <i class="fas fa-times-circle me-3"></i> {{ error }}
+                <button type="button" class="close p-10" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% endblock %}

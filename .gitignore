@@ -1,0 +1,11 @@
+env/
+__pycache__/
+*.pyc
+*.py[cod]
+
+
+.git
+.idea
+bower_components
+node_modules
+tableExport.jquery.plugin.iml
