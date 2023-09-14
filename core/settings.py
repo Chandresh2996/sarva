@@ -20,7 +20,7 @@ SECRET_KEY = 'django-insecure-(g3@e6#v+y1)+x)9v&7cg$30*^57g@-nb@x=#7u$^6de%1r(fy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = ['ssipl.dhsclouding.com','localhost','127.0.0.1','192.168.0.174', '*']
+ALLOWED_HOSTS = ['ssipl.dhsclouding.com','127.0.0.1','192.168.0.174', '*', '.vercel.app','now.sh','0.0.0.0','localhost']
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 IMPORT_EXPORT_SKIP_ADMIN_LOG = True
@@ -164,8 +164,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR/'static',]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_DIRS = [BASE_DIR/'static',]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
