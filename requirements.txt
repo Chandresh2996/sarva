@@ -9,7 +9,6 @@ chardet==4.0.0
 charset-normalizer==2.0.12
 click==8.0.3
 colorama==0.4.4
-command-not-found==0.3
 cryptography==3.4.8
 cupshelpers==1.0
 dbus-python==1.2.18
@@ -19,7 +18,7 @@ diff-match-patch==20200713
 distlib==0.3.4
 distro==1.7.0
 distro-info==1.1+ubuntu0.1
-Django==4.0.5
+Django==4.1.7
 django-3-jet==1.0.8
 django-ajax-datatable==4.4.4
 django-auditlog==2.0.0
@@ -83,7 +82,7 @@ Pillow==9.4.0
 platformdirs==2.5.1
 pluggy==1.0.0
 protobuf==3.12.4
-psycopg2==2.9.3
+psycopg2-binary==2.9.6
 ptyprocess==0.7.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.1
