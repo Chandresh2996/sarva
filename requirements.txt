@@ -10,14 +10,13 @@ charset-normalizer==2.0.12
 click==8.0.3
 colorama==0.4.4
 cryptography==3.4.8
+Django==4.1.7
 dbus-python==1.2.18
-defer==1.0.6
 defusedxml==0.7.1
 diff-match-patch==20200713
 distlib==0.3.4
 distro==1.7.0
 distro-info==1.1+ubuntu0.1
-Django==4.1.7
 django-3-jet==1.0.8
 django-ajax-datatable==4.4.4
 django-auditlog==2.0.0
