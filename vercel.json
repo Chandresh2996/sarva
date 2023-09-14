@@ -12,13 +12,6 @@
       "config": {
         "distDir": "staticfiles_build"
       }
-    },
-    {
-      "src": "install_cairo.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "cairo_install"
-      }
     }
   ],
   "routes": [
