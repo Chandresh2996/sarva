@@ -10,9 +10,7 @@ charset-normalizer==2.0.12
 click==8.0.3
 colorama==0.4.4
 cryptography==3.4.8
-cupshelpers==1.0
 dbus-python==1.2.18
-defer==1.0.6
 defusedxml==0.7.1
 diff-match-patch==20200713
 distlib==0.3.4
