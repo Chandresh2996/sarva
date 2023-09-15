@@ -116,7 +116,6 @@ tablib==3.2.1
 tomli==2.0.1
 typing_extensions==4.5.0
 tzdata==2022.1
-ubuntu-advantage-tools==8001
 ubuntu-drivers-common==0.0.0
 ufw==0.36.1
 unattended-upgrades==0.1
