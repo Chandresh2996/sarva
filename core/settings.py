@@ -118,16 +118,28 @@ if False:
         }
     }
 else:
+    #AWS Testing database
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'netidb',
-            'USER': 'netitest',
-            'PASSWORD': 'netidb@123',
-            'HOST': 'localhost',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'databaseNeti',
+            'USER': 'Netisuperuser',
+            'PASSWORD': 'Neti1234',
+            'HOST': 'database-1.cwkh99l3smwi.us-east-1.rds.amazonaws.com',
             'PORT': '5432',
         }
     }
+    #Main Database.
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': 'netidb',
+    #         'USER': 'netitest',
+    #         'PASSWORD': 'netidb@123',
+    #         'HOST': 'localhost',
+    #         'PORT': '5432',
+    #     }
+    # }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -187,8 +199,11 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_TIMEOUT_REDIRECT = 'login'
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 #-----------------------------------------------------------------------Plugins settings
+#This is for AWS Deployment
+WKHTMLTOPDF_CMD = '/usr/bin/wkhtmltopdf'
 
-WKHTMLTOPDF_CMD = 'C:/wkhtmltopdf/bin/wkhtmltopdf'
+#This is for local, use this when doing anything at local
+# WKHTMLTOPDF_CMD = 'C:/wkhtmltopdf/bin/wkhtmltopdf'
 
 
 JET_CHANGE_FORM_SIBLING_LINKS = False
