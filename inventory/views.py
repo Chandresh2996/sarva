@@ -1774,64 +1774,64 @@ def add_ict(request):
         totalcgst                   = 0
         totalsgst                   = 0
         totaligst                   = 0
-        # try:
-        for i,j in enumerate(product_codelist):
-            product         = Product_master.objects.get(product_code=j)
-            mrp             = product.mrp
-            pack            = product.outer_qty
-            offermrp        = mrp
-            billqty         = Decimal(billqtylist[i])
-            actualqty       = billqty
+        try:
+          for i,j in enumerate(product_codelist):
+              product         = Product_master.objects.get(product_code=j)
+              mrp             = product.mrp
+              pack            = product.outer_qty
+              offermrp        = mrp
+              billqty         = Decimal(billqtylist[i])
+              actualqty       = billqty
+  
+              freeqty         = 0
+              rate            = Decimal(ratelist[i])
+  
+              discount        = 0
+              ammount         = billqty * rate
+  
+              igstrate        = product.gst
+              cgstrate        = product.gst/2
+              sgstrate        = product.gst/2
+  
+              igst            = ammount * (igstrate / 100)
+              cgst            = ammount * (cgstrate / 100)
+              sgst            = ammount * (sgstrate / 100)
+  
+              totalbill_qty  += billqty
+              totalammount    = totalammount + ammount
+              totalcgst       = totalcgst + cgst
+              totalsgst       = totalsgst + sgst
+              totaligst       = totaligst + igst
+              stock           = Stock_summary.objects.filter(company=so.company, product=product,godown__godown_type = 1).order_by('batch')
+              InvItems.objects.create(inv=so, item=product, prate=stock[0].rate, available_qty=Decimal(available_qty[i]), pack=pack, mrp=mrp, offer_mrp=(offermrp), igst=(igst), cgst=(cgst), sgst=(sgst), igstrate=(igstrate), cgstrate=(cgstrate), sgstrate=(sgstrate), actual_qty=(actualqty), billed_qty=(billqty), free_qty=(freeqty), rate=(rate), discount=(discount), amount=(ammount))
+              batch           = ''
+              for st1 in stock:
+                  if actualqty >= st1.closing_balance:
+                      actualqty       -= st1.closing_balance
+                      st1.company     = parties[0]
+                      st1.rate        = rate
+                      batch           =st1.batch
+                      st1.save()
+                      if actualqty == 0:
+                          break
+                  else:
+                      st1.closing_balance -= actualqty
+                      batch           = st1.batch
+                      st1.save()
+                      st2, new=Stock_summary.objects.get_or_create(company=parties[0],mrp=product.mrp, godown=st1.godown ,batch=batch,rate=st1.rate, product=product)
+                      if new:
+                          st2.closing_balance = actualqty
+                      else:
+                          st2.closing_balance += actualqty
+                      st2.rate        =   rate
+                      st2.save()
+                      break
+  
+              PiItems.objects.create(pi=pi, item=product,mrp=product.mrp,batch=batch, product_code=product.product_code, pack=pack,recd_qty=billqty, basic_qty=billqty,igstrate=igstrate ,sgstrate=sgstrate ,cgstrate=cgstrate, rate=rate, amount=ammount,igst=igst ,sgst=sgst ,cgst=cgst)
 
-            freeqty         = 0
-            rate            = Decimal(ratelist[i])
-
-            discount        = 0
-            ammount         = billqty * rate
-
-            igstrate        = product.gst
-            cgstrate        = product.gst/2
-            sgstrate        = product.gst/2
-
-            igst            = ammount * (igstrate / 100)
-            cgst            = ammount * (cgstrate / 100)
-            sgst            = ammount * (sgstrate / 100)
-
-            totalbill_qty  += billqty
-            totalammount    = totalammount + ammount
-            totalcgst       = totalcgst + cgst
-            totalsgst       = totalsgst + sgst
-            totaligst       = totaligst + igst
-            stock           = Stock_summary.objects.filter(company=so.company, product=product,godown__godown_type = 1).order_by('batch')
-            InvItems.objects.create(inv=so, item=product, prate=stock[0].rate, available_qty=Decimal(available_qty[i]), pack=pack, mrp=mrp, offer_mrp=(offermrp), igst=(igst), cgst=(cgst), sgst=(sgst), igstrate=(igstrate), cgstrate=(cgstrate), sgstrate=(sgstrate), actual_qty=(actualqty), billed_qty=(billqty), free_qty=(freeqty), rate=(rate), discount=(discount), amount=(ammount))
-            batch           = ''
-            for st1 in stock:
-                if actualqty >= st1.closing_balance:
-                    actualqty       -= st1.closing_balance
-                    st1.company     = parties[0]
-                    st1.rate        = rate
-                    batch           =st1.batch
-                    st1.save()
-                    if actualqty == 0:
-                        break
-                else:
-                    st1.closing_balance -= actualqty
-                    batch           = st1.batch
-                    st1.save()
-                    st2, new=Stock_summary.objects.get_or_create(company=parties[0],mrp=product.mrp, godown=st1.godown ,batch=batch,rate=st1.rate, product=product)
-                    if new:
-                        st2.closing_balance = actualqty
-                    else:
-                        st2.closing_balance += actualqty
-                    st2.rate        =   rate
-                    st2.save()
-                    break
-
-            PiItems.objects.create(pi=pi, item=product,mrp=product.mrp,batch=batch, product_code=product.product_code, pack=pack,recd_qty=billqty, basic_qty=billqty,igstrate=igstrate ,sgstrate=sgstrate ,cgstrate=cgstrate, rate=rate, amount=ammount,igst=igst ,sgst=sgst ,cgst=cgst)
-
-        # except BaseException as exception:
-        #     print(exception)
-        #     so.delete()
+        except BaseException as exception:
+            print(exception)
+            so.delete()
 
         so.bill_qty                = totalbill_qty
         so.ammount                 = totalammount
