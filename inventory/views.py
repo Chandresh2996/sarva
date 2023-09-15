@@ -1642,6 +1642,7 @@ def add_ict(request):
     com     = Company.objects.get(id=skey)
     series  = com.ict_series
     so = Invoice.objects.filter(inv_no__contains=series).order_by('inv_no').last()
+    
     if so:
         sonum = int(so.inv_no[len(series):]) + 1
         sonumber = series + (str(sonum)).zfill(5)
