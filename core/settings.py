@@ -21,7 +21,7 @@ SECRET_KEY = 'django-insecure-(g3@e6#v+y1)+x)9v&7cg$30*^57g@-nb@x=#7u$^6de%1r(fy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = ['ssipl.dhsclouding.com','127.0.0.1','192.168.0.174', '*', '.vercel.app','now.sh','0.0.0.0','localhost']
+ALLOWED_HOSTS = ['54.81.57.172','ssipl.dhsclouding.com','127.0.0.1','192.168.0.174', '*','now.sh','0.0.0.0','localhost']
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 IMPORT_EXPORT_SKIP_ADMIN_LOG = True
