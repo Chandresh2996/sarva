@@ -3,7 +3,6 @@ from django.views.generic import ListView
 from django.http import HttpResponse
 import requests
 from .models import Country
-from django.utils import six
 from company.models import Company
 from django.db.models import Q
 from django.contrib import messages

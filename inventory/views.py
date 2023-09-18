@@ -13,7 +13,6 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView
 import requests
 from django.contrib.messages.views import SuccessMessageMixin
-from django.utils import six
 from company.models import Company
 from sales.models import Rso
 from inventory.xmlcreator import brandxml, categoryxml, editcategoryxml, godownxml, pmxml, uomxml
