@@ -156,14 +156,6 @@
             "index": "pypi",
             "version": "==2.0"
         },
-        "django-wkhtmltopdf": {
-            "hashes": [
-                "sha256:b12222a6c588c645d62d971a2a34e3802ac76023cf94c557068f39f478b2b984",
-                "sha256:c954d016b84b195bb52d8a22a1ed1c5e4eb499c9aa8f6aed89dac57247fc8fc1"
-            ],
-            "index": "pypi",
-            "version": "==3.4.0"
-        },
         "docopt": {
             "hashes": [
                 "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"

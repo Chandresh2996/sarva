@@ -8,7 +8,7 @@ from planning.models import Bom, BomItems, JobOrder
 from production.models import ConsItems, ConsumableIndent, Consumption, ConsumptionItems, JobCard, RMIndent, RMIndentItems, RMItemGodown
 from warehouse.models import Stock_summary
 from django.db.models import Sum
-from wkhtmltopdf.views import  PDFTemplateResponse
+
 from django.views.generic import ListView
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -272,7 +272,6 @@ def printrm(request, pk):
     ls  = items.values("rmitem__rmindent__jobcard__no","rmitem__item__article_code","rmitem__item__product_name","rmitem__item__product_code","rmitem__item__outer_qty","godown").annotate(qty=Sum('qty'))
 
     context = {'ls': ls.order_by("godown"),'signdate': datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")}
-    # return PDFTemplateResponse(request=request, context=context, template=template,footer_template=footer_template,header_template=header_template, filename='loadingsheet.pdf', cmd_options=cmd_options)
     return render(request, "production/rmpdf.html", context)
 
 def loadrmindent(request):
