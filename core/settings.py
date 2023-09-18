@@ -202,6 +202,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 #This is for AWS Deployment
 WKHTMLTOPDF_CMD = '/usr/bin/wkhtmltopdf'
 
+
 #This is for local, use this when doing anything at local
 # WKHTMLTOPDF_CMD = 'C:/wkhtmltopdf/bin/wkhtmltopdf'
 
