@@ -14,7 +14,7 @@ from ledgers.models import LedgersType, Party_contact_details, Party_master, Pri
 from sales.xmlcreator import cncreator, creditmemocreator, invcreator, qdncreator, rsocreator
 from .models import CreditNote, CreditNoteItems, Delivery_note, DnItems, InvItems, Invoice, LoadingSheet, PackingSheet, Qdn, QdnItems, Rso, RsoItems, SaleQty, Salesorder, SoItems, SalesTarget, ProformaInvoice, ProformaInvItems
 from warehouse.models import Stock_summary
-from wkhtmltopdf.views import  PDFTemplateResponse
+from wkhtmltopdf.views import PDFTemplateResponse
 import requests
 from django.utils.decorators import method_decorator
 from core.decorators import auth_users, allowed_users, is_company

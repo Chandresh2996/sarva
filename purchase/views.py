@@ -495,7 +495,7 @@ def pocancel(request, pk):
 
 from datetime import date
 from num2words import num2words
-from wkhtmltopdf.views import  PDFTemplateResponse
+from wkhtmltopdf.views import PDFTemplateResponse
 
 def popdf(request, pk):
 

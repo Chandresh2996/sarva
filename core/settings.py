@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #Django Packages
     'import_export',
+    'wkhtmltopdf',
     'qr_code',
     'auditlog',
     # 'ajax_datatable',
@@ -200,7 +201,7 @@ SESSION_TIMEOUT_REDIRECT = 'login'
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True
 #-----------------------------------------------------------------------Plugins settings
 #This is for AWS Deployment
-# WKHTMLTOPDF_CMD = '/usr/bin/wkhtmltopdf'
+WKHTMLTOPDF_CMD = '/usr/bin/wkhtmltopdf'
 
 
 #This is for local, use this when doing anything at local
