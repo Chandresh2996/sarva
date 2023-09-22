@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: accounts_loggedinuser; Type: TABLE; Schema: public; Owner: netitest
+-- Name: accounts_loggedinuser; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.accounts_loggedinuser (
@@ -31,10 +31,10 @@ CREATE TABLE public.accounts_loggedinuser (
 );
 
 
-ALTER TABLE public.accounts_loggedinuser OWNER TO netitest;
+ALTER TABLE public.accounts_loggedinuser OWNER TO neti_aws_db;
 
 --
--- Name: accounts_loggedinuser_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: accounts_loggedinuser_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.accounts_loggedinuser_id_seq
@@ -45,17 +45,17 @@ CREATE SEQUENCE public.accounts_loggedinuser_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.accounts_loggedinuser_id_seq OWNER TO netitest;
+ALTER TABLE public.accounts_loggedinuser_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: accounts_loggedinuser_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: accounts_loggedinuser_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.accounts_loggedinuser_id_seq OWNED BY public.accounts_loggedinuser.id;
 
 
 --
--- Name: auditlog_logentry; Type: TABLE; Schema: public; Owner: netitest
+-- Name: auditlog_logentry; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.auditlog_logentry (
@@ -74,10 +74,10 @@ CREATE TABLE public.auditlog_logentry (
 );
 
 
-ALTER TABLE public.auditlog_logentry OWNER TO netitest;
+ALTER TABLE public.auditlog_logentry OWNER TO neti_aws_db;
 
 --
--- Name: auditlog_logentry_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.auditlog_logentry_id_seq
@@ -89,17 +89,17 @@ CREATE SEQUENCE public.auditlog_logentry_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auditlog_logentry_id_seq OWNER TO netitest;
+ALTER TABLE public.auditlog_logentry_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: auditlog_logentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.auditlog_logentry_id_seq OWNED BY public.auditlog_logentry.id;
 
 
 --
--- Name: auth_group; Type: TABLE; Schema: public; Owner: netitest
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.auth_group (
@@ -108,10 +108,10 @@ CREATE TABLE public.auth_group (
 );
 
 
-ALTER TABLE public.auth_group OWNER TO netitest;
+ALTER TABLE public.auth_group OWNER TO neti_aws_db;
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.auth_group_id_seq
@@ -123,17 +123,17 @@ CREATE SEQUENCE public.auth_group_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_group_id_seq OWNER TO netitest;
+ALTER TABLE public.auth_group_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
 
 
 --
--- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: netitest
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.auth_group_permissions (
@@ -143,10 +143,10 @@ CREATE TABLE public.auth_group_permissions (
 );
 
 
-ALTER TABLE public.auth_group_permissions OWNER TO netitest;
+ALTER TABLE public.auth_group_permissions OWNER TO neti_aws_db;
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.auth_group_permissions_id_seq
@@ -157,17 +157,17 @@ CREATE SEQUENCE public.auth_group_permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_group_permissions_id_seq OWNER TO netitest;
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
 
 
 --
--- Name: auth_permission; Type: TABLE; Schema: public; Owner: netitest
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.auth_permission (
@@ -178,10 +178,10 @@ CREATE TABLE public.auth_permission (
 );
 
 
-ALTER TABLE public.auth_permission OWNER TO netitest;
+ALTER TABLE public.auth_permission OWNER TO neti_aws_db;
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.auth_permission_id_seq
@@ -193,17 +193,17 @@ CREATE SEQUENCE public.auth_permission_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_permission_id_seq OWNER TO netitest;
+ALTER TABLE public.auth_permission_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
 
 
 --
--- Name: auth_user; Type: TABLE; Schema: public; Owner: netitest
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.auth_user (
@@ -221,10 +221,10 @@ CREATE TABLE public.auth_user (
 );
 
 
-ALTER TABLE public.auth_user OWNER TO netitest;
+ALTER TABLE public.auth_user OWNER TO neti_aws_db;
 
 --
--- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: netitest
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.auth_user_groups (
@@ -234,10 +234,10 @@ CREATE TABLE public.auth_user_groups (
 );
 
 
-ALTER TABLE public.auth_user_groups OWNER TO netitest;
+ALTER TABLE public.auth_user_groups OWNER TO neti_aws_db;
 
 --
--- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.auth_user_groups_id_seq
@@ -248,17 +248,17 @@ CREATE SEQUENCE public.auth_user_groups_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_user_groups_id_seq OWNER TO netitest;
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
 
 
 --
--- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.auth_user_id_seq
@@ -270,17 +270,17 @@ CREATE SEQUENCE public.auth_user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_user_id_seq OWNER TO netitest;
+ALTER TABLE public.auth_user_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
 
 
 --
--- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.auth_user_user_permissions (
@@ -290,10 +290,10 @@ CREATE TABLE public.auth_user_user_permissions (
 );
 
 
-ALTER TABLE public.auth_user_user_permissions OWNER TO netitest;
+ALTER TABLE public.auth_user_user_permissions OWNER TO neti_aws_db;
 
 --
--- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.auth_user_user_permissions_id_seq
@@ -304,17 +304,17 @@ CREATE SEQUENCE public.auth_user_user_permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO netitest;
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
 
 
 --
--- Name: company_company; Type: TABLE; Schema: public; Owner: netitest
+-- Name: company_company; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.company_company (
@@ -358,10 +358,10 @@ CREATE TABLE public.company_company (
 );
 
 
-ALTER TABLE public.company_company OWNER TO netitest;
+ALTER TABLE public.company_company OWNER TO neti_aws_db;
 
 --
--- Name: company_company_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: company_company_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.company_company_id_seq
@@ -372,17 +372,17 @@ CREATE SEQUENCE public.company_company_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.company_company_id_seq OWNER TO netitest;
+ALTER TABLE public.company_company_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: company_company_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: company_company_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.company_company_id_seq OWNED BY public.company_company.id;
 
 
 --
--- Name: django_admin_log; Type: TABLE; Schema: public; Owner: netitest
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.django_admin_log (
@@ -398,10 +398,10 @@ CREATE TABLE public.django_admin_log (
 );
 
 
-ALTER TABLE public.django_admin_log OWNER TO netitest;
+ALTER TABLE public.django_admin_log OWNER TO neti_aws_db;
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.django_admin_log_id_seq
@@ -413,17 +413,17 @@ CREATE SEQUENCE public.django_admin_log_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_admin_log_id_seq OWNER TO netitest;
+ALTER TABLE public.django_admin_log_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
 
 
 --
--- Name: django_content_type; Type: TABLE; Schema: public; Owner: netitest
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.django_content_type (
@@ -433,10 +433,10 @@ CREATE TABLE public.django_content_type (
 );
 
 
-ALTER TABLE public.django_content_type OWNER TO netitest;
+ALTER TABLE public.django_content_type OWNER TO neti_aws_db;
 
 --
--- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.django_content_type_id_seq
@@ -448,17 +448,17 @@ CREATE SEQUENCE public.django_content_type_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_content_type_id_seq OWNER TO netitest;
+ALTER TABLE public.django_content_type_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
 
 
 --
--- Name: django_migrations; Type: TABLE; Schema: public; Owner: netitest
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.django_migrations (
@@ -469,10 +469,10 @@ CREATE TABLE public.django_migrations (
 );
 
 
-ALTER TABLE public.django_migrations OWNER TO netitest;
+ALTER TABLE public.django_migrations OWNER TO neti_aws_db;
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.django_migrations_id_seq
@@ -483,17 +483,17 @@ CREATE SEQUENCE public.django_migrations_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.django_migrations_id_seq OWNER TO netitest;
+ALTER TABLE public.django_migrations_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
 
 
 --
--- Name: django_session; Type: TABLE; Schema: public; Owner: netitest
+-- Name: django_session; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.django_session (
@@ -503,10 +503,10 @@ CREATE TABLE public.django_session (
 );
 
 
-ALTER TABLE public.django_session OWNER TO netitest;
+ALTER TABLE public.django_session OWNER TO neti_aws_db;
 
 --
--- Name: inventory_brand; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_brand; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_brand (
@@ -519,10 +519,10 @@ CREATE TABLE public.inventory_brand (
 );
 
 
-ALTER TABLE public.inventory_brand OWNER TO netitest;
+ALTER TABLE public.inventory_brand OWNER TO neti_aws_db;
 
 --
--- Name: inventory_brand_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_brand_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_brand_id_seq
@@ -533,17 +533,17 @@ CREATE SEQUENCE public.inventory_brand_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_brand_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_brand_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_brand_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_brand_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_brand_id_seq OWNED BY public.inventory_brand.id;
 
 
 --
--- Name: inventory_category; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_category; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_category (
@@ -556,10 +556,10 @@ CREATE TABLE public.inventory_category (
 );
 
 
-ALTER TABLE public.inventory_category OWNER TO netitest;
+ALTER TABLE public.inventory_category OWNER TO neti_aws_db;
 
 --
--- Name: inventory_category_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_category_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_category_id_seq
@@ -570,17 +570,17 @@ CREATE SEQUENCE public.inventory_category_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_category_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_category_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_category_id_seq OWNED BY public.inventory_category.id;
 
 
 --
--- Name: inventory_class; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_class; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_class (
@@ -592,10 +592,10 @@ CREATE TABLE public.inventory_class (
 );
 
 
-ALTER TABLE public.inventory_class OWNER TO netitest;
+ALTER TABLE public.inventory_class OWNER TO neti_aws_db;
 
 --
--- Name: inventory_class_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_class_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_class_id_seq
@@ -606,17 +606,17 @@ CREATE SEQUENCE public.inventory_class_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_class_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_class_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_class_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_class_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_class_id_seq OWNED BY public.inventory_class.id;
 
 
 --
--- Name: inventory_currency; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_currency; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_currency (
@@ -629,10 +629,10 @@ CREATE TABLE public.inventory_currency (
 );
 
 
-ALTER TABLE public.inventory_currency OWNER TO netitest;
+ALTER TABLE public.inventory_currency OWNER TO neti_aws_db;
 
 --
--- Name: inventory_currency_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_currency_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_currency_id_seq
@@ -643,17 +643,17 @@ CREATE SEQUENCE public.inventory_currency_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_currency_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_currency_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_currency_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_currency_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_currency_id_seq OWNED BY public.inventory_currency.id;
 
 
 --
--- Name: inventory_godown; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_godown; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_godown (
@@ -666,10 +666,10 @@ CREATE TABLE public.inventory_godown (
 );
 
 
-ALTER TABLE public.inventory_godown OWNER TO netitest;
+ALTER TABLE public.inventory_godown OWNER TO neti_aws_db;
 
 --
--- Name: inventory_godown_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_godown_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_godown_id_seq
@@ -680,17 +680,17 @@ CREATE SEQUENCE public.inventory_godown_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_godown_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_godown_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_godown_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_godown_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_godown_id_seq OWNED BY public.inventory_godown.id;
 
 
 --
--- Name: inventory_gst_list; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_gst_list; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_gst_list (
@@ -713,10 +713,10 @@ CREATE TABLE public.inventory_gst_list (
 );
 
 
-ALTER TABLE public.inventory_gst_list OWNER TO netitest;
+ALTER TABLE public.inventory_gst_list OWNER TO neti_aws_db;
 
 --
--- Name: inventory_gst_list_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_gst_list_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_gst_list_id_seq
@@ -727,17 +727,17 @@ CREATE SEQUENCE public.inventory_gst_list_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_gst_list_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_gst_list_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_gst_list_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_gst_list_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_gst_list_id_seq OWNED BY public.inventory_gst_list.id;
 
 
 --
--- Name: inventory_product_master; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_product_master; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_product_master (
@@ -796,10 +796,10 @@ CREATE TABLE public.inventory_product_master (
 );
 
 
-ALTER TABLE public.inventory_product_master OWNER TO netitest;
+ALTER TABLE public.inventory_product_master OWNER TO neti_aws_db;
 
 --
--- Name: inventory_product_master_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_product_master_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_product_master_id_seq
@@ -810,17 +810,17 @@ CREATE SEQUENCE public.inventory_product_master_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_product_master_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_product_master_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_product_master_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_product_master_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_product_master_id_seq OWNED BY public.inventory_product_master.id;
 
 
 --
--- Name: inventory_producttype; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_producttype; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_producttype (
@@ -834,10 +834,10 @@ CREATE TABLE public.inventory_producttype (
 );
 
 
-ALTER TABLE public.inventory_producttype OWNER TO netitest;
+ALTER TABLE public.inventory_producttype OWNER TO neti_aws_db;
 
 --
--- Name: inventory_producttype_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_producttype_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_producttype_id_seq
@@ -848,17 +848,17 @@ CREATE SEQUENCE public.inventory_producttype_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_producttype_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_producttype_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_producttype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_producttype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_producttype_id_seq OWNED BY public.inventory_producttype.id;
 
 
 --
--- Name: inventory_scheme; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_scheme; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_scheme (
@@ -869,10 +869,10 @@ CREATE TABLE public.inventory_scheme (
 );
 
 
-ALTER TABLE public.inventory_scheme OWNER TO netitest;
+ALTER TABLE public.inventory_scheme OWNER TO neti_aws_db;
 
 --
--- Name: inventory_scheme_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_scheme_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_scheme_id_seq
@@ -883,17 +883,17 @@ CREATE SEQUENCE public.inventory_scheme_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_scheme_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_scheme_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_scheme_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_scheme_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_scheme_id_seq OWNED BY public.inventory_scheme.id;
 
 
 --
--- Name: inventory_std_rate; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_std_rate; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_std_rate (
@@ -908,10 +908,10 @@ CREATE TABLE public.inventory_std_rate (
 );
 
 
-ALTER TABLE public.inventory_std_rate OWNER TO netitest;
+ALTER TABLE public.inventory_std_rate OWNER TO neti_aws_db;
 
 --
--- Name: inventory_std_rate_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_std_rate_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_std_rate_id_seq
@@ -922,17 +922,17 @@ CREATE SEQUENCE public.inventory_std_rate_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_std_rate_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_std_rate_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_std_rate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_std_rate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_std_rate_id_seq OWNED BY public.inventory_std_rate.id;
 
 
 --
--- Name: inventory_subbrand; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_subbrand; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_subbrand (
@@ -944,10 +944,10 @@ CREATE TABLE public.inventory_subbrand (
 );
 
 
-ALTER TABLE public.inventory_subbrand OWNER TO netitest;
+ALTER TABLE public.inventory_subbrand OWNER TO neti_aws_db;
 
 --
--- Name: inventory_subbrand_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_subbrand_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_subbrand_id_seq
@@ -958,17 +958,17 @@ CREATE SEQUENCE public.inventory_subbrand_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_subbrand_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_subbrand_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_subbrand_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_subbrand_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_subbrand_id_seq OWNED BY public.inventory_subbrand.id;
 
 
 --
--- Name: inventory_subclass; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_subclass; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_subclass (
@@ -980,10 +980,10 @@ CREATE TABLE public.inventory_subclass (
 );
 
 
-ALTER TABLE public.inventory_subclass OWNER TO netitest;
+ALTER TABLE public.inventory_subclass OWNER TO neti_aws_db;
 
 --
--- Name: inventory_subclass_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_subclass_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_subclass_id_seq
@@ -994,17 +994,17 @@ CREATE SEQUENCE public.inventory_subclass_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_subclass_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_subclass_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_subclass_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_subclass_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_subclass_id_seq OWNED BY public.inventory_subclass.id;
 
 
 --
--- Name: inventory_unitofmeasure; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_unitofmeasure (
@@ -1019,10 +1019,10 @@ CREATE TABLE public.inventory_unitofmeasure (
 );
 
 
-ALTER TABLE public.inventory_unitofmeasure OWNER TO netitest;
+ALTER TABLE public.inventory_unitofmeasure OWNER TO neti_aws_db;
 
 --
--- Name: inventory_unitofmeasure_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_unitofmeasure_id_seq
@@ -1033,17 +1033,17 @@ CREATE SEQUENCE public.inventory_unitofmeasure_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_unitofmeasure_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_unitofmeasure_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_unitofmeasure_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_unitofmeasure_id_seq OWNED BY public.inventory_unitofmeasure.id;
 
 
 --
--- Name: inventory_uqc; Type: TABLE; Schema: public; Owner: netitest
+-- Name: inventory_uqc; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.inventory_uqc (
@@ -1054,10 +1054,10 @@ CREATE TABLE public.inventory_uqc (
 );
 
 
-ALTER TABLE public.inventory_uqc OWNER TO netitest;
+ALTER TABLE public.inventory_uqc OWNER TO neti_aws_db;
 
 --
--- Name: inventory_uqc_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: inventory_uqc_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.inventory_uqc_id_seq
@@ -1068,17 +1068,17 @@ CREATE SEQUENCE public.inventory_uqc_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.inventory_uqc_id_seq OWNER TO netitest;
+ALTER TABLE public.inventory_uqc_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: inventory_uqc_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: inventory_uqc_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.inventory_uqc_id_seq OWNED BY public.inventory_uqc.id;
 
 
 --
--- Name: ledgers_asm; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_asm; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_asm (
@@ -1093,10 +1093,10 @@ CREATE TABLE public.ledgers_asm (
 );
 
 
-ALTER TABLE public.ledgers_asm OWNER TO netitest;
+ALTER TABLE public.ledgers_asm OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_asm_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_asm_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_asm_id_seq
@@ -1107,17 +1107,17 @@ CREATE SEQUENCE public.ledgers_asm_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_asm_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_asm_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_asm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_asm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_asm_id_seq OWNED BY public.ledgers_asm.id;
 
 
 --
--- Name: ledgers_city; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_city; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_city (
@@ -1129,10 +1129,10 @@ CREATE TABLE public.ledgers_city (
 );
 
 
-ALTER TABLE public.ledgers_city OWNER TO netitest;
+ALTER TABLE public.ledgers_city OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_city_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_city_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_city_id_seq
@@ -1143,17 +1143,17 @@ CREATE SEQUENCE public.ledgers_city_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_city_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_city_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_city_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_city_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_city_id_seq OWNED BY public.ledgers_city.id;
 
 
 --
--- Name: ledgers_country; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_country; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_country (
@@ -1164,10 +1164,10 @@ CREATE TABLE public.ledgers_country (
 );
 
 
-ALTER TABLE public.ledgers_country OWNER TO netitest;
+ALTER TABLE public.ledgers_country OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_country_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_country_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_country_id_seq
@@ -1178,17 +1178,17 @@ CREATE SEQUENCE public.ledgers_country_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_country_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_country_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_country_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_country_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_country_id_seq OWNED BY public.ledgers_country.id;
 
 
 --
--- Name: ledgers_currency; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_currency; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_currency (
@@ -1200,10 +1200,10 @@ CREATE TABLE public.ledgers_currency (
 );
 
 
-ALTER TABLE public.ledgers_currency OWNER TO netitest;
+ALTER TABLE public.ledgers_currency OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_currency_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_currency_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_currency_id_seq
@@ -1214,17 +1214,17 @@ CREATE SEQUENCE public.ledgers_currency_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_currency_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_currency_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_currency_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_currency_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_currency_id_seq OWNED BY public.ledgers_currency.id;
 
 
 --
--- Name: ledgers_division; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_division; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_division (
@@ -1235,10 +1235,10 @@ CREATE TABLE public.ledgers_division (
 );
 
 
-ALTER TABLE public.ledgers_division OWNER TO netitest;
+ALTER TABLE public.ledgers_division OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_division_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_division_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_division_id_seq
@@ -1249,17 +1249,17 @@ CREATE SEQUENCE public.ledgers_division_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_division_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_division_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_division_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_division_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_division_id_seq OWNED BY public.ledgers_division.id;
 
 
 --
--- Name: ledgers_group; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_group; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_group (
@@ -1270,10 +1270,10 @@ CREATE TABLE public.ledgers_group (
 );
 
 
-ALTER TABLE public.ledgers_group OWNER TO netitest;
+ALTER TABLE public.ledgers_group OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_group_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_group_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_group_id_seq
@@ -1284,17 +1284,17 @@ CREATE SEQUENCE public.ledgers_group_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_group_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_group_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_group_id_seq OWNED BY public.ledgers_group.id;
 
 
 --
--- Name: ledgers_ledgerstype; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_ledgerstype; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_ledgerstype (
@@ -1308,10 +1308,10 @@ CREATE TABLE public.ledgers_ledgerstype (
 );
 
 
-ALTER TABLE public.ledgers_ledgerstype OWNER TO netitest;
+ALTER TABLE public.ledgers_ledgerstype OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_ledgerstype_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_ledgerstype_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_ledgerstype_id_seq
@@ -1322,17 +1322,17 @@ CREATE SEQUENCE public.ledgers_ledgerstype_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_ledgerstype_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_ledgerstype_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_ledgerstype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_ledgerstype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_ledgerstype_id_seq OWNED BY public.ledgers_ledgerstype.id;
 
 
 --
--- Name: ledgers_party_contact_details; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_party_contact_details (
@@ -1360,10 +1360,10 @@ CREATE TABLE public.ledgers_party_contact_details (
 );
 
 
-ALTER TABLE public.ledgers_party_contact_details OWNER TO netitest;
+ALTER TABLE public.ledgers_party_contact_details OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_party_contact_details_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_party_contact_details_id_seq
@@ -1374,17 +1374,17 @@ CREATE SEQUENCE public.ledgers_party_contact_details_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_party_contact_details_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_party_contact_details_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_party_contact_details_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_party_contact_details_id_seq OWNED BY public.ledgers_party_contact_details.id;
 
 
 --
--- Name: ledgers_party_master; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_party_master; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_party_master (
@@ -1441,10 +1441,10 @@ CREATE TABLE public.ledgers_party_master (
 );
 
 
-ALTER TABLE public.ledgers_party_master OWNER TO netitest;
+ALTER TABLE public.ledgers_party_master OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_party_master_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_party_master_id_seq
@@ -1455,17 +1455,17 @@ CREATE SEQUENCE public.ledgers_party_master_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_party_master_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_party_master_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_party_master_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_party_master_id_seq OWNED BY public.ledgers_party_master.id;
 
 
 --
--- Name: ledgers_party_master_products; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_party_master_products (
@@ -1475,10 +1475,10 @@ CREATE TABLE public.ledgers_party_master_products (
 );
 
 
-ALTER TABLE public.ledgers_party_master_products OWNER TO netitest;
+ALTER TABLE public.ledgers_party_master_products OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_party_master_products_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_party_master_products_id_seq
@@ -1489,17 +1489,17 @@ CREATE SEQUENCE public.ledgers_party_master_products_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_party_master_products_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_party_master_products_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_party_master_products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_party_master_products_id_seq OWNED BY public.ledgers_party_master_products.id;
 
 
 --
--- Name: ledgers_partytype; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_partytype; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_partytype (
@@ -1511,10 +1511,10 @@ CREATE TABLE public.ledgers_partytype (
 );
 
 
-ALTER TABLE public.ledgers_partytype OWNER TO netitest;
+ALTER TABLE public.ledgers_partytype OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_partytype_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_partytype_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_partytype_id_seq
@@ -1525,17 +1525,17 @@ CREATE SEQUENCE public.ledgers_partytype_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_partytype_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_partytype_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_partytype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_partytype_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_partytype_id_seq OWNED BY public.ledgers_partytype.id;
 
 
 --
--- Name: ledgers_price_level; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_price_level; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_price_level (
@@ -1547,10 +1547,10 @@ CREATE TABLE public.ledgers_price_level (
 );
 
 
-ALTER TABLE public.ledgers_price_level OWNER TO netitest;
+ALTER TABLE public.ledgers_price_level OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_price_level_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_price_level_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_price_level_id_seq
@@ -1561,17 +1561,17 @@ CREATE SEQUENCE public.ledgers_price_level_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_price_level_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_price_level_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_price_level_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_price_level_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_price_level_id_seq OWNED BY public.ledgers_price_level.id;
 
 
 --
--- Name: ledgers_price_list; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_price_list; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_price_list (
@@ -1585,10 +1585,10 @@ CREATE TABLE public.ledgers_price_list (
 );
 
 
-ALTER TABLE public.ledgers_price_list OWNER TO netitest;
+ALTER TABLE public.ledgers_price_list OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_price_list_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_price_list_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_price_list_id_seq
@@ -1599,17 +1599,17 @@ CREATE SEQUENCE public.ledgers_price_list_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_price_list_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_price_list_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_price_list_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_price_list_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_price_list_id_seq OWNED BY public.ledgers_price_list.id;
 
 
 --
--- Name: ledgers_region; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_region; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_region (
@@ -1621,10 +1621,10 @@ CREATE TABLE public.ledgers_region (
 );
 
 
-ALTER TABLE public.ledgers_region OWNER TO netitest;
+ALTER TABLE public.ledgers_region OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_region_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_region_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_region_id_seq
@@ -1635,17 +1635,17 @@ CREATE SEQUENCE public.ledgers_region_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_region_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_region_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_region_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_region_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_region_id_seq OWNED BY public.ledgers_region.id;
 
 
 --
--- Name: ledgers_rsm; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_rsm; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_rsm (
@@ -1659,10 +1659,10 @@ CREATE TABLE public.ledgers_rsm (
 );
 
 
-ALTER TABLE public.ledgers_rsm OWNER TO netitest;
+ALTER TABLE public.ledgers_rsm OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_rsm_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_rsm_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_rsm_id_seq
@@ -1673,17 +1673,17 @@ CREATE SEQUENCE public.ledgers_rsm_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_rsm_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_rsm_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_rsm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_rsm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_rsm_id_seq OWNED BY public.ledgers_rsm.id;
 
 
 --
--- Name: ledgers_se; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_se; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_se (
@@ -1699,10 +1699,10 @@ CREATE TABLE public.ledgers_se (
 );
 
 
-ALTER TABLE public.ledgers_se OWNER TO netitest;
+ALTER TABLE public.ledgers_se OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_se_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_se_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_se_id_seq
@@ -1713,17 +1713,17 @@ CREATE SEQUENCE public.ledgers_se_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_se_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_se_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_se_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_se_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_se_id_seq OWNED BY public.ledgers_se.id;
 
 
 --
--- Name: ledgers_state; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_state; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_state (
@@ -1735,10 +1735,10 @@ CREATE TABLE public.ledgers_state (
 );
 
 
-ALTER TABLE public.ledgers_state OWNER TO netitest;
+ALTER TABLE public.ledgers_state OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_state_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_state_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_state_id_seq
@@ -1749,17 +1749,17 @@ CREATE SEQUENCE public.ledgers_state_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_state_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_state_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_state_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_state_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_state_id_seq OWNED BY public.ledgers_state.id;
 
 
 --
--- Name: ledgers_zone; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_zone; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_zone (
@@ -1770,10 +1770,10 @@ CREATE TABLE public.ledgers_zone (
 );
 
 
-ALTER TABLE public.ledgers_zone OWNER TO netitest;
+ALTER TABLE public.ledgers_zone OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_zone_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_zone_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_zone_id_seq
@@ -1784,17 +1784,17 @@ CREATE SEQUENCE public.ledgers_zone_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_zone_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_zone_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_zone_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_zone_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_zone_id_seq OWNED BY public.ledgers_zone.id;
 
 
 --
--- Name: ledgers_zsm; Type: TABLE; Schema: public; Owner: netitest
+-- Name: ledgers_zsm; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.ledgers_zsm (
@@ -1806,10 +1806,10 @@ CREATE TABLE public.ledgers_zsm (
 );
 
 
-ALTER TABLE public.ledgers_zsm OWNER TO netitest;
+ALTER TABLE public.ledgers_zsm OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_zsm_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: ledgers_zsm_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.ledgers_zsm_id_seq
@@ -1820,17 +1820,17 @@ CREATE SEQUENCE public.ledgers_zsm_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.ledgers_zsm_id_seq OWNER TO netitest;
+ALTER TABLE public.ledgers_zsm_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: ledgers_zsm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: ledgers_zsm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.ledgers_zsm_id_seq OWNED BY public.ledgers_zsm.id;
 
 
 --
--- Name: planning_bom; Type: TABLE; Schema: public; Owner: netitest
+-- Name: planning_bom; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.planning_bom (
@@ -1844,10 +1844,10 @@ CREATE TABLE public.planning_bom (
 );
 
 
-ALTER TABLE public.planning_bom OWNER TO netitest;
+ALTER TABLE public.planning_bom OWNER TO neti_aws_db;
 
 --
--- Name: planning_bom_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: planning_bom_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.planning_bom_id_seq
@@ -1858,17 +1858,17 @@ CREATE SEQUENCE public.planning_bom_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.planning_bom_id_seq OWNER TO netitest;
+ALTER TABLE public.planning_bom_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: planning_bom_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: planning_bom_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.planning_bom_id_seq OWNED BY public.planning_bom.id;
 
 
 --
--- Name: planning_bomitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: planning_bomitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.planning_bomitems (
@@ -1879,10 +1879,10 @@ CREATE TABLE public.planning_bomitems (
 );
 
 
-ALTER TABLE public.planning_bomitems OWNER TO netitest;
+ALTER TABLE public.planning_bomitems OWNER TO neti_aws_db;
 
 --
--- Name: planning_bomitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: planning_bomitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.planning_bomitems_id_seq
@@ -1893,17 +1893,17 @@ CREATE SEQUENCE public.planning_bomitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.planning_bomitems_id_seq OWNER TO netitest;
+ALTER TABLE public.planning_bomitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: planning_bomitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: planning_bomitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.planning_bomitems_id_seq OWNED BY public.planning_bomitems.id;
 
 
 --
--- Name: planning_joborder; Type: TABLE; Schema: public; Owner: netitest
+-- Name: planning_joborder; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.planning_joborder (
@@ -1928,10 +1928,10 @@ CREATE TABLE public.planning_joborder (
 );
 
 
-ALTER TABLE public.planning_joborder OWNER TO netitest;
+ALTER TABLE public.planning_joborder OWNER TO neti_aws_db;
 
 --
--- Name: planning_joborder_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: planning_joborder_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.planning_joborder_id_seq
@@ -1942,17 +1942,17 @@ CREATE SEQUENCE public.planning_joborder_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.planning_joborder_id_seq OWNER TO netitest;
+ALTER TABLE public.planning_joborder_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: planning_joborder_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: planning_joborder_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.planning_joborder_id_seq OWNED BY public.planning_joborder.id;
 
 
 --
--- Name: planning_salesprojection; Type: TABLE; Schema: public; Owner: netitest
+-- Name: planning_salesprojection; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.planning_salesprojection (
@@ -1968,10 +1968,10 @@ CREATE TABLE public.planning_salesprojection (
 );
 
 
-ALTER TABLE public.planning_salesprojection OWNER TO netitest;
+ALTER TABLE public.planning_salesprojection OWNER TO neti_aws_db;
 
 --
--- Name: planning_salesprojection_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: planning_salesprojection_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.planning_salesprojection_id_seq
@@ -1982,17 +1982,17 @@ CREATE SEQUENCE public.planning_salesprojection_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.planning_salesprojection_id_seq OWNER TO netitest;
+ALTER TABLE public.planning_salesprojection_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: planning_salesprojection_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: planning_salesprojection_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.planning_salesprojection_id_seq OWNED BY public.planning_salesprojection.id;
 
 
 --
--- Name: production_consitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: production_consitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.production_consitems (
@@ -2004,10 +2004,10 @@ CREATE TABLE public.production_consitems (
 );
 
 
-ALTER TABLE public.production_consitems OWNER TO netitest;
+ALTER TABLE public.production_consitems OWNER TO neti_aws_db;
 
 --
--- Name: production_consitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: production_consitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.production_consitems_id_seq
@@ -2018,17 +2018,17 @@ CREATE SEQUENCE public.production_consitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.production_consitems_id_seq OWNER TO netitest;
+ALTER TABLE public.production_consitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: production_consitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: production_consitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.production_consitems_id_seq OWNED BY public.production_consitems.id;
 
 
 --
--- Name: production_consumableindent; Type: TABLE; Schema: public; Owner: netitest
+-- Name: production_consumableindent; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.production_consumableindent (
@@ -2043,10 +2043,10 @@ CREATE TABLE public.production_consumableindent (
 );
 
 
-ALTER TABLE public.production_consumableindent OWNER TO netitest;
+ALTER TABLE public.production_consumableindent OWNER TO neti_aws_db;
 
 --
--- Name: production_consumableindent_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: production_consumableindent_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.production_consumableindent_id_seq
@@ -2057,17 +2057,17 @@ CREATE SEQUENCE public.production_consumableindent_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.production_consumableindent_id_seq OWNER TO netitest;
+ALTER TABLE public.production_consumableindent_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: production_consumableindent_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: production_consumableindent_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.production_consumableindent_id_seq OWNED BY public.production_consumableindent.id;
 
 
 --
--- Name: production_consumption; Type: TABLE; Schema: public; Owner: netitest
+-- Name: production_consumption; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.production_consumption (
@@ -2082,10 +2082,10 @@ CREATE TABLE public.production_consumption (
 );
 
 
-ALTER TABLE public.production_consumption OWNER TO netitest;
+ALTER TABLE public.production_consumption OWNER TO neti_aws_db;
 
 --
--- Name: production_consumption_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: production_consumption_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.production_consumption_id_seq
@@ -2096,17 +2096,17 @@ CREATE SEQUENCE public.production_consumption_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.production_consumption_id_seq OWNER TO netitest;
+ALTER TABLE public.production_consumption_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: production_consumption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: production_consumption_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.production_consumption_id_seq OWNED BY public.production_consumption.id;
 
 
 --
--- Name: production_consumptionitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: production_consumptionitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.production_consumptionitems (
@@ -2120,10 +2120,10 @@ CREATE TABLE public.production_consumptionitems (
 );
 
 
-ALTER TABLE public.production_consumptionitems OWNER TO netitest;
+ALTER TABLE public.production_consumptionitems OWNER TO neti_aws_db;
 
 --
--- Name: production_consumptionitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: production_consumptionitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.production_consumptionitems_id_seq
@@ -2134,17 +2134,17 @@ CREATE SEQUENCE public.production_consumptionitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.production_consumptionitems_id_seq OWNER TO netitest;
+ALTER TABLE public.production_consumptionitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: production_consumptionitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: production_consumptionitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.production_consumptionitems_id_seq OWNED BY public.production_consumptionitems.id;
 
 
 --
--- Name: production_jobcard; Type: TABLE; Schema: public; Owner: netitest
+-- Name: production_jobcard; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.production_jobcard (
@@ -2162,10 +2162,10 @@ CREATE TABLE public.production_jobcard (
 );
 
 
-ALTER TABLE public.production_jobcard OWNER TO netitest;
+ALTER TABLE public.production_jobcard OWNER TO neti_aws_db;
 
 --
--- Name: production_jobcard_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: production_jobcard_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.production_jobcard_id_seq
@@ -2176,17 +2176,17 @@ CREATE SEQUENCE public.production_jobcard_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.production_jobcard_id_seq OWNER TO netitest;
+ALTER TABLE public.production_jobcard_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: production_jobcard_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: production_jobcard_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.production_jobcard_id_seq OWNED BY public.production_jobcard.id;
 
 
 --
--- Name: production_rmindent; Type: TABLE; Schema: public; Owner: netitest
+-- Name: production_rmindent; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.production_rmindent (
@@ -2200,10 +2200,10 @@ CREATE TABLE public.production_rmindent (
 );
 
 
-ALTER TABLE public.production_rmindent OWNER TO netitest;
+ALTER TABLE public.production_rmindent OWNER TO neti_aws_db;
 
 --
--- Name: production_rmindent_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: production_rmindent_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.production_rmindent_id_seq
@@ -2214,17 +2214,17 @@ CREATE SEQUENCE public.production_rmindent_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.production_rmindent_id_seq OWNER TO netitest;
+ALTER TABLE public.production_rmindent_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: production_rmindent_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: production_rmindent_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.production_rmindent_id_seq OWNED BY public.production_rmindent.id;
 
 
 --
--- Name: production_rmindentitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: production_rmindentitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.production_rmindentitems (
@@ -2236,10 +2236,10 @@ CREATE TABLE public.production_rmindentitems (
 );
 
 
-ALTER TABLE public.production_rmindentitems OWNER TO netitest;
+ALTER TABLE public.production_rmindentitems OWNER TO neti_aws_db;
 
 --
--- Name: production_rmindentitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: production_rmindentitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.production_rmindentitems_id_seq
@@ -2250,17 +2250,17 @@ CREATE SEQUENCE public.production_rmindentitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.production_rmindentitems_id_seq OWNER TO netitest;
+ALTER TABLE public.production_rmindentitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: production_rmindentitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: production_rmindentitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.production_rmindentitems_id_seq OWNED BY public.production_rmindentitems.id;
 
 
 --
--- Name: production_rmitemgodown; Type: TABLE; Schema: public; Owner: netitest
+-- Name: production_rmitemgodown; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.production_rmitemgodown (
@@ -2276,10 +2276,10 @@ CREATE TABLE public.production_rmitemgodown (
 );
 
 
-ALTER TABLE public.production_rmitemgodown OWNER TO netitest;
+ALTER TABLE public.production_rmitemgodown OWNER TO neti_aws_db;
 
 --
--- Name: production_rmitemgodown_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: production_rmitemgodown_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.production_rmitemgodown_id_seq
@@ -2290,17 +2290,17 @@ CREATE SEQUENCE public.production_rmitemgodown_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.production_rmitemgodown_id_seq OWNER TO netitest;
+ALTER TABLE public.production_rmitemgodown_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: production_rmitemgodown_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: production_rmitemgodown_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.production_rmitemgodown_id_seq OWNED BY public.production_rmitemgodown.id;
 
 
 --
--- Name: purchase_debitnote; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_debitnote; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_debitnote (
@@ -2355,10 +2355,10 @@ CREATE TABLE public.purchase_debitnote (
 );
 
 
-ALTER TABLE public.purchase_debitnote OWNER TO netitest;
+ALTER TABLE public.purchase_debitnote OWNER TO neti_aws_db;
 
 --
--- Name: purchase_debitnote_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_debitnote_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_debitnote_id_seq
@@ -2369,17 +2369,17 @@ CREATE SEQUENCE public.purchase_debitnote_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_debitnote_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_debitnote_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_debitnote_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_debitnote_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_debitnote_id_seq OWNED BY public.purchase_debitnote.id;
 
 
 --
--- Name: purchase_debitnoteitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_debitnoteitems (
@@ -2403,10 +2403,10 @@ CREATE TABLE public.purchase_debitnoteitems (
 );
 
 
-ALTER TABLE public.purchase_debitnoteitems OWNER TO netitest;
+ALTER TABLE public.purchase_debitnoteitems OWNER TO neti_aws_db;
 
 --
--- Name: purchase_debitnoteitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_debitnoteitems_id_seq
@@ -2417,17 +2417,17 @@ CREATE SEQUENCE public.purchase_debitnoteitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_debitnoteitems_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_debitnoteitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_debitnoteitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_debitnoteitems_id_seq OWNED BY public.purchase_debitnoteitems.id;
 
 
 --
--- Name: purchase_grn; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_grn; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_grn (
@@ -2484,10 +2484,10 @@ CREATE TABLE public.purchase_grn (
 );
 
 
-ALTER TABLE public.purchase_grn OWNER TO netitest;
+ALTER TABLE public.purchase_grn OWNER TO neti_aws_db;
 
 --
--- Name: purchase_grn_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_grn_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_grn_id_seq
@@ -2498,17 +2498,17 @@ CREATE SEQUENCE public.purchase_grn_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_grn_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_grn_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_grn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_grn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_grn_id_seq OWNED BY public.purchase_grn.id;
 
 
 --
--- Name: purchase_grnitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_grnitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_grnitems (
@@ -2532,10 +2532,10 @@ CREATE TABLE public.purchase_grnitems (
 );
 
 
-ALTER TABLE public.purchase_grnitems OWNER TO netitest;
+ALTER TABLE public.purchase_grnitems OWNER TO neti_aws_db;
 
 --
--- Name: purchase_grnitems_godown; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_grnitems_godown (
@@ -2545,10 +2545,10 @@ CREATE TABLE public.purchase_grnitems_godown (
 );
 
 
-ALTER TABLE public.purchase_grnitems_godown OWNER TO netitest;
+ALTER TABLE public.purchase_grnitems_godown OWNER TO neti_aws_db;
 
 --
--- Name: purchase_grnitems_godown_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_grnitems_godown_id_seq
@@ -2559,17 +2559,17 @@ CREATE SEQUENCE public.purchase_grnitems_godown_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_grnitems_godown_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_grnitems_godown_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_grnitems_godown_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_grnitems_godown_id_seq OWNED BY public.purchase_grnitems_godown.id;
 
 
 --
--- Name: purchase_grnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_grnitems_id_seq
@@ -2580,17 +2580,17 @@ CREATE SEQUENCE public.purchase_grnitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_grnitems_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_grnitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_grnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_grnitems_id_seq OWNED BY public.purchase_grnitems.id;
 
 
 --
--- Name: purchase_piitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_piitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_piitems (
@@ -2616,10 +2616,10 @@ CREATE TABLE public.purchase_piitems (
 );
 
 
-ALTER TABLE public.purchase_piitems OWNER TO netitest;
+ALTER TABLE public.purchase_piitems OWNER TO neti_aws_db;
 
 --
--- Name: purchase_piitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_piitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_piitems_id_seq
@@ -2630,17 +2630,17 @@ CREATE SEQUENCE public.purchase_piitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_piitems_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_piitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_piitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_piitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_piitems_id_seq OWNED BY public.purchase_piitems.id;
 
 
 --
--- Name: purchase_poitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_poitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_poitems (
@@ -2663,10 +2663,10 @@ CREATE TABLE public.purchase_poitems (
 );
 
 
-ALTER TABLE public.purchase_poitems OWNER TO netitest;
+ALTER TABLE public.purchase_poitems OWNER TO neti_aws_db;
 
 --
--- Name: purchase_poitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_poitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_poitems_id_seq
@@ -2677,17 +2677,17 @@ CREATE SEQUENCE public.purchase_poitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_poitems_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_poitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_poitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_poitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_poitems_id_seq OWNED BY public.purchase_poitems.id;
 
 
 --
--- Name: purchase_purchase; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_purchase; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_purchase (
@@ -2746,10 +2746,10 @@ CREATE TABLE public.purchase_purchase (
 );
 
 
-ALTER TABLE public.purchase_purchase OWNER TO netitest;
+ALTER TABLE public.purchase_purchase OWNER TO neti_aws_db;
 
 --
--- Name: purchase_purchase_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_purchase_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_purchase_id_seq
@@ -2760,17 +2760,17 @@ CREATE SEQUENCE public.purchase_purchase_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_purchase_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_purchase_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_purchase_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_purchase_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_purchase_id_seq OWNED BY public.purchase_purchase.id;
 
 
 --
--- Name: purchase_purchase_order; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_purchase_order (
@@ -2827,10 +2827,10 @@ CREATE TABLE public.purchase_purchase_order (
 );
 
 
-ALTER TABLE public.purchase_purchase_order OWNER TO netitest;
+ALTER TABLE public.purchase_purchase_order OWNER TO neti_aws_db;
 
 --
--- Name: purchase_purchase_order_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_purchase_order_id_seq
@@ -2841,17 +2841,17 @@ CREATE SEQUENCE public.purchase_purchase_order_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_purchase_order_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_purchase_order_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_purchase_order_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_purchase_order_id_seq OWNED BY public.purchase_purchase_order.id;
 
 
 --
--- Name: purchase_purchasereturn; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_purchasereturn (
@@ -2904,10 +2904,10 @@ CREATE TABLE public.purchase_purchasereturn (
 );
 
 
-ALTER TABLE public.purchase_purchasereturn OWNER TO netitest;
+ALTER TABLE public.purchase_purchasereturn OWNER TO neti_aws_db;
 
 --
--- Name: purchase_purchasereturn_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_purchasereturn_id_seq
@@ -2918,17 +2918,17 @@ CREATE SEQUENCE public.purchase_purchasereturn_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_purchasereturn_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_purchasereturn_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_purchasereturn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_purchasereturn_id_seq OWNED BY public.purchase_purchasereturn.id;
 
 
 --
--- Name: purchase_purchasereturnitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_purchasereturnitems (
@@ -2952,10 +2952,10 @@ CREATE TABLE public.purchase_purchasereturnitems (
 );
 
 
-ALTER TABLE public.purchase_purchasereturnitems OWNER TO netitest;
+ALTER TABLE public.purchase_purchasereturnitems OWNER TO neti_aws_db;
 
 --
--- Name: purchase_purchasereturnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_purchasereturnitems_id_seq
@@ -2966,17 +2966,17 @@ CREATE SEQUENCE public.purchase_purchasereturnitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_purchasereturnitems_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_purchasereturnitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_purchasereturnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_purchasereturnitems_id_seq OWNED BY public.purchase_purchasereturnitems.id;
 
 
 --
--- Name: purchase_qdn; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_qdn; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_qdn (
@@ -3029,10 +3029,10 @@ CREATE TABLE public.purchase_qdn (
 );
 
 
-ALTER TABLE public.purchase_qdn OWNER TO netitest;
+ALTER TABLE public.purchase_qdn OWNER TO neti_aws_db;
 
 --
--- Name: purchase_qdn_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_qdn_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_qdn_id_seq
@@ -3043,17 +3043,17 @@ CREATE SEQUENCE public.purchase_qdn_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_qdn_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_qdn_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_qdn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_qdn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_qdn_id_seq OWNED BY public.purchase_qdn.id;
 
 
 --
--- Name: purchase_qdnitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.purchase_qdnitems (
@@ -3077,10 +3077,10 @@ CREATE TABLE public.purchase_qdnitems (
 );
 
 
-ALTER TABLE public.purchase_qdnitems OWNER TO netitest;
+ALTER TABLE public.purchase_qdnitems OWNER TO neti_aws_db;
 
 --
--- Name: purchase_qdnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.purchase_qdnitems_id_seq
@@ -3091,17 +3091,17 @@ CREATE SEQUENCE public.purchase_qdnitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.purchase_qdnitems_id_seq OWNER TO netitest;
+ALTER TABLE public.purchase_qdnitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: purchase_qdnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.purchase_qdnitems_id_seq OWNED BY public.purchase_qdnitems.id;
 
 
 --
--- Name: sales_creditnote; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_creditnote; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_creditnote (
@@ -3145,10 +3145,10 @@ CREATE TABLE public.sales_creditnote (
 );
 
 
-ALTER TABLE public.sales_creditnote OWNER TO netitest;
+ALTER TABLE public.sales_creditnote OWNER TO neti_aws_db;
 
 --
--- Name: sales_creditnote_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_creditnote_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_creditnote_id_seq
@@ -3159,17 +3159,17 @@ CREATE SEQUENCE public.sales_creditnote_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_creditnote_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_creditnote_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_creditnote_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_creditnote_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_creditnote_id_seq OWNED BY public.sales_creditnote.id;
 
 
 --
--- Name: sales_creditnoteitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_creditnoteitems (
@@ -3191,10 +3191,10 @@ CREATE TABLE public.sales_creditnoteitems (
 );
 
 
-ALTER TABLE public.sales_creditnoteitems OWNER TO netitest;
+ALTER TABLE public.sales_creditnoteitems OWNER TO neti_aws_db;
 
 --
--- Name: sales_creditnoteitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_creditnoteitems_id_seq
@@ -3205,17 +3205,17 @@ CREATE SEQUENCE public.sales_creditnoteitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_creditnoteitems_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_creditnoteitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_creditnoteitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_creditnoteitems_id_seq OWNED BY public.sales_creditnoteitems.id;
 
 
 --
--- Name: sales_delivery_note; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_delivery_note; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_delivery_note (
@@ -3285,10 +3285,10 @@ CREATE TABLE public.sales_delivery_note (
 );
 
 
-ALTER TABLE public.sales_delivery_note OWNER TO netitest;
+ALTER TABLE public.sales_delivery_note OWNER TO neti_aws_db;
 
 --
--- Name: sales_delivery_note_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_delivery_note_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_delivery_note_id_seq
@@ -3299,17 +3299,17 @@ CREATE SEQUENCE public.sales_delivery_note_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_delivery_note_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_delivery_note_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_delivery_note_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_delivery_note_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_delivery_note_id_seq OWNED BY public.sales_delivery_note.id;
 
 
 --
--- Name: sales_dnitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_dnitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_dnitems (
@@ -3336,10 +3336,10 @@ CREATE TABLE public.sales_dnitems (
 );
 
 
-ALTER TABLE public.sales_dnitems OWNER TO netitest;
+ALTER TABLE public.sales_dnitems OWNER TO neti_aws_db;
 
 --
--- Name: sales_dnitems_godown; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_dnitems_godown (
@@ -3349,10 +3349,10 @@ CREATE TABLE public.sales_dnitems_godown (
 );
 
 
-ALTER TABLE public.sales_dnitems_godown OWNER TO netitest;
+ALTER TABLE public.sales_dnitems_godown OWNER TO neti_aws_db;
 
 --
--- Name: sales_dnitems_godown_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_dnitems_godown_id_seq
@@ -3363,17 +3363,17 @@ CREATE SEQUENCE public.sales_dnitems_godown_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_dnitems_godown_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_dnitems_godown_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_dnitems_godown_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_dnitems_godown_id_seq OWNED BY public.sales_dnitems_godown.id;
 
 
 --
--- Name: sales_dnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_dnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_dnitems_id_seq
@@ -3384,17 +3384,17 @@ CREATE SEQUENCE public.sales_dnitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_dnitems_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_dnitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_dnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_dnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_dnitems_id_seq OWNED BY public.sales_dnitems.id;
 
 
 --
--- Name: sales_invitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_invitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_invitems (
@@ -3424,10 +3424,10 @@ CREATE TABLE public.sales_invitems (
 );
 
 
-ALTER TABLE public.sales_invitems OWNER TO netitest;
+ALTER TABLE public.sales_invitems OWNER TO neti_aws_db;
 
 --
--- Name: sales_invitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_invitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_invitems_id_seq
@@ -3438,17 +3438,17 @@ CREATE SEQUENCE public.sales_invitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_invitems_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_invitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_invitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_invitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_invitems_id_seq OWNED BY public.sales_invitems.id;
 
 
 --
--- Name: sales_invoice; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_invoice; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_invoice (
@@ -3522,10 +3522,10 @@ CREATE TABLE public.sales_invoice (
 );
 
 
-ALTER TABLE public.sales_invoice OWNER TO netitest;
+ALTER TABLE public.sales_invoice OWNER TO neti_aws_db;
 
 --
--- Name: sales_invoice_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_invoice_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_invoice_id_seq
@@ -3536,17 +3536,17 @@ CREATE SEQUENCE public.sales_invoice_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_invoice_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_invoice_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_invoice_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_invoice_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_invoice_id_seq OWNED BY public.sales_invoice.id;
 
 
 --
--- Name: sales_loadingsheet; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_loadingsheet (
@@ -3565,10 +3565,10 @@ CREATE TABLE public.sales_loadingsheet (
 );
 
 
-ALTER TABLE public.sales_loadingsheet OWNER TO netitest;
+ALTER TABLE public.sales_loadingsheet OWNER TO neti_aws_db;
 
 --
--- Name: sales_loadingsheet_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_loadingsheet_id_seq
@@ -3579,17 +3579,17 @@ CREATE SEQUENCE public.sales_loadingsheet_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_loadingsheet_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_loadingsheet_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_loadingsheet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_loadingsheet_id_seq OWNED BY public.sales_loadingsheet.id;
 
 
 --
--- Name: sales_packingsheet; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_packingsheet; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_packingsheet (
@@ -3610,10 +3610,10 @@ CREATE TABLE public.sales_packingsheet (
 );
 
 
-ALTER TABLE public.sales_packingsheet OWNER TO netitest;
+ALTER TABLE public.sales_packingsheet OWNER TO neti_aws_db;
 
 --
--- Name: sales_packingsheet_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_packingsheet_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_packingsheet_id_seq
@@ -3624,17 +3624,17 @@ CREATE SEQUENCE public.sales_packingsheet_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_packingsheet_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_packingsheet_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_packingsheet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_packingsheet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_packingsheet_id_seq OWNED BY public.sales_packingsheet.id;
 
 
 --
--- Name: sales_proformainvitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_proformainvitems (
@@ -3664,10 +3664,10 @@ CREATE TABLE public.sales_proformainvitems (
 );
 
 
-ALTER TABLE public.sales_proformainvitems OWNER TO netitest;
+ALTER TABLE public.sales_proformainvitems OWNER TO neti_aws_db;
 
 --
--- Name: sales_proformainvitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_proformainvitems_id_seq
@@ -3678,17 +3678,17 @@ CREATE SEQUENCE public.sales_proformainvitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_proformainvitems_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_proformainvitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_proformainvitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_proformainvitems_id_seq OWNED BY public.sales_proformainvitems.id;
 
 
 --
--- Name: sales_proformainvoice; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_proformainvoice (
@@ -3762,10 +3762,10 @@ CREATE TABLE public.sales_proformainvoice (
 );
 
 
-ALTER TABLE public.sales_proformainvoice OWNER TO netitest;
+ALTER TABLE public.sales_proformainvoice OWNER TO neti_aws_db;
 
 --
--- Name: sales_proformainvoice_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_proformainvoice_id_seq
@@ -3776,17 +3776,17 @@ CREATE SEQUENCE public.sales_proformainvoice_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_proformainvoice_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_proformainvoice_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_proformainvoice_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_proformainvoice_id_seq OWNED BY public.sales_proformainvoice.id;
 
 
 --
--- Name: sales_qdn; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_qdn; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_qdn (
@@ -3828,10 +3828,10 @@ CREATE TABLE public.sales_qdn (
 );
 
 
-ALTER TABLE public.sales_qdn OWNER TO netitest;
+ALTER TABLE public.sales_qdn OWNER TO neti_aws_db;
 
 --
--- Name: sales_qdn_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_qdn_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_qdn_id_seq
@@ -3842,17 +3842,17 @@ CREATE SEQUENCE public.sales_qdn_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_qdn_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_qdn_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_qdn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_qdn_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_qdn_id_seq OWNED BY public.sales_qdn.id;
 
 
 --
--- Name: sales_qdnitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_qdnitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_qdnitems (
@@ -3875,10 +3875,10 @@ CREATE TABLE public.sales_qdnitems (
 );
 
 
-ALTER TABLE public.sales_qdnitems OWNER TO netitest;
+ALTER TABLE public.sales_qdnitems OWNER TO neti_aws_db;
 
 --
--- Name: sales_qdnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_qdnitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_qdnitems_id_seq
@@ -3889,17 +3889,17 @@ CREATE SEQUENCE public.sales_qdnitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_qdnitems_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_qdnitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_qdnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_qdnitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_qdnitems_id_seq OWNED BY public.sales_qdnitems.id;
 
 
 --
--- Name: sales_rso; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_rso; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_rso (
@@ -3945,10 +3945,10 @@ CREATE TABLE public.sales_rso (
 );
 
 
-ALTER TABLE public.sales_rso OWNER TO netitest;
+ALTER TABLE public.sales_rso OWNER TO neti_aws_db;
 
 --
--- Name: sales_rso_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_rso_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_rso_id_seq
@@ -3959,17 +3959,17 @@ CREATE SEQUENCE public.sales_rso_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_rso_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_rso_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_rso_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_rso_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_rso_id_seq OWNED BY public.sales_rso.id;
 
 
 --
--- Name: sales_rsoitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_rsoitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_rsoitems (
@@ -3992,10 +3992,10 @@ CREATE TABLE public.sales_rsoitems (
 );
 
 
-ALTER TABLE public.sales_rsoitems OWNER TO netitest;
+ALTER TABLE public.sales_rsoitems OWNER TO neti_aws_db;
 
 --
--- Name: sales_rsoitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_rsoitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_rsoitems_id_seq
@@ -4006,17 +4006,17 @@ CREATE SEQUENCE public.sales_rsoitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_rsoitems_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_rsoitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_rsoitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_rsoitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_rsoitems_id_seq OWNED BY public.sales_rsoitems.id;
 
 
 --
--- Name: sales_saleqty; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_saleqty; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_saleqty (
@@ -4029,10 +4029,10 @@ CREATE TABLE public.sales_saleqty (
 );
 
 
-ALTER TABLE public.sales_saleqty OWNER TO netitest;
+ALTER TABLE public.sales_saleqty OWNER TO neti_aws_db;
 
 --
--- Name: sales_saleqty_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_saleqty_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_saleqty_id_seq
@@ -4043,17 +4043,17 @@ CREATE SEQUENCE public.sales_saleqty_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_saleqty_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_saleqty_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_saleqty_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_saleqty_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_saleqty_id_seq OWNED BY public.sales_saleqty.id;
 
 
 --
--- Name: sales_salesorder; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_salesorder; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_salesorder (
@@ -4114,10 +4114,10 @@ CREATE TABLE public.sales_salesorder (
 );
 
 
-ALTER TABLE public.sales_salesorder OWNER TO netitest;
+ALTER TABLE public.sales_salesorder OWNER TO neti_aws_db;
 
 --
--- Name: sales_salesorder_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_salesorder_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_salesorder_id_seq
@@ -4128,17 +4128,17 @@ CREATE SEQUENCE public.sales_salesorder_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_salesorder_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_salesorder_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_salesorder_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_salesorder_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_salesorder_id_seq OWNED BY public.sales_salesorder.id;
 
 
 --
--- Name: sales_salestarget; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_salestarget; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_salestarget (
@@ -4157,10 +4157,10 @@ CREATE TABLE public.sales_salestarget (
 );
 
 
-ALTER TABLE public.sales_salestarget OWNER TO netitest;
+ALTER TABLE public.sales_salestarget OWNER TO neti_aws_db;
 
 --
--- Name: sales_salestarget_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_salestarget_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_salestarget_id_seq
@@ -4171,17 +4171,17 @@ CREATE SEQUENCE public.sales_salestarget_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_salestarget_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_salestarget_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_salestarget_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_salestarget_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_salestarget_id_seq OWNED BY public.sales_salestarget.id;
 
 
 --
--- Name: sales_soitems; Type: TABLE; Schema: public; Owner: netitest
+-- Name: sales_soitems; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.sales_soitems (
@@ -4207,10 +4207,10 @@ CREATE TABLE public.sales_soitems (
 );
 
 
-ALTER TABLE public.sales_soitems OWNER TO netitest;
+ALTER TABLE public.sales_soitems OWNER TO neti_aws_db;
 
 --
--- Name: sales_soitems_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: sales_soitems_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.sales_soitems_id_seq
@@ -4221,17 +4221,17 @@ CREATE SEQUENCE public.sales_soitems_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.sales_soitems_id_seq OWNER TO netitest;
+ALTER TABLE public.sales_soitems_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: sales_soitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: sales_soitems_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.sales_soitems_id_seq OWNED BY public.sales_soitems.id;
 
 
 --
--- Name: todo_todo; Type: TABLE; Schema: public; Owner: netitest
+-- Name: todo_todo; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.todo_todo (
@@ -4240,10 +4240,10 @@ CREATE TABLE public.todo_todo (
 );
 
 
-ALTER TABLE public.todo_todo OWNER TO netitest;
+ALTER TABLE public.todo_todo OWNER TO neti_aws_db;
 
 --
--- Name: todo_todo_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: todo_todo_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.todo_todo_id_seq
@@ -4254,17 +4254,17 @@ CREATE SEQUENCE public.todo_todo_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.todo_todo_id_seq OWNER TO netitest;
+ALTER TABLE public.todo_todo_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: todo_todo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: todo_todo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.todo_todo_id_seq OWNED BY public.todo_todo.id;
 
 
 --
--- Name: warehouse_materialtransferred; Type: TABLE; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.warehouse_materialtransferred (
@@ -4279,10 +4279,10 @@ CREATE TABLE public.warehouse_materialtransferred (
 );
 
 
-ALTER TABLE public.warehouse_materialtransferred OWNER TO netitest;
+ALTER TABLE public.warehouse_materialtransferred OWNER TO neti_aws_db;
 
 --
--- Name: warehouse_materialtransferred_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.warehouse_materialtransferred_id_seq
@@ -4293,17 +4293,17 @@ CREATE SEQUENCE public.warehouse_materialtransferred_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.warehouse_materialtransferred_id_seq OWNER TO netitest;
+ALTER TABLE public.warehouse_materialtransferred_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: warehouse_materialtransferred_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.warehouse_materialtransferred_id_seq OWNED BY public.warehouse_materialtransferred.id;
 
 
 --
--- Name: warehouse_pallettransferentry; Type: TABLE; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.warehouse_pallettransferentry (
@@ -4318,10 +4318,10 @@ CREATE TABLE public.warehouse_pallettransferentry (
 );
 
 
-ALTER TABLE public.warehouse_pallettransferentry OWNER TO netitest;
+ALTER TABLE public.warehouse_pallettransferentry OWNER TO neti_aws_db;
 
 --
--- Name: warehouse_pallettransferentry_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.warehouse_pallettransferentry_id_seq
@@ -4332,17 +4332,17 @@ CREATE SEQUENCE public.warehouse_pallettransferentry_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.warehouse_pallettransferentry_id_seq OWNER TO netitest;
+ALTER TABLE public.warehouse_pallettransferentry_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: warehouse_pallettransferentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.warehouse_pallettransferentry_id_seq OWNED BY public.warehouse_pallettransferentry.id;
 
 
 --
--- Name: warehouse_shortagedamageentry; Type: TABLE; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.warehouse_shortagedamageentry (
@@ -4364,10 +4364,10 @@ CREATE TABLE public.warehouse_shortagedamageentry (
 );
 
 
-ALTER TABLE public.warehouse_shortagedamageentry OWNER TO netitest;
+ALTER TABLE public.warehouse_shortagedamageentry OWNER TO neti_aws_db;
 
 --
--- Name: warehouse_shortagedamageentry_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.warehouse_shortagedamageentry_id_seq
@@ -4378,17 +4378,17 @@ CREATE SEQUENCE public.warehouse_shortagedamageentry_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.warehouse_shortagedamageentry_id_seq OWNER TO netitest;
+ALTER TABLE public.warehouse_shortagedamageentry_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: warehouse_shortagedamageentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.warehouse_shortagedamageentry_id_seq OWNED BY public.warehouse_shortagedamageentry.id;
 
 
 --
--- Name: warehouse_stock_summary; Type: TABLE; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary; Type: TABLE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE TABLE public.warehouse_stock_summary (
@@ -4405,10 +4405,10 @@ CREATE TABLE public.warehouse_stock_summary (
 );
 
 
-ALTER TABLE public.warehouse_stock_summary OWNER TO netitest;
+ALTER TABLE public.warehouse_stock_summary OWNER TO neti_aws_db;
 
 --
--- Name: warehouse_stock_summary_id_seq; Type: SEQUENCE; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary_id_seq; Type: SEQUENCE; Schema: public; Owner: neti_aws_db
 --
 
 CREATE SEQUENCE public.warehouse_stock_summary_id_seq
@@ -4419,675 +4419,675 @@ CREATE SEQUENCE public.warehouse_stock_summary_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.warehouse_stock_summary_id_seq OWNER TO netitest;
+ALTER TABLE public.warehouse_stock_summary_id_seq OWNER TO neti_aws_db;
 
 --
--- Name: warehouse_stock_summary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: neti_aws_db
 --
 
 ALTER SEQUENCE public.warehouse_stock_summary_id_seq OWNED BY public.warehouse_stock_summary.id;
 
 
 --
--- Name: accounts_loggedinuser id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: accounts_loggedinuser id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.accounts_loggedinuser ALTER COLUMN id SET DEFAULT nextval('public.accounts_loggedinuser_id_seq'::regclass);
 
 
 --
--- Name: auditlog_logentry id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: auditlog_logentry id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auditlog_logentry ALTER COLUMN id SET DEFAULT nextval('public.auditlog_logentry_id_seq'::regclass);
 
 
 --
--- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
 
 
 --
--- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
 
 
 --
--- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
 
 
 --
--- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
 
 
 --
--- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
 
 
 --
--- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
 
 
 --
--- Name: company_company id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: company_company id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.company_company ALTER COLUMN id SET DEFAULT nextval('public.company_company_id_seq'::regclass);
 
 
 --
--- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
 
 
 --
--- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
 
 
 --
--- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
 
 
 --
--- Name: inventory_brand id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_brand id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_brand ALTER COLUMN id SET DEFAULT nextval('public.inventory_brand_id_seq'::regclass);
 
 
 --
--- Name: inventory_category id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_category id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_category ALTER COLUMN id SET DEFAULT nextval('public.inventory_category_id_seq'::regclass);
 
 
 --
--- Name: inventory_class id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_class id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_class ALTER COLUMN id SET DEFAULT nextval('public.inventory_class_id_seq'::regclass);
 
 
 --
--- Name: inventory_currency id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_currency id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_currency ALTER COLUMN id SET DEFAULT nextval('public.inventory_currency_id_seq'::regclass);
 
 
 --
--- Name: inventory_godown id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_godown id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_godown ALTER COLUMN id SET DEFAULT nextval('public.inventory_godown_id_seq'::regclass);
 
 
 --
--- Name: inventory_gst_list id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_gst_list id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_gst_list ALTER COLUMN id SET DEFAULT nextval('public.inventory_gst_list_id_seq'::regclass);
 
 
 --
--- Name: inventory_product_master id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_product_master id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master ALTER COLUMN id SET DEFAULT nextval('public.inventory_product_master_id_seq'::regclass);
 
 
 --
--- Name: inventory_producttype id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_producttype id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_producttype ALTER COLUMN id SET DEFAULT nextval('public.inventory_producttype_id_seq'::regclass);
 
 
 --
--- Name: inventory_scheme id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_scheme id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_scheme ALTER COLUMN id SET DEFAULT nextval('public.inventory_scheme_id_seq'::regclass);
 
 
 --
--- Name: inventory_std_rate id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_std_rate id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_std_rate ALTER COLUMN id SET DEFAULT nextval('public.inventory_std_rate_id_seq'::regclass);
 
 
 --
--- Name: inventory_subbrand id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_subbrand id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_subbrand ALTER COLUMN id SET DEFAULT nextval('public.inventory_subbrand_id_seq'::regclass);
 
 
 --
--- Name: inventory_subclass id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_subclass id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_subclass ALTER COLUMN id SET DEFAULT nextval('public.inventory_subclass_id_seq'::regclass);
 
 
 --
--- Name: inventory_unitofmeasure id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_unitofmeasure ALTER COLUMN id SET DEFAULT nextval('public.inventory_unitofmeasure_id_seq'::regclass);
 
 
 --
--- Name: inventory_uqc id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: inventory_uqc id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_uqc ALTER COLUMN id SET DEFAULT nextval('public.inventory_uqc_id_seq'::regclass);
 
 
 --
--- Name: ledgers_asm id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_asm id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_asm ALTER COLUMN id SET DEFAULT nextval('public.ledgers_asm_id_seq'::regclass);
 
 
 --
--- Name: ledgers_city id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_city id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_city ALTER COLUMN id SET DEFAULT nextval('public.ledgers_city_id_seq'::regclass);
 
 
 --
--- Name: ledgers_country id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_country id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_country ALTER COLUMN id SET DEFAULT nextval('public.ledgers_country_id_seq'::regclass);
 
 
 --
--- Name: ledgers_currency id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_currency id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_currency ALTER COLUMN id SET DEFAULT nextval('public.ledgers_currency_id_seq'::regclass);
 
 
 --
--- Name: ledgers_division id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_division id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_division ALTER COLUMN id SET DEFAULT nextval('public.ledgers_division_id_seq'::regclass);
 
 
 --
--- Name: ledgers_group id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_group id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_group ALTER COLUMN id SET DEFAULT nextval('public.ledgers_group_id_seq'::regclass);
 
 
 --
--- Name: ledgers_ledgerstype id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_ledgerstype id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_ledgerstype ALTER COLUMN id SET DEFAULT nextval('public.ledgers_ledgerstype_id_seq'::regclass);
 
 
 --
--- Name: ledgers_party_contact_details id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_contact_details ALTER COLUMN id SET DEFAULT nextval('public.ledgers_party_contact_details_id_seq'::regclass);
 
 
 --
--- Name: ledgers_party_master id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master ALTER COLUMN id SET DEFAULT nextval('public.ledgers_party_master_id_seq'::regclass);
 
 
 --
--- Name: ledgers_party_master_products id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master_products ALTER COLUMN id SET DEFAULT nextval('public.ledgers_party_master_products_id_seq'::regclass);
 
 
 --
--- Name: ledgers_partytype id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_partytype id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_partytype ALTER COLUMN id SET DEFAULT nextval('public.ledgers_partytype_id_seq'::regclass);
 
 
 --
--- Name: ledgers_price_level id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_price_level id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_price_level ALTER COLUMN id SET DEFAULT nextval('public.ledgers_price_level_id_seq'::regclass);
 
 
 --
--- Name: ledgers_price_list id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_price_list id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_price_list ALTER COLUMN id SET DEFAULT nextval('public.ledgers_price_list_id_seq'::regclass);
 
 
 --
--- Name: ledgers_region id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_region id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_region ALTER COLUMN id SET DEFAULT nextval('public.ledgers_region_id_seq'::regclass);
 
 
 --
--- Name: ledgers_rsm id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_rsm id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_rsm ALTER COLUMN id SET DEFAULT nextval('public.ledgers_rsm_id_seq'::regclass);
 
 
 --
--- Name: ledgers_se id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_se id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_se ALTER COLUMN id SET DEFAULT nextval('public.ledgers_se_id_seq'::regclass);
 
 
 --
--- Name: ledgers_state id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_state id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_state ALTER COLUMN id SET DEFAULT nextval('public.ledgers_state_id_seq'::regclass);
 
 
 --
--- Name: ledgers_zone id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_zone id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_zone ALTER COLUMN id SET DEFAULT nextval('public.ledgers_zone_id_seq'::regclass);
 
 
 --
--- Name: ledgers_zsm id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: ledgers_zsm id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_zsm ALTER COLUMN id SET DEFAULT nextval('public.ledgers_zsm_id_seq'::regclass);
 
 
 --
--- Name: planning_bom id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: planning_bom id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_bom ALTER COLUMN id SET DEFAULT nextval('public.planning_bom_id_seq'::regclass);
 
 
 --
--- Name: planning_bomitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: planning_bomitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_bomitems ALTER COLUMN id SET DEFAULT nextval('public.planning_bomitems_id_seq'::regclass);
 
 
 --
--- Name: planning_joborder id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: planning_joborder id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_joborder ALTER COLUMN id SET DEFAULT nextval('public.planning_joborder_id_seq'::regclass);
 
 
 --
--- Name: planning_salesprojection id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: planning_salesprojection id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_salesprojection ALTER COLUMN id SET DEFAULT nextval('public.planning_salesprojection_id_seq'::regclass);
 
 
 --
--- Name: production_consitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: production_consitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consitems ALTER COLUMN id SET DEFAULT nextval('public.production_consitems_id_seq'::regclass);
 
 
 --
--- Name: production_consumableindent id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: production_consumableindent id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumableindent ALTER COLUMN id SET DEFAULT nextval('public.production_consumableindent_id_seq'::regclass);
 
 
 --
--- Name: production_consumption id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: production_consumption id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumption ALTER COLUMN id SET DEFAULT nextval('public.production_consumption_id_seq'::regclass);
 
 
 --
--- Name: production_consumptionitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: production_consumptionitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumptionitems ALTER COLUMN id SET DEFAULT nextval('public.production_consumptionitems_id_seq'::regclass);
 
 
 --
--- Name: production_jobcard id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: production_jobcard id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_jobcard ALTER COLUMN id SET DEFAULT nextval('public.production_jobcard_id_seq'::regclass);
 
 
 --
--- Name: production_rmindent id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: production_rmindent id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindent ALTER COLUMN id SET DEFAULT nextval('public.production_rmindent_id_seq'::regclass);
 
 
 --
--- Name: production_rmindentitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: production_rmindentitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindentitems ALTER COLUMN id SET DEFAULT nextval('public.production_rmindentitems_id_seq'::regclass);
 
 
 --
--- Name: production_rmitemgodown id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: production_rmitemgodown id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmitemgodown ALTER COLUMN id SET DEFAULT nextval('public.production_rmitemgodown_id_seq'::regclass);
 
 
 --
--- Name: purchase_debitnote id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_debitnote id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnote ALTER COLUMN id SET DEFAULT nextval('public.purchase_debitnote_id_seq'::regclass);
 
 
 --
--- Name: purchase_debitnoteitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnoteitems ALTER COLUMN id SET DEFAULT nextval('public.purchase_debitnoteitems_id_seq'::regclass);
 
 
 --
--- Name: purchase_grn id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_grn id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn ALTER COLUMN id SET DEFAULT nextval('public.purchase_grn_id_seq'::regclass);
 
 
 --
--- Name: purchase_grnitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems ALTER COLUMN id SET DEFAULT nextval('public.purchase_grnitems_id_seq'::regclass);
 
 
 --
--- Name: purchase_grnitems_godown id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems_godown ALTER COLUMN id SET DEFAULT nextval('public.purchase_grnitems_godown_id_seq'::regclass);
 
 
 --
--- Name: purchase_piitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_piitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_piitems ALTER COLUMN id SET DEFAULT nextval('public.purchase_piitems_id_seq'::regclass);
 
 
 --
--- Name: purchase_poitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_poitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_poitems ALTER COLUMN id SET DEFAULT nextval('public.purchase_poitems_id_seq'::regclass);
 
 
 --
--- Name: purchase_purchase id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_purchase id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase ALTER COLUMN id SET DEFAULT nextval('public.purchase_purchase_id_seq'::regclass);
 
 
 --
--- Name: purchase_purchase_order id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase_order ALTER COLUMN id SET DEFAULT nextval('public.purchase_purchase_order_id_seq'::regclass);
 
 
 --
--- Name: purchase_purchasereturn id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturn ALTER COLUMN id SET DEFAULT nextval('public.purchase_purchasereturn_id_seq'::regclass);
 
 
 --
--- Name: purchase_purchasereturnitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturnitems ALTER COLUMN id SET DEFAULT nextval('public.purchase_purchasereturnitems_id_seq'::regclass);
 
 
 --
--- Name: purchase_qdn id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_qdn id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdn ALTER COLUMN id SET DEFAULT nextval('public.purchase_qdn_id_seq'::regclass);
 
 
 --
--- Name: purchase_qdnitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdnitems ALTER COLUMN id SET DEFAULT nextval('public.purchase_qdnitems_id_seq'::regclass);
 
 
 --
--- Name: sales_creditnote id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_creditnote id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnote ALTER COLUMN id SET DEFAULT nextval('public.sales_creditnote_id_seq'::regclass);
 
 
 --
--- Name: sales_creditnoteitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnoteitems ALTER COLUMN id SET DEFAULT nextval('public.sales_creditnoteitems_id_seq'::regclass);
 
 
 --
--- Name: sales_delivery_note id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_delivery_note id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_delivery_note ALTER COLUMN id SET DEFAULT nextval('public.sales_delivery_note_id_seq'::regclass);
 
 
 --
--- Name: sales_dnitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_dnitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems ALTER COLUMN id SET DEFAULT nextval('public.sales_dnitems_id_seq'::regclass);
 
 
 --
--- Name: sales_dnitems_godown id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems_godown ALTER COLUMN id SET DEFAULT nextval('public.sales_dnitems_godown_id_seq'::regclass);
 
 
 --
--- Name: sales_invitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_invitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invitems ALTER COLUMN id SET DEFAULT nextval('public.sales_invitems_id_seq'::regclass);
 
 
 --
--- Name: sales_invoice id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_invoice id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice ALTER COLUMN id SET DEFAULT nextval('public.sales_invoice_id_seq'::regclass);
 
 
 --
--- Name: sales_loadingsheet id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_loadingsheet ALTER COLUMN id SET DEFAULT nextval('public.sales_loadingsheet_id_seq'::regclass);
 
 
 --
--- Name: sales_packingsheet id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_packingsheet id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_packingsheet ALTER COLUMN id SET DEFAULT nextval('public.sales_packingsheet_id_seq'::regclass);
 
 
 --
--- Name: sales_proformainvitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvitems ALTER COLUMN id SET DEFAULT nextval('public.sales_proformainvitems_id_seq'::regclass);
 
 
 --
--- Name: sales_proformainvoice id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvoice ALTER COLUMN id SET DEFAULT nextval('public.sales_proformainvoice_id_seq'::regclass);
 
 
 --
--- Name: sales_qdn id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_qdn id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdn ALTER COLUMN id SET DEFAULT nextval('public.sales_qdn_id_seq'::regclass);
 
 
 --
--- Name: sales_qdnitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_qdnitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdnitems ALTER COLUMN id SET DEFAULT nextval('public.sales_qdnitems_id_seq'::regclass);
 
 
 --
--- Name: sales_rso id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_rso id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rso ALTER COLUMN id SET DEFAULT nextval('public.sales_rso_id_seq'::regclass);
 
 
 --
--- Name: sales_rsoitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_rsoitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rsoitems ALTER COLUMN id SET DEFAULT nextval('public.sales_rsoitems_id_seq'::regclass);
 
 
 --
--- Name: sales_saleqty id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_saleqty id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_saleqty ALTER COLUMN id SET DEFAULT nextval('public.sales_saleqty_id_seq'::regclass);
 
 
 --
--- Name: sales_salesorder id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_salesorder id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salesorder ALTER COLUMN id SET DEFAULT nextval('public.sales_salesorder_id_seq'::regclass);
 
 
 --
--- Name: sales_salestarget id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_salestarget id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget ALTER COLUMN id SET DEFAULT nextval('public.sales_salestarget_id_seq'::regclass);
 
 
 --
--- Name: sales_soitems id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: sales_soitems id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_soitems ALTER COLUMN id SET DEFAULT nextval('public.sales_soitems_id_seq'::regclass);
 
 
 --
--- Name: todo_todo id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: todo_todo id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.todo_todo ALTER COLUMN id SET DEFAULT nextval('public.todo_todo_id_seq'::regclass);
 
 
 --
--- Name: warehouse_materialtransferred id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_materialtransferred ALTER COLUMN id SET DEFAULT nextval('public.warehouse_materialtransferred_id_seq'::regclass);
 
 
 --
--- Name: warehouse_pallettransferentry id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_pallettransferentry ALTER COLUMN id SET DEFAULT nextval('public.warehouse_pallettransferentry_id_seq'::regclass);
 
 
 --
--- Name: warehouse_shortagedamageentry id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_shortagedamageentry ALTER COLUMN id SET DEFAULT nextval('public.warehouse_shortagedamageentry_id_seq'::regclass);
 
 
 --
--- Name: warehouse_stock_summary id; Type: DEFAULT; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary id; Type: DEFAULT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_stock_summary ALTER COLUMN id SET DEFAULT nextval('public.warehouse_stock_summary_id_seq'::regclass);
 
 
 --
--- Data for Name: accounts_loggedinuser; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: accounts_loggedinuser; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.accounts_loggedinuser (id, session_key, user_id) FROM stdin;
@@ -5096,7 +5096,7 @@ COPY public.accounts_loggedinuser (id, session_key, user_id) FROM stdin;
 
 
 --
--- Data for Name: auditlog_logentry; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: auditlog_logentry; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.auditlog_logentry (id, object_pk, object_id, object_repr, action, changes, "timestamp", actor_id, content_type_id, remote_addr, additional_data) FROM stdin;
@@ -5993,7 +5993,7 @@ COPY public.auditlog_logentry (id, object_pk, object_id, object_repr, action, ch
 
 
 --
--- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.auth_group (id, name) FROM stdin;
@@ -6293,7 +6293,7 @@ COPY public.auth_group (id, name) FROM stdin;
 
 
 --
--- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
@@ -6301,7 +6301,7 @@ COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
 
 
 --
--- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
@@ -6673,7 +6673,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 
 
 --
--- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
@@ -6682,7 +6682,7 @@ COPY public.auth_user (id, password, last_login, is_superuser, username, first_n
 
 
 --
--- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
@@ -6982,7 +6982,7 @@ COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
 
 
 --
--- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
@@ -7350,7 +7350,7 @@ COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 
 
 --
--- Data for Name: company_company; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: company_company; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.company_company (id, name, tally_name, ledger_name, ipaddress, dis_addtype, dis_name, dis_add1, dis_add2, dis_add3, dis_country, dis_state, dis_city, dis_pincode, dis_gstin, pan_no, so_series, dn_series, inv_series, debitnote_series, sales_qdn_series, rso_series, po_series, ict_series, grn_series, pi_series, creditnote_series, purchase_qdn_series, purchase_return_series, joborder_series, job_series, rm_series, cms_series, pds_series, created, updated, pinv_series) FROM stdin;
@@ -7360,7 +7360,7 @@ COPY public.company_company (id, name, tally_name, ledger_name, ipaddress, dis_a
 
 
 --
--- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
@@ -7395,7 +7395,7 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 
 
 --
--- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.django_content_type (id, app_label, model) FROM stdin;
@@ -7494,7 +7494,7 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 
 
 --
--- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.django_migrations (id, app, name, applied) FROM stdin;
@@ -7653,7 +7653,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 
 
 --
--- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
@@ -7664,7 +7664,7 @@ vfxkv6ps5zp2uutsv1ivaq7bnvhoil5l	.eJxVjDEOgzAMRe_iuYpIoEnM2L1nQDG2C6UCicBQIe7eIr
 
 
 --
--- Data for Name: inventory_brand; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_brand; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_brand (id, under, name, code, created, updated) FROM stdin;
@@ -7673,7 +7673,7 @@ COPY public.inventory_brand (id, under, name, code, created, updated) FROM stdin
 
 
 --
--- Data for Name: inventory_category; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_category; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_category (id, under, name, code, created, updated) FROM stdin;
@@ -7682,7 +7682,7 @@ COPY public.inventory_category (id, under, name, code, created, updated) FROM st
 
 
 --
--- Data for Name: inventory_class; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_class; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_class (id, name, code, created, updated) FROM stdin;
@@ -7691,7 +7691,7 @@ COPY public.inventory_class (id, name, code, created, updated) FROM stdin;
 
 
 --
--- Data for Name: inventory_currency; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_currency; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_currency (id, name, code, symbol, created, updated) FROM stdin;
@@ -7700,7 +7700,7 @@ COPY public.inventory_currency (id, name, code, symbol, created, updated) FROM s
 
 
 --
--- Data for Name: inventory_godown; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_godown; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_godown (id, godown_type, name, parent_id, created, updated) FROM stdin;
@@ -7714,7 +7714,7 @@ COPY public.inventory_godown (id, godown_type, name, parent_id, created, updated
 
 
 --
--- Data for Name: inventory_gst_list; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_gst_list; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_gst_list (id, applicable_from, discription, hsncode, "is_Non_gst", calc_type, taxability, reverse_charge, input_credit_ineligible, cgstrate, sgstrate, igstrate, suply_type, product_id, created, updated) FROM stdin;
@@ -7722,7 +7722,7 @@ COPY public.inventory_gst_list (id, applicable_from, discription, hsncode, "is_N
 
 
 --
--- Data for Name: inventory_product_master; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_product_master; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_product_master (id, product_name, product_code, description, notes, is_saleable, is_batch, track_dom, exp_date, bill_of_material, set_std_rate, costing_method, valuation_method, article_code, ean_code, old_product_code, mrp, gst, hsn, opening_balance, shape_code, size, style_shape, series, pattern, country_of_origin, color_shade_theme, inner_qty, outer_qty, imported_by, mfd_by, mkt_by, product_portfolio, isgstapplicable, behaviour, ipd, ins, tsm, tpc, trs, additional_units_id, brand_id, category_id, dl_purchase_id, dl_sales_id, product_class_id, product_type_id, sub_brand_id, sub_class_id, units_of_measure_id, created, updated) FROM stdin;
@@ -7735,7 +7735,7 @@ COPY public.inventory_product_master (id, product_name, product_code, descriptio
 
 
 --
--- Data for Name: inventory_producttype; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_producttype; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_producttype (id, name, code, created, updated, dl_purchase_id, dl_sales_id) FROM stdin;
@@ -7745,7 +7745,7 @@ COPY public.inventory_producttype (id, name, code, created, updated, dl_purchase
 
 
 --
--- Data for Name: inventory_scheme; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_scheme; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_scheme (id, name, created, updated) FROM stdin;
@@ -7753,7 +7753,7 @@ COPY public.inventory_scheme (id, name, created, updated) FROM stdin;
 
 
 --
--- Data for Name: inventory_std_rate; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_std_rate; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_std_rate (id, rate_type, applicable_from, rate, uom, product_id, created, updated) FROM stdin;
@@ -7765,7 +7765,7 @@ COPY public.inventory_std_rate (id, rate_type, applicable_from, rate, uom, produ
 
 
 --
--- Data for Name: inventory_subbrand; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_subbrand; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_subbrand (id, name, code, created, updated) FROM stdin;
@@ -7774,7 +7774,7 @@ COPY public.inventory_subbrand (id, name, code, created, updated) FROM stdin;
 
 
 --
--- Data for Name: inventory_subclass; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_subclass; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_subclass (id, name, code, created, updated) FROM stdin;
@@ -7783,7 +7783,7 @@ COPY public.inventory_subclass (id, name, code, created, updated) FROM stdin;
 
 
 --
--- Data for Name: inventory_unitofmeasure; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_unitofmeasure; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_unitofmeasure (id, uom_type, symbol, name, decimal_places, uqc_id, created, updated) FROM stdin;
@@ -7792,7 +7792,7 @@ COPY public.inventory_unitofmeasure (id, uom_type, symbol, name, decimal_places,
 
 
 --
--- Data for Name: inventory_uqc; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: inventory_uqc; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.inventory_uqc (id, name, created, updated) FROM stdin;
@@ -7844,7 +7844,7 @@ COPY public.inventory_uqc (id, name, created, updated) FROM stdin;
 
 
 --
--- Data for Name: ledgers_asm; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_asm; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_asm (id, name, region_id, rsm_id, zone_id, zsm_id, created, updated) FROM stdin;
@@ -7866,7 +7866,7 @@ COPY public.ledgers_asm (id, name, region_id, rsm_id, zone_id, zsm_id, created, 
 
 
 --
--- Data for Name: ledgers_city; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_city; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_city (id, created, updated, name, state_id) FROM stdin;
@@ -7885,7 +7885,7 @@ COPY public.ledgers_city (id, created, updated, name, state_id) FROM stdin;
 
 
 --
--- Data for Name: ledgers_country; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_country; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_country (id, created, updated, name) FROM stdin;
@@ -7897,7 +7897,7 @@ COPY public.ledgers_country (id, created, updated, name) FROM stdin;
 
 
 --
--- Data for Name: ledgers_currency; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_currency; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_currency (id, code, name, created, updated) FROM stdin;
@@ -7905,7 +7905,7 @@ COPY public.ledgers_currency (id, code, name, created, updated) FROM stdin;
 
 
 --
--- Data for Name: ledgers_division; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_division; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_division (id, created, updated, name) FROM stdin;
@@ -7917,7 +7917,7 @@ COPY public.ledgers_division (id, created, updated, name) FROM stdin;
 
 
 --
--- Data for Name: ledgers_group; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_group; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_group (id, name, created, updated) FROM stdin;
@@ -7931,7 +7931,7 @@ COPY public.ledgers_group (id, name, created, updated) FROM stdin;
 
 
 --
--- Data for Name: ledgers_ledgerstype; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_ledgerstype; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_ledgerstype (id, name, gst_applicable, type_of_supply, under_id, created, updated) FROM stdin;
@@ -7950,7 +7950,7 @@ COPY public.ledgers_ledgerstype (id, name, gst_applicable, type_of_supply, under
 
 
 --
--- Data for Name: ledgers_party_contact_details; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_party_contact_details; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_party_contact_details (id, created, updated, address_type, mailing_name, addressline1, addressline2, addressline3, country_id, state_id, city_id, pin_code, contact_person, phone_no, mobile_no, fax_no, email_id, pan_no, gst_registration_type, gstin, party_id) FROM stdin;
@@ -7958,7 +7958,7 @@ COPY public.ledgers_party_contact_details (id, created, updated, address_type, m
 
 
 --
--- Data for Name: ledgers_party_master; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_party_master; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_party_master (id, created, updated, name, maintain_bill_by_bill, dafault_credit_period, check_credit_days, credit_limit, closing_balance, override_credit_limit, payment_terms, allow_loose_packing, istcsapplicable, vendor_code, mailing_name, addressline1, addressline2, addressline3, pin_code, mobile_no, contact_details, contact_person, phone_no, fax_no, email_id, cc_email, website, multiple_address_list, gst_registration_type, gstin, pan_no, transation_type, bank, ifsc_code, account_no, account_name, asm_id, city_id, country_id, devision_id, group_id, party_type_id, price_level_id, region_id, rsm_id, se_id, state_id, zone_id, zsm_id, is_transporter) FROM stdin;
@@ -7976,7 +7976,7 @@ COPY public.ledgers_party_master (id, created, updated, name, maintain_bill_by_b
 
 
 --
--- Data for Name: ledgers_party_master_products; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_party_master_products; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_party_master_products (id, party_master_id, product_master_id) FROM stdin;
@@ -7984,7 +7984,7 @@ COPY public.ledgers_party_master_products (id, party_master_id, product_master_i
 
 
 --
--- Data for Name: ledgers_partytype; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_partytype; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_partytype (id, code, name, created, updated) FROM stdin;
@@ -7995,7 +7995,7 @@ COPY public.ledgers_partytype (id, code, name, created, updated) FROM stdin;
 
 
 --
--- Data for Name: ledgers_price_level; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_price_level; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_price_level (id, created, updated, name, code) FROM stdin;
@@ -8008,7 +8008,7 @@ COPY public.ledgers_price_level (id, created, updated, name, code) FROM stdin;
 
 
 --
--- Data for Name: ledgers_price_list; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_price_list; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_price_list (id, created, updated, applicable_from, rate, price_level_id, product_id) FROM stdin;
@@ -8022,7 +8022,7 @@ COPY public.ledgers_price_list (id, created, updated, applicable_from, rate, pri
 
 
 --
--- Data for Name: ledgers_region; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_region; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_region (id, name, zone_id, created, updated) FROM stdin;
@@ -8042,7 +8042,7 @@ COPY public.ledgers_region (id, name, zone_id, created, updated) FROM stdin;
 
 
 --
--- Data for Name: ledgers_rsm; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_rsm; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_rsm (id, name, region_id, zone_id, zsm_id, created, updated) FROM stdin;
@@ -8063,7 +8063,7 @@ COPY public.ledgers_rsm (id, name, region_id, zone_id, zsm_id, created, updated)
 
 
 --
--- Data for Name: ledgers_se; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_se; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_se (id, name, asm_id, region_id, rsm_id, zone_id, zsm_id, created, updated) FROM stdin;
@@ -8085,7 +8085,7 @@ COPY public.ledgers_se (id, name, asm_id, region_id, rsm_id, zone_id, zsm_id, cr
 
 
 --
--- Data for Name: ledgers_state; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_state; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_state (id, created, updated, name, country_id) FROM stdin;
@@ -8101,7 +8101,7 @@ COPY public.ledgers_state (id, created, updated, name, country_id) FROM stdin;
 
 
 --
--- Data for Name: ledgers_zone; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_zone; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_zone (id, name, created, updated) FROM stdin;
@@ -8115,7 +8115,7 @@ COPY public.ledgers_zone (id, name, created, updated) FROM stdin;
 
 
 --
--- Data for Name: ledgers_zsm; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: ledgers_zsm; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.ledgers_zsm (id, name, zone_id, created, updated) FROM stdin;
@@ -8129,7 +8129,7 @@ COPY public.ledgers_zsm (id, name, zone_id, created, updated) FROM stdin;
 
 
 --
--- Data for Name: planning_bom; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: planning_bom; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.planning_bom (id, name, description, last_date, product_id, created, updated) FROM stdin;
@@ -8140,7 +8140,7 @@ COPY public.planning_bom (id, name, description, last_date, product_id, created,
 
 
 --
--- Data for Name: planning_bomitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: planning_bomitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.planning_bomitems (id, qty, bom_id, item_id) FROM stdin;
@@ -8154,7 +8154,7 @@ COPY public.planning_bomitems (id, qty, bom_id, item_id) FROM stdin;
 
 
 --
--- Data for Name: planning_joborder; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: planning_joborder; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.planning_joborder (id, created, updated, no, name, qty, remain_qty, date, due_date, ref, details, category, issuedby, remarks, status, bom_id, company_id, product_id) FROM stdin;
@@ -8169,7 +8169,7 @@ COPY public.planning_joborder (id, created, updated, no, name, qty, remain_qty, 
 
 
 --
--- Data for Name: planning_salesprojection; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: planning_salesprojection; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.planning_salesprojection (id, created, updated, p_qty, a_qty, from_date, to_date, division_id, product_id) FROM stdin;
@@ -8177,7 +8177,7 @@ COPY public.planning_salesprojection (id, created, updated, p_qty, a_qty, from_d
 
 
 --
--- Data for Name: production_consitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: production_consitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.production_consitems (id, qty, con_qty, indent_id, item_id) FROM stdin;
@@ -8186,7 +8186,7 @@ COPY public.production_consitems (id, qty, con_qty, indent_id, item_id) FROM std
 
 
 --
--- Data for Name: production_consumableindent; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: production_consumableindent; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.production_consumableindent (id, created, updated, no, qty, company_id, drawn_by_id, issuer_id) FROM stdin;
@@ -8195,7 +8195,7 @@ COPY public.production_consumableindent (id, created, updated, no, qty, company_
 
 
 --
--- Data for Name: production_consumption; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: production_consumption; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.production_consumption (id, created, updated, no, date, company_id, jobcard_id, qty) FROM stdin;
@@ -8209,7 +8209,7 @@ COPY public.production_consumption (id, created, updated, no, date, company_id, 
 
 
 --
--- Data for Name: production_consumptionitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: production_consumptionitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.production_consumptionitems (id, rate, mrp, batch, qty, consumption_id, item_id) FROM stdin;
@@ -8232,7 +8232,7 @@ COPY public.production_consumptionitems (id, rate, mrp, batch, qty, consumption_
 
 
 --
--- Data for Name: production_jobcard; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: production_jobcard; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.production_jobcard (id, created, updated, no, qty, start, company_id, joborder_id, product_id, rqty, status) FROM stdin;
@@ -8248,7 +8248,7 @@ COPY public.production_jobcard (id, created, updated, no, qty, start, company_id
 
 
 --
--- Data for Name: production_rmindent; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: production_rmindent; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.production_rmindent (id, created, updated, no, status, company_id, jobcard_id) FROM stdin;
@@ -8264,7 +8264,7 @@ COPY public.production_rmindent (id, created, updated, no, status, company_id, j
 
 
 --
--- Data for Name: production_rmindentitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: production_rmindentitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.production_rmindentitems (id, qty, bom_id, item_id, rmindent_id) FROM stdin;
@@ -8286,7 +8286,7 @@ COPY public.production_rmindentitems (id, qty, bom_id, item_id, rmindent_id) FRO
 
 
 --
--- Data for Name: production_rmitemgodown; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: production_rmitemgodown; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.production_rmitemgodown (id, rate, mrp, batch, godown, qty, rmitem_id, created, updated) FROM stdin;
@@ -8304,7 +8304,7 @@ COPY public.production_rmitemgodown (id, rate, mrp, batch, godown, qty, rmitem_i
 
 
 --
--- Data for Name: purchase_debitnote; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_debitnote; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_debitnote (id, status, created, updated, db_no, db_date, seller_address_type, seller_gst_reg_type, seller_state, seller_country, seller_city, seller_mailingname, seller_address1, seller_address2, seller_address3, seller_pincode, seller_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, shipto_pan_no, mode_of_payment, other_reference, terms_of_delivery, dispatch_through, destination, narration, ammount, cgst, sgst, igst, tcs, ol_rate, round_off, total, company_id, pi_no_id, seller_id, shipto_id, currency, ex_rate) FROM stdin;
@@ -8313,7 +8313,7 @@ COPY public.purchase_debitnote (id, status, created, updated, db_no, db_date, se
 
 
 --
--- Data for Name: purchase_debitnoteitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_debitnoteitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_debitnoteitems (id, product_code, batch, pack, mrp, actual_qty, actual_rate, rate_diff, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, "debitNote_id", item_id) FROM stdin;
@@ -8321,7 +8321,7 @@ COPY public.purchase_debitnoteitems (id, product_code, batch, pack, mrp, actual_
 
 
 --
--- Data for Name: purchase_grn; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_grn; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_grn (id, status, created, updated, grn_no, grn_date, seller_address_type, seller_gst_reg_type, seller_state, seller_country, seller_city, seller_mailingname, seller_address1, seller_address2, seller_address3, seller_pincode, seller_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, shipto_pan_no, ammount, cgst, sgst, igst, tcs, other, round_off, total, narration, mode_of_payment, other_reference, terms_of_delivery, dispatch_through, destintaion, company_id, other_ledger_id, pi_id, po_id, seller_id, shipto_id, currency, ex_rate) FROM stdin;
@@ -8336,7 +8336,7 @@ COPY public.purchase_grn (id, status, created, updated, grn_no, grn_date, seller
 
 
 --
--- Data for Name: purchase_grnitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_grnitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_grnitems (id, product_code, batch, pack, mrp, actual_qty, recd_qty, rate, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, grn_id, item_id) FROM stdin;
@@ -8352,7 +8352,7 @@ COPY public.purchase_grnitems (id, product_code, batch, pack, mrp, actual_qty, r
 
 
 --
--- Data for Name: purchase_grnitems_godown; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_grnitems_godown; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_grnitems_godown (id, grnitems_id, godown_id) FROM stdin;
@@ -8360,7 +8360,7 @@ COPY public.purchase_grnitems_godown (id, grnitems_id, godown_id) FROM stdin;
 
 
 --
--- Data for Name: purchase_piitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_piitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_piitems (id, product_code, batch, pack, mrp, basic_qty, recd_qty, rate, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, grn_id, item_id, pi_id, created) FROM stdin;
@@ -8376,7 +8376,7 @@ COPY public.purchase_piitems (id, product_code, batch, pack, mrp, basic_qty, rec
 
 
 --
--- Data for Name: purchase_poitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_poitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_poitems (id, product_code, pack, basic_qty, actual_qty, amend_qty, rate, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, item_id, po_id) FROM stdin;
@@ -8393,7 +8393,7 @@ COPY public.purchase_poitems (id, product_code, pack, basic_qty, actual_qty, ame
 
 
 --
--- Data for Name: purchase_purchase; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_purchase; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_purchase (id, status, created, updated, pi_no, pi_date, seller_address_type, seller_gst_reg_type, seller_state, seller_country, seller_city, seller_mailingname, seller_address1, seller_address2, seller_address3, seller_pincode, seller_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, shipto_pan_no, mode_of_payment, other_reference, terms_of_delivery, dispatch_through, destination, supplier_invoice, supplier_date, ammount, cgst, sgst, igst, tcs, other, ol_rate, round_off, total, narration, is_ict, company_id, other_ledger_id, seller_id, shipto_id, currency, ex_rate) FROM stdin;
@@ -8408,7 +8408,7 @@ COPY public.purchase_purchase (id, status, created, updated, pi_no, pi_date, sel
 
 
 --
--- Data for Name: purchase_purchase_order; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_purchase_order; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_purchase_order (id, created, updated, status, po_no, ref_no, po_date, po_due_date, seller_address_type, seller_mailingname, seller_address1, seller_address2, seller_address3, seller_state, seller_city, seller_country, seller_pincode, seller_gst_reg_type, seller_gstin, shipto_address_type, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_city, shipto_state, shipto_country, shipto_pincode, shipto_gstin, mode_of_payment, other_reference, terms_of_delivery, ammount, cgst, sgst, igst, tcs, other, ol_rate, round_off, total, dispatch_through, destintaion, narration, company_id, other_ledger_id, seller_id, shipto_id, currency, ex_rate) FROM stdin;
@@ -8422,7 +8422,7 @@ COPY public.purchase_purchase_order (id, created, updated, status, po_no, ref_no
 
 
 --
--- Data for Name: purchase_purchasereturn; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_purchasereturn; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_purchasereturn (id, status, created, updated, pr_no, pr_date, seller_address_type, seller_gst_reg_type, seller_state, seller_country, seller_city, seller_mailingname, seller_address1, seller_address2, seller_address3, seller_pincode, seller_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, shipto_pan_no, mode_of_payment, other_reference, terms_of_delivery, dispatch_through, destination, narration, ammount, cgst, sgst, igst, tcs, ol_rate, round_off, total, company_id, pi_no_id, seller_id, shipto_id) FROM stdin;
@@ -8431,7 +8431,7 @@ COPY public.purchase_purchasereturn (id, status, created, updated, pr_no, pr_dat
 
 
 --
--- Data for Name: purchase_purchasereturnitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_purchasereturnitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_purchasereturnitems (id, product_code, batch, pack, mrp, actual_qty, return_qty, rate, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, item_id, pr_id) FROM stdin;
@@ -8439,7 +8439,7 @@ COPY public.purchase_purchasereturnitems (id, product_code, batch, pack, mrp, ac
 
 
 --
--- Data for Name: purchase_qdn; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_qdn; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_qdn (id, status, created, updated, qdn_no, qdn_date, seller_address_type, seller_gst_reg_type, seller_state, seller_country, seller_city, seller_mailingname, seller_address1, seller_address2, seller_address3, seller_pincode, seller_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, shipto_pan_no, mode_of_payment, other_reference, terms_of_delivery, dispatch_through, destination, narration, ammount, cgst, sgst, igst, tcs, ol_rate, round_off, total, company_id, pi_no_id, seller_id, shipto_id) FROM stdin;
@@ -8448,7 +8448,7 @@ COPY public.purchase_qdn (id, status, created, updated, qdn_no, qdn_date, seller
 
 
 --
--- Data for Name: purchase_qdnitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: purchase_qdnitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.purchase_qdnitems (id, product_code, batch, pack, mrp, actual_qty, qdn_qty, rate, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, item_id, qdn_id) FROM stdin;
@@ -8456,7 +8456,7 @@ COPY public.purchase_qdnitems (id, product_code, batch, pack, mrp, actual_qty, q
 
 
 --
--- Data for Name: sales_creditnote; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_creditnote; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_creditnote (id, created, updated, status, cn_no, cn_date, other, ol_rate, ammount, discount, cgst, sgst, igst, tcs, round_off, total, scheme, narration, company_id, inv_id, other_ledger_id, mrpvalue, omrpvalue, buyer_id, buyer_address1, buyer_address2, buyer_address3, buyer_address_type, buyer_city, buyer_country, buyer_gst_reg_type, buyer_gstin, buyer_mailingname, buyer_pincode, buyer_state, channel, division) FROM stdin;
@@ -8469,7 +8469,7 @@ COPY public.sales_creditnote (id, created, updated, status, cn_no, cn_date, othe
 
 
 --
--- Data for Name: sales_creditnoteitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_creditnoteitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_creditnoteitems (id, billed_qty, rates, rate, igstrate, sgstrate, cgstrate, discount, igst, sgst, cgst, amount, inv_id, item_id, mrp) FROM stdin;
@@ -8482,7 +8482,7 @@ COPY public.sales_creditnoteitems (id, billed_qty, rates, rate, igstrate, sgstra
 
 
 --
--- Data for Name: sales_delivery_note; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_delivery_note; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_delivery_note (id, status, created, updated, dn_no, dn_date, buyer_address_type, buyer_gst_reg_type, buyer_state, buyer_country, buyer_city, buyer_mailingname, buyer_address1, buyer_address2, buyer_address3, buyer_pincode, buyer_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, shipto_pan_no, bill_qty, free_qty, ammount, ol_rate, other, discount, cgst, sgst, igst, tcs, round_off, total, scheme, price_list, narration, mode_of_payment, other_reference, terms_of_delivery, order_no, dispatch_doc_no, dispatch_through, destintaion, carrier_agent, carrier_agent_id, lr_no, lr_date, vehical_no, vehical_type, ls_status, ps_status, buyer_id, company_id, other_ledger_id, sales_order_id, shipto_id) FROM stdin;
@@ -8497,7 +8497,7 @@ COPY public.sales_delivery_note (id, status, created, updated, dn_no, dn_date, b
 
 
 --
--- Data for Name: sales_dnitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_dnitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_dnitems (id, mrp, offer_mrp, pack, available_qty, actual_qty, billed_qty, free_qty, rate, prate, discount, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, dn_id, item_id) FROM stdin;
@@ -8512,7 +8512,7 @@ COPY public.sales_dnitems (id, mrp, offer_mrp, pack, available_qty, actual_qty, 
 
 
 --
--- Data for Name: sales_dnitems_godown; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_dnitems_godown; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_dnitems_godown (id, dnitems_id, godown_id) FROM stdin;
@@ -8527,7 +8527,7 @@ COPY public.sales_dnitems_godown (id, dnitems_id, godown_id) FROM stdin;
 
 
 --
--- Data for Name: sales_invitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_invitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_invitems (id, mrp, offer_mrp, pack, available_qty, actual_qty, billed_qty, free_qty, nb_qty, rate, new_rate, prate, discount, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, inv_id, item_id, nf_qty) FROM stdin;
@@ -8546,7 +8546,7 @@ COPY public.sales_invitems (id, mrp, offer_mrp, pack, available_qty, actual_qty,
 
 
 --
--- Data for Name: sales_invoice; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_invoice; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_invoice (id, created, updated, inv_no, inv_date, status, buyer_address_type, buyer_gst_reg_type, buyer_state, buyer_country, buyer_city, buyer_mailingname, buyer_address1, buyer_address2, buyer_address3, buyer_pincode, buyer_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, shipto_pan_no, bill_qty, free_qty, other, ol_rate, ammount, mrpvalue, omrpvalue, discount, sgst, cgst, igst, tcs, round_off, total, scheme, narration, price_list, mode_of_payment, other_reference, terms_of_delivery, order_no, dispatch_doc_no, dispatch_through, destination, carrier_agent, carrier_agent_id, lr_no, lr_date, vehical_type, vehical_no, is_ict, is_ivt, buyer_id, company_id, dn_id, other_ledger_id, shipto_id, channel, division) FROM stdin;
@@ -8565,7 +8565,7 @@ COPY public.sales_invoice (id, created, updated, inv_no, inv_date, status, buyer
 
 
 --
--- Data for Name: sales_loadingsheet; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_loadingsheet; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_loadingsheet (id, created, updated, prate, mrp, batch, offermrp, godown, qty, company_id, dn_id, item_id) FROM stdin;
@@ -8580,7 +8580,7 @@ COPY public.sales_loadingsheet (id, created, updated, prate, mrp, batch, offermr
 
 
 --
--- Data for Name: sales_packingsheet; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_packingsheet; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_packingsheet (id, created, updated, mrp, offermrp, qty, from_box, to_box, total_box, status, company_id, dn_id, item_id, remarks) FROM stdin;
@@ -8590,7 +8590,7 @@ COPY public.sales_packingsheet (id, created, updated, mrp, offermrp, qty, from_b
 
 
 --
--- Data for Name: sales_proformainvitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_proformainvitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_proformainvitems (id, mrp, offer_mrp, pack, available_qty, actual_qty, billed_qty, free_qty, nb_qty, rate, new_rate, prate, discount, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, inv_id, item_id, nf_qty) FROM stdin;
@@ -8599,7 +8599,7 @@ COPY public.sales_proformainvitems (id, mrp, offer_mrp, pack, available_qty, act
 
 
 --
--- Data for Name: sales_proformainvoice; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_proformainvoice; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_proformainvoice (id, created, updated, inv_no, inv_date, status, buyer_address_type, buyer_gst_reg_type, division, channel, buyer_state, buyer_country, buyer_city, buyer_mailingname, buyer_address1, buyer_address2, buyer_address3, buyer_pincode, buyer_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, shipto_pan_no, bill_qty, free_qty, other, ol_rate, ammount, mrpvalue, omrpvalue, discount, sgst, cgst, igst, tcs, round_off, total, scheme, narration, price_list, mode_of_payment, other_reference, terms_of_delivery, order_no, dispatch_doc_no, dispatch_through, destintaion, carrier_agent, carrier_agent_id, lr_no, lr_date, vehical_type, vehical_no, is_ict, is_ivt, buyer_id, company_id, dn_id, other_ledger_id, shipto_id) FROM stdin;
@@ -8608,7 +8608,7 @@ COPY public.sales_proformainvoice (id, created, updated, inv_no, inv_date, statu
 
 
 --
--- Data for Name: sales_qdn; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_qdn; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_qdn (id, created, updated, status, qdn_no, qdn_date, bill_qty, ammount, discount, cgst, sgst, igst, tcs, round_off, total, narration, company_id, inv_id, free_qty, mrpvalue, omrpvalue, buyer_id, buyer_address1, buyer_address2, buyer_address3, buyer_address_type, buyer_city, buyer_country, buyer_gst_reg_type, buyer_gstin, buyer_mailingname, buyer_pincode, buyer_state, channel, division) FROM stdin;
@@ -8617,7 +8617,7 @@ COPY public.sales_qdn (id, created, updated, status, qdn_no, qdn_date, bill_qty,
 
 
 --
--- Data for Name: sales_qdnitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_qdnitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_qdnitems (id, billed, billed_qty, rate, igstrate, sgstrate, cgstrate, discount, igst, sgst, cgst, amount, item_id, inv_id, free_qty, mrp) FROM stdin;
@@ -8626,7 +8626,7 @@ COPY public.sales_qdnitems (id, billed, billed_qty, rate, igstrate, sgstrate, cg
 
 
 --
--- Data for Name: sales_rso; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_rso; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_rso (id, status, created, updated, rso_no, rso_date, bill_qty, ammount, discount, cgst, sgst, igst, tcs, round_off, total, is_ivt, narration, company_id, inv_id, buyer_id, buyer_address1, buyer_address2, buyer_address3, buyer_address_type, buyer_city, buyer_country, buyer_gst_reg_type, buyer_gstin, buyer_mailingname, buyer_pincode, buyer_state, is_cm, rso_ref, ref_date, free_qty, mrpvalue, omrpvalue, channel, division) FROM stdin;
@@ -8640,7 +8640,7 @@ COPY public.sales_rso (id, status, created, updated, rso_no, rso_date, bill_qty,
 
 
 --
--- Data for Name: sales_rsoitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_rsoitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_rsoitems (id, billed, billed_qty, rate, igstrate, sgstrate, cgstrate, discount, igst, sgst, cgst, amount, item_id, inv_id, free_qty, mrp) FROM stdin;
@@ -8651,7 +8651,7 @@ COPY public.sales_rsoitems (id, billed, billed_qty, rate, igstrate, sgstrate, cg
 
 
 --
--- Data for Name: sales_saleqty; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_saleqty; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_saleqty (id, created, updated, qty, company_id, product_id) FROM stdin;
@@ -8659,7 +8659,7 @@ COPY public.sales_saleqty (id, created, updated, qty, company_id, product_id) FR
 
 
 --
--- Data for Name: sales_salesorder; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_salesorder; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_salesorder (id, created, updated, status, so_no, ref_no, so_date, so_due_date, price_list, isscheme, buyer_address_type, buyer_gst_reg_type, buyer_state, buyer_country, buyer_city, buyer_mailingname, buyer_address1, buyer_address2, buyer_address3, buyer_pincode, buyer_gstin, shipto_address_type, shipto_country, shipto_state, shipto_city, shipto_mailingname, shipto_address1, shipto_address2, shipto_address3, shipto_pincode, shipto_gstin, mode_of_payment, other_reference, order_no, terms_of_delivery, scheme, bill_qty, free_qty, ammount, other, ol_rate, discount, cgst, sgst, igst, tcs, round_off, total, narration, buyer_id, company_id, other_ledger_id, shipto_id, shipto_pan_no) FROM stdin;
@@ -8687,7 +8687,7 @@ COPY public.sales_salesorder (id, created, updated, status, so_no, ref_no, so_da
 
 
 --
--- Data for Name: sales_salestarget; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_salestarget; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_salestarget (id, target, months, asm_id, buyer_id, region_id, rsm_id, se_id, zone_id, zsm_id, created, updated) FROM stdin;
@@ -8696,7 +8696,7 @@ COPY public.sales_salestarget (id, target, months, asm_id, buyer_id, region_id, 
 
 
 --
--- Data for Name: sales_soitems; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: sales_soitems; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.sales_soitems (id, mrp, pack, available_qty, offer_mrp, actual_qty, billed_qty, free_qty, rate, discount, igstrate, sgstrate, cgstrate, igst, sgst, cgst, amount, item_id, so_id) FROM stdin;
@@ -8711,7 +8711,7 @@ COPY public.sales_soitems (id, mrp, pack, available_qty, offer_mrp, actual_qty, 
 
 
 --
--- Data for Name: todo_todo; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: todo_todo; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.todo_todo (id, todo) FROM stdin;
@@ -8720,7 +8720,7 @@ COPY public.todo_todo (id, todo) FROM stdin;
 
 
 --
--- Data for Name: warehouse_materialtransferred; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: warehouse_materialtransferred; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.warehouse_materialtransferred (id, qty, rate, godown_id, indent_id, item_id, created, updated) FROM stdin;
@@ -8728,7 +8728,7 @@ COPY public.warehouse_materialtransferred (id, qty, rate, godown_id, indent_id, 
 
 
 --
--- Data for Name: warehouse_pallettransferentry; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: warehouse_pallettransferentry; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.warehouse_pallettransferentry (id, fgodown, tgodown, qty, created, createdby, item_id, company_id) FROM stdin;
@@ -8745,7 +8745,7 @@ COPY public.warehouse_pallettransferentry (id, fgodown, tgodown, qty, created, c
 
 
 --
--- Data for Name: warehouse_shortagedamageentry; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: warehouse_shortagedamageentry; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.warehouse_shortagedamageentry (id, shoratage, sqty, dqty, rate, sremarks, dremarks, godown_id, item_id, jobwork_id, purchase_id, created, updated, company_id, createdby) FROM stdin;
@@ -8763,7 +8763,7 @@ COPY public.warehouse_shortagedamageentry (id, shoratage, sqty, dqty, rate, srem
 
 
 --
--- Data for Name: warehouse_stock_summary; Type: TABLE DATA; Schema: public; Owner: netitest
+-- Data for Name: warehouse_stock_summary; Type: TABLE DATA; Schema: public; Owner: neti_aws_db
 --
 
 COPY public.warehouse_stock_summary (id, mrp, batch, rate, closing_balance, company_id, godown_id, product_id, created, updated) FROM stdin;
@@ -8793,665 +8793,665 @@ COPY public.warehouse_stock_summary (id, mrp, batch, rate, closing_balance, comp
 
 
 --
--- Name: accounts_loggedinuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: accounts_loggedinuser_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.accounts_loggedinuser_id_seq', 2, true);
 
 
 --
--- Name: auditlog_logentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.auditlog_logentry_id_seq', 891, true);
 
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.auth_group_id_seq', 584, true);
 
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
 
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.auth_permission_id_seq', 376, true);
 
 
 --
--- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 584, true);
 
 
 --
--- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.auth_user_id_seq', 2, true);
 
 
 --
--- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 720, true);
 
 
 --
--- Name: company_company_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: company_company_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.company_company_id_seq', 2, true);
 
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.django_admin_log_id_seq', 27, true);
 
 
 --
--- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.django_content_type_id_seq', 94, true);
 
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.django_migrations_id_seq', 151, true);
 
 
 --
--- Name: inventory_brand_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_brand_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_brand_id_seq', 1, true);
 
 
 --
--- Name: inventory_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_category_id_seq', 1, true);
 
 
 --
--- Name: inventory_class_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_class_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_class_id_seq', 1, true);
 
 
 --
--- Name: inventory_currency_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_currency_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_currency_id_seq', 1, true);
 
 
 --
--- Name: inventory_godown_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_godown_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_godown_id_seq', 7, true);
 
 
 --
--- Name: inventory_gst_list_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_gst_list_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_gst_list_id_seq', 1, false);
 
 
 --
--- Name: inventory_product_master_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_product_master_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_product_master_id_seq', 5, true);
 
 
 --
--- Name: inventory_producttype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_producttype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_producttype_id_seq', 2, true);
 
 
 --
--- Name: inventory_scheme_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_scheme_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_scheme_id_seq', 1, false);
 
 
 --
--- Name: inventory_std_rate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_std_rate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_std_rate_id_seq', 4, true);
 
 
 --
--- Name: inventory_subbrand_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_subbrand_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_subbrand_id_seq', 1, true);
 
 
 --
--- Name: inventory_subclass_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_subclass_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_subclass_id_seq', 1, true);
 
 
 --
--- Name: inventory_unitofmeasure_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_unitofmeasure_id_seq', 1, true);
 
 
 --
--- Name: inventory_uqc_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: inventory_uqc_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.inventory_uqc_id_seq', 44, true);
 
 
 --
--- Name: ledgers_asm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_asm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_asm_id_seq', 14, true);
 
 
 --
--- Name: ledgers_city_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_city_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_city_id_seq', 11, true);
 
 
 --
--- Name: ledgers_country_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_country_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_country_id_seq', 4, true);
 
 
 --
--- Name: ledgers_currency_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_currency_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_currency_id_seq', 1, false);
 
 
 --
--- Name: ledgers_division_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_division_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_division_id_seq', 4, true);
 
 
 --
--- Name: ledgers_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_group_id_seq', 6, true);
 
 
 --
--- Name: ledgers_ledgerstype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_ledgerstype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_ledgerstype_id_seq', 13, true);
 
 
 --
--- Name: ledgers_party_contact_details_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_party_contact_details_id_seq', 1, false);
 
 
 --
--- Name: ledgers_party_master_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_party_master_id_seq', 12, true);
 
 
 --
--- Name: ledgers_party_master_products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_party_master_products_id_seq', 1, false);
 
 
 --
--- Name: ledgers_partytype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_partytype_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_partytype_id_seq', 3, true);
 
 
 --
--- Name: ledgers_price_level_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_price_level_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_price_level_id_seq', 5, true);
 
 
 --
--- Name: ledgers_price_list_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_price_list_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_price_list_id_seq', 6, true);
 
 
 --
--- Name: ledgers_region_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_region_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_region_id_seq', 12, true);
 
 
 --
--- Name: ledgers_rsm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_rsm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_rsm_id_seq', 13, true);
 
 
 --
--- Name: ledgers_se_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_se_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_se_id_seq', 14, true);
 
 
 --
--- Name: ledgers_state_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_state_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_state_id_seq', 8, true);
 
 
 --
--- Name: ledgers_zone_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_zone_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_zone_id_seq', 6, true);
 
 
 --
--- Name: ledgers_zsm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: ledgers_zsm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.ledgers_zsm_id_seq', 6, true);
 
 
 --
--- Name: planning_bom_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: planning_bom_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.planning_bom_id_seq', 3, true);
 
 
 --
--- Name: planning_bomitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: planning_bomitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.planning_bomitems_id_seq', 13, true);
 
 
 --
--- Name: planning_joborder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: planning_joborder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.planning_joborder_id_seq', 7, true);
 
 
 --
--- Name: planning_salesprojection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: planning_salesprojection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.planning_salesprojection_id_seq', 1, false);
 
 
 --
--- Name: production_consitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: production_consitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.production_consitems_id_seq', 1, true);
 
 
 --
--- Name: production_consumableindent_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: production_consumableindent_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.production_consumableindent_id_seq', 1, true);
 
 
 --
--- Name: production_consumption_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: production_consumption_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.production_consumption_id_seq', 6, true);
 
 
 --
--- Name: production_consumptionitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: production_consumptionitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.production_consumptionitems_id_seq', 15, true);
 
 
 --
--- Name: production_jobcard_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: production_jobcard_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.production_jobcard_id_seq', 8, true);
 
 
 --
--- Name: production_rmindent_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: production_rmindent_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.production_rmindent_id_seq', 8, true);
 
 
 --
--- Name: production_rmindentitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: production_rmindentitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.production_rmindentitems_id_seq', 14, true);
 
 
 --
--- Name: production_rmitemgodown_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: production_rmitemgodown_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.production_rmitemgodown_id_seq', 10, true);
 
 
 --
--- Name: purchase_debitnote_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_debitnote_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_debitnote_id_seq', 1, true);
 
 
 --
--- Name: purchase_debitnoteitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_debitnoteitems_id_seq', 1, false);
 
 
 --
--- Name: purchase_grn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_grn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_grn_id_seq', 7, true);
 
 
 --
--- Name: purchase_grnitems_godown_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_grnitems_godown_id_seq', 1, false);
 
 
 --
--- Name: purchase_grnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_grnitems_id_seq', 8, true);
 
 
 --
--- Name: purchase_piitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_piitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_piitems_id_seq', 8, true);
 
 
 --
--- Name: purchase_poitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_poitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_poitems_id_seq', 9, true);
 
 
 --
--- Name: purchase_purchase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_purchase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_purchase_id_seq', 7, true);
 
 
 --
--- Name: purchase_purchase_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_purchase_order_id_seq', 7, true);
 
 
 --
--- Name: purchase_purchasereturn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_purchasereturn_id_seq', 1, true);
 
 
 --
--- Name: purchase_purchasereturnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_purchasereturnitems_id_seq', 1, false);
 
 
 --
--- Name: purchase_qdn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_qdn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_qdn_id_seq', 1, true);
 
 
 --
--- Name: purchase_qdnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.purchase_qdnitems_id_seq', 1, false);
 
 
 --
--- Name: sales_creditnote_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_creditnote_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_creditnote_id_seq', 6, true);
 
 
 --
--- Name: sales_creditnoteitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_creditnoteitems_id_seq', 5, true);
 
 
 --
--- Name: sales_delivery_note_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_delivery_note_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_delivery_note_id_seq', 7, true);
 
 
 --
--- Name: sales_dnitems_godown_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_dnitems_godown_id_seq', 14, true);
 
 
 --
--- Name: sales_dnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_dnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_dnitems_id_seq', 7, true);
 
 
 --
--- Name: sales_invitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_invitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_invitems_id_seq', 11, true);
 
 
 --
--- Name: sales_invoice_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_invoice_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_invoice_id_seq', 11, true);
 
 
 --
--- Name: sales_loadingsheet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_loadingsheet_id_seq', 7, true);
 
 
 --
--- Name: sales_packingsheet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_packingsheet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_packingsheet_id_seq', 2, true);
 
 
 --
--- Name: sales_proformainvitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_proformainvitems_id_seq', 1, true);
 
 
 --
--- Name: sales_proformainvoice_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_proformainvoice_id_seq', 1, true);
 
 
 --
--- Name: sales_qdn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_qdn_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_qdn_id_seq', 1, true);
 
 
 --
--- Name: sales_qdnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_qdnitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_qdnitems_id_seq', 1, true);
 
 
 --
--- Name: sales_rso_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_rso_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_rso_id_seq', 9, true);
 
 
 --
--- Name: sales_rsoitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_rsoitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_rsoitems_id_seq', 3, true);
 
 
 --
--- Name: sales_saleqty_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_saleqty_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_saleqty_id_seq', 1, false);
 
 
 --
--- Name: sales_salesorder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_salesorder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_salesorder_id_seq', 34, true);
 
 
 --
--- Name: sales_salestarget_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_salestarget_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_salestarget_id_seq', 1, true);
 
 
 --
--- Name: sales_soitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: sales_soitems_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.sales_soitems_id_seq', 10, true);
 
 
 --
--- Name: todo_todo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: todo_todo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.todo_todo_id_seq', 1, true);
 
 
 --
--- Name: warehouse_materialtransferred_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.warehouse_materialtransferred_id_seq', 1, false);
 
 
 --
--- Name: warehouse_pallettransferentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.warehouse_pallettransferentry_id_seq', 9, true);
 
 
 --
--- Name: warehouse_shortagedamageentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.warehouse_shortagedamageentry_id_seq', 10, true);
 
 
 --
--- Name: warehouse_stock_summary_id_seq; Type: SEQUENCE SET; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary_id_seq; Type: SEQUENCE SET; Schema: public; Owner: neti_aws_db
 --
 
 SELECT pg_catalog.setval('public.warehouse_stock_summary_id_seq', 55, true);
 
 
 --
--- Name: accounts_loggedinuser accounts_loggedinuser_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: accounts_loggedinuser accounts_loggedinuser_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.accounts_loggedinuser
@@ -9459,7 +9459,7 @@ ALTER TABLE ONLY public.accounts_loggedinuser
 
 
 --
--- Name: accounts_loggedinuser accounts_loggedinuser_user_id_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: accounts_loggedinuser accounts_loggedinuser_user_id_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.accounts_loggedinuser
@@ -9467,7 +9467,7 @@ ALTER TABLE ONLY public.accounts_loggedinuser
 
 
 --
--- Name: auditlog_logentry auditlog_logentry_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auditlog_logentry auditlog_logentry_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auditlog_logentry
@@ -9475,7 +9475,7 @@ ALTER TABLE ONLY public.auditlog_logentry
 
 
 --
--- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_group
@@ -9483,7 +9483,7 @@ ALTER TABLE ONLY public.auth_group
 
 
 --
--- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_group_permissions
@@ -9491,7 +9491,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 
 
 --
--- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_group_permissions
@@ -9499,7 +9499,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 
 
 --
--- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_group
@@ -9507,7 +9507,7 @@ ALTER TABLE ONLY public.auth_group
 
 
 --
--- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_permission
@@ -9515,7 +9515,7 @@ ALTER TABLE ONLY public.auth_permission
 
 
 --
--- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_permission
@@ -9523,7 +9523,7 @@ ALTER TABLE ONLY public.auth_permission
 
 
 --
--- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_groups
@@ -9531,7 +9531,7 @@ ALTER TABLE ONLY public.auth_user_groups
 
 
 --
--- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_groups
@@ -9539,7 +9539,7 @@ ALTER TABLE ONLY public.auth_user_groups
 
 
 --
--- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user
@@ -9547,7 +9547,7 @@ ALTER TABLE ONLY public.auth_user
 
 
 --
--- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_user_permissions
@@ -9555,7 +9555,7 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 
 
 --
--- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_user_permissions
@@ -9563,7 +9563,7 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 
 
 --
--- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user
@@ -9571,7 +9571,7 @@ ALTER TABLE ONLY public.auth_user
 
 
 --
--- Name: company_company company_company_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: company_company company_company_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.company_company
@@ -9579,7 +9579,7 @@ ALTER TABLE ONLY public.company_company
 
 
 --
--- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_admin_log
@@ -9587,7 +9587,7 @@ ALTER TABLE ONLY public.django_admin_log
 
 
 --
--- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_content_type
@@ -9595,7 +9595,7 @@ ALTER TABLE ONLY public.django_content_type
 
 
 --
--- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_content_type
@@ -9603,7 +9603,7 @@ ALTER TABLE ONLY public.django_content_type
 
 
 --
--- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_migrations
@@ -9611,7 +9611,7 @@ ALTER TABLE ONLY public.django_migrations
 
 
 --
--- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_session
@@ -9619,7 +9619,7 @@ ALTER TABLE ONLY public.django_session
 
 
 --
--- Name: inventory_brand inventory_brand_code_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_brand inventory_brand_code_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_brand
@@ -9627,7 +9627,7 @@ ALTER TABLE ONLY public.inventory_brand
 
 
 --
--- Name: inventory_brand inventory_brand_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_brand inventory_brand_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_brand
@@ -9635,7 +9635,7 @@ ALTER TABLE ONLY public.inventory_brand
 
 
 --
--- Name: inventory_brand inventory_brand_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_brand inventory_brand_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_brand
@@ -9643,7 +9643,7 @@ ALTER TABLE ONLY public.inventory_brand
 
 
 --
--- Name: inventory_category inventory_category_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_category inventory_category_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_category
@@ -9651,7 +9651,7 @@ ALTER TABLE ONLY public.inventory_category
 
 
 --
--- Name: inventory_category inventory_category_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_category inventory_category_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_category
@@ -9659,7 +9659,7 @@ ALTER TABLE ONLY public.inventory_category
 
 
 --
--- Name: inventory_class inventory_class_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_class inventory_class_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_class
@@ -9667,7 +9667,7 @@ ALTER TABLE ONLY public.inventory_class
 
 
 --
--- Name: inventory_class inventory_class_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_class inventory_class_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_class
@@ -9675,7 +9675,7 @@ ALTER TABLE ONLY public.inventory_class
 
 
 --
--- Name: inventory_currency inventory_currency_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_currency inventory_currency_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_currency
@@ -9683,7 +9683,7 @@ ALTER TABLE ONLY public.inventory_currency
 
 
 --
--- Name: inventory_godown inventory_godown_name_149036a1_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_godown inventory_godown_name_149036a1_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_godown
@@ -9691,7 +9691,7 @@ ALTER TABLE ONLY public.inventory_godown
 
 
 --
--- Name: inventory_godown inventory_godown_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_godown inventory_godown_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_godown
@@ -9699,7 +9699,7 @@ ALTER TABLE ONLY public.inventory_godown
 
 
 --
--- Name: inventory_gst_list inventory_gst_list_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_gst_list inventory_gst_list_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_gst_list
@@ -9707,7 +9707,7 @@ ALTER TABLE ONLY public.inventory_gst_list
 
 
 --
--- Name: inventory_product_master inventory_product_master_article_code_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_master_article_code_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -9715,7 +9715,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_master_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_master_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -9723,7 +9723,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_master_product_code_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_master_product_code_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -9731,7 +9731,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_master_product_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_master_product_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -9739,7 +9739,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_producttype inventory_producttype_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_producttype inventory_producttype_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_producttype
@@ -9747,7 +9747,7 @@ ALTER TABLE ONLY public.inventory_producttype
 
 
 --
--- Name: inventory_producttype inventory_producttype_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_producttype inventory_producttype_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_producttype
@@ -9755,7 +9755,7 @@ ALTER TABLE ONLY public.inventory_producttype
 
 
 --
--- Name: inventory_scheme inventory_scheme_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_scheme inventory_scheme_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_scheme
@@ -9763,7 +9763,7 @@ ALTER TABLE ONLY public.inventory_scheme
 
 
 --
--- Name: inventory_std_rate inventory_std_rate_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_std_rate inventory_std_rate_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_std_rate
@@ -9771,7 +9771,7 @@ ALTER TABLE ONLY public.inventory_std_rate
 
 
 --
--- Name: inventory_std_rate inventory_std_rate_product_id_rate_type_4f733de5_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_std_rate inventory_std_rate_product_id_rate_type_4f733de5_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_std_rate
@@ -9779,7 +9779,7 @@ ALTER TABLE ONLY public.inventory_std_rate
 
 
 --
--- Name: inventory_subbrand inventory_subbrand_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_subbrand inventory_subbrand_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_subbrand
@@ -9787,7 +9787,7 @@ ALTER TABLE ONLY public.inventory_subbrand
 
 
 --
--- Name: inventory_subbrand inventory_subbrand_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_subbrand inventory_subbrand_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_subbrand
@@ -9795,7 +9795,7 @@ ALTER TABLE ONLY public.inventory_subbrand
 
 
 --
--- Name: inventory_subclass inventory_subclass_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_subclass inventory_subclass_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_subclass
@@ -9803,7 +9803,7 @@ ALTER TABLE ONLY public.inventory_subclass
 
 
 --
--- Name: inventory_subclass inventory_subclass_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_subclass inventory_subclass_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_subclass
@@ -9811,7 +9811,7 @@ ALTER TABLE ONLY public.inventory_subclass
 
 
 --
--- Name: inventory_unitofmeasure inventory_unitofmeasure_name_e10c3ae2_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure inventory_unitofmeasure_name_e10c3ae2_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_unitofmeasure
@@ -9819,7 +9819,7 @@ ALTER TABLE ONLY public.inventory_unitofmeasure
 
 
 --
--- Name: inventory_unitofmeasure inventory_unitofmeasure_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure inventory_unitofmeasure_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_unitofmeasure
@@ -9827,7 +9827,7 @@ ALTER TABLE ONLY public.inventory_unitofmeasure
 
 
 --
--- Name: inventory_uqc inventory_uqc_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_uqc inventory_uqc_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_uqc
@@ -9835,7 +9835,7 @@ ALTER TABLE ONLY public.inventory_uqc
 
 
 --
--- Name: ledgers_asm ledgers_asm_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_asm ledgers_asm_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_asm
@@ -9843,7 +9843,7 @@ ALTER TABLE ONLY public.ledgers_asm
 
 
 --
--- Name: ledgers_asm ledgers_asm_zone_id_region_id_zsm_id_rsm_id_name_df60e1b4_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_asm ledgers_asm_zone_id_region_id_zsm_id_rsm_id_name_df60e1b4_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_asm
@@ -9851,7 +9851,7 @@ ALTER TABLE ONLY public.ledgers_asm
 
 
 --
--- Name: ledgers_city ledgers_city_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_city ledgers_city_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_city
@@ -9859,7 +9859,7 @@ ALTER TABLE ONLY public.ledgers_city
 
 
 --
--- Name: ledgers_city ledgers_city_state_id_name_22ed0a27_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_city ledgers_city_state_id_name_22ed0a27_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_city
@@ -9867,7 +9867,7 @@ ALTER TABLE ONLY public.ledgers_city
 
 
 --
--- Name: ledgers_country ledgers_country_name_039a24ef_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_country ledgers_country_name_039a24ef_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_country
@@ -9875,7 +9875,7 @@ ALTER TABLE ONLY public.ledgers_country
 
 
 --
--- Name: ledgers_country ledgers_country_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_country ledgers_country_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_country
@@ -9883,7 +9883,7 @@ ALTER TABLE ONLY public.ledgers_country
 
 
 --
--- Name: ledgers_currency ledgers_currency_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_currency ledgers_currency_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_currency
@@ -9891,7 +9891,7 @@ ALTER TABLE ONLY public.ledgers_currency
 
 
 --
--- Name: ledgers_division ledgers_division_name_e6669870_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_division ledgers_division_name_e6669870_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_division
@@ -9899,7 +9899,7 @@ ALTER TABLE ONLY public.ledgers_division
 
 
 --
--- Name: ledgers_division ledgers_division_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_division ledgers_division_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_division
@@ -9907,7 +9907,7 @@ ALTER TABLE ONLY public.ledgers_division
 
 
 --
--- Name: ledgers_group ledgers_group_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_group ledgers_group_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_group
@@ -9915,7 +9915,7 @@ ALTER TABLE ONLY public.ledgers_group
 
 
 --
--- Name: ledgers_group ledgers_group_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_group ledgers_group_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_group
@@ -9923,7 +9923,7 @@ ALTER TABLE ONLY public.ledgers_group
 
 
 --
--- Name: ledgers_ledgerstype ledgers_ledgerstype_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_ledgerstype ledgers_ledgerstype_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_ledgerstype
@@ -9931,7 +9931,7 @@ ALTER TABLE ONLY public.ledgers_ledgerstype
 
 
 --
--- Name: ledgers_party_contact_details ledgers_party_contact_details_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details ledgers_party_contact_details_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_contact_details
@@ -9939,7 +9939,7 @@ ALTER TABLE ONLY public.ledgers_party_contact_details
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_name_group_id_09629175_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_name_group_id_09629175_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -9947,7 +9947,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -9955,7 +9955,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master_products ledgers_party_master_pro_party_master_id_product__8436537a_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products ledgers_party_master_pro_party_master_id_product__8436537a_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master_products
@@ -9963,7 +9963,7 @@ ALTER TABLE ONLY public.ledgers_party_master_products
 
 
 --
--- Name: ledgers_party_master_products ledgers_party_master_products_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products ledgers_party_master_products_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master_products
@@ -9971,7 +9971,7 @@ ALTER TABLE ONLY public.ledgers_party_master_products
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_vendor_code_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_vendor_code_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -9979,7 +9979,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_partytype ledgers_partytype_code_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_partytype ledgers_partytype_code_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_partytype
@@ -9987,7 +9987,7 @@ ALTER TABLE ONLY public.ledgers_partytype
 
 
 --
--- Name: ledgers_partytype ledgers_partytype_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_partytype ledgers_partytype_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_partytype
@@ -9995,7 +9995,7 @@ ALTER TABLE ONLY public.ledgers_partytype
 
 
 --
--- Name: ledgers_partytype ledgers_partytype_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_partytype ledgers_partytype_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_partytype
@@ -10003,7 +10003,7 @@ ALTER TABLE ONLY public.ledgers_partytype
 
 
 --
--- Name: ledgers_price_level ledgers_price_level_code_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_price_level ledgers_price_level_code_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_price_level
@@ -10011,7 +10011,7 @@ ALTER TABLE ONLY public.ledgers_price_level
 
 
 --
--- Name: ledgers_price_level ledgers_price_level_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_price_level ledgers_price_level_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_price_level
@@ -10019,7 +10019,7 @@ ALTER TABLE ONLY public.ledgers_price_level
 
 
 --
--- Name: ledgers_price_list ledgers_price_list_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_price_list ledgers_price_list_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_price_list
@@ -10027,7 +10027,7 @@ ALTER TABLE ONLY public.ledgers_price_list
 
 
 --
--- Name: ledgers_price_list ledgers_price_list_price_level_id_product_id_d824ec78_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_price_list ledgers_price_list_price_level_id_product_id_d824ec78_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_price_list
@@ -10035,7 +10035,7 @@ ALTER TABLE ONLY public.ledgers_price_list
 
 
 --
--- Name: ledgers_region ledgers_region_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_region ledgers_region_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_region
@@ -10043,7 +10043,7 @@ ALTER TABLE ONLY public.ledgers_region
 
 
 --
--- Name: ledgers_region ledgers_region_zone_id_name_23159cbb_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_region ledgers_region_zone_id_name_23159cbb_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_region
@@ -10051,7 +10051,7 @@ ALTER TABLE ONLY public.ledgers_region
 
 
 --
--- Name: ledgers_rsm ledgers_rsm_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_rsm ledgers_rsm_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_rsm
@@ -10059,7 +10059,7 @@ ALTER TABLE ONLY public.ledgers_rsm
 
 
 --
--- Name: ledgers_rsm ledgers_rsm_zone_id_region_id_zsm_id_name_3a52e90b_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_rsm ledgers_rsm_zone_id_region_id_zsm_id_name_3a52e90b_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_rsm
@@ -10067,7 +10067,7 @@ ALTER TABLE ONLY public.ledgers_rsm
 
 
 --
--- Name: ledgers_se ledgers_se_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_se ledgers_se_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_se
@@ -10075,7 +10075,7 @@ ALTER TABLE ONLY public.ledgers_se
 
 
 --
--- Name: ledgers_se ledgers_se_zone_id_region_id_zsm_id_705b4a50_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_se ledgers_se_zone_id_region_id_zsm_id_705b4a50_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_se
@@ -10083,7 +10083,7 @@ ALTER TABLE ONLY public.ledgers_se
 
 
 --
--- Name: ledgers_state ledgers_state_country_id_name_b7ded001_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_state ledgers_state_country_id_name_b7ded001_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_state
@@ -10091,7 +10091,7 @@ ALTER TABLE ONLY public.ledgers_state
 
 
 --
--- Name: ledgers_state ledgers_state_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_state ledgers_state_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_state
@@ -10099,7 +10099,7 @@ ALTER TABLE ONLY public.ledgers_state
 
 
 --
--- Name: ledgers_zone ledgers_zone_name_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_zone ledgers_zone_name_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_zone
@@ -10107,7 +10107,7 @@ ALTER TABLE ONLY public.ledgers_zone
 
 
 --
--- Name: ledgers_zone ledgers_zone_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_zone ledgers_zone_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_zone
@@ -10115,7 +10115,7 @@ ALTER TABLE ONLY public.ledgers_zone
 
 
 --
--- Name: ledgers_zsm ledgers_zsm_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_zsm ledgers_zsm_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_zsm
@@ -10123,7 +10123,7 @@ ALTER TABLE ONLY public.ledgers_zsm
 
 
 --
--- Name: ledgers_zsm ledgers_zsm_zone_id_name_244578bb_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_zsm ledgers_zsm_zone_id_name_244578bb_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_zsm
@@ -10131,7 +10131,7 @@ ALTER TABLE ONLY public.ledgers_zsm
 
 
 --
--- Name: planning_bom planning_bom_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_bom planning_bom_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_bom
@@ -10139,7 +10139,7 @@ ALTER TABLE ONLY public.planning_bom
 
 
 --
--- Name: planning_bomitems planning_bomitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_bomitems planning_bomitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_bomitems
@@ -10147,7 +10147,7 @@ ALTER TABLE ONLY public.planning_bomitems
 
 
 --
--- Name: planning_joborder planning_joborder_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_joborder planning_joborder_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_joborder
@@ -10155,7 +10155,7 @@ ALTER TABLE ONLY public.planning_joborder
 
 
 --
--- Name: planning_salesprojection planning_salesprojection_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_salesprojection planning_salesprojection_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_salesprojection
@@ -10163,7 +10163,7 @@ ALTER TABLE ONLY public.planning_salesprojection
 
 
 --
--- Name: planning_salesprojection planning_salesprojection_product_id_division_id_f_9c2495f4_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_salesprojection planning_salesprojection_product_id_division_id_f_9c2495f4_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_salesprojection
@@ -10171,7 +10171,7 @@ ALTER TABLE ONLY public.planning_salesprojection
 
 
 --
--- Name: production_consitems production_consitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consitems production_consitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consitems
@@ -10179,7 +10179,7 @@ ALTER TABLE ONLY public.production_consitems
 
 
 --
--- Name: production_consumableindent production_consumableindent_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumableindent production_consumableindent_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumableindent
@@ -10187,7 +10187,7 @@ ALTER TABLE ONLY public.production_consumableindent
 
 
 --
--- Name: production_consumption production_consumption_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumption production_consumption_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumption
@@ -10195,7 +10195,7 @@ ALTER TABLE ONLY public.production_consumption
 
 
 --
--- Name: production_consumptionitems production_consumptionitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumptionitems production_consumptionitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumptionitems
@@ -10203,7 +10203,7 @@ ALTER TABLE ONLY public.production_consumptionitems
 
 
 --
--- Name: production_jobcard production_jobcard_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_jobcard production_jobcard_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_jobcard
@@ -10211,7 +10211,7 @@ ALTER TABLE ONLY public.production_jobcard
 
 
 --
--- Name: production_rmindent production_rmindent_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmindent production_rmindent_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindent
@@ -10219,7 +10219,7 @@ ALTER TABLE ONLY public.production_rmindent
 
 
 --
--- Name: production_rmindentitems production_rmindentitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmindentitems production_rmindentitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindentitems
@@ -10227,7 +10227,7 @@ ALTER TABLE ONLY public.production_rmindentitems
 
 
 --
--- Name: production_rmitemgodown production_rmitemgodown_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmitemgodown production_rmitemgodown_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmitemgodown
@@ -10235,7 +10235,7 @@ ALTER TABLE ONLY public.production_rmitemgodown
 
 
 --
--- Name: purchase_debitnote purchase_debitnote_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_debitnote purchase_debitnote_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnote
@@ -10243,7 +10243,7 @@ ALTER TABLE ONLY public.purchase_debitnote
 
 
 --
--- Name: purchase_debitnoteitems purchase_debitnoteitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems purchase_debitnoteitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnoteitems
@@ -10251,7 +10251,7 @@ ALTER TABLE ONLY public.purchase_debitnoteitems
 
 
 --
--- Name: purchase_grn purchase_grn_company_id_grn_no_4c65735e_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grn purchase_grn_company_id_grn_no_4c65735e_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn
@@ -10259,7 +10259,7 @@ ALTER TABLE ONLY public.purchase_grn
 
 
 --
--- Name: purchase_grn purchase_grn_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grn purchase_grn_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn
@@ -10267,7 +10267,7 @@ ALTER TABLE ONLY public.purchase_grn
 
 
 --
--- Name: purchase_grnitems_godown purchase_grnitems_godown_grnitems_id_godown_id_496b6a3e_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown purchase_grnitems_godown_grnitems_id_godown_id_496b6a3e_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems_godown
@@ -10275,7 +10275,7 @@ ALTER TABLE ONLY public.purchase_grnitems_godown
 
 
 --
--- Name: purchase_grnitems_godown purchase_grnitems_godown_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown purchase_grnitems_godown_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems_godown
@@ -10283,7 +10283,7 @@ ALTER TABLE ONLY public.purchase_grnitems_godown
 
 
 --
--- Name: purchase_grnitems purchase_grnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems purchase_grnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems
@@ -10291,7 +10291,7 @@ ALTER TABLE ONLY public.purchase_grnitems
 
 
 --
--- Name: purchase_piitems purchase_piitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_piitems purchase_piitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_piitems
@@ -10299,7 +10299,7 @@ ALTER TABLE ONLY public.purchase_piitems
 
 
 --
--- Name: purchase_poitems purchase_poitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_poitems purchase_poitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_poitems
@@ -10307,7 +10307,7 @@ ALTER TABLE ONLY public.purchase_poitems
 
 
 --
--- Name: purchase_purchase purchase_purchase_company_id_pi_no_7df49b86_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase purchase_purchase_company_id_pi_no_7df49b86_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase
@@ -10315,7 +10315,7 @@ ALTER TABLE ONLY public.purchase_purchase
 
 
 --
--- Name: purchase_purchase_order purchase_purchase_order_company_id_po_no_4aab01de_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order purchase_purchase_order_company_id_po_no_4aab01de_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase_order
@@ -10323,7 +10323,7 @@ ALTER TABLE ONLY public.purchase_purchase_order
 
 
 --
--- Name: purchase_purchase_order purchase_purchase_order_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order purchase_purchase_order_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase_order
@@ -10331,7 +10331,7 @@ ALTER TABLE ONLY public.purchase_purchase_order
 
 
 --
--- Name: purchase_purchase_order purchase_purchase_order_ref_no_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order purchase_purchase_order_ref_no_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase_order
@@ -10339,7 +10339,7 @@ ALTER TABLE ONLY public.purchase_purchase_order
 
 
 --
--- Name: purchase_purchase purchase_purchase_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase purchase_purchase_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase
@@ -10347,7 +10347,7 @@ ALTER TABLE ONLY public.purchase_purchase
 
 
 --
--- Name: purchase_purchasereturn purchase_purchasereturn_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn purchase_purchasereturn_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturn
@@ -10355,7 +10355,7 @@ ALTER TABLE ONLY public.purchase_purchasereturn
 
 
 --
--- Name: purchase_purchasereturnitems purchase_purchasereturnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems purchase_purchasereturnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturnitems
@@ -10363,7 +10363,7 @@ ALTER TABLE ONLY public.purchase_purchasereturnitems
 
 
 --
--- Name: purchase_qdn purchase_qdn_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_qdn purchase_qdn_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdn
@@ -10371,7 +10371,7 @@ ALTER TABLE ONLY public.purchase_qdn
 
 
 --
--- Name: purchase_qdnitems purchase_qdnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems purchase_qdnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdnitems
@@ -10379,7 +10379,7 @@ ALTER TABLE ONLY public.purchase_qdnitems
 
 
 --
--- Name: sales_creditnote sales_creditnote_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_creditnote sales_creditnote_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnote
@@ -10387,7 +10387,7 @@ ALTER TABLE ONLY public.sales_creditnote
 
 
 --
--- Name: sales_creditnoteitems sales_creditnoteitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems sales_creditnoteitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnoteitems
@@ -10395,7 +10395,7 @@ ALTER TABLE ONLY public.sales_creditnoteitems
 
 
 --
--- Name: sales_delivery_note sales_delivery_note_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_delivery_note sales_delivery_note_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_delivery_note
@@ -10403,7 +10403,7 @@ ALTER TABLE ONLY public.sales_delivery_note
 
 
 --
--- Name: sales_delivery_note sales_delivery_note_sales_order_id_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_delivery_note sales_delivery_note_sales_order_id_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_delivery_note
@@ -10411,7 +10411,7 @@ ALTER TABLE ONLY public.sales_delivery_note
 
 
 --
--- Name: sales_dnitems_godown sales_dnitems_godown_dnitems_id_godown_id_3fd124db_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown sales_dnitems_godown_dnitems_id_godown_id_3fd124db_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems_godown
@@ -10419,7 +10419,7 @@ ALTER TABLE ONLY public.sales_dnitems_godown
 
 
 --
--- Name: sales_dnitems_godown sales_dnitems_godown_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown sales_dnitems_godown_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems_godown
@@ -10427,7 +10427,7 @@ ALTER TABLE ONLY public.sales_dnitems_godown
 
 
 --
--- Name: sales_dnitems sales_dnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_dnitems sales_dnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems
@@ -10435,7 +10435,7 @@ ALTER TABLE ONLY public.sales_dnitems
 
 
 --
--- Name: sales_invitems sales_invitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invitems sales_invitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invitems
@@ -10443,7 +10443,7 @@ ALTER TABLE ONLY public.sales_invitems
 
 
 --
--- Name: sales_invoice sales_invoice_company_id_inv_no_957ded20_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invoice sales_invoice_company_id_inv_no_957ded20_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice
@@ -10451,7 +10451,7 @@ ALTER TABLE ONLY public.sales_invoice
 
 
 --
--- Name: sales_invoice sales_invoice_dn_id_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invoice sales_invoice_dn_id_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice
@@ -10459,7 +10459,7 @@ ALTER TABLE ONLY public.sales_invoice
 
 
 --
--- Name: sales_invoice sales_invoice_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invoice sales_invoice_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice
@@ -10467,7 +10467,7 @@ ALTER TABLE ONLY public.sales_invoice
 
 
 --
--- Name: sales_loadingsheet sales_loadingsheet_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet sales_loadingsheet_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_loadingsheet
@@ -10475,7 +10475,7 @@ ALTER TABLE ONLY public.sales_loadingsheet
 
 
 --
--- Name: sales_packingsheet sales_packingsheet_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_packingsheet sales_packingsheet_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_packingsheet
@@ -10483,7 +10483,7 @@ ALTER TABLE ONLY public.sales_packingsheet
 
 
 --
--- Name: sales_proformainvitems sales_proformainvitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems sales_proformainvitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvitems
@@ -10491,7 +10491,7 @@ ALTER TABLE ONLY public.sales_proformainvitems
 
 
 --
--- Name: sales_proformainvoice sales_proformainvoice_dn_id_key; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice sales_proformainvoice_dn_id_key; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvoice
@@ -10499,7 +10499,7 @@ ALTER TABLE ONLY public.sales_proformainvoice
 
 
 --
--- Name: sales_proformainvoice sales_proformainvoice_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice sales_proformainvoice_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvoice
@@ -10507,7 +10507,7 @@ ALTER TABLE ONLY public.sales_proformainvoice
 
 
 --
--- Name: sales_qdn sales_qdn_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_qdn sales_qdn_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdn
@@ -10515,7 +10515,7 @@ ALTER TABLE ONLY public.sales_qdn
 
 
 --
--- Name: sales_qdnitems sales_qdnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_qdnitems sales_qdnitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdnitems
@@ -10523,7 +10523,7 @@ ALTER TABLE ONLY public.sales_qdnitems
 
 
 --
--- Name: sales_rso sales_rso_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_rso sales_rso_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rso
@@ -10531,7 +10531,7 @@ ALTER TABLE ONLY public.sales_rso
 
 
 --
--- Name: sales_rsoitems sales_rsoitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_rsoitems sales_rsoitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rsoitems
@@ -10539,7 +10539,7 @@ ALTER TABLE ONLY public.sales_rsoitems
 
 
 --
--- Name: sales_saleqty sales_saleqty_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_saleqty sales_saleqty_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_saleqty
@@ -10547,7 +10547,7 @@ ALTER TABLE ONLY public.sales_saleqty
 
 
 --
--- Name: sales_salesorder sales_salesorder_company_id_so_no_6ac52c11_uniq; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salesorder sales_salesorder_company_id_so_no_6ac52c11_uniq; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salesorder
@@ -10555,7 +10555,7 @@ ALTER TABLE ONLY public.sales_salesorder
 
 
 --
--- Name: sales_salesorder sales_salesorder_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salesorder sales_salesorder_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salesorder
@@ -10563,7 +10563,7 @@ ALTER TABLE ONLY public.sales_salesorder
 
 
 --
--- Name: sales_salestarget sales_salestarget_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salestarget sales_salestarget_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget
@@ -10571,7 +10571,7 @@ ALTER TABLE ONLY public.sales_salestarget
 
 
 --
--- Name: sales_soitems sales_soitems_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_soitems sales_soitems_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_soitems
@@ -10579,7 +10579,7 @@ ALTER TABLE ONLY public.sales_soitems
 
 
 --
--- Name: todo_todo todo_todo_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: todo_todo todo_todo_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.todo_todo
@@ -10587,7 +10587,7 @@ ALTER TABLE ONLY public.todo_todo
 
 
 --
--- Name: warehouse_materialtransferred warehouse_materialtransferred_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred warehouse_materialtransferred_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_materialtransferred
@@ -10595,7 +10595,7 @@ ALTER TABLE ONLY public.warehouse_materialtransferred
 
 
 --
--- Name: warehouse_pallettransferentry warehouse_pallettransferentry_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry warehouse_pallettransferentry_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_pallettransferentry
@@ -10603,7 +10603,7 @@ ALTER TABLE ONLY public.warehouse_pallettransferentry
 
 
 --
--- Name: warehouse_shortagedamageentry warehouse_shortagedamageentry_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry warehouse_shortagedamageentry_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_shortagedamageentry
@@ -10611,7 +10611,7 @@ ALTER TABLE ONLY public.warehouse_shortagedamageentry
 
 
 --
--- Name: warehouse_stock_summary warehouse_stock_summary_pkey; Type: CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary warehouse_stock_summary_pkey; Type: CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_stock_summary
@@ -10619,1624 +10619,1624 @@ ALTER TABLE ONLY public.warehouse_stock_summary
 
 
 --
--- Name: auditlog_logentry_action_229afe39; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_action_229afe39; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auditlog_logentry_action_229afe39 ON public.auditlog_logentry USING btree (action);
 
 
 --
--- Name: auditlog_logentry_actor_id_959271d2; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_actor_id_959271d2; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auditlog_logentry_actor_id_959271d2 ON public.auditlog_logentry USING btree (actor_id);
 
 
 --
--- Name: auditlog_logentry_content_type_id_75830218; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_content_type_id_75830218; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auditlog_logentry_content_type_id_75830218 ON public.auditlog_logentry USING btree (content_type_id);
 
 
 --
--- Name: auditlog_logentry_object_id_09c2eee8; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_object_id_09c2eee8; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auditlog_logentry_object_id_09c2eee8 ON public.auditlog_logentry USING btree (object_id);
 
 
 --
--- Name: auditlog_logentry_object_pk_6e3219c0; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_object_pk_6e3219c0; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auditlog_logentry_object_pk_6e3219c0 ON public.auditlog_logentry USING btree (object_pk);
 
 
 --
--- Name: auditlog_logentry_object_pk_6e3219c0_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auditlog_logentry_object_pk_6e3219c0_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auditlog_logentry_object_pk_6e3219c0_like ON public.auditlog_logentry USING btree (object_pk varchar_pattern_ops);
 
 
 --
--- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
 
 
 --
--- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
 
 
 --
--- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
 
 
 --
--- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
 
 
 --
--- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
 
 
 --
--- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
 
 
 --
--- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
 
 
 --
--- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
 
 
 --
--- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: netitest
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
 
 
 --
--- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: netitest
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
 
 
 --
--- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: netitest
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
 
 
 --
--- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
 
 
 --
--- Name: inventory_brand_code_d87b66cb_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_brand_code_d87b66cb_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_brand_code_d87b66cb_like ON public.inventory_brand USING btree (code varchar_pattern_ops);
 
 
 --
--- Name: inventory_brand_name_a633939c_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_brand_name_a633939c_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_brand_name_a633939c_like ON public.inventory_brand USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: inventory_category_name_c89a8bc0_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_category_name_c89a8bc0_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_category_name_c89a8bc0_like ON public.inventory_category USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: inventory_class_name_c852ed6f_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_class_name_c852ed6f_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_class_name_c852ed6f_like ON public.inventory_class USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: inventory_godown_name_149036a1_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_godown_name_149036a1_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_godown_name_149036a1_like ON public.inventory_godown USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: inventory_godown_parent_id_681905be; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_godown_parent_id_681905be; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_godown_parent_id_681905be ON public.inventory_godown USING btree (parent_id);
 
 
 --
--- Name: inventory_gst_list_product_id_a248d6f0; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_gst_list_product_id_a248d6f0; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_gst_list_product_id_a248d6f0 ON public.inventory_gst_list USING btree (product_id);
 
 
 --
--- Name: inventory_product_master_additional_units_id_39060db4; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_additional_units_id_39060db4; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_additional_units_id_39060db4 ON public.inventory_product_master USING btree (additional_units_id);
 
 
 --
--- Name: inventory_product_master_article_code_21cfa8d7_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_article_code_21cfa8d7_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_article_code_21cfa8d7_like ON public.inventory_product_master USING btree (article_code varchar_pattern_ops);
 
 
 --
--- Name: inventory_product_master_brand_id_bcea378f; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_brand_id_bcea378f; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_brand_id_bcea378f ON public.inventory_product_master USING btree (brand_id);
 
 
 --
--- Name: inventory_product_master_category_id_ba2cf3a7; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_category_id_ba2cf3a7; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_category_id_ba2cf3a7 ON public.inventory_product_master USING btree (category_id);
 
 
 --
--- Name: inventory_product_master_dl_purchase_id_d67204dc; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_dl_purchase_id_d67204dc; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_dl_purchase_id_d67204dc ON public.inventory_product_master USING btree (dl_purchase_id);
 
 
 --
--- Name: inventory_product_master_dl_sales_id_bafd2377; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_dl_sales_id_bafd2377; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_dl_sales_id_bafd2377 ON public.inventory_product_master USING btree (dl_sales_id);
 
 
 --
--- Name: inventory_product_master_product_class_id_1a83ec05; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_product_class_id_1a83ec05; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_product_class_id_1a83ec05 ON public.inventory_product_master USING btree (product_class_id);
 
 
 --
--- Name: inventory_product_master_product_code_744b7efe_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_product_code_744b7efe_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_product_code_744b7efe_like ON public.inventory_product_master USING btree (product_code varchar_pattern_ops);
 
 
 --
--- Name: inventory_product_master_product_name_dd0d2648_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_product_name_dd0d2648_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_product_name_dd0d2648_like ON public.inventory_product_master USING btree (product_name varchar_pattern_ops);
 
 
 --
--- Name: inventory_product_master_product_type_id_6e52eda5; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_product_type_id_6e52eda5; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_product_type_id_6e52eda5 ON public.inventory_product_master USING btree (product_type_id);
 
 
 --
--- Name: inventory_product_master_sub_brand_id_86c0db65; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_sub_brand_id_86c0db65; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_sub_brand_id_86c0db65 ON public.inventory_product_master USING btree (sub_brand_id);
 
 
 --
--- Name: inventory_product_master_sub_class_id_2294a951; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_sub_class_id_2294a951; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_sub_class_id_2294a951 ON public.inventory_product_master USING btree (sub_class_id);
 
 
 --
--- Name: inventory_product_master_units_of_measure_id_697831de; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_product_master_units_of_measure_id_697831de; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_product_master_units_of_measure_id_697831de ON public.inventory_product_master USING btree (units_of_measure_id);
 
 
 --
--- Name: inventory_producttype_dl_purchase_id_a06b54ee; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_producttype_dl_purchase_id_a06b54ee; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_producttype_dl_purchase_id_a06b54ee ON public.inventory_producttype USING btree (dl_purchase_id);
 
 
 --
--- Name: inventory_producttype_dl_sales_id_547fb4b8; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_producttype_dl_sales_id_547fb4b8; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_producttype_dl_sales_id_547fb4b8 ON public.inventory_producttype USING btree (dl_sales_id);
 
 
 --
--- Name: inventory_producttype_name_4db68bb1_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_producttype_name_4db68bb1_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_producttype_name_4db68bb1_like ON public.inventory_producttype USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: inventory_std_rate_product_id_c239ace5; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_std_rate_product_id_c239ace5; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_std_rate_product_id_c239ace5 ON public.inventory_std_rate USING btree (product_id);
 
 
 --
--- Name: inventory_subbrand_name_3588bc77_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_subbrand_name_3588bc77_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_subbrand_name_3588bc77_like ON public.inventory_subbrand USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: inventory_subclass_name_15b2ffd7_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_subclass_name_15b2ffd7_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_subclass_name_15b2ffd7_like ON public.inventory_subclass USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: inventory_unitofmeasure_name_e10c3ae2_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure_name_e10c3ae2_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_unitofmeasure_name_e10c3ae2_like ON public.inventory_unitofmeasure USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: inventory_unitofmeasure_uqc_id_d60e6ebe; Type: INDEX; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure_uqc_id_d60e6ebe; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX inventory_unitofmeasure_uqc_id_d60e6ebe ON public.inventory_unitofmeasure USING btree (uqc_id);
 
 
 --
--- Name: ledgers_asm_region_id_a8ea7b6b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_asm_region_id_a8ea7b6b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_asm_region_id_a8ea7b6b ON public.ledgers_asm USING btree (region_id);
 
 
 --
--- Name: ledgers_asm_rsm_id_3eef3f87; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_asm_rsm_id_3eef3f87; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_asm_rsm_id_3eef3f87 ON public.ledgers_asm USING btree (rsm_id);
 
 
 --
--- Name: ledgers_asm_zone_id_f28d1d00; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_asm_zone_id_f28d1d00; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_asm_zone_id_f28d1d00 ON public.ledgers_asm USING btree (zone_id);
 
 
 --
--- Name: ledgers_asm_zsm_id_b349aae1; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_asm_zsm_id_b349aae1; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_asm_zsm_id_b349aae1 ON public.ledgers_asm USING btree (zsm_id);
 
 
 --
--- Name: ledgers_city_state_id_2478b5a2; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_city_state_id_2478b5a2; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_city_state_id_2478b5a2 ON public.ledgers_city USING btree (state_id);
 
 
 --
--- Name: ledgers_country_name_039a24ef_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_country_name_039a24ef_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_country_name_039a24ef_like ON public.ledgers_country USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: ledgers_division_name_e6669870_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_division_name_e6669870_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_division_name_e6669870_like ON public.ledgers_division USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: ledgers_group_name_6f01add3_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_group_name_6f01add3_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_group_name_6f01add3_like ON public.ledgers_group USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: ledgers_ledgerstype_under_id_3419457e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_ledgerstype_under_id_3419457e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_ledgerstype_under_id_3419457e ON public.ledgers_ledgerstype USING btree (under_id);
 
 
 --
--- Name: ledgers_party_contact_details_city_id_f4db2692; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details_city_id_f4db2692; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_contact_details_city_id_f4db2692 ON public.ledgers_party_contact_details USING btree (city_id);
 
 
 --
--- Name: ledgers_party_contact_details_country_id_668e9fcf; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details_country_id_668e9fcf; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_contact_details_country_id_668e9fcf ON public.ledgers_party_contact_details USING btree (country_id);
 
 
 --
--- Name: ledgers_party_contact_details_party_id_0a2fdbd5; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details_party_id_0a2fdbd5; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_contact_details_party_id_0a2fdbd5 ON public.ledgers_party_contact_details USING btree (party_id);
 
 
 --
--- Name: ledgers_party_contact_details_state_id_a4cdd81a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details_state_id_a4cdd81a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_contact_details_state_id_a4cdd81a ON public.ledgers_party_contact_details USING btree (state_id);
 
 
 --
--- Name: ledgers_party_master_asm_id_d8205515; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_asm_id_d8205515; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_asm_id_d8205515 ON public.ledgers_party_master USING btree (asm_id);
 
 
 --
--- Name: ledgers_party_master_city_id_7bb2dab3; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_city_id_7bb2dab3; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_city_id_7bb2dab3 ON public.ledgers_party_master USING btree (city_id);
 
 
 --
--- Name: ledgers_party_master_country_id_efdb3805; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_country_id_efdb3805; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_country_id_efdb3805 ON public.ledgers_party_master USING btree (country_id);
 
 
 --
--- Name: ledgers_party_master_devision_id_fb7319fc; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_devision_id_fb7319fc; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_devision_id_fb7319fc ON public.ledgers_party_master USING btree (devision_id);
 
 
 --
--- Name: ledgers_party_master_group_id_98c77307; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_group_id_98c77307; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_group_id_98c77307 ON public.ledgers_party_master USING btree (group_id);
 
 
 --
--- Name: ledgers_party_master_party_type_id_0d0835c1; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_party_type_id_0d0835c1; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_party_type_id_0d0835c1 ON public.ledgers_party_master USING btree (party_type_id);
 
 
 --
--- Name: ledgers_party_master_price_level_id_ea1b4d78; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_price_level_id_ea1b4d78; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_price_level_id_ea1b4d78 ON public.ledgers_party_master USING btree (price_level_id);
 
 
 --
--- Name: ledgers_party_master_products_party_master_id_0c4ed41a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products_party_master_id_0c4ed41a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_products_party_master_id_0c4ed41a ON public.ledgers_party_master_products USING btree (party_master_id);
 
 
 --
--- Name: ledgers_party_master_products_product_master_id_b640438a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products_product_master_id_b640438a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_products_product_master_id_b640438a ON public.ledgers_party_master_products USING btree (product_master_id);
 
 
 --
--- Name: ledgers_party_master_region_id_7a63eac6; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_region_id_7a63eac6; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_region_id_7a63eac6 ON public.ledgers_party_master USING btree (region_id);
 
 
 --
--- Name: ledgers_party_master_rsm_id_60157f5b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_rsm_id_60157f5b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_rsm_id_60157f5b ON public.ledgers_party_master USING btree (rsm_id);
 
 
 --
--- Name: ledgers_party_master_se_id_661753ed; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_se_id_661753ed; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_se_id_661753ed ON public.ledgers_party_master USING btree (se_id);
 
 
 --
--- Name: ledgers_party_master_state_id_569af902; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_state_id_569af902; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_state_id_569af902 ON public.ledgers_party_master USING btree (state_id);
 
 
 --
--- Name: ledgers_party_master_vendor_code_95b17618_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_vendor_code_95b17618_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_vendor_code_95b17618_like ON public.ledgers_party_master USING btree (vendor_code varchar_pattern_ops);
 
 
 --
--- Name: ledgers_party_master_zone_id_1cc1c389; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_zone_id_1cc1c389; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_zone_id_1cc1c389 ON public.ledgers_party_master USING btree (zone_id);
 
 
 --
--- Name: ledgers_party_master_zsm_id_da4e3da5; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_zsm_id_da4e3da5; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_party_master_zsm_id_da4e3da5 ON public.ledgers_party_master USING btree (zsm_id);
 
 
 --
--- Name: ledgers_partytype_code_cebeeb4b_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_partytype_code_cebeeb4b_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_partytype_code_cebeeb4b_like ON public.ledgers_partytype USING btree (code varchar_pattern_ops);
 
 
 --
--- Name: ledgers_partytype_name_db7ff8d1_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_partytype_name_db7ff8d1_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_partytype_name_db7ff8d1_like ON public.ledgers_partytype USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: ledgers_price_level_code_cca6924e_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_price_level_code_cca6924e_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_price_level_code_cca6924e_like ON public.ledgers_price_level USING btree (code varchar_pattern_ops);
 
 
 --
--- Name: ledgers_price_list_price_level_id_3cade415; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_price_list_price_level_id_3cade415; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_price_list_price_level_id_3cade415 ON public.ledgers_price_list USING btree (price_level_id);
 
 
 --
--- Name: ledgers_price_list_product_id_9b08ed1e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_price_list_product_id_9b08ed1e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_price_list_product_id_9b08ed1e ON public.ledgers_price_list USING btree (product_id);
 
 
 --
--- Name: ledgers_region_zone_id_7828ba57; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_region_zone_id_7828ba57; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_region_zone_id_7828ba57 ON public.ledgers_region USING btree (zone_id);
 
 
 --
--- Name: ledgers_rsm_region_id_56f2ef76; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_rsm_region_id_56f2ef76; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_rsm_region_id_56f2ef76 ON public.ledgers_rsm USING btree (region_id);
 
 
 --
--- Name: ledgers_rsm_zone_id_b42132a9; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_rsm_zone_id_b42132a9; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_rsm_zone_id_b42132a9 ON public.ledgers_rsm USING btree (zone_id);
 
 
 --
--- Name: ledgers_rsm_zsm_id_73e3187a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_rsm_zsm_id_73e3187a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_rsm_zsm_id_73e3187a ON public.ledgers_rsm USING btree (zsm_id);
 
 
 --
--- Name: ledgers_se_asm_id_8038ebb6; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_se_asm_id_8038ebb6; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_se_asm_id_8038ebb6 ON public.ledgers_se USING btree (asm_id);
 
 
 --
--- Name: ledgers_se_region_id_78218558; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_se_region_id_78218558; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_se_region_id_78218558 ON public.ledgers_se USING btree (region_id);
 
 
 --
--- Name: ledgers_se_rsm_id_c78441d1; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_se_rsm_id_c78441d1; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_se_rsm_id_c78441d1 ON public.ledgers_se USING btree (rsm_id);
 
 
 --
--- Name: ledgers_se_zone_id_cff9e636; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_se_zone_id_cff9e636; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_se_zone_id_cff9e636 ON public.ledgers_se USING btree (zone_id);
 
 
 --
--- Name: ledgers_se_zsm_id_7b9ec584; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_se_zsm_id_7b9ec584; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_se_zsm_id_7b9ec584 ON public.ledgers_se USING btree (zsm_id);
 
 
 --
--- Name: ledgers_state_country_id_089c497b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_state_country_id_089c497b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_state_country_id_089c497b ON public.ledgers_state USING btree (country_id);
 
 
 --
--- Name: ledgers_zone_name_58b51db9_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_zone_name_58b51db9_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_zone_name_58b51db9_like ON public.ledgers_zone USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: ledgers_zsm_zone_id_72ae1e9b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: ledgers_zsm_zone_id_72ae1e9b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX ledgers_zsm_zone_id_72ae1e9b ON public.ledgers_zsm USING btree (zone_id);
 
 
 --
--- Name: planning_bom_product_id_4b114863; Type: INDEX; Schema: public; Owner: netitest
+-- Name: planning_bom_product_id_4b114863; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX planning_bom_product_id_4b114863 ON public.planning_bom USING btree (product_id);
 
 
 --
--- Name: planning_bomitems_bom_id_3e986a8c; Type: INDEX; Schema: public; Owner: netitest
+-- Name: planning_bomitems_bom_id_3e986a8c; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX planning_bomitems_bom_id_3e986a8c ON public.planning_bomitems USING btree (bom_id);
 
 
 --
--- Name: planning_bomitems_item_id_e897c24f; Type: INDEX; Schema: public; Owner: netitest
+-- Name: planning_bomitems_item_id_e897c24f; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX planning_bomitems_item_id_e897c24f ON public.planning_bomitems USING btree (item_id);
 
 
 --
--- Name: planning_joborder_bom_id_ecb5f0a3; Type: INDEX; Schema: public; Owner: netitest
+-- Name: planning_joborder_bom_id_ecb5f0a3; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX planning_joborder_bom_id_ecb5f0a3 ON public.planning_joborder USING btree (bom_id);
 
 
 --
--- Name: planning_joborder_company_id_bb70f360; Type: INDEX; Schema: public; Owner: netitest
+-- Name: planning_joborder_company_id_bb70f360; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX planning_joborder_company_id_bb70f360 ON public.planning_joborder USING btree (company_id);
 
 
 --
--- Name: planning_joborder_product_id_c4502735; Type: INDEX; Schema: public; Owner: netitest
+-- Name: planning_joborder_product_id_c4502735; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX planning_joborder_product_id_c4502735 ON public.planning_joborder USING btree (product_id);
 
 
 --
--- Name: planning_salesprojection_division_id_64f5c68a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: planning_salesprojection_division_id_64f5c68a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX planning_salesprojection_division_id_64f5c68a ON public.planning_salesprojection USING btree (division_id);
 
 
 --
--- Name: planning_salesprojection_product_id_ae858974; Type: INDEX; Schema: public; Owner: netitest
+-- Name: planning_salesprojection_product_id_ae858974; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX planning_salesprojection_product_id_ae858974 ON public.planning_salesprojection USING btree (product_id);
 
 
 --
--- Name: production_consitems_indent_id_e57e6361; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consitems_indent_id_e57e6361; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consitems_indent_id_e57e6361 ON public.production_consitems USING btree (indent_id);
 
 
 --
--- Name: production_consitems_item_id_f6ae1895; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consitems_item_id_f6ae1895; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consitems_item_id_f6ae1895 ON public.production_consitems USING btree (item_id);
 
 
 --
--- Name: production_consumableindent_company_id_ec7a4e39; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consumableindent_company_id_ec7a4e39; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consumableindent_company_id_ec7a4e39 ON public.production_consumableindent USING btree (company_id);
 
 
 --
--- Name: production_consumableindent_drawn_by_id_8b491816; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consumableindent_drawn_by_id_8b491816; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consumableindent_drawn_by_id_8b491816 ON public.production_consumableindent USING btree (drawn_by_id);
 
 
 --
--- Name: production_consumableindent_issuer_id_ad70cdff; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consumableindent_issuer_id_ad70cdff; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consumableindent_issuer_id_ad70cdff ON public.production_consumableindent USING btree (issuer_id);
 
 
 --
--- Name: production_consumption_company_id_17b3ec35; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consumption_company_id_17b3ec35; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consumption_company_id_17b3ec35 ON public.production_consumption USING btree (company_id);
 
 
 --
--- Name: production_consumption_jobcard_id_0dd6f23d; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consumption_jobcard_id_0dd6f23d; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consumption_jobcard_id_0dd6f23d ON public.production_consumption USING btree (jobcard_id);
 
 
 --
--- Name: production_consumptionitems_consumption_id_cc0483c6; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consumptionitems_consumption_id_cc0483c6; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consumptionitems_consumption_id_cc0483c6 ON public.production_consumptionitems USING btree (consumption_id);
 
 
 --
--- Name: production_consumptionitems_item_id_98fb3229; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_consumptionitems_item_id_98fb3229; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_consumptionitems_item_id_98fb3229 ON public.production_consumptionitems USING btree (item_id);
 
 
 --
--- Name: production_jobcard_company_id_20f43857; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_jobcard_company_id_20f43857; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_jobcard_company_id_20f43857 ON public.production_jobcard USING btree (company_id);
 
 
 --
--- Name: production_jobcard_joborder_id_b8b18f04; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_jobcard_joborder_id_b8b18f04; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_jobcard_joborder_id_b8b18f04 ON public.production_jobcard USING btree (joborder_id);
 
 
 --
--- Name: production_jobcard_product_id_f0ad9a32; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_jobcard_product_id_f0ad9a32; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_jobcard_product_id_f0ad9a32 ON public.production_jobcard USING btree (product_id);
 
 
 --
--- Name: production_rmindent_company_id_01ae1275; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_rmindent_company_id_01ae1275; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_rmindent_company_id_01ae1275 ON public.production_rmindent USING btree (company_id);
 
 
 --
--- Name: production_rmindent_jobcard_id_6c7837c6; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_rmindent_jobcard_id_6c7837c6; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_rmindent_jobcard_id_6c7837c6 ON public.production_rmindent USING btree (jobcard_id);
 
 
 --
--- Name: production_rmindentitems_bom_id_aff02f09; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_rmindentitems_bom_id_aff02f09; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_rmindentitems_bom_id_aff02f09 ON public.production_rmindentitems USING btree (bom_id);
 
 
 --
--- Name: production_rmindentitems_item_id_76d2ef8d; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_rmindentitems_item_id_76d2ef8d; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_rmindentitems_item_id_76d2ef8d ON public.production_rmindentitems USING btree (item_id);
 
 
 --
--- Name: production_rmindentitems_rmindent_id_1ab51a1b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_rmindentitems_rmindent_id_1ab51a1b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_rmindentitems_rmindent_id_1ab51a1b ON public.production_rmindentitems USING btree (rmindent_id);
 
 
 --
--- Name: production_rmitemgodown_rmitem_id_6754cec5; Type: INDEX; Schema: public; Owner: netitest
+-- Name: production_rmitemgodown_rmitem_id_6754cec5; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX production_rmitemgodown_rmitem_id_6754cec5 ON public.production_rmitemgodown USING btree (rmitem_id);
 
 
 --
--- Name: purchase_debitnote_company_id_76783a66; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_debitnote_company_id_76783a66; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_debitnote_company_id_76783a66 ON public.purchase_debitnote USING btree (company_id);
 
 
 --
--- Name: purchase_debitnote_pi_no_id_a8531929; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_debitnote_pi_no_id_a8531929; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_debitnote_pi_no_id_a8531929 ON public.purchase_debitnote USING btree (pi_no_id);
 
 
 --
--- Name: purchase_debitnote_seller_id_804acf3a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_debitnote_seller_id_804acf3a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_debitnote_seller_id_804acf3a ON public.purchase_debitnote USING btree (seller_id);
 
 
 --
--- Name: purchase_debitnote_shipto_id_f3e34773; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_debitnote_shipto_id_f3e34773; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_debitnote_shipto_id_f3e34773 ON public.purchase_debitnote USING btree (shipto_id);
 
 
 --
--- Name: purchase_debitnoteitems_debitNote_id_d989f200; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems_debitNote_id_d989f200; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX "purchase_debitnoteitems_debitNote_id_d989f200" ON public.purchase_debitnoteitems USING btree ("debitNote_id");
 
 
 --
--- Name: purchase_debitnoteitems_item_id_c40ed644; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems_item_id_c40ed644; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_debitnoteitems_item_id_c40ed644 ON public.purchase_debitnoteitems USING btree (item_id);
 
 
 --
--- Name: purchase_grn_company_id_bd8138ec; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grn_company_id_bd8138ec; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grn_company_id_bd8138ec ON public.purchase_grn USING btree (company_id);
 
 
 --
--- Name: purchase_grn_other_ledger_id_d9cb3019; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grn_other_ledger_id_d9cb3019; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grn_other_ledger_id_d9cb3019 ON public.purchase_grn USING btree (other_ledger_id);
 
 
 --
--- Name: purchase_grn_pi_id_2aa5b8be; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grn_pi_id_2aa5b8be; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grn_pi_id_2aa5b8be ON public.purchase_grn USING btree (pi_id);
 
 
 --
--- Name: purchase_grn_po_id_c297215e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grn_po_id_c297215e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grn_po_id_c297215e ON public.purchase_grn USING btree (po_id);
 
 
 --
--- Name: purchase_grn_seller_id_94179f26; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grn_seller_id_94179f26; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grn_seller_id_94179f26 ON public.purchase_grn USING btree (seller_id);
 
 
 --
--- Name: purchase_grn_shipto_id_b1ec08ba; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grn_shipto_id_b1ec08ba; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grn_shipto_id_b1ec08ba ON public.purchase_grn USING btree (shipto_id);
 
 
 --
--- Name: purchase_grnitems_godown_godown_id_5129ab3c; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown_godown_id_5129ab3c; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grnitems_godown_godown_id_5129ab3c ON public.purchase_grnitems_godown USING btree (godown_id);
 
 
 --
--- Name: purchase_grnitems_godown_grnitems_id_f3e79be7; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown_grnitems_id_f3e79be7; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grnitems_godown_grnitems_id_f3e79be7 ON public.purchase_grnitems_godown USING btree (grnitems_id);
 
 
 --
--- Name: purchase_grnitems_grn_id_d9c42744; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_grn_id_d9c42744; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grnitems_grn_id_d9c42744 ON public.purchase_grnitems USING btree (grn_id);
 
 
 --
--- Name: purchase_grnitems_item_id_7438bfde; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_item_id_7438bfde; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_grnitems_item_id_7438bfde ON public.purchase_grnitems USING btree (item_id);
 
 
 --
--- Name: purchase_piitems_grn_id_d91d1960; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_piitems_grn_id_d91d1960; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_piitems_grn_id_d91d1960 ON public.purchase_piitems USING btree (grn_id);
 
 
 --
--- Name: purchase_piitems_item_id_e602d768; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_piitems_item_id_e602d768; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_piitems_item_id_e602d768 ON public.purchase_piitems USING btree (item_id);
 
 
 --
--- Name: purchase_piitems_pi_id_90040854; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_piitems_pi_id_90040854; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_piitems_pi_id_90040854 ON public.purchase_piitems USING btree (pi_id);
 
 
 --
--- Name: purchase_poitems_item_id_e619e58e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_poitems_item_id_e619e58e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_poitems_item_id_e619e58e ON public.purchase_poitems USING btree (item_id);
 
 
 --
--- Name: purchase_poitems_po_id_2dcf3686; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_poitems_po_id_2dcf3686; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_poitems_po_id_2dcf3686 ON public.purchase_poitems USING btree (po_id);
 
 
 --
--- Name: purchase_purchase_company_id_fb01341d; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_company_id_fb01341d; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_company_id_fb01341d ON public.purchase_purchase USING btree (company_id);
 
 
 --
--- Name: purchase_purchase_order_company_id_c34232a9; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order_company_id_c34232a9; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_order_company_id_c34232a9 ON public.purchase_purchase_order USING btree (company_id);
 
 
 --
--- Name: purchase_purchase_order_other_ledger_id_9d9421b3; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order_other_ledger_id_9d9421b3; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_order_other_ledger_id_9d9421b3 ON public.purchase_purchase_order USING btree (other_ledger_id);
 
 
 --
--- Name: purchase_purchase_order_ref_no_2b36dfd2_like; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order_ref_no_2b36dfd2_like; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_order_ref_no_2b36dfd2_like ON public.purchase_purchase_order USING btree (ref_no varchar_pattern_ops);
 
 
 --
--- Name: purchase_purchase_order_seller_id_6f6bd0a0; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order_seller_id_6f6bd0a0; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_order_seller_id_6f6bd0a0 ON public.purchase_purchase_order USING btree (seller_id);
 
 
 --
--- Name: purchase_purchase_order_shipto_id_467c0671; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order_shipto_id_467c0671; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_order_shipto_id_467c0671 ON public.purchase_purchase_order USING btree (shipto_id);
 
 
 --
--- Name: purchase_purchase_other_ledger_id_4e12ef76; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_other_ledger_id_4e12ef76; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_other_ledger_id_4e12ef76 ON public.purchase_purchase USING btree (other_ledger_id);
 
 
 --
--- Name: purchase_purchase_seller_id_1b771f29; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_seller_id_1b771f29; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_seller_id_1b771f29 ON public.purchase_purchase USING btree (seller_id);
 
 
 --
--- Name: purchase_purchase_shipto_id_0b99f499; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchase_shipto_id_0b99f499; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchase_shipto_id_0b99f499 ON public.purchase_purchase USING btree (shipto_id);
 
 
 --
--- Name: purchase_purchasereturn_company_id_c6c2b8cf; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn_company_id_c6c2b8cf; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchasereturn_company_id_c6c2b8cf ON public.purchase_purchasereturn USING btree (company_id);
 
 
 --
--- Name: purchase_purchasereturn_pi_no_id_75738b62; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn_pi_no_id_75738b62; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchasereturn_pi_no_id_75738b62 ON public.purchase_purchasereturn USING btree (pi_no_id);
 
 
 --
--- Name: purchase_purchasereturn_seller_id_a8d4398f; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn_seller_id_a8d4398f; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchasereturn_seller_id_a8d4398f ON public.purchase_purchasereturn USING btree (seller_id);
 
 
 --
--- Name: purchase_purchasereturn_shipto_id_5c06c3c6; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn_shipto_id_5c06c3c6; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchasereturn_shipto_id_5c06c3c6 ON public.purchase_purchasereturn USING btree (shipto_id);
 
 
 --
--- Name: purchase_purchasereturnitems_item_id_6e3e0108; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems_item_id_6e3e0108; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchasereturnitems_item_id_6e3e0108 ON public.purchase_purchasereturnitems USING btree (item_id);
 
 
 --
--- Name: purchase_purchasereturnitems_pr_id_ff484449; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems_pr_id_ff484449; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_purchasereturnitems_pr_id_ff484449 ON public.purchase_purchasereturnitems USING btree (pr_id);
 
 
 --
--- Name: purchase_qdn_company_id_cacd60d8; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_qdn_company_id_cacd60d8; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_qdn_company_id_cacd60d8 ON public.purchase_qdn USING btree (company_id);
 
 
 --
--- Name: purchase_qdn_pi_no_id_bed8816c; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_qdn_pi_no_id_bed8816c; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_qdn_pi_no_id_bed8816c ON public.purchase_qdn USING btree (pi_no_id);
 
 
 --
--- Name: purchase_qdn_seller_id_6a7cf76c; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_qdn_seller_id_6a7cf76c; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_qdn_seller_id_6a7cf76c ON public.purchase_qdn USING btree (seller_id);
 
 
 --
--- Name: purchase_qdn_shipto_id_ccf09b4f; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_qdn_shipto_id_ccf09b4f; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_qdn_shipto_id_ccf09b4f ON public.purchase_qdn USING btree (shipto_id);
 
 
 --
--- Name: purchase_qdnitems_item_id_394c0e78; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems_item_id_394c0e78; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_qdnitems_item_id_394c0e78 ON public.purchase_qdnitems USING btree (item_id);
 
 
 --
--- Name: purchase_qdnitems_qdn_id_71e7d364; Type: INDEX; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems_qdn_id_71e7d364; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX purchase_qdnitems_qdn_id_71e7d364 ON public.purchase_qdnitems USING btree (qdn_id);
 
 
 --
--- Name: sales_creditnote_buyer_id_48af7d9c; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_creditnote_buyer_id_48af7d9c; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_creditnote_buyer_id_48af7d9c ON public.sales_creditnote USING btree (buyer_id);
 
 
 --
--- Name: sales_creditnote_company_id_eeca9f69; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_creditnote_company_id_eeca9f69; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_creditnote_company_id_eeca9f69 ON public.sales_creditnote USING btree (company_id);
 
 
 --
--- Name: sales_creditnote_inv_id_b14f69a4; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_creditnote_inv_id_b14f69a4; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_creditnote_inv_id_b14f69a4 ON public.sales_creditnote USING btree (inv_id);
 
 
 --
--- Name: sales_creditnote_other_ledger_id_4a802d75; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_creditnote_other_ledger_id_4a802d75; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_creditnote_other_ledger_id_4a802d75 ON public.sales_creditnote USING btree (other_ledger_id);
 
 
 --
--- Name: sales_creditnoteitems_creditNote_id_a419206d; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems_creditNote_id_a419206d; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX "sales_creditnoteitems_creditNote_id_a419206d" ON public.sales_creditnoteitems USING btree (inv_id);
 
 
 --
--- Name: sales_creditnoteitems_item_id_0dd91958; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems_item_id_0dd91958; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_creditnoteitems_item_id_0dd91958 ON public.sales_creditnoteitems USING btree (item_id);
 
 
 --
--- Name: sales_delivery_note_buyer_id_2177e031; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_delivery_note_buyer_id_2177e031; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_delivery_note_buyer_id_2177e031 ON public.sales_delivery_note USING btree (buyer_id);
 
 
 --
--- Name: sales_delivery_note_company_id_e85317d4; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_delivery_note_company_id_e85317d4; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_delivery_note_company_id_e85317d4 ON public.sales_delivery_note USING btree (company_id);
 
 
 --
--- Name: sales_delivery_note_other_ledger_id_f4babb1a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_delivery_note_other_ledger_id_f4babb1a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_delivery_note_other_ledger_id_f4babb1a ON public.sales_delivery_note USING btree (other_ledger_id);
 
 
 --
--- Name: sales_delivery_note_shipto_id_32731e89; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_delivery_note_shipto_id_32731e89; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_delivery_note_shipto_id_32731e89 ON public.sales_delivery_note USING btree (shipto_id);
 
 
 --
--- Name: sales_dnitems_dn_id_cc91e4ca; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_dnitems_dn_id_cc91e4ca; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_dnitems_dn_id_cc91e4ca ON public.sales_dnitems USING btree (dn_id);
 
 
 --
--- Name: sales_dnitems_godown_dnitems_id_b6d08f10; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown_dnitems_id_b6d08f10; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_dnitems_godown_dnitems_id_b6d08f10 ON public.sales_dnitems_godown USING btree (dnitems_id);
 
 
 --
--- Name: sales_dnitems_godown_godown_id_0ed94df5; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown_godown_id_0ed94df5; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_dnitems_godown_godown_id_0ed94df5 ON public.sales_dnitems_godown USING btree (godown_id);
 
 
 --
--- Name: sales_dnitems_item_id_423e8ff2; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_dnitems_item_id_423e8ff2; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_dnitems_item_id_423e8ff2 ON public.sales_dnitems USING btree (item_id);
 
 
 --
--- Name: sales_invitems_inv_id_abc8540f; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_invitems_inv_id_abc8540f; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_invitems_inv_id_abc8540f ON public.sales_invitems USING btree (inv_id);
 
 
 --
--- Name: sales_invitems_item_id_ff78efab; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_invitems_item_id_ff78efab; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_invitems_item_id_ff78efab ON public.sales_invitems USING btree (item_id);
 
 
 --
--- Name: sales_invoice_buyer_id_56622845; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_invoice_buyer_id_56622845; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_invoice_buyer_id_56622845 ON public.sales_invoice USING btree (buyer_id);
 
 
 --
--- Name: sales_invoice_company_id_1f3b101e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_invoice_company_id_1f3b101e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_invoice_company_id_1f3b101e ON public.sales_invoice USING btree (company_id);
 
 
 --
--- Name: sales_invoice_other_ledger_id_8387567a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_invoice_other_ledger_id_8387567a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_invoice_other_ledger_id_8387567a ON public.sales_invoice USING btree (other_ledger_id);
 
 
 --
--- Name: sales_invoice_shipto_id_5c0f09fa; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_invoice_shipto_id_5c0f09fa; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_invoice_shipto_id_5c0f09fa ON public.sales_invoice USING btree (shipto_id);
 
 
 --
--- Name: sales_loadingsheet_company_id_abaf8f62; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet_company_id_abaf8f62; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_loadingsheet_company_id_abaf8f62 ON public.sales_loadingsheet USING btree (company_id);
 
 
 --
--- Name: sales_loadingsheet_dn_id_e752dcf1; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet_dn_id_e752dcf1; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_loadingsheet_dn_id_e752dcf1 ON public.sales_loadingsheet USING btree (dn_id);
 
 
 --
--- Name: sales_loadingsheet_item_id_f18f9811; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet_item_id_f18f9811; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_loadingsheet_item_id_f18f9811 ON public.sales_loadingsheet USING btree (item_id);
 
 
 --
--- Name: sales_packingsheet_company_id_3eef23bd; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_packingsheet_company_id_3eef23bd; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_packingsheet_company_id_3eef23bd ON public.sales_packingsheet USING btree (company_id);
 
 
 --
--- Name: sales_packingsheet_dn_id_ed5497d7; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_packingsheet_dn_id_ed5497d7; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_packingsheet_dn_id_ed5497d7 ON public.sales_packingsheet USING btree (dn_id);
 
 
 --
--- Name: sales_packingsheet_item_id_8fbf372e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_packingsheet_item_id_8fbf372e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_packingsheet_item_id_8fbf372e ON public.sales_packingsheet USING btree (item_id);
 
 
 --
--- Name: sales_proformainvitems_inv_id_c2fd6c0f; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems_inv_id_c2fd6c0f; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_proformainvitems_inv_id_c2fd6c0f ON public.sales_proformainvitems USING btree (inv_id);
 
 
 --
--- Name: sales_proformainvitems_item_id_02c98424; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems_item_id_02c98424; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_proformainvitems_item_id_02c98424 ON public.sales_proformainvitems USING btree (item_id);
 
 
 --
--- Name: sales_proformainvoice_buyer_id_ca7a856b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice_buyer_id_ca7a856b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_proformainvoice_buyer_id_ca7a856b ON public.sales_proformainvoice USING btree (buyer_id);
 
 
 --
--- Name: sales_proformainvoice_company_id_83789ef1; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice_company_id_83789ef1; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_proformainvoice_company_id_83789ef1 ON public.sales_proformainvoice USING btree (company_id);
 
 
 --
--- Name: sales_proformainvoice_other_ledger_id_de1f2eae; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice_other_ledger_id_de1f2eae; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_proformainvoice_other_ledger_id_de1f2eae ON public.sales_proformainvoice USING btree (other_ledger_id);
 
 
 --
--- Name: sales_proformainvoice_shipto_id_77f223cf; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice_shipto_id_77f223cf; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_proformainvoice_shipto_id_77f223cf ON public.sales_proformainvoice USING btree (shipto_id);
 
 
 --
--- Name: sales_qdn_buyer_id_6ed6fca4; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_qdn_buyer_id_6ed6fca4; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_qdn_buyer_id_6ed6fca4 ON public.sales_qdn USING btree (buyer_id);
 
 
 --
--- Name: sales_qdn_company_id_42bcfbfe; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_qdn_company_id_42bcfbfe; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_qdn_company_id_42bcfbfe ON public.sales_qdn USING btree (company_id);
 
 
 --
--- Name: sales_qdn_inv_id_c1dc7b06; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_qdn_inv_id_c1dc7b06; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_qdn_inv_id_c1dc7b06 ON public.sales_qdn USING btree (inv_id);
 
 
 --
--- Name: sales_qdnitems_item_id_702ea031; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_qdnitems_item_id_702ea031; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_qdnitems_item_id_702ea031 ON public.sales_qdnitems USING btree (item_id);
 
 
 --
--- Name: sales_qdnitems_qdn_id_3c5441d0; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_qdnitems_qdn_id_3c5441d0; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_qdnitems_qdn_id_3c5441d0 ON public.sales_qdnitems USING btree (inv_id);
 
 
 --
--- Name: sales_rso_buyer_id_fb8a2aba; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_rso_buyer_id_fb8a2aba; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_rso_buyer_id_fb8a2aba ON public.sales_rso USING btree (buyer_id);
 
 
 --
--- Name: sales_rso_company_id_3012327a; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_rso_company_id_3012327a; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_rso_company_id_3012327a ON public.sales_rso USING btree (company_id);
 
 
 --
--- Name: sales_rso_inv_id_57f9db99; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_rso_inv_id_57f9db99; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_rso_inv_id_57f9db99 ON public.sales_rso USING btree (inv_id);
 
 
 --
--- Name: sales_rsoitems_item_id_e7c4e99e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_rsoitems_item_id_e7c4e99e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_rsoitems_item_id_e7c4e99e ON public.sales_rsoitems USING btree (item_id);
 
 
 --
--- Name: sales_rsoitems_rso_id_3918892d; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_rsoitems_rso_id_3918892d; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_rsoitems_rso_id_3918892d ON public.sales_rsoitems USING btree (inv_id);
 
 
 --
--- Name: sales_saleqty_company_id_bafcd955; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_saleqty_company_id_bafcd955; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_saleqty_company_id_bafcd955 ON public.sales_saleqty USING btree (company_id);
 
 
 --
--- Name: sales_saleqty_product_id_75bd4db6; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_saleqty_product_id_75bd4db6; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_saleqty_product_id_75bd4db6 ON public.sales_saleqty USING btree (product_id);
 
 
 --
--- Name: sales_salesorder_buyer_id_138f55de; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salesorder_buyer_id_138f55de; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salesorder_buyer_id_138f55de ON public.sales_salesorder USING btree (buyer_id);
 
 
 --
--- Name: sales_salesorder_company_id_224d4587; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salesorder_company_id_224d4587; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salesorder_company_id_224d4587 ON public.sales_salesorder USING btree (company_id);
 
 
 --
--- Name: sales_salesorder_other_ledger_id_80d0e9d1; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salesorder_other_ledger_id_80d0e9d1; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salesorder_other_ledger_id_80d0e9d1 ON public.sales_salesorder USING btree (other_ledger_id);
 
 
 --
--- Name: sales_salesorder_shipto_id_974fd86d; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salesorder_shipto_id_974fd86d; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salesorder_shipto_id_974fd86d ON public.sales_salesorder USING btree (shipto_id);
 
 
 --
--- Name: sales_salestarget_asm_id_ce94597e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salestarget_asm_id_ce94597e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salestarget_asm_id_ce94597e ON public.sales_salestarget USING btree (asm_id);
 
 
 --
--- Name: sales_salestarget_customer_id_58d8a898; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salestarget_customer_id_58d8a898; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salestarget_customer_id_58d8a898 ON public.sales_salestarget USING btree (buyer_id);
 
 
 --
--- Name: sales_salestarget_region_id_347b6e84; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salestarget_region_id_347b6e84; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salestarget_region_id_347b6e84 ON public.sales_salestarget USING btree (region_id);
 
 
 --
--- Name: sales_salestarget_rsm_id_fc863101; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salestarget_rsm_id_fc863101; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salestarget_rsm_id_fc863101 ON public.sales_salestarget USING btree (rsm_id);
 
 
 --
--- Name: sales_salestarget_se_id_6d5bdc73; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salestarget_se_id_6d5bdc73; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salestarget_se_id_6d5bdc73 ON public.sales_salestarget USING btree (se_id);
 
 
 --
--- Name: sales_salestarget_zone_id_c3f92e82; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salestarget_zone_id_c3f92e82; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salestarget_zone_id_c3f92e82 ON public.sales_salestarget USING btree (zone_id);
 
 
 --
--- Name: sales_salestarget_zsm_id_36c5ce5e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_salestarget_zsm_id_36c5ce5e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_salestarget_zsm_id_36c5ce5e ON public.sales_salestarget USING btree (zsm_id);
 
 
 --
--- Name: sales_soitems_item_id_5748dd5d; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_soitems_item_id_5748dd5d; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_soitems_item_id_5748dd5d ON public.sales_soitems USING btree (item_id);
 
 
 --
--- Name: sales_soitems_so_id_e121e38e; Type: INDEX; Schema: public; Owner: netitest
+-- Name: sales_soitems_so_id_e121e38e; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX sales_soitems_so_id_e121e38e ON public.sales_soitems USING btree (so_id);
 
 
 --
--- Name: warehouse_materialtransferred_godown_id_6604330d; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred_godown_id_6604330d; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_materialtransferred_godown_id_6604330d ON public.warehouse_materialtransferred USING btree (godown_id);
 
 
 --
--- Name: warehouse_materialtransferred_indent_id_98431067; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred_indent_id_98431067; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_materialtransferred_indent_id_98431067 ON public.warehouse_materialtransferred USING btree (indent_id);
 
 
 --
--- Name: warehouse_materialtransferred_item_id_f23a5634; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred_item_id_f23a5634; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_materialtransferred_item_id_f23a5634 ON public.warehouse_materialtransferred USING btree (item_id);
 
 
 --
--- Name: warehouse_pallettransferentry_company_id_b5aeae28; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry_company_id_b5aeae28; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_pallettransferentry_company_id_b5aeae28 ON public.warehouse_pallettransferentry USING btree (company_id);
 
 
 --
--- Name: warehouse_pallettransferentry_item_id_e8ce6d93; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry_item_id_e8ce6d93; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_pallettransferentry_item_id_e8ce6d93 ON public.warehouse_pallettransferentry USING btree (item_id);
 
 
 --
--- Name: warehouse_shortagedamageentry_company_id_ce910660; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry_company_id_ce910660; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_shortagedamageentry_company_id_ce910660 ON public.warehouse_shortagedamageentry USING btree (company_id);
 
 
 --
--- Name: warehouse_shortagedamageentry_godown_id_3881f871; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry_godown_id_3881f871; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_shortagedamageentry_godown_id_3881f871 ON public.warehouse_shortagedamageentry USING btree (godown_id);
 
 
 --
--- Name: warehouse_shortagedamageentry_item_id_631d35bc; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry_item_id_631d35bc; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_shortagedamageentry_item_id_631d35bc ON public.warehouse_shortagedamageentry USING btree (item_id);
 
 
 --
--- Name: warehouse_shortagedamageentry_jobwork_id_46602a85; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry_jobwork_id_46602a85; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_shortagedamageentry_jobwork_id_46602a85 ON public.warehouse_shortagedamageentry USING btree (jobwork_id);
 
 
 --
--- Name: warehouse_shortagedamageentry_purchase_id_59c03fd1; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry_purchase_id_59c03fd1; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_shortagedamageentry_purchase_id_59c03fd1 ON public.warehouse_shortagedamageentry USING btree (purchase_id);
 
 
 --
--- Name: warehouse_stock_summary_company_id_288c984b; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary_company_id_288c984b; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_stock_summary_company_id_288c984b ON public.warehouse_stock_summary USING btree (company_id);
 
 
 --
--- Name: warehouse_stock_summary_godown_id_26a3beaa; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary_godown_id_26a3beaa; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_stock_summary_godown_id_26a3beaa ON public.warehouse_stock_summary USING btree (godown_id);
 
 
 --
--- Name: warehouse_stock_summary_product_id_194a6357; Type: INDEX; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary_product_id_194a6357; Type: INDEX; Schema: public; Owner: neti_aws_db
 --
 
 CREATE INDEX warehouse_stock_summary_product_id_194a6357 ON public.warehouse_stock_summary USING btree (product_id);
 
 
 --
--- Name: accounts_loggedinuser accounts_loggedinuser_user_id_a35f46e4_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: accounts_loggedinuser accounts_loggedinuser_user_id_a35f46e4_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.accounts_loggedinuser
@@ -12244,7 +12244,7 @@ ALTER TABLE ONLY public.accounts_loggedinuser
 
 
 --
--- Name: auditlog_logentry auditlog_logentry_actor_id_959271d2_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auditlog_logentry auditlog_logentry_actor_id_959271d2_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auditlog_logentry
@@ -12252,7 +12252,7 @@ ALTER TABLE ONLY public.auditlog_logentry
 
 
 --
--- Name: auditlog_logentry auditlog_logentry_content_type_id_75830218_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auditlog_logentry auditlog_logentry_content_type_id_75830218_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auditlog_logentry
@@ -12260,7 +12260,7 @@ ALTER TABLE ONLY public.auditlog_logentry
 
 
 --
--- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_group_permissions
@@ -12268,7 +12268,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 
 
 --
--- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_group_permissions
@@ -12276,7 +12276,7 @@ ALTER TABLE ONLY public.auth_group_permissions
 
 
 --
--- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_permission
@@ -12284,7 +12284,7 @@ ALTER TABLE ONLY public.auth_permission
 
 
 --
--- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_groups
@@ -12292,7 +12292,7 @@ ALTER TABLE ONLY public.auth_user_groups
 
 
 --
--- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_groups
@@ -12300,7 +12300,7 @@ ALTER TABLE ONLY public.auth_user_groups
 
 
 --
--- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_user_permissions
@@ -12308,7 +12308,7 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 
 
 --
--- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.auth_user_user_permissions
@@ -12316,7 +12316,7 @@ ALTER TABLE ONLY public.auth_user_user_permissions
 
 
 --
--- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_admin_log
@@ -12324,7 +12324,7 @@ ALTER TABLE ONLY public.django_admin_log
 
 
 --
--- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.django_admin_log
@@ -12332,7 +12332,7 @@ ALTER TABLE ONLY public.django_admin_log
 
 
 --
--- Name: inventory_godown inventory_godown_parent_id_681905be_fk_inventory_godown_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_godown inventory_godown_parent_id_681905be_fk_inventory_godown_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_godown
@@ -12340,7 +12340,7 @@ ALTER TABLE ONLY public.inventory_godown
 
 
 --
--- Name: inventory_gst_list inventory_gst_list_product_id_a248d6f0_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_gst_list inventory_gst_list_product_id_a248d6f0_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_gst_list
@@ -12348,7 +12348,7 @@ ALTER TABLE ONLY public.inventory_gst_list
 
 
 --
--- Name: inventory_product_master inventory_product_ma_additional_units_id_39060db4_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_additional_units_id_39060db4_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12356,7 +12356,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_brand_id_bcea378f_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_brand_id_bcea378f_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12364,7 +12364,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_category_id_ba2cf3a7_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_category_id_ba2cf3a7_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12372,7 +12372,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_dl_purchase_id_d67204dc_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_dl_purchase_id_d67204dc_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12380,7 +12380,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_dl_sales_id_bafd2377_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_dl_sales_id_bafd2377_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12388,7 +12388,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_product_class_id_1a83ec05_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_product_class_id_1a83ec05_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12396,7 +12396,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_product_type_id_6e52eda5_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_product_type_id_6e52eda5_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12404,7 +12404,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_sub_brand_id_86c0db65_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_sub_brand_id_86c0db65_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12412,7 +12412,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_sub_class_id_2294a951_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_sub_class_id_2294a951_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12420,7 +12420,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_product_master inventory_product_ma_units_of_measure_id_697831de_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_product_master inventory_product_ma_units_of_measure_id_697831de_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_product_master
@@ -12428,7 +12428,7 @@ ALTER TABLE ONLY public.inventory_product_master
 
 
 --
--- Name: inventory_producttype inventory_producttyp_dl_purchase_id_a06b54ee_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_producttype inventory_producttyp_dl_purchase_id_a06b54ee_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_producttype
@@ -12436,7 +12436,7 @@ ALTER TABLE ONLY public.inventory_producttype
 
 
 --
--- Name: inventory_producttype inventory_producttyp_dl_sales_id_547fb4b8_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_producttype inventory_producttyp_dl_sales_id_547fb4b8_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_producttype
@@ -12444,7 +12444,7 @@ ALTER TABLE ONLY public.inventory_producttype
 
 
 --
--- Name: inventory_std_rate inventory_std_rate_product_id_c239ace5_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_std_rate inventory_std_rate_product_id_c239ace5_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_std_rate
@@ -12452,7 +12452,7 @@ ALTER TABLE ONLY public.inventory_std_rate
 
 
 --
--- Name: inventory_unitofmeasure inventory_unitofmeasure_uqc_id_d60e6ebe_fk_inventory_uqc_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: inventory_unitofmeasure inventory_unitofmeasure_uqc_id_d60e6ebe_fk_inventory_uqc_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.inventory_unitofmeasure
@@ -12460,7 +12460,7 @@ ALTER TABLE ONLY public.inventory_unitofmeasure
 
 
 --
--- Name: ledgers_asm ledgers_asm_region_id_a8ea7b6b_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_asm ledgers_asm_region_id_a8ea7b6b_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_asm
@@ -12468,7 +12468,7 @@ ALTER TABLE ONLY public.ledgers_asm
 
 
 --
--- Name: ledgers_asm ledgers_asm_rsm_id_3eef3f87_fk_ledgers_rsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_asm ledgers_asm_rsm_id_3eef3f87_fk_ledgers_rsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_asm
@@ -12476,7 +12476,7 @@ ALTER TABLE ONLY public.ledgers_asm
 
 
 --
--- Name: ledgers_asm ledgers_asm_zone_id_f28d1d00_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_asm ledgers_asm_zone_id_f28d1d00_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_asm
@@ -12484,7 +12484,7 @@ ALTER TABLE ONLY public.ledgers_asm
 
 
 --
--- Name: ledgers_asm ledgers_asm_zsm_id_b349aae1_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_asm ledgers_asm_zsm_id_b349aae1_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_asm
@@ -12492,7 +12492,7 @@ ALTER TABLE ONLY public.ledgers_asm
 
 
 --
--- Name: ledgers_city ledgers_city_state_id_2478b5a2_fk_ledgers_state_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_city ledgers_city_state_id_2478b5a2_fk_ledgers_state_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_city
@@ -12500,7 +12500,7 @@ ALTER TABLE ONLY public.ledgers_city
 
 
 --
--- Name: ledgers_ledgerstype ledgers_ledgerstype_under_id_3419457e_fk_ledgers_group_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_ledgerstype ledgers_ledgerstype_under_id_3419457e_fk_ledgers_group_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_ledgerstype
@@ -12508,7 +12508,7 @@ ALTER TABLE ONLY public.ledgers_ledgerstype
 
 
 --
--- Name: ledgers_party_contact_details ledgers_party_contac_city_id_f4db2692_fk_ledgers_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details ledgers_party_contac_city_id_f4db2692_fk_ledgers_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_contact_details
@@ -12516,7 +12516,7 @@ ALTER TABLE ONLY public.ledgers_party_contact_details
 
 
 --
--- Name: ledgers_party_contact_details ledgers_party_contac_country_id_668e9fcf_fk_ledgers_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details ledgers_party_contac_country_id_668e9fcf_fk_ledgers_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_contact_details
@@ -12524,7 +12524,7 @@ ALTER TABLE ONLY public.ledgers_party_contact_details
 
 
 --
--- Name: ledgers_party_contact_details ledgers_party_contac_party_id_0a2fdbd5_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details ledgers_party_contac_party_id_0a2fdbd5_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_contact_details
@@ -12532,7 +12532,7 @@ ALTER TABLE ONLY public.ledgers_party_contact_details
 
 
 --
--- Name: ledgers_party_contact_details ledgers_party_contac_state_id_a4cdd81a_fk_ledgers_s; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_contact_details ledgers_party_contac_state_id_a4cdd81a_fk_ledgers_s; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_contact_details
@@ -12540,7 +12540,7 @@ ALTER TABLE ONLY public.ledgers_party_contact_details
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_asm_id_d8205515_fk_ledgers_asm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_asm_id_d8205515_fk_ledgers_asm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12548,7 +12548,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_city_id_7bb2dab3_fk_ledgers_city_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_city_id_7bb2dab3_fk_ledgers_city_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12556,7 +12556,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_country_id_efdb3805_fk_ledgers_country_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_country_id_efdb3805_fk_ledgers_country_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12564,7 +12564,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_devision_id_fb7319fc_fk_ledgers_d; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_devision_id_fb7319fc_fk_ledgers_d; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12572,7 +12572,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_group_id_98c77307_fk_ledgers_group_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_group_id_98c77307_fk_ledgers_group_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12580,7 +12580,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master_products ledgers_party_master_party_master_id_0c4ed41a_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products ledgers_party_master_party_master_id_0c4ed41a_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master_products
@@ -12588,7 +12588,7 @@ ALTER TABLE ONLY public.ledgers_party_master_products
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_party_type_id_0d0835c1_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_party_type_id_0d0835c1_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12596,7 +12596,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_price_level_id_ea1b4d78_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_price_level_id_ea1b4d78_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12604,7 +12604,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master_products ledgers_party_master_product_master_id_b640438a_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master_products ledgers_party_master_product_master_id_b640438a_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master_products
@@ -12612,7 +12612,7 @@ ALTER TABLE ONLY public.ledgers_party_master_products
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_region_id_7a63eac6_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_region_id_7a63eac6_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12620,7 +12620,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_rsm_id_60157f5b_fk_ledgers_rsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_rsm_id_60157f5b_fk_ledgers_rsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12628,7 +12628,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_se_id_661753ed_fk_ledgers_se_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_se_id_661753ed_fk_ledgers_se_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12636,7 +12636,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_state_id_569af902_fk_ledgers_state_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_state_id_569af902_fk_ledgers_state_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12644,7 +12644,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_zone_id_1cc1c389_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_zone_id_1cc1c389_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12652,7 +12652,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_party_master ledgers_party_master_zsm_id_da4e3da5_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_party_master ledgers_party_master_zsm_id_da4e3da5_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_party_master
@@ -12660,7 +12660,7 @@ ALTER TABLE ONLY public.ledgers_party_master
 
 
 --
--- Name: ledgers_price_list ledgers_price_list_price_level_id_3cade415_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_price_list ledgers_price_list_price_level_id_3cade415_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_price_list
@@ -12668,7 +12668,7 @@ ALTER TABLE ONLY public.ledgers_price_list
 
 
 --
--- Name: ledgers_price_list ledgers_price_list_product_id_9b08ed1e_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_price_list ledgers_price_list_product_id_9b08ed1e_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_price_list
@@ -12676,7 +12676,7 @@ ALTER TABLE ONLY public.ledgers_price_list
 
 
 --
--- Name: ledgers_region ledgers_region_zone_id_7828ba57_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_region ledgers_region_zone_id_7828ba57_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_region
@@ -12684,7 +12684,7 @@ ALTER TABLE ONLY public.ledgers_region
 
 
 --
--- Name: ledgers_rsm ledgers_rsm_region_id_56f2ef76_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_rsm ledgers_rsm_region_id_56f2ef76_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_rsm
@@ -12692,7 +12692,7 @@ ALTER TABLE ONLY public.ledgers_rsm
 
 
 --
--- Name: ledgers_rsm ledgers_rsm_zone_id_b42132a9_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_rsm ledgers_rsm_zone_id_b42132a9_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_rsm
@@ -12700,7 +12700,7 @@ ALTER TABLE ONLY public.ledgers_rsm
 
 
 --
--- Name: ledgers_rsm ledgers_rsm_zsm_id_73e3187a_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_rsm ledgers_rsm_zsm_id_73e3187a_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_rsm
@@ -12708,7 +12708,7 @@ ALTER TABLE ONLY public.ledgers_rsm
 
 
 --
--- Name: ledgers_se ledgers_se_asm_id_8038ebb6_fk_ledgers_asm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_se ledgers_se_asm_id_8038ebb6_fk_ledgers_asm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_se
@@ -12716,7 +12716,7 @@ ALTER TABLE ONLY public.ledgers_se
 
 
 --
--- Name: ledgers_se ledgers_se_region_id_78218558_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_se ledgers_se_region_id_78218558_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_se
@@ -12724,7 +12724,7 @@ ALTER TABLE ONLY public.ledgers_se
 
 
 --
--- Name: ledgers_se ledgers_se_rsm_id_c78441d1_fk_ledgers_rsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_se ledgers_se_rsm_id_c78441d1_fk_ledgers_rsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_se
@@ -12732,7 +12732,7 @@ ALTER TABLE ONLY public.ledgers_se
 
 
 --
--- Name: ledgers_se ledgers_se_zone_id_cff9e636_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_se ledgers_se_zone_id_cff9e636_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_se
@@ -12740,7 +12740,7 @@ ALTER TABLE ONLY public.ledgers_se
 
 
 --
--- Name: ledgers_se ledgers_se_zsm_id_7b9ec584_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_se ledgers_se_zsm_id_7b9ec584_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_se
@@ -12748,7 +12748,7 @@ ALTER TABLE ONLY public.ledgers_se
 
 
 --
--- Name: ledgers_state ledgers_state_country_id_089c497b_fk_ledgers_country_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_state ledgers_state_country_id_089c497b_fk_ledgers_country_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_state
@@ -12756,7 +12756,7 @@ ALTER TABLE ONLY public.ledgers_state
 
 
 --
--- Name: ledgers_zsm ledgers_zsm_zone_id_72ae1e9b_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: ledgers_zsm ledgers_zsm_zone_id_72ae1e9b_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.ledgers_zsm
@@ -12764,7 +12764,7 @@ ALTER TABLE ONLY public.ledgers_zsm
 
 
 --
--- Name: planning_bom planning_bom_product_id_4b114863_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_bom planning_bom_product_id_4b114863_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_bom
@@ -12772,7 +12772,7 @@ ALTER TABLE ONLY public.planning_bom
 
 
 --
--- Name: planning_bomitems planning_bomitems_bom_id_3e986a8c_fk_planning_bom_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_bomitems planning_bomitems_bom_id_3e986a8c_fk_planning_bom_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_bomitems
@@ -12780,7 +12780,7 @@ ALTER TABLE ONLY public.planning_bomitems
 
 
 --
--- Name: planning_bomitems planning_bomitems_item_id_e897c24f_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_bomitems planning_bomitems_item_id_e897c24f_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_bomitems
@@ -12788,7 +12788,7 @@ ALTER TABLE ONLY public.planning_bomitems
 
 
 --
--- Name: planning_joborder planning_joborder_bom_id_ecb5f0a3_fk_planning_bom_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_joborder planning_joborder_bom_id_ecb5f0a3_fk_planning_bom_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_joborder
@@ -12796,7 +12796,7 @@ ALTER TABLE ONLY public.planning_joborder
 
 
 --
--- Name: planning_joborder planning_joborder_company_id_bb70f360_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_joborder planning_joborder_company_id_bb70f360_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_joborder
@@ -12804,7 +12804,7 @@ ALTER TABLE ONLY public.planning_joborder
 
 
 --
--- Name: planning_joborder planning_joborder_product_id_c4502735_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_joborder planning_joborder_product_id_c4502735_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_joborder
@@ -12812,7 +12812,7 @@ ALTER TABLE ONLY public.planning_joborder
 
 
 --
--- Name: planning_salesprojection planning_salesprojec_division_id_64f5c68a_fk_ledgers_d; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_salesprojection planning_salesprojec_division_id_64f5c68a_fk_ledgers_d; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_salesprojection
@@ -12820,7 +12820,7 @@ ALTER TABLE ONLY public.planning_salesprojection
 
 
 --
--- Name: planning_salesprojection planning_salesprojec_product_id_ae858974_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: planning_salesprojection planning_salesprojec_product_id_ae858974_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.planning_salesprojection
@@ -12828,7 +12828,7 @@ ALTER TABLE ONLY public.planning_salesprojection
 
 
 --
--- Name: production_consitems production_consitems_indent_id_e57e6361_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consitems production_consitems_indent_id_e57e6361_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consitems
@@ -12836,7 +12836,7 @@ ALTER TABLE ONLY public.production_consitems
 
 
 --
--- Name: production_consitems production_consitems_item_id_f6ae1895_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consitems production_consitems_item_id_f6ae1895_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consitems
@@ -12844,7 +12844,7 @@ ALTER TABLE ONLY public.production_consitems
 
 
 --
--- Name: production_consumableindent production_consumabl_company_id_ec7a4e39_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumableindent production_consumabl_company_id_ec7a4e39_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumableindent
@@ -12852,7 +12852,7 @@ ALTER TABLE ONLY public.production_consumableindent
 
 
 --
--- Name: production_consumableindent production_consumabl_drawn_by_id_8b491816_fk_auth_user; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumableindent production_consumabl_drawn_by_id_8b491816_fk_auth_user; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumableindent
@@ -12860,7 +12860,7 @@ ALTER TABLE ONLY public.production_consumableindent
 
 
 --
--- Name: production_consumableindent production_consumableindent_issuer_id_ad70cdff_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumableindent production_consumableindent_issuer_id_ad70cdff_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumableindent
@@ -12868,7 +12868,7 @@ ALTER TABLE ONLY public.production_consumableindent
 
 
 --
--- Name: production_consumption production_consumpti_company_id_17b3ec35_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumption production_consumpti_company_id_17b3ec35_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumption
@@ -12876,7 +12876,7 @@ ALTER TABLE ONLY public.production_consumption
 
 
 --
--- Name: production_consumptionitems production_consumpti_consumption_id_cc0483c6_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumptionitems production_consumpti_consumption_id_cc0483c6_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumptionitems
@@ -12884,7 +12884,7 @@ ALTER TABLE ONLY public.production_consumptionitems
 
 
 --
--- Name: production_consumptionitems production_consumpti_item_id_98fb3229_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumptionitems production_consumpti_item_id_98fb3229_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumptionitems
@@ -12892,7 +12892,7 @@ ALTER TABLE ONLY public.production_consumptionitems
 
 
 --
--- Name: production_consumption production_consumpti_jobcard_id_0dd6f23d_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_consumption production_consumpti_jobcard_id_0dd6f23d_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_consumption
@@ -12900,7 +12900,7 @@ ALTER TABLE ONLY public.production_consumption
 
 
 --
--- Name: production_jobcard production_jobcard_company_id_20f43857_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_jobcard production_jobcard_company_id_20f43857_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_jobcard
@@ -12908,7 +12908,7 @@ ALTER TABLE ONLY public.production_jobcard
 
 
 --
--- Name: production_jobcard production_jobcard_joborder_id_b8b18f04_fk_planning_joborder_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_jobcard production_jobcard_joborder_id_b8b18f04_fk_planning_joborder_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_jobcard
@@ -12916,7 +12916,7 @@ ALTER TABLE ONLY public.production_jobcard
 
 
 --
--- Name: production_jobcard production_jobcard_product_id_f0ad9a32_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_jobcard production_jobcard_product_id_f0ad9a32_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_jobcard
@@ -12924,7 +12924,7 @@ ALTER TABLE ONLY public.production_jobcard
 
 
 --
--- Name: production_rmindent production_rmindent_company_id_01ae1275_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmindent production_rmindent_company_id_01ae1275_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindent
@@ -12932,7 +12932,7 @@ ALTER TABLE ONLY public.production_rmindent
 
 
 --
--- Name: production_rmindent production_rmindent_jobcard_id_6c7837c6_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmindent production_rmindent_jobcard_id_6c7837c6_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindent
@@ -12940,7 +12940,7 @@ ALTER TABLE ONLY public.production_rmindent
 
 
 --
--- Name: production_rmindentitems production_rmindenti_item_id_76d2ef8d_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmindentitems production_rmindenti_item_id_76d2ef8d_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindentitems
@@ -12948,7 +12948,7 @@ ALTER TABLE ONLY public.production_rmindentitems
 
 
 --
--- Name: production_rmindentitems production_rmindenti_rmindent_id_1ab51a1b_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmindentitems production_rmindenti_rmindent_id_1ab51a1b_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindentitems
@@ -12956,7 +12956,7 @@ ALTER TABLE ONLY public.production_rmindentitems
 
 
 --
--- Name: production_rmindentitems production_rmindentitems_bom_id_aff02f09_fk_planning_bom_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmindentitems production_rmindentitems_bom_id_aff02f09_fk_planning_bom_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmindentitems
@@ -12964,7 +12964,7 @@ ALTER TABLE ONLY public.production_rmindentitems
 
 
 --
--- Name: production_rmitemgodown production_rmitemgod_rmitem_id_6754cec5_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: production_rmitemgodown production_rmitemgod_rmitem_id_6754cec5_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.production_rmitemgodown
@@ -12972,7 +12972,7 @@ ALTER TABLE ONLY public.production_rmitemgodown
 
 
 --
--- Name: purchase_debitnote purchase_debitnote_company_id_76783a66_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_debitnote purchase_debitnote_company_id_76783a66_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnote
@@ -12980,7 +12980,7 @@ ALTER TABLE ONLY public.purchase_debitnote
 
 
 --
--- Name: purchase_debitnote purchase_debitnote_pi_no_id_a8531929_fk_purchase_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_debitnote purchase_debitnote_pi_no_id_a8531929_fk_purchase_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnote
@@ -12988,7 +12988,7 @@ ALTER TABLE ONLY public.purchase_debitnote
 
 
 --
--- Name: purchase_debitnote purchase_debitnote_seller_id_804acf3a_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_debitnote purchase_debitnote_seller_id_804acf3a_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnote
@@ -12996,7 +12996,7 @@ ALTER TABLE ONLY public.purchase_debitnote
 
 
 --
--- Name: purchase_debitnote purchase_debitnote_shipto_id_f3e34773_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_debitnote purchase_debitnote_shipto_id_f3e34773_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnote
@@ -13004,7 +13004,7 @@ ALTER TABLE ONLY public.purchase_debitnote
 
 
 --
--- Name: purchase_debitnoteitems purchase_debitnoteit_debitNote_id_d989f200_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems purchase_debitnoteit_debitNote_id_d989f200_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnoteitems
@@ -13012,7 +13012,7 @@ ALTER TABLE ONLY public.purchase_debitnoteitems
 
 
 --
--- Name: purchase_debitnoteitems purchase_debitnoteit_item_id_c40ed644_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_debitnoteitems purchase_debitnoteit_item_id_c40ed644_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_debitnoteitems
@@ -13020,7 +13020,7 @@ ALTER TABLE ONLY public.purchase_debitnoteitems
 
 
 --
--- Name: purchase_grn purchase_grn_company_id_bd8138ec_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grn purchase_grn_company_id_bd8138ec_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn
@@ -13028,7 +13028,7 @@ ALTER TABLE ONLY public.purchase_grn
 
 
 --
--- Name: purchase_grn purchase_grn_other_ledger_id_d9cb3019_fk_ledgers_ledgerstype_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grn purchase_grn_other_ledger_id_d9cb3019_fk_ledgers_ledgerstype_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn
@@ -13036,7 +13036,7 @@ ALTER TABLE ONLY public.purchase_grn
 
 
 --
--- Name: purchase_grn purchase_grn_pi_id_2aa5b8be_fk_purchase_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grn purchase_grn_pi_id_2aa5b8be_fk_purchase_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn
@@ -13044,7 +13044,7 @@ ALTER TABLE ONLY public.purchase_grn
 
 
 --
--- Name: purchase_grn purchase_grn_po_id_c297215e_fk_purchase_purchase_order_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grn purchase_grn_po_id_c297215e_fk_purchase_purchase_order_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn
@@ -13052,7 +13052,7 @@ ALTER TABLE ONLY public.purchase_grn
 
 
 --
--- Name: purchase_grn purchase_grn_seller_id_94179f26_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grn purchase_grn_seller_id_94179f26_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn
@@ -13060,7 +13060,7 @@ ALTER TABLE ONLY public.purchase_grn
 
 
 --
--- Name: purchase_grn purchase_grn_shipto_id_b1ec08ba_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grn purchase_grn_shipto_id_b1ec08ba_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grn
@@ -13068,7 +13068,7 @@ ALTER TABLE ONLY public.purchase_grn
 
 
 --
--- Name: purchase_grnitems_godown purchase_grnitems_go_godown_id_5129ab3c_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown purchase_grnitems_go_godown_id_5129ab3c_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems_godown
@@ -13076,7 +13076,7 @@ ALTER TABLE ONLY public.purchase_grnitems_godown
 
 
 --
--- Name: purchase_grnitems_godown purchase_grnitems_go_grnitems_id_f3e79be7_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems_godown purchase_grnitems_go_grnitems_id_f3e79be7_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems_godown
@@ -13084,7 +13084,7 @@ ALTER TABLE ONLY public.purchase_grnitems_godown
 
 
 --
--- Name: purchase_grnitems purchase_grnitems_grn_id_d9c42744_fk_purchase_grn_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems purchase_grnitems_grn_id_d9c42744_fk_purchase_grn_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems
@@ -13092,7 +13092,7 @@ ALTER TABLE ONLY public.purchase_grnitems
 
 
 --
--- Name: purchase_grnitems purchase_grnitems_item_id_7438bfde_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_grnitems purchase_grnitems_item_id_7438bfde_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_grnitems
@@ -13100,7 +13100,7 @@ ALTER TABLE ONLY public.purchase_grnitems
 
 
 --
--- Name: purchase_piitems purchase_piitems_grn_id_d91d1960_fk_purchase_grn_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_piitems purchase_piitems_grn_id_d91d1960_fk_purchase_grn_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_piitems
@@ -13108,7 +13108,7 @@ ALTER TABLE ONLY public.purchase_piitems
 
 
 --
--- Name: purchase_piitems purchase_piitems_item_id_e602d768_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_piitems purchase_piitems_item_id_e602d768_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_piitems
@@ -13116,7 +13116,7 @@ ALTER TABLE ONLY public.purchase_piitems
 
 
 --
--- Name: purchase_piitems purchase_piitems_pi_id_90040854_fk_purchase_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_piitems purchase_piitems_pi_id_90040854_fk_purchase_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_piitems
@@ -13124,7 +13124,7 @@ ALTER TABLE ONLY public.purchase_piitems
 
 
 --
--- Name: purchase_poitems purchase_poitems_item_id_e619e58e_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_poitems purchase_poitems_item_id_e619e58e_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_poitems
@@ -13132,7 +13132,7 @@ ALTER TABLE ONLY public.purchase_poitems
 
 
 --
--- Name: purchase_poitems purchase_poitems_po_id_2dcf3686_fk_purchase_purchase_order_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_poitems purchase_poitems_po_id_2dcf3686_fk_purchase_purchase_order_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_poitems
@@ -13140,7 +13140,7 @@ ALTER TABLE ONLY public.purchase_poitems
 
 
 --
--- Name: purchase_purchase purchase_purchase_company_id_fb01341d_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase purchase_purchase_company_id_fb01341d_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase
@@ -13148,7 +13148,7 @@ ALTER TABLE ONLY public.purchase_purchase
 
 
 --
--- Name: purchase_purchase_order purchase_purchase_or_company_id_c34232a9_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order purchase_purchase_or_company_id_c34232a9_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase_order
@@ -13156,7 +13156,7 @@ ALTER TABLE ONLY public.purchase_purchase_order
 
 
 --
--- Name: purchase_purchase_order purchase_purchase_or_other_ledger_id_9d9421b3_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order purchase_purchase_or_other_ledger_id_9d9421b3_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase_order
@@ -13164,7 +13164,7 @@ ALTER TABLE ONLY public.purchase_purchase_order
 
 
 --
--- Name: purchase_purchase_order purchase_purchase_or_seller_id_6f6bd0a0_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order purchase_purchase_or_seller_id_6f6bd0a0_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase_order
@@ -13172,7 +13172,7 @@ ALTER TABLE ONLY public.purchase_purchase_order
 
 
 --
--- Name: purchase_purchase_order purchase_purchase_or_shipto_id_467c0671_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase_order purchase_purchase_or_shipto_id_467c0671_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase_order
@@ -13180,7 +13180,7 @@ ALTER TABLE ONLY public.purchase_purchase_order
 
 
 --
--- Name: purchase_purchase purchase_purchase_other_ledger_id_4e12ef76_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase purchase_purchase_other_ledger_id_4e12ef76_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase
@@ -13188,7 +13188,7 @@ ALTER TABLE ONLY public.purchase_purchase
 
 
 --
--- Name: purchase_purchase purchase_purchase_seller_id_1b771f29_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase purchase_purchase_seller_id_1b771f29_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase
@@ -13196,7 +13196,7 @@ ALTER TABLE ONLY public.purchase_purchase
 
 
 --
--- Name: purchase_purchase purchase_purchase_shipto_id_0b99f499_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchase purchase_purchase_shipto_id_0b99f499_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchase
@@ -13204,7 +13204,7 @@ ALTER TABLE ONLY public.purchase_purchase
 
 
 --
--- Name: purchase_purchasereturn purchase_purchaseret_company_id_c6c2b8cf_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn purchase_purchaseret_company_id_c6c2b8cf_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturn
@@ -13212,7 +13212,7 @@ ALTER TABLE ONLY public.purchase_purchasereturn
 
 
 --
--- Name: purchase_purchasereturnitems purchase_purchaseret_item_id_6e3e0108_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems purchase_purchaseret_item_id_6e3e0108_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturnitems
@@ -13220,7 +13220,7 @@ ALTER TABLE ONLY public.purchase_purchasereturnitems
 
 
 --
--- Name: purchase_purchasereturn purchase_purchaseret_pi_no_id_75738b62_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn purchase_purchaseret_pi_no_id_75738b62_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturn
@@ -13228,7 +13228,7 @@ ALTER TABLE ONLY public.purchase_purchasereturn
 
 
 --
--- Name: purchase_purchasereturnitems purchase_purchaseret_pr_id_ff484449_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturnitems purchase_purchaseret_pr_id_ff484449_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturnitems
@@ -13236,7 +13236,7 @@ ALTER TABLE ONLY public.purchase_purchasereturnitems
 
 
 --
--- Name: purchase_purchasereturn purchase_purchaseret_seller_id_a8d4398f_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn purchase_purchaseret_seller_id_a8d4398f_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturn
@@ -13244,7 +13244,7 @@ ALTER TABLE ONLY public.purchase_purchasereturn
 
 
 --
--- Name: purchase_purchasereturn purchase_purchaseret_shipto_id_5c06c3c6_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_purchasereturn purchase_purchaseret_shipto_id_5c06c3c6_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_purchasereturn
@@ -13252,7 +13252,7 @@ ALTER TABLE ONLY public.purchase_purchasereturn
 
 
 --
--- Name: purchase_qdn purchase_qdn_company_id_cacd60d8_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_qdn purchase_qdn_company_id_cacd60d8_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdn
@@ -13260,7 +13260,7 @@ ALTER TABLE ONLY public.purchase_qdn
 
 
 --
--- Name: purchase_qdn purchase_qdn_pi_no_id_bed8816c_fk_purchase_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_qdn purchase_qdn_pi_no_id_bed8816c_fk_purchase_purchase_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdn
@@ -13268,7 +13268,7 @@ ALTER TABLE ONLY public.purchase_qdn
 
 
 --
--- Name: purchase_qdn purchase_qdn_seller_id_6a7cf76c_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_qdn purchase_qdn_seller_id_6a7cf76c_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdn
@@ -13276,7 +13276,7 @@ ALTER TABLE ONLY public.purchase_qdn
 
 
 --
--- Name: purchase_qdn purchase_qdn_shipto_id_ccf09b4f_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_qdn purchase_qdn_shipto_id_ccf09b4f_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdn
@@ -13284,7 +13284,7 @@ ALTER TABLE ONLY public.purchase_qdn
 
 
 --
--- Name: purchase_qdnitems purchase_qdnitems_item_id_394c0e78_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems purchase_qdnitems_item_id_394c0e78_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdnitems
@@ -13292,7 +13292,7 @@ ALTER TABLE ONLY public.purchase_qdnitems
 
 
 --
--- Name: purchase_qdnitems purchase_qdnitems_qdn_id_71e7d364_fk_purchase_qdn_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: purchase_qdnitems purchase_qdnitems_qdn_id_71e7d364_fk_purchase_qdn_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.purchase_qdnitems
@@ -13300,7 +13300,7 @@ ALTER TABLE ONLY public.purchase_qdnitems
 
 
 --
--- Name: sales_creditnote sales_creditnote_buyer_id_48af7d9c_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_creditnote sales_creditnote_buyer_id_48af7d9c_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnote
@@ -13308,7 +13308,7 @@ ALTER TABLE ONLY public.sales_creditnote
 
 
 --
--- Name: sales_creditnote sales_creditnote_company_id_eeca9f69_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_creditnote sales_creditnote_company_id_eeca9f69_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnote
@@ -13316,7 +13316,7 @@ ALTER TABLE ONLY public.sales_creditnote
 
 
 --
--- Name: sales_creditnote sales_creditnote_inv_id_b14f69a4_fk_sales_invoice_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_creditnote sales_creditnote_inv_id_b14f69a4_fk_sales_invoice_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnote
@@ -13324,7 +13324,7 @@ ALTER TABLE ONLY public.sales_creditnote
 
 
 --
--- Name: sales_creditnote sales_creditnote_other_ledger_id_4a802d75_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_creditnote sales_creditnote_other_ledger_id_4a802d75_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnote
@@ -13332,7 +13332,7 @@ ALTER TABLE ONLY public.sales_creditnote
 
 
 --
--- Name: sales_creditnoteitems sales_creditnoteitem_item_id_0dd91958_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems sales_creditnoteitem_item_id_0dd91958_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnoteitems
@@ -13340,7 +13340,7 @@ ALTER TABLE ONLY public.sales_creditnoteitems
 
 
 --
--- Name: sales_creditnoteitems sales_creditnoteitems_inv_id_3c3f0ba2_fk_sales_creditnote_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_creditnoteitems sales_creditnoteitems_inv_id_3c3f0ba2_fk_sales_creditnote_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_creditnoteitems
@@ -13348,7 +13348,7 @@ ALTER TABLE ONLY public.sales_creditnoteitems
 
 
 --
--- Name: sales_delivery_note sales_delivery_note_buyer_id_2177e031_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_delivery_note sales_delivery_note_buyer_id_2177e031_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_delivery_note
@@ -13356,7 +13356,7 @@ ALTER TABLE ONLY public.sales_delivery_note
 
 
 --
--- Name: sales_delivery_note sales_delivery_note_company_id_e85317d4_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_delivery_note sales_delivery_note_company_id_e85317d4_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_delivery_note
@@ -13364,7 +13364,7 @@ ALTER TABLE ONLY public.sales_delivery_note
 
 
 --
--- Name: sales_delivery_note sales_delivery_note_other_ledger_id_f4babb1a_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_delivery_note sales_delivery_note_other_ledger_id_f4babb1a_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_delivery_note
@@ -13372,7 +13372,7 @@ ALTER TABLE ONLY public.sales_delivery_note
 
 
 --
--- Name: sales_delivery_note sales_delivery_note_sales_order_id_f7f27461_fk_sales_sal; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_delivery_note sales_delivery_note_sales_order_id_f7f27461_fk_sales_sal; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_delivery_note
@@ -13380,7 +13380,7 @@ ALTER TABLE ONLY public.sales_delivery_note
 
 
 --
--- Name: sales_delivery_note sales_delivery_note_shipto_id_32731e89_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_delivery_note sales_delivery_note_shipto_id_32731e89_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_delivery_note
@@ -13388,7 +13388,7 @@ ALTER TABLE ONLY public.sales_delivery_note
 
 
 --
--- Name: sales_dnitems sales_dnitems_dn_id_cc91e4ca_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_dnitems sales_dnitems_dn_id_cc91e4ca_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems
@@ -13396,7 +13396,7 @@ ALTER TABLE ONLY public.sales_dnitems
 
 
 --
--- Name: sales_dnitems_godown sales_dnitems_godown_dnitems_id_b6d08f10_fk_sales_dnitems_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown sales_dnitems_godown_dnitems_id_b6d08f10_fk_sales_dnitems_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems_godown
@@ -13404,7 +13404,7 @@ ALTER TABLE ONLY public.sales_dnitems_godown
 
 
 --
--- Name: sales_dnitems_godown sales_dnitems_godown_godown_id_0ed94df5_fk_inventory_godown_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_dnitems_godown sales_dnitems_godown_godown_id_0ed94df5_fk_inventory_godown_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems_godown
@@ -13412,7 +13412,7 @@ ALTER TABLE ONLY public.sales_dnitems_godown
 
 
 --
--- Name: sales_dnitems sales_dnitems_item_id_423e8ff2_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_dnitems sales_dnitems_item_id_423e8ff2_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_dnitems
@@ -13420,7 +13420,7 @@ ALTER TABLE ONLY public.sales_dnitems
 
 
 --
--- Name: sales_invitems sales_invitems_inv_id_abc8540f_fk_sales_invoice_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invitems sales_invitems_inv_id_abc8540f_fk_sales_invoice_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invitems
@@ -13428,7 +13428,7 @@ ALTER TABLE ONLY public.sales_invitems
 
 
 --
--- Name: sales_invitems sales_invitems_item_id_ff78efab_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invitems sales_invitems_item_id_ff78efab_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invitems
@@ -13436,7 +13436,7 @@ ALTER TABLE ONLY public.sales_invitems
 
 
 --
--- Name: sales_invoice sales_invoice_buyer_id_56622845_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invoice sales_invoice_buyer_id_56622845_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice
@@ -13444,7 +13444,7 @@ ALTER TABLE ONLY public.sales_invoice
 
 
 --
--- Name: sales_invoice sales_invoice_company_id_1f3b101e_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invoice sales_invoice_company_id_1f3b101e_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice
@@ -13452,7 +13452,7 @@ ALTER TABLE ONLY public.sales_invoice
 
 
 --
--- Name: sales_invoice sales_invoice_dn_id_5f97d605_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invoice sales_invoice_dn_id_5f97d605_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice
@@ -13460,7 +13460,7 @@ ALTER TABLE ONLY public.sales_invoice
 
 
 --
--- Name: sales_invoice sales_invoice_other_ledger_id_8387567a_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invoice sales_invoice_other_ledger_id_8387567a_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice
@@ -13468,7 +13468,7 @@ ALTER TABLE ONLY public.sales_invoice
 
 
 --
--- Name: sales_invoice sales_invoice_shipto_id_5c0f09fa_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_invoice sales_invoice_shipto_id_5c0f09fa_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_invoice
@@ -13476,7 +13476,7 @@ ALTER TABLE ONLY public.sales_invoice
 
 
 --
--- Name: sales_loadingsheet sales_loadingsheet_company_id_abaf8f62_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet sales_loadingsheet_company_id_abaf8f62_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_loadingsheet
@@ -13484,7 +13484,7 @@ ALTER TABLE ONLY public.sales_loadingsheet
 
 
 --
--- Name: sales_loadingsheet sales_loadingsheet_dn_id_e752dcf1_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet sales_loadingsheet_dn_id_e752dcf1_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_loadingsheet
@@ -13492,7 +13492,7 @@ ALTER TABLE ONLY public.sales_loadingsheet
 
 
 --
--- Name: sales_loadingsheet sales_loadingsheet_item_id_f18f9811_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_loadingsheet sales_loadingsheet_item_id_f18f9811_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_loadingsheet
@@ -13500,7 +13500,7 @@ ALTER TABLE ONLY public.sales_loadingsheet
 
 
 --
--- Name: sales_packingsheet sales_packingsheet_company_id_3eef23bd_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_packingsheet sales_packingsheet_company_id_3eef23bd_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_packingsheet
@@ -13508,7 +13508,7 @@ ALTER TABLE ONLY public.sales_packingsheet
 
 
 --
--- Name: sales_packingsheet sales_packingsheet_dn_id_ed5497d7_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_packingsheet sales_packingsheet_dn_id_ed5497d7_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_packingsheet
@@ -13516,7 +13516,7 @@ ALTER TABLE ONLY public.sales_packingsheet
 
 
 --
--- Name: sales_packingsheet sales_packingsheet_item_id_8fbf372e_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_packingsheet sales_packingsheet_item_id_8fbf372e_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_packingsheet
@@ -13524,7 +13524,7 @@ ALTER TABLE ONLY public.sales_packingsheet
 
 
 --
--- Name: sales_proformainvitems sales_proformainvite_inv_id_c2fd6c0f_fk_sales_pro; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems sales_proformainvite_inv_id_c2fd6c0f_fk_sales_pro; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvitems
@@ -13532,7 +13532,7 @@ ALTER TABLE ONLY public.sales_proformainvitems
 
 
 --
--- Name: sales_proformainvitems sales_proformainvite_item_id_02c98424_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvitems sales_proformainvite_item_id_02c98424_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvitems
@@ -13540,7 +13540,7 @@ ALTER TABLE ONLY public.sales_proformainvitems
 
 
 --
--- Name: sales_proformainvoice sales_proformainvoic_buyer_id_ca7a856b_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice sales_proformainvoic_buyer_id_ca7a856b_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvoice
@@ -13548,7 +13548,7 @@ ALTER TABLE ONLY public.sales_proformainvoice
 
 
 --
--- Name: sales_proformainvoice sales_proformainvoic_other_ledger_id_de1f2eae_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice sales_proformainvoic_other_ledger_id_de1f2eae_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvoice
@@ -13556,7 +13556,7 @@ ALTER TABLE ONLY public.sales_proformainvoice
 
 
 --
--- Name: sales_proformainvoice sales_proformainvoic_shipto_id_77f223cf_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice sales_proformainvoic_shipto_id_77f223cf_fk_ledgers_p; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvoice
@@ -13564,7 +13564,7 @@ ALTER TABLE ONLY public.sales_proformainvoice
 
 
 --
--- Name: sales_proformainvoice sales_proformainvoice_company_id_83789ef1_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice sales_proformainvoice_company_id_83789ef1_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvoice
@@ -13572,7 +13572,7 @@ ALTER TABLE ONLY public.sales_proformainvoice
 
 
 --
--- Name: sales_proformainvoice sales_proformainvoice_dn_id_8f8add8a_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_proformainvoice sales_proformainvoice_dn_id_8f8add8a_fk_sales_delivery_note_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_proformainvoice
@@ -13580,7 +13580,7 @@ ALTER TABLE ONLY public.sales_proformainvoice
 
 
 --
--- Name: sales_qdn sales_qdn_buyer_id_6ed6fca4_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_qdn sales_qdn_buyer_id_6ed6fca4_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdn
@@ -13588,7 +13588,7 @@ ALTER TABLE ONLY public.sales_qdn
 
 
 --
--- Name: sales_qdn sales_qdn_company_id_42bcfbfe_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_qdn sales_qdn_company_id_42bcfbfe_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdn
@@ -13596,7 +13596,7 @@ ALTER TABLE ONLY public.sales_qdn
 
 
 --
--- Name: sales_qdn sales_qdn_inv_id_c1dc7b06_fk_sales_invoice_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_qdn sales_qdn_inv_id_c1dc7b06_fk_sales_invoice_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdn
@@ -13604,7 +13604,7 @@ ALTER TABLE ONLY public.sales_qdn
 
 
 --
--- Name: sales_qdnitems sales_qdnitems_inv_id_1bef1a70_fk_sales_qdn_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_qdnitems sales_qdnitems_inv_id_1bef1a70_fk_sales_qdn_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdnitems
@@ -13612,7 +13612,7 @@ ALTER TABLE ONLY public.sales_qdnitems
 
 
 --
--- Name: sales_qdnitems sales_qdnitems_item_id_702ea031_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_qdnitems sales_qdnitems_item_id_702ea031_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_qdnitems
@@ -13620,7 +13620,7 @@ ALTER TABLE ONLY public.sales_qdnitems
 
 
 --
--- Name: sales_rso sales_rso_buyer_id_fb8a2aba_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_rso sales_rso_buyer_id_fb8a2aba_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rso
@@ -13628,7 +13628,7 @@ ALTER TABLE ONLY public.sales_rso
 
 
 --
--- Name: sales_rso sales_rso_company_id_3012327a_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_rso sales_rso_company_id_3012327a_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rso
@@ -13636,7 +13636,7 @@ ALTER TABLE ONLY public.sales_rso
 
 
 --
--- Name: sales_rso sales_rso_inv_id_57f9db99_fk_sales_invoice_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_rso sales_rso_inv_id_57f9db99_fk_sales_invoice_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rso
@@ -13644,7 +13644,7 @@ ALTER TABLE ONLY public.sales_rso
 
 
 --
--- Name: sales_rsoitems sales_rsoitems_inv_id_457ef3f4_fk_sales_rso_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_rsoitems sales_rsoitems_inv_id_457ef3f4_fk_sales_rso_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rsoitems
@@ -13652,7 +13652,7 @@ ALTER TABLE ONLY public.sales_rsoitems
 
 
 --
--- Name: sales_rsoitems sales_rsoitems_item_id_e7c4e99e_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_rsoitems sales_rsoitems_item_id_e7c4e99e_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_rsoitems
@@ -13660,7 +13660,7 @@ ALTER TABLE ONLY public.sales_rsoitems
 
 
 --
--- Name: sales_saleqty sales_saleqty_company_id_bafcd955_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_saleqty sales_saleqty_company_id_bafcd955_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_saleqty
@@ -13668,7 +13668,7 @@ ALTER TABLE ONLY public.sales_saleqty
 
 
 --
--- Name: sales_saleqty sales_saleqty_product_id_75bd4db6_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_saleqty sales_saleqty_product_id_75bd4db6_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_saleqty
@@ -13676,7 +13676,7 @@ ALTER TABLE ONLY public.sales_saleqty
 
 
 --
--- Name: sales_salesorder sales_salesorder_buyer_id_138f55de_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salesorder sales_salesorder_buyer_id_138f55de_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salesorder
@@ -13684,7 +13684,7 @@ ALTER TABLE ONLY public.sales_salesorder
 
 
 --
--- Name: sales_salesorder sales_salesorder_company_id_224d4587_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salesorder sales_salesorder_company_id_224d4587_fk_company_company_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salesorder
@@ -13692,7 +13692,7 @@ ALTER TABLE ONLY public.sales_salesorder
 
 
 --
--- Name: sales_salesorder sales_salesorder_other_ledger_id_80d0e9d1_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salesorder sales_salesorder_other_ledger_id_80d0e9d1_fk_ledgers_l; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salesorder
@@ -13700,7 +13700,7 @@ ALTER TABLE ONLY public.sales_salesorder
 
 
 --
--- Name: sales_salesorder sales_salesorder_shipto_id_974fd86d_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salesorder sales_salesorder_shipto_id_974fd86d_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salesorder
@@ -13708,7 +13708,7 @@ ALTER TABLE ONLY public.sales_salesorder
 
 
 --
--- Name: sales_salestarget sales_salestarget_asm_id_ce94597e_fk_ledgers_asm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salestarget sales_salestarget_asm_id_ce94597e_fk_ledgers_asm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget
@@ -13716,7 +13716,7 @@ ALTER TABLE ONLY public.sales_salestarget
 
 
 --
--- Name: sales_salestarget sales_salestarget_buyer_id_32b32da5_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salestarget sales_salestarget_buyer_id_32b32da5_fk_ledgers_party_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget
@@ -13724,7 +13724,7 @@ ALTER TABLE ONLY public.sales_salestarget
 
 
 --
--- Name: sales_salestarget sales_salestarget_region_id_347b6e84_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salestarget sales_salestarget_region_id_347b6e84_fk_ledgers_region_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget
@@ -13732,7 +13732,7 @@ ALTER TABLE ONLY public.sales_salestarget
 
 
 --
--- Name: sales_salestarget sales_salestarget_rsm_id_fc863101_fk_ledgers_rsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salestarget sales_salestarget_rsm_id_fc863101_fk_ledgers_rsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget
@@ -13740,7 +13740,7 @@ ALTER TABLE ONLY public.sales_salestarget
 
 
 --
--- Name: sales_salestarget sales_salestarget_se_id_6d5bdc73_fk_ledgers_se_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salestarget sales_salestarget_se_id_6d5bdc73_fk_ledgers_se_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget
@@ -13748,7 +13748,7 @@ ALTER TABLE ONLY public.sales_salestarget
 
 
 --
--- Name: sales_salestarget sales_salestarget_zone_id_c3f92e82_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salestarget sales_salestarget_zone_id_c3f92e82_fk_ledgers_zone_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget
@@ -13756,7 +13756,7 @@ ALTER TABLE ONLY public.sales_salestarget
 
 
 --
--- Name: sales_salestarget sales_salestarget_zsm_id_36c5ce5e_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_salestarget sales_salestarget_zsm_id_36c5ce5e_fk_ledgers_zsm_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_salestarget
@@ -13764,7 +13764,7 @@ ALTER TABLE ONLY public.sales_salestarget
 
 
 --
--- Name: sales_soitems sales_soitems_item_id_5748dd5d_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_soitems sales_soitems_item_id_5748dd5d_fk_inventory_product_master_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_soitems
@@ -13772,7 +13772,7 @@ ALTER TABLE ONLY public.sales_soitems
 
 
 --
--- Name: sales_soitems sales_soitems_so_id_e121e38e_fk_sales_salesorder_id; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: sales_soitems sales_soitems_so_id_e121e38e_fk_sales_salesorder_id; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.sales_soitems
@@ -13780,7 +13780,7 @@ ALTER TABLE ONLY public.sales_soitems
 
 
 --
--- Name: warehouse_materialtransferred warehouse_materialtr_godown_id_6604330d_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred warehouse_materialtr_godown_id_6604330d_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_materialtransferred
@@ -13788,7 +13788,7 @@ ALTER TABLE ONLY public.warehouse_materialtransferred
 
 
 --
--- Name: warehouse_materialtransferred warehouse_materialtr_indent_id_98431067_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred warehouse_materialtr_indent_id_98431067_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_materialtransferred
@@ -13796,7 +13796,7 @@ ALTER TABLE ONLY public.warehouse_materialtransferred
 
 
 --
--- Name: warehouse_materialtransferred warehouse_materialtr_item_id_f23a5634_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_materialtransferred warehouse_materialtr_item_id_f23a5634_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_materialtransferred
@@ -13804,7 +13804,7 @@ ALTER TABLE ONLY public.warehouse_materialtransferred
 
 
 --
--- Name: warehouse_pallettransferentry warehouse_pallettran_company_id_b5aeae28_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry warehouse_pallettran_company_id_b5aeae28_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_pallettransferentry
@@ -13812,7 +13812,7 @@ ALTER TABLE ONLY public.warehouse_pallettransferentry
 
 
 --
--- Name: warehouse_pallettransferentry warehouse_pallettran_item_id_e8ce6d93_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_pallettransferentry warehouse_pallettran_item_id_e8ce6d93_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_pallettransferentry
@@ -13820,7 +13820,7 @@ ALTER TABLE ONLY public.warehouse_pallettransferentry
 
 
 --
--- Name: warehouse_shortagedamageentry warehouse_shortageda_company_id_ce910660_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry warehouse_shortageda_company_id_ce910660_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_shortagedamageentry
@@ -13828,7 +13828,7 @@ ALTER TABLE ONLY public.warehouse_shortagedamageentry
 
 
 --
--- Name: warehouse_shortagedamageentry warehouse_shortageda_godown_id_3881f871_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry warehouse_shortageda_godown_id_3881f871_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_shortagedamageentry
@@ -13836,7 +13836,7 @@ ALTER TABLE ONLY public.warehouse_shortagedamageentry
 
 
 --
--- Name: warehouse_shortagedamageentry warehouse_shortageda_item_id_631d35bc_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry warehouse_shortageda_item_id_631d35bc_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_shortagedamageentry
@@ -13844,7 +13844,7 @@ ALTER TABLE ONLY public.warehouse_shortagedamageentry
 
 
 --
--- Name: warehouse_shortagedamageentry warehouse_shortageda_jobwork_id_46602a85_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry warehouse_shortageda_jobwork_id_46602a85_fk_productio; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_shortagedamageentry
@@ -13852,7 +13852,7 @@ ALTER TABLE ONLY public.warehouse_shortagedamageentry
 
 
 --
--- Name: warehouse_shortagedamageentry warehouse_shortageda_purchase_id_59c03fd1_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_shortagedamageentry warehouse_shortageda_purchase_id_59c03fd1_fk_purchase_; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_shortagedamageentry
@@ -13860,7 +13860,7 @@ ALTER TABLE ONLY public.warehouse_shortagedamageentry
 
 
 --
--- Name: warehouse_stock_summary warehouse_stock_summ_company_id_288c984b_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary warehouse_stock_summ_company_id_288c984b_fk_company_c; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_stock_summary
@@ -13868,7 +13868,7 @@ ALTER TABLE ONLY public.warehouse_stock_summary
 
 
 --
--- Name: warehouse_stock_summary warehouse_stock_summ_godown_id_26a3beaa_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary warehouse_stock_summ_godown_id_26a3beaa_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_stock_summary
@@ -13876,7 +13876,7 @@ ALTER TABLE ONLY public.warehouse_stock_summary
 
 
 --
--- Name: warehouse_stock_summary warehouse_stock_summ_product_id_194a6357_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: netitest
+-- Name: warehouse_stock_summary warehouse_stock_summ_product_id_194a6357_fk_inventory; Type: FK CONSTRAINT; Schema: public; Owner: neti_aws_db
 --
 
 ALTER TABLE ONLY public.warehouse_stock_summary

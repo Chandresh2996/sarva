@@ -124,10 +124,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'databaseNeti',
-            'USER': 'Netisuperuser',
-            'PASSWORD': 'Neti1234',
-            'HOST': 'database-1.cwkh99l3smwi.us-east-1.rds.amazonaws.com',
+            'NAME': 'neti_aws',
+            'USER': 'neti_aws_db',
+            'PASSWORD': 'Netiaws123',
+            'HOST': 'neti-aws.cwkh99l3smwi.us-east-1.rds.amazonaws.com',
             'PORT': '5432',
         }
     }
