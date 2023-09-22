@@ -121,27 +121,27 @@ if False:
     }
 else:
     #AWS Testing database
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'databaseNeti',
-    #         'USER': 'Netisuperuser',
-    #         'PASSWORD': 'Neti1234',
-    #         'HOST': 'database-1.cwkh99l3smwi.us-east-1.rds.amazonaws.com',
-    #         'PORT': '5432',
-    #     }
-    # }
-    # Main Database.
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'netidb',
-            'USER': 'netitest',
-            'PASSWORD': 'netidb@123',
-            'HOST': 'localhost',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'databaseNeti',
+            'USER': 'Netisuperuser',
+            'PASSWORD': 'Neti1234',
+            'HOST': 'database-1.cwkh99l3smwi.us-east-1.rds.amazonaws.com',
             'PORT': '5432',
         }
     }
+    # Main Database.
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': 'netidb',
+    #         'USER': 'netitest',
+    #         'PASSWORD': 'netidb@123',
+    #         'HOST': 'localhost',
+    #         'PORT': '5432',
+    #     }
+    # }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
