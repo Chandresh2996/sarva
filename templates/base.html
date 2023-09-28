@@ -557,47 +557,79 @@
                                 </ul>
                             </li>
                             <li class="nav-static-title">Masters</li>
-                            <li><a href="{% url 'company:home' %}" aria-expanded="false"><i
-                                class="nav-icon bi bi-box-seam"></i><span class="nav-title">Company</span></a>
-                            </li>
-                            <li><a href="{% url 'ledgers:ledgers' %}" aria-expanded="false"><i
-                                        class="nav-icon bi bi-person"></i><span class="nav-title">Customer</span></a>
-                            </li>
-                            <li><a href="{% url 'inventory:inventory' %}" aria-expanded="false"><i
-                                        class="nav-icon bi bi-box-seam"></i><span class="nav-title">Product</span></a>
-                            </li>
-
+                                <li class="false">
+                                    <a class="has-arrow" href="javascript:void(0)"              aria-expanded="false">
+                                        <i class="nav-icon bi bi-speedometer2"></i>
+                                        <span class="nav-title">Masters</span>
+                                        {% comment %} <span class="nav-label label label-danger">9</span> {% endcomment %}
+                                    </a>
+                                    <ul aria-expanded="false">
+                                        <li class="false">
+                                            <a href="{% url 'company:home' %}" aria-expanded="false"><i
+                                                class="nav-icon bi bi-box-seam"></i><span class="nav-title">Company</span></a>
+                                        </li>
+                                        <li><a href="{% url 'ledgers:ledgers' %}" aria-expanded="false"><i
+                                            class="nav-icon bi bi-person"></i><span class="nav-title">Customer</span></a>
+                                        </li>
+                                        <li><a href="{% url 'inventory:inventory' %}" aria-expanded="false"><i
+                                            class="nav-icon bi bi-box-seam"></i><span class="nav-title">Product</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>                           
                             <li class="nav-static-title">Transactions</li>
-                            <li><a href="{% url 'production:production' %}" aria-expanded="false"><i
-                                        class="nav-icon bi bi-gear-wide-connected"></i><span class="nav-title">Production</span></a>
-                            </li>
-                            <li><a href="{% url 'purchase:purchase' %}" aria-expanded="false"><i
-                                        class="nav-icon bi bi-truck"></i><span class="nav-title">Purchase</span></a>
-                            </li>
-                            <li><a href="{% url 'sales:sales' %}" aria-expanded="false"><i
-                                class="nav-icon bi bi-cart "></i><span class="nav-title">Sales</span></a> </li>
-                            <li><a href="{% url 'warehouse:transfers' %}" aria-expanded="false"><i
-                                class="nav-icon bi bi-arrow-left-right"></i><span class="nav-title">Transfers</span></a>
-                            </li>
-                            <li><a href="{% url 'warehouse:warehouse' %}" aria-expanded="false"><i
-                                        class="nav-icon bi bi-shop-window"></i><span class="nav-title">Warehouse</span></a>
-                            </li>
+                                <li class="false">
+                                    <a class="has-arrow" href="javascript:void(0)"              aria-expanded="false">
+                                        <i class="nav-icon bi bi-speedometer2"></i>
+                                        <span class="nav-title">Transactions</span>
+                                        {% comment %} <span class="nav-label label label-danger">9</span> {% endcomment %}
+                                    </a>
+                                    <ul aria-expanded="false">
+                                        <li class="false">
+                                            <a href="{% url 'production:production' %}" aria-expanded="false"><i
+                                                class="nav-icon bi bi-gear-wide-connected"></i><span class="nav-title">Production</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'purchase:purchase' %}" aria-expanded="false"><i
+                                                class="nav-icon bi bi-truck"></i><span class="nav-title">Purchase</span></a>
+                                        </li>
+                                        <li><a href="{% url 'sales:sales' %}" aria-expanded="false"><i
+                                            class="nav-icon bi bi-cart "></i><span class="nav-title">Sales</span></a> </li>
+                                        <li><a href="{% url 'warehouse:transfers' %}" aria-expanded="false"><i
+                                            class="nav-icon bi bi-arrow-left-right"></i><span class="nav-title">Transfers</span></a>
+                                        </li>
+                                        <li><a href="{% url 'warehouse:warehouse' %}" aria-expanded="false"><i
+                                                    class="nav-icon bi bi-shop-window"></i><span class="nav-title">Warehouse</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li> 
                             <li class="nav-static-title">Reports</li>
-                            <li><a href="{% url 'reports:inventory-reports' %}" aria-expanded="false"><i
-                                class="nav-icon bi bi-file-medical"></i><span class="nav-title">Inventory</span></a>
-                            </li>
-                            <li><a href="{% url 'reports:production-reports' %}" aria-expanded="false"><i
-                                class="nav-icon bi bi-file-plus"></i><span class="nav-title">Production</span></a>
-                            </li>
-                            <li><a href="{% url 'reports:purchase-reports' %}" aria-expanded="false"><i
-                                class="nav-icon bi bi-file-earmark-arrow-down"></i><span class="nav-title">Purchase</span></a>
-                            </li>
-                            <li><a href="{% url 'reports:sales-reports' %}" aria-expanded="false"><i
-                                        class="nav-icon bi bi-file-earmark-arrow-up"></i><span class="nav-title">Sales</span></a>
-                            </li>
-                            <li><a href="{% url 'reports:warehouse-reports' %}" aria-expanded="false"><i
-                                        class="nav-icon bi bi-journal-album"></i><span class="nav-title">Warehouse</span></a>
-                            </li>
+                                <li class="false">
+                                    <a class="has-arrow" href="javascript:void(0)"              aria-expanded="false">
+                                        <i class="nav-icon bi bi-speedometer2"></i>
+                                        <span class="nav-title">Reports</span>
+                                        {% comment %} <span class="nav-label label label-danger">9</span> {% endcomment %}
+                                    </a>
+                                    <ul aria-expanded="false">
+                                        <li><a href="{% url 'reports:inventory-reports' %}" aria-expanded="false"><i
+                                            class="nav-icon bi bi-file-medical"></i><span class="nav-title">Inventory</span></a>
+                                        </li>
+                                        <li><a href="{% url 'reports:production-reports' %}" aria-expanded="false"><i
+                                            class="nav-icon bi bi-file-plus"></i><span class="nav-title">Production</span></a>
+                                        </li>
+                                        <li><a href="{% url 'reports:purchase-reports' %}" aria-expanded="false"><i
+                                            class="nav-icon bi bi-file-earmark-arrow-down"></i><span class="nav-title">Purchase</span></a>
+                                        </li>
+                                        <li><a href="{% url 'reports:sales-reports' %}" aria-expanded="false"><i
+                                                    class="nav-icon bi bi-file-earmark-arrow-up"></i><span class="nav-title">Sales</span></a>
+                                        </li>
+                                        <li><a href="{% url 'reports:warehouse-reports' %}" aria-expanded="false"><i
+                                                    class="nav-icon bi bi-journal-album"></i><span class="nav-title">Warehouse</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li> 
                         </ul>
                     </div>
                     <!-- end sidebar-nav -->
